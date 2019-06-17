@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Container, Row, Col} from "react-bootstrap"
+import Header from "./Header"
 
 class App extends React.Component{
 	constructor(props){
@@ -14,9 +15,22 @@ class App extends React.Component{
 		return(
 			<Container>
 				<Row>
-					<Col style={{fontSize: "28px"}}>
-						{this.state.text}
+					<Col
+						md={12}
+			            sm={12}
+			            xs={12}
+					>
+					< Header />
 					</Col>
+				</Row>
+				<Row>
+
+				</Row>
+				<Row>
+
+				</Row>
+				<Row>
+
 				</Row>
 			</Container>
 		)};
