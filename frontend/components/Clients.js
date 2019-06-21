@@ -1,80 +1,47 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Button, Col, Row, Dropdown, DropdownButton, ButtonToolbar, Alert} from "react-bootstrap";
+import Table from "./Table";
 
 export default class Clients extends React.Component{
 	constructor(props){
 		super()
 		this.state = {
+			tableHeight: "100%",
 			dropState: "Статус",
 		}
+		this.setHeight = this.setHeight.bind(this);
+}
 
-		this.setNameStatus = this.setNameStatus.bind(this);
-	}
-
-	// Меняет имя Статусу заявки
-	setNameStatus(name){
+	// Определяем высоту окна и сохраняем
+	setHeight(){
+		let scr = document.documentElement.clientHeight;
 		this.setState({
-			dropState: name,
+			tableHeight: String(scr - 295) + 'px',
 		})
 	}
 
+
 	render(){
+		if (this.state.tableHeight == "100%"){
+			this.setHeight();
+		}
 
-		let clients = 
+		let data = []
+		for (var i = 0; i < 100; i++) {
+			data.push({
+				status:"Ф.И.О.",
+				name: "Ф.И.О.",
+				country: "Страна",
+				program: "Название программы",
+				data: "Дата отъезда"
+			});
+		}
+
+		let clients =
 			<Col lg={12} md={12}>
-				<Row>
-					<ButtonToolbar style={{ height: "30px"}}>
-						
-					    <Col lg={2} md={2}>
-					    <DropdownButton
-							lg={12} md={12}
-					        title={this.state.dropState}
-					        variant="secondary"
-					        id={`dropdown-variants-secondary`}
-					        key="Secondary"
-					        style={{ width: "100px"}}
-					        >
-					        <Dropdown.Item onClick={() => this.setNameStatus("Не заполнен")}>Не заполнен</Dropdown.Item>
-					        <Dropdown.Item className="mr-5" onClick={() => this.setNameStatus("Заявка")}>Заявка</Dropdown.Item>
-					        <Dropdown.Item onClick={() => this.setNameStatus("Договор")}>Договор</Dropdown.Item>
-					        <Dropdown.Item onClick={() => this.setNameStatus("Оплата")}>Оплата</Dropdown.Item>
-					        <Dropdown.Item onClick={() => this.setNameStatus("Выезд")}>Выезд</Dropdown.Item>
-					        <Dropdown.Item onClick={() => this.setNameStatus("План")}>План</Dropdown.Item>
-					        <Dropdown.Item onClick={() => this.setNameStatus("Отказ")}>Отказ</Dropdown.Item>
-					        <Dropdown.Item onClick={() => this.setNameStatus("Закрытые")}>Закрытые</Dropdown.Item>
-					        <Dropdown.Divider />
-					        <Dropdown.Item onClick={() => this.setNameStatus("Статус")}>По-умолчанию</Dropdown.Item>
-					    </DropdownButton>
-
-					    </Col>
-					    
-						<Col lg={3} md={3}>
-							<Alert variant="dark" className="mr-3" lg={12} md={12}>
-							  Ф.И.О.
-							</Alert>
-						</Col>
-						
-						<Col lg={2} md={2}>
-							<Alert variant="dark" className="mr-3" lg={12} md={12}>
-							  Страна
-							</Alert>
-						</Col>
-						
-						<Col lg={3} md={3}>
-							<Alert variant="dark" className="mr-3" lg={12} md={12}>
-							  Название программы
-							</Alert>
-						</Col>
-						
-						<Col lg={1} md={1}>
-						<Alert variant="dark" className="mr-3" lg={12} md={12}>
-						  Дата отъезда
-						</Alert>
-						</Col>
-					</ButtonToolbar>
+					<Table data={data} screen={this.state.tableHeight}/>
 					{/*Ниже данные с сервера*/}
-				</Row>
 			</Col>;
 
 		return(clients);
