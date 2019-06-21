@@ -18,6 +18,8 @@ export default class Header extends React.Component{
 	}
 
 	render(){
+	// Винный цвет 
+	const tongueColor = "#AB274F";
 	// Переменная для смены цвета колокольчика уведомлений
 	let bell = 
 				this.state.notification_bell ? 
@@ -35,27 +37,37 @@ export default class Header extends React.Component{
 			            />;
 	// Отрисовка главного навигатора
 	let header = 
-				<Navbar collapseOnSelect expand="lg"
+				<Navbar collapseOnSelect expand="lg" sticky="top" variant="light"
 					style={{
-						background: "#AB274F"
+						background: "#E4E0DC",
 					}}
 				>
-				  <Navbar.Brand href="#home">First Academy</Navbar.Brand>
+				  <Navbar.Brand>
+				  	<img 
+				  		src="image/logo.svg"
+				  		style={{cursor: "pointer"}}
+				  	/>
+				  </Navbar.Brand>
 				  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				  <Navbar.Collapse id="responsive-navbar-nav">
 				  	<Nav className="ml-auto"
 				  		style={{
-				  			fontColor: "black",
+				  			fontColor: "#000",
+				  			fontFamily: "Raleway, sans-serif",
+				  			fontSize: "14pt",
 				  		}}
 				  	>
-				    	<Nav.Link href="#creat_client">Создать</Nav.Link>
-				    	<Nav.Link href="#Statics">Статистика</Nav.Link>  
-					    <Nav.Link href="#Notification" 
-					    		onClick={this.changeBell}
+				    	<Nav.Link>Создать</Nav.Link>
+				    	<Nav.Link style={{marginLeft: "20px"}}>
+				    	Статистика
+				    	</Nav.Link>
+					    <Nav.Link onClick={this.changeBell}
+					    		  style={{marginLeft: "20px"}}
 					    >
 					    	{bell}
 					    </Nav.Link>
-					    <Nav.Link href="#Exit">
+
+					    <Nav.Link>
 					    	<img src="image/exit.png"
 				                 style={{
 				                   marginLeft: "20px",
