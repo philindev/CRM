@@ -27,21 +27,64 @@ export default class Clients extends React.Component{
 			this.setHeight();
 		}
 
-		let data = []
-		for (var i = 0; i < 100; i++) {
-			data.push({
-				status:"Ф.И.О.",
-				name: "Ф.И.О.",
-				country: "Страна",
-				program: "Название программы",
-				data: "Дата отъезда"
-			});
-		}
+		let data = [
+			{
+				status:"Вылет",
+				name: `Красников Максим Николаевич`,
+				country: "Филиппины",
+				program: "5 недель Cambridge 2",
+				data: "30.06.2019"
+			},
+			{
+				status:"Вылет",
+				name: `Вольных Елизавета Игоревна`,
+				country: "Филиппины",
+				program: "5 недель Cambridge 2",
+				data: "30.06.2019"
+			},
+			{
+				status:"Договор",
+				name: `Полубояринова Оксана Евгеньевна`,
+				country: "Корея",
+				program: "Подготовка IELTS",
+				data: "30.01.2020"
+			},
+			{
+				status:"Вылет",
+				name: `Вайсеро Ольга Степновна`,
+				country: "Филиппины",
+				program: "4 недели интенсив",
+				data: "30.05.2019"
+			},
+			{
+				status:"Не заполнен",
+				name: `Иванов Артем Ростиславович`,
+				country: "Англия",
+				program: "Oxford 5 недель",
+				data: "14.04.2021"
+			}
+		];
+
 
 		let clients =
-			<Col lg={12} md={12}>
-					<Table data={data} screen={this.state.tableHeight}/>
+			<Col lg={12} md={12} xl={12}>
+					<Button
+						size="sm" variant="outline-info"
+						style={{
+							fontFamily: "sans-serif",
+							fontWeight: "light",
+							fontSize: "8pt",
+							textAlign: "center",
+							position: "absolute",
+							right: "10px",
+						}}
+					>
+						обновить
+					</Button>
 					{/*Ниже данные с сервера*/}
+					<Table
+						data={data} screen={this.state.tableHeight}
+					/>
 			</Col>;
 
 		return(clients);

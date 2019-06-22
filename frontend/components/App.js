@@ -4,6 +4,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import Header from "./Header";
 import Search from "./Search";
 import Clients from "./Clients";
+import Create from './Create';
 
 class App extends React.Component{
 	constructor(props){
@@ -11,6 +12,7 @@ class App extends React.Component{
 		this.state = {
 			whatsBlock : 0,
 			submit: null,
+			showCreate: true,
 		}
 	}
 
@@ -21,7 +23,7 @@ class App extends React.Component{
 
 		switch(this.state.whatsBlock){
 			case 0:
-			
+
 		};
 
 		return(
@@ -29,8 +31,8 @@ class App extends React.Component{
 				<Row>
 					<Col
 						md={12}
-			            sm={12}
-			            xs={12}
+            sm={12}
+            xl={12}
 					>
 					<Header />
 					</Col>
@@ -39,12 +41,14 @@ class App extends React.Component{
 						<Col
 							lg={8}
 							md={8}
+							xl={8}
 						>
 							<Row>
 								{/*Здесь рендер поисковой строки*/}
 								<Col className="mt-4"
 									lg={11}
 									md={11}
+									xl={11}
 								>
 									<Search />
 								</Col>
@@ -54,6 +58,10 @@ class App extends React.Component{
 								<Clients />
 							</Row>
 						</Col>
+						{/*Модальные окна "Создать" и "Статистика"*/}
+						<Create showWindow={this.state.showCreate}
+										onHide={() => this.setState({showCreate: false,})}
+						/>
 					</Row>
 			</Container>
 		)};

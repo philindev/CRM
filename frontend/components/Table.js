@@ -1,8 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Dropdown, DropdownButton} from "react-bootstrap";
-import {BootstrapTable,
-       TableHeaderColumn} from 'react-bootstrap-table';
+import Row from "./Row";
 
 export default class Table extends React.Component{
   constructor(props){
@@ -22,26 +21,30 @@ export default class Table extends React.Component{
 	}
 
   render(){
-    console.log(this.props.screen);
+    let results = this.props.data.map((obj, inx) => <Row key={inx} data={obj} />);
     return(
-      <div style={{overflow: "auto", height: this.props.screen}}>
-        <BootstrapTable data={this.props.data}>
-          <TableHeaderColumn isKey dataField='status' width="140px">
-            Не заполнено
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField='name' width="250px">
-            Ф.И.О.
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField='country' width="150px">
-            Страна
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField='program' width="250px">
-            Название программы
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField='data' width="100px">
-            Дата отъезда
-          </TableHeaderColumn>
-        </BootstrapTable>
+      <div style={{
+            overflow: "auto",
+            height: this.props.screen,
+            position: "absolute",
+            top: "2rem",
+          }}
+          id="tableDiv"
+        >
+        <table class="table table-hover">
+              <thead class="thead-dark">
+                  <tr style={{textAlign: "center"}}>
+                    <th scope="col" width="150px">Не заполнен</th>
+                    <th scope="col" width="200px">Ф.И.О.</th>
+                    <th scope="col" width="210px">Название программы</th>
+                    <th scope="col" width="120px">Страна</th>
+                    <th scope="col" width="100px">Дата отъезда</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {results}
+             </tbody>
+        </table>
       </div>
     )
   }
