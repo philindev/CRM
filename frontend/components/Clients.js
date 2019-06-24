@@ -62,13 +62,14 @@ export default class Clients extends React.Component{
 				country: "Англия",
 				program: "Oxford 5 недель",
 				data: "14.04.2021"
-			}
+			},
 		];
 
 
 		let clients =
 			<Col lg={12} md={12} xl={12}>
 					<Button
+						onClick={this.setHeight}
 						size="sm" variant="outline-info"
 						style={{
 							fontFamily: "sans-serif",

@@ -5,6 +5,7 @@ import Header from "./Header";
 import Search from "./Search";
 import Clients from "./Clients";
 import Create from './Create';
+import Continue from "./Continue";
 
 class App extends React.Component{
 	constructor(props){
@@ -12,20 +13,24 @@ class App extends React.Component{
 		this.state = {
 			whatsBlock : 0,
 			submit: null,
-			showCreate: true,
+			showCreate: false,
+			showContinue: false,
 		}
+
+		this.onHideCreate = this.onHideCreate.bind(this);
+		this.onHideContinue = this.onHideContinue.bind(this);
+	}
+
+	// Показывает, скрывает анкету создания клиента
+	onHideCreate(){
+		this.setState({showCreate: (this.state.showCreate)?false:true})
+	}
+
+	onHideContinue(){
+		this.setState({showContinue: (this.state.showContinue)?false:true})
 	}
 
 	render(){
-
-
-		let mainBlock = null;
-
-		switch(this.state.whatsBlock){
-			case 0:
-
-		};
-
 		return(
 			<Container>
 				<Row>
@@ -34,7 +39,7 @@ class App extends React.Component{
             sm={12}
             xl={12}
 					>
-					<Header />
+					<Header onCreate={this.onHideCreate}/>
 					</Col>
 				</Row>
 				<Row>
@@ -60,8 +65,11 @@ class App extends React.Component{
 						</Col>
 						{/*Модальные окна "Создать" и "Статистика"*/}
 						<Create showWindow={this.state.showCreate}
-										onHide={() => this.setState({showCreate: false,})}
+										onHideCreate={this.onHideCreate}
+										onContinue={this.onHideContinue}
 						/>
+						<Continue showWindow={this.state.showContinue}
+											onHideContinue={this.onHideContinue}/>
 					</Row>
 			</Container>
 		)};

@@ -18,11 +18,11 @@ export default class Header extends React.Component{
 	}
 
 	render(){
-	// Винный цвет 
+	// Винный цвет
 	const tongueColor = "#AB274F";
 	// Переменная для смены цвета колокольчика уведомлений
-	let bell = 
-				this.state.notification_bell ? 
+	let bell =
+				this.state.notification_bell ?
 				<img src="image/notification.png"
 			                 style={{
 			                   marginLeft: "20px",
@@ -36,14 +36,14 @@ export default class Header extends React.Component{
 			                 }}
 			            />;
 	// Отрисовка главного навигатора
-	let header = 
+	let header =
 				<Navbar collapseOnSelect expand="lg" sticky="top" variant="light"
 					style={{
 						background: "#E4E0DC",
 					}}
 				>
 				  <Navbar.Brand>
-				  	<img 
+				  	<img
 				  		src="image/logo.svg"
 				  		style={{cursor: "pointer"}}
 				  	/>
@@ -57,7 +57,7 @@ export default class Header extends React.Component{
 				  			fontSize: "14pt",
 				  		}}
 				  	>
-				    	<Nav.Link>Создать</Nav.Link>
+				    	<Nav.Link onClick={this.props.onCreate}>Создать</Nav.Link>
 				    	<Nav.Link style={{marginLeft: "20px"}}>
 				    	Статистика
 				    	</Nav.Link>
@@ -79,7 +79,6 @@ export default class Header extends React.Component{
 				  </Navbar.Collapse>
 				</Navbar>;
 
-		return(header)	
+		return(header)
 	}
 };
-
