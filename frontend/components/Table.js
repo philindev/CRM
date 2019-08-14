@@ -21,7 +21,7 @@ export default class Table extends React.Component{
 	}
 
   render(){
-    let results = this.props.data.map((obj, inx) => <Row key={inx} data={obj} />);
+    let results = this.props.data.map((obj, inx) => <Row key={inx} data={obj} openInfo={this.props.openInfo}/>);
     return(
       <div style={{
             overflow: "auto",
@@ -32,13 +32,13 @@ export default class Table extends React.Component{
           id="tableDiv"
         >
         <table class="table table-hover">
-              <thead class="thead-dark">
+              <thead class="thead-light">
                   <tr style={{textAlign: "center"}}>
-                    <th scope="col" width="150px">Не заполнен</th>
-                    <th scope="col" width="200px">Ф.И.О.</th>
-                    <th scope="col" width="210px">Название программы</th>
-                    <th scope="col" width="120px">Страна</th>
-                    <th scope="col" width="100px">Дата отъезда</th>
+                    <th scope="col" width="150px" style={{background: "#E4E0DC"}}>Не заполнен</th>
+                    <th scope="col" width="200px" style={{background: "#E4E0DC"}}>Ф.И.О.</th>
+                    <th scope="col" width="210px" style={{background: "#E4E0DC"}}>Название программы</th>
+                    <th scope="col" width="120px" style={{background: "#E4E0DC"}}>Страна</th>
+                    <th scope="col" width="100px" style={{background: "#E4E0DC"}}>Дата отъезда</th>
                   </tr>
               </thead>
               <tbody>

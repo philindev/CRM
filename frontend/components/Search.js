@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {InputGroup, FormControl, Button} from "react-bootstrap";
+import {InputGroup, FormControl, Button, OverlayTrigger, Popover,
+				Form} from "react-bootstrap";
 
 export default class Search extends React.Component{
 	constructor(props){
@@ -12,9 +13,15 @@ export default class Search extends React.Component{
 	}
 
 	render(){
-		const main = this
+		const main = this;
 
-		let searchLine = 
+		const popover =
+		<Popover id="popover-basic" title="Параметры">
+			<Form.Control type="text" placeholder="Номер телефона" />
+
+		</Popover>;
+
+		let searchLine =
 				<div>
 					<InputGroup className="my-3">
 				        <FormControl
@@ -41,9 +48,11 @@ export default class Search extends React.Component{
 			            </Button>
 			            </InputGroup.Append>
 			        </InputGroup>
+					<OverlayTrigger trigger="click" placement="auto" overlay={popover}>
 			        <Button variant="outline-danger" size="sm">
-					    Фильтр
-					</Button>
+							    Фильтр
+							</Button>
+					</OverlayTrigger>
 				</div>
 
 		return(searchLine);

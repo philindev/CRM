@@ -6,8 +6,21 @@ import {Modal, Button, Form, Dropdown,
 export default class Create extends Component{
   constructor(props){
     super(props);
+    this.super = {
+      user: '',
+      dateOfBirth: '',
+      number: '',
+      mail: '',
+    };
 
     this.openContinue = this.openContinue.bind(this);
+    this.sendProfile = this.sendProfile.bind(this);
+    this.save = this.save.bind(this);
+    this.printState = this.printState.bind(this);
+  }
+
+  printState(){
+    console.log(this.state)
   }
 
   // Закрывает и открывает окно заявки
@@ -15,6 +28,56 @@ export default class Create extends Component{
     this.props.onHideCreate();
     this.props.onContinue();
   }
+  //
+  // writing(e, where){
+  //   this.setState({{where} : e.target.value});
+  // }
+
+  sendProfile(){
+    console.log(this.state);
+    if(
+        this.state.user != '' && this.state.dateOfBirth != '' &&
+        this.state.number != '' && this.state.mail != ''
+      )
+    {
+    fetch('/UserData',
+        {
+          method: 'post',
+          headers: {
+            'Content-Type':'application/json',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+          },
+          body: JSON.stringify(this.state),
+        })
+        .then(
+        function(response) {
+          if (response.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' +
+              response.status);
+            if(response.status === 500){
+                console.log("Status: 500")
+            }
+            return;
+          }
+
+          // Examine the text in the response
+          response.json()
+          .then(function(data) {
+            console.log(data);
+            return;
+            });
+        })
+      }
+      else{
+        console.log("Not all positions were written!")
+      }
+    };
+
+    save(){
+        this.props.onHideCreate;
+        return;
+    }
 
 
   render(){
@@ -37,8 +100,11 @@ export default class Create extends Component{
             <Form>
               <InputGroup className="mb-3">
                 <Form.Control
-                  type="text" placeholder="Название программы"
+                  type="text" placeholder="Ф.И.О."
+                  onChange={(e) => {this.setState({ user: e.target.value })}}
                 />
+
+
                     <InputGroup.Append>
                       {/* Статус заявки выпадающее меню */}
                       <Dropdown>
@@ -47,27 +113,41 @@ export default class Create extends Component{
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                           <Dropdown.Item>V.I.P.</Dropdown.Item>
-                          <Dropdown.Item href="#/action-2">Новый</Dropdown.Item>
-                          <Dropdown.Item href="#/action-3">Повторный</Dropdown.Item>
+                          <Dropdown.Item>Новый</Dropdown.Item>
+                          <Dropdown.Item>Повторный</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                   </InputGroup.Append>
                 </InputGroup>
+
+
                 <Form.Row>
                   {/* Почта и номер телефона ниже */}
                   <Form.Group as={Col} controlId="formGridEmail">
                     {/* Дата рождения ниже */}
                     <div class="well">
                       <div class="form-group">
-                        <input type="date" class="form-control" id="exampleInputDOB1"/>
+                        <input type="date" class="form-control" id="exampleInputDOB1"
+                        onChange={(e) => {this.setState({ user: e.target.value })}}
+                        />
                       </div>
                     </div>
                   </Form.Group>
+
+
                   <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Control type="phone" placeholder="Номер телефона" />
+                    <Form.Control type="phone" placeholder="Номер телефона"
+                    onChange={(e) => {this.setState({ user: e.target.value })}}
+                    />
                   </Form.Group>
                 </Form.Row>
-                <Form.Control type="email" placeholder="Почта" />
+
+
+                <Form.Control type="email" placeholder="Почта"
+                  onChange={(e) => {this.setState({ user: e.target.value })}}
+                />
+
+
                 <ButtonGroup aria-label="Basic example" className="mt-3">
                     <Button variant="danger" className="mr-3">Добавить родителя</Button>
                     <Button variant="success">Добавить поле</Button>
@@ -77,7 +157,7 @@ export default class Create extends Component{
         </Modal.Body>
           {/* Кнопки для сохранения и выхода */}
           <Modal.Footer>
-            <Button onClick={this.props.onHideCreate}
+            <Button onClick={this.sendProfile}
                     variant="outline-warning"
             >Сохранить</Button>
             <Button onClick={this.openContinue}

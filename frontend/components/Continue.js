@@ -26,7 +26,7 @@ export default class Continue extends Component{
         <Form>
           <InputGroup className="mb-3">
             <Form.Control
-              type="text" placeholder="Ф.И.О."
+              type="text" placeholder="Название программы"
             />
                 <InputGroup.Append>
                   {/* Статус клиента выпадающее меню */}
@@ -45,20 +45,18 @@ export default class Continue extends Component{
                   </Dropdown>
               </InputGroup.Append>
             </InputGroup>
-            <Form.Row>
+            <Form.Row className="mb-0">
               <Form.Group as={Col} controlId="formGridText">
                 {/* Дата отъезда ниже */}
                 <div class="well">
-                  <div class="form-group">
                     <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата отъезда"/>
-                  </div>
                 </div>
               </Form.Group>
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Control type="phone" placeholder="Год поездки" />
                 </Form.Group>
             </Form.Row>
-            <Form.Row>
+            <Form.Row className="mt-0">
                 <Form.Group as={Col} controlId="formGridText">
                   <Form.Control type="text" placeholder="Страна" />
                 </Form.Group>
