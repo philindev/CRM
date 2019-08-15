@@ -6,7 +6,7 @@ import {Modal, Button, Form, Dropdown,
 export default class Create extends Component{
   constructor(props){
     super(props);
-    this.super = {
+    this.state = {
       user: '',
       dateOfBirth: '',
       number: '',
@@ -28,16 +28,14 @@ export default class Create extends Component{
     this.props.onHideCreate();
     this.props.onContinue();
   }
-  //
-  // writing(e, where){
-  //   this.setState({{where} : e.target.value});
-  // }
 
   sendProfile(){
     console.log(this.state);
     if(
-        this.state.user != '' && this.state.dateOfBirth != '' &&
-        this.state.number != '' && this.state.mail != ''
+        this.state.user != '' &&
+        this.state.dateOfBirth != '' &&
+        this.state.number != '' &&
+        this.state.mail != ''
       )
     {
     fetch('/UserData',
