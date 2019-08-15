@@ -11,16 +11,11 @@ export default class Create extends Component{
       dateOfBirth: '',
       number: '',
       mail: '',
+      whichWindow: 0,
     };
 
     this.openContinue = this.openContinue.bind(this);
     this.sendProfile = this.sendProfile.bind(this);
-    this.save = this.save.bind(this);
-    this.printState = this.printState.bind(this);
-  }
-
-  printState(){
-    console.log(this.state)
   }
 
   // Закрывает и открывает окно заявки
@@ -30,12 +25,18 @@ export default class Create extends Component{
   }
 
   sendProfile(){
-    console.log(this.state);
+    files = {
+      user: this.state.user,
+      dateOfBirth: this.state.dateOfBirth,
+      number: this.state.number,
+      mail: this.state.mail,
+    }
+    console.log(files);
     if(
-        this.state.user != '' &&
-        this.state.dateOfBirth != '' &&
-        this.state.number != '' &&
-        this.state.mail != ''
+        files.user != '' &&
+        files.dateOfBirth != '' &&
+        files.number != '' &&
+        files.mail != ''
       )
     {
     fetch('/UserData',
@@ -46,7 +47,7 @@ export default class Create extends Component{
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
           },
-          body: JSON.stringify(this.state),
+          body: JSON.stringify(files),
         })
         .then(
         function(response) {
@@ -71,11 +72,6 @@ export default class Create extends Component{
         console.log("Not all positions were written!")
       }
     };
-
-    save(){
-        this.props.onHideCreate;
-        return;
-    }
 
 
   render(){
