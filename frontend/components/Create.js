@@ -11,7 +11,8 @@ export default class Create extends Component{
       dateOfBirth: '',
       number: '',
       mail: '',
-      whichWindow: 0,
+      firstParent: {},
+      secondParent: {},
     };
 
     this.openContinue = this.openContinue.bind(this);
@@ -24,8 +25,8 @@ export default class Create extends Component{
     this.props.onContinue();
   }
 
-  sendProfile(){
-    files = {
+  sendProfile(whichWindow){
+    let files = {
       user: this.state.user,
       dateOfBirth: this.state.dateOfBirth,
       number: this.state.number,
@@ -75,12 +76,12 @@ export default class Create extends Component{
 
 
   render(){
+
     let windowClient =
         <Modal
         show={this.props.showWindow}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
-        centered
         onHide={this.props.onHideCreate}
         >
           <Modal.Header closeButton>
@@ -89,7 +90,7 @@ export default class Create extends Component{
             </Modal.Title>
           </Modal.Header>
           {/* Окно разных форм */}
-          <Modal.Body>
+          <Modal.Body style={{overflow: 'auto'}}>
             <h5>Заполните данные:</h5>
             <Form>
               <InputGroup className="mb-3">
@@ -122,7 +123,7 @@ export default class Create extends Component{
                     <div class="well">
                       <div class="form-group">
                         <input type="date" class="form-control" id="exampleInputDOB1"
-                        onChange={(e) => {this.setState({ user: e.target.value })}}
+                        onChange={(e) => {this.setState({ dateOfBirth: e.target.value })}}
                         />
                       </div>
                     </div>
@@ -131,22 +132,34 @@ export default class Create extends Component{
 
                   <Form.Group as={Col} controlId="formGridPassword">
                     <Form.Control type="phone" placeholder="Номер телефона"
-                    onChange={(e) => {this.setState({ user: e.target.value })}}
+                    onChange={(e) => {this.setState({ number: e.target.value })}}
                     />
                   </Form.Group>
                 </Form.Row>
 
 
                 <Form.Control type="email" placeholder="Почта"
-                  onChange={(e) => {this.setState({ user: e.target.value })}}
+                  onChange={(e) => {this.setState({ mail: e.target.value })}}
                 />
 
 
                 <ButtonGroup aria-label="Basic example" className="mt-3">
-                    <Button variant="danger" className="mr-3">Добавить родителя</Button>
+                    <Button variant="danger" className="mr-3"
+                    >Добавить родителя</Button>
                     <Button variant="success">Добавить поле</Button>
                 </ButtonGroup>
           </Form>
+
+          {(this.state.howManyParent) ?
+            this.state.howManyParent.map((obj, ind) =>
+                          <Form key={ind}>
+                              <Form.Control className="mb-3" type="text" placeholder="Ф.И.О."/>
+                              {/* Почта и номер телефона ниже */}
+                              <Form.Control className="mb-3" type="phone" placeholder="Номер телефона"/>
+                              <Form.Control className="mb-3" type="email" placeholder="Почта"/>
+                              <Form.Control className="mb-3" type="text" placeholder="Место работы"/>
+                          </Form>)
+          : null}
 
         </Modal.Body>
           {/* Кнопки для сохранения и выхода */}
@@ -154,7 +167,7 @@ export default class Create extends Component{
             <Button onClick={this.sendProfile}
                     variant="outline-warning"
             >Сохранить</Button>
-            <Button onClick={this.openContinue}
+            <Button onClick={this.sendProfile}
                     variant="outline-info"
             >Продолжить</Button>
           </Modal.Footer>
