@@ -5,7 +5,7 @@ import Row from "./Row";
 
 export default class Table extends React.Component{
   constructor(props){
-		super()
+		super(props);
 		this.state = {
 			dropState: "Статус",
 		}
