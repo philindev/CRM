@@ -33,13 +33,13 @@ export default class Header extends React.Component{
 	// Переменная для смены цвета колокольчика уведомлений
 	let bell =
 				this.state.notification_bell ?
-				<img src="image/notification.png"
+				<img src="frontend/image/notification.png"
 			                 style={{
 			                   marginLeft: "20px",
 			                   height: "25px",
 			                 }}
 			            /> :
-			    <img src="image/notification light.png"
+			    <img src="frontend/image/notification light.png"
 			                 style={{
 			                   marginLeft: "20px",
 			                   height: "25px",
@@ -68,7 +68,7 @@ export default class Header extends React.Component{
 				>
 				  <Navbar.Brand>
 				  	<img
-				  		src="image/logo.svg"
+				  		src="frontend/image/logo.svg"
 				  		style={{cursor: "pointer"}}
 				  	/>
 				  </Navbar.Brand>
@@ -92,7 +92,7 @@ export default class Header extends React.Component{
 							    </Nav.Link>
 								</OverlayTrigger>
 					    <Nav.Link>
-					    	<img src="image/exit.png"
+					    	<img src="frontend/image/exit.png"
 				                 style={{
 				                   marginLeft: "20px",
 				                   height: "25px",
