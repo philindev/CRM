@@ -2,21 +2,25 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import {Modal, Button, Form, Dropdown,
   InputGroup, Col, Row, ButtonGroup} from "react-bootstrap";
+import Parent from "./Parent.js";
 
 export default class Create extends Component{
   constructor(props){
     super(props);
     this.state = {
-      user: '',
+      name: '',
       dateOfBirth: '',
       number: '',
       mail: '',
+      countParent: 0,
       firstParent: {},
       secondParent: {},
     };
 
     this.openContinue = this.openContinue.bind(this);
     this.sendProfile = this.sendProfile.bind(this);
+    this.addParent = this.addParent.bind(this);
+    this.updateParent = this.updateParent.bind(this);
   }
 
   // Закрывает и открывает окно заявки
@@ -27,10 +31,12 @@ export default class Create extends Component{
 
   sendProfile(whichWindow){
     let files = {
-      user: this.state.user,
+      name: this.state.name,
       dateOfBirth: this.state.dateOfBirth,
       number: this.state.number,
       mail: this.state.mail,
+      firstParent: this.state.firstParent,
+      secondParent: this.state.secondParent,
     }
     console.log(files);
     if(
@@ -74,6 +80,24 @@ export default class Create extends Component{
       }
     };
 
+    addParent(){
+      console.log(this.state.countParent);
+      this.setState({countParent: (this.state.countParent == 2) ? 2
+                                                 : this.state.countParent + 1});
+    }
+
+    updateParent(info, which){
+      console.log(which);
+      if(which){
+        this.setState({secondParent: info});
+      }
+      else{
+        this.setState({firstParent: info});
+      console.log("Completely changed");
+
+      }
+    }
+
 
   render(){
 
@@ -116,9 +140,9 @@ export default class Create extends Component{
                 </InputGroup>
 
 
-                <Form.Row>
+                <Form.Row style={{marginBottom: '0px', paddingBottom: "0px"}}>
                   {/* Почта и номер телефона ниже */}
-                  <Form.Group as={Col} controlId="formGridEmail">
+                  <Form.Group as={Col} controlId="formGridEmail" style={{marginBottom: '0px', paddingBottom: "0px"}}>
                     {/* Дата рождения ниже */}
                     <div class="well">
                       <div class="form-group">
@@ -130,7 +154,7 @@ export default class Create extends Component{
                   </Form.Group>
 
 
-                  <Form.Group as={Col} controlId="formGridPassword">
+                  <Form.Group as={Col} controlId="formGridPassword" style={{marginBottom: '0px', paddingBottom: "0px"}}>
                     <Form.Control type="phone" placeholder="Номер телефона"
                     onChange={(e) => {this.setState({ number: e.target.value })}}
                     />
@@ -138,28 +162,23 @@ export default class Create extends Component{
                 </Form.Row>
 
 
-                <Form.Control type="email" placeholder="Почта"
+                <Form.Control type="email" placeholder="Почта" className="mb-2"
                   onChange={(e) => {this.setState({ mail: e.target.value })}}
                 />
+
+                {(this.state.countParent > 0) ? <span>Заполните 1 родителя:</span> : null}
+                {(this.state.countParent > 0) ? <Parent data={this.state.firstParent} which={0} updateParent={this.updateParent}/> : null}
+                {(this.state.countParent > 1) ? <span>Заполните 2 родителя:</span> : null}
+                {(this.state.countParent > 1) ? <Parent data={this.state.secondParent} which={1} updateParent={this.updateParent}/>: null}
 
 
                 <ButtonGroup aria-label="Basic example" className="mt-3">
                     <Button variant="danger" className="mr-3"
+                        onClick={this.addParent}
                     >Добавить родителя</Button>
                     <Button variant="success">Добавить поле</Button>
                 </ButtonGroup>
           </Form>
-
-          {(this.state.howManyParent) ?
-            this.state.howManyParent.map((obj, ind) =>
-                          <Form key={ind}>
-                              <Form.Control className="mb-3" type="text" placeholder="Ф.И.О."/>
-                              {/* Почта и номер телефона ниже */}
-                              <Form.Control className="mb-3" type="phone" placeholder="Номер телефона"/>
-                              <Form.Control className="mb-3" type="email" placeholder="Почта"/>
-                              <Form.Control className="mb-3" type="text" placeholder="Место работы"/>
-                          </Form>)
-          : null}
 
         </Modal.Body>
           {/* Кнопки для сохранения и выхода */}

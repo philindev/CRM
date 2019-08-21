@@ -33,13 +33,13 @@ export default class Header extends React.Component{
 	// Переменная для смены цвета колокольчика уведомлений
 	let bell =
 				this.state.notification_bell ?
-				<img src="frontend/image/notification.png"
+				<img src="./frontend/image/notification.png"
 			                 style={{
 			                   marginLeft: "20px",
 			                   height: "25px",
 			                 }}
 			            /> :
-			    <img src="frontend/image/notification light.png"
+			    <img src="./frontend/image/notification light.png"
 			                 style={{
 			                   marginLeft: "20px",
 			                   height: "25px",
