@@ -120,7 +120,7 @@ export default class Create extends Component{
               <InputGroup className="mb-3">
                 <Form.Control
                   type="text" placeholder="Ф.И.О."
-                  onChange={(e) => {this.setState({ user: e.target.value })}}
+                  onChange={(e) => {this.setState({ name: e.target.value })}}
                 />
 
 
