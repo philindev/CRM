@@ -8,7 +8,8 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./style.css">
+   <!-- <link rel="stylesheet" href="./style.css"> -->
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     <link rel="stylesheet" href="https://npmcdn.com/react-bootstrap-table/dist/react-bootstrap-table-all.min.css">
     <!-- Добавить логотип First Academy -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +17,7 @@
   </head>
   <body style="height: 100%, width: 100%">
     <div id="project" style="height: 100%, width: 100%"></div>
-    <!-- <script src="{{url_for('static', filename='project.js')}}" type="text/javascript"></script> -->
-    <script src="project.js" type="text/javascript"></script>
+    <script src="{{url_for('static', filename='project.js')}}" type="text/javascript"></script>
+    <!-- <script src="project.js" type="text/javascript"></script> -->
   </body>
 </html>
