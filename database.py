@@ -2,8 +2,8 @@ from sqlite3 import connect
 
 
 class DB:
-    def __init__(self):
-        conn = connect('./database.db', check_same_thread=False)
+    def __init__(self, db_name):
+        conn = connect(db_name + ".db", check_same_thread=False)
         self.conn = conn
 
     def get_connection(self):
@@ -26,7 +26,8 @@ class ClientsTable:
             date_of_birth VARCHAR(10),
             phone_number VARCHAR(19),
             email VARCHAR(254),
-            status INTEGER DEFAULT 1)'''
+            client_status INTEGER DEFAULT 1,
+            application_status INTEGER DEFAULT 1)'''
         )
         cursor.close()
         self.connection.commit()
@@ -41,23 +42,33 @@ class ClientsTable:
         cursor.close()
         self.connection.commit()
 
-    def set_status(self, client_name, status):
+    def set_client_status(self, client_name, status):
         cursor = self.connection.cursor()
         cursor.execute(
             '''UPDATE clients 
-                SET status = ?
+                SET client_status = ?
                 WHERE client_name = ?''', (status, client_name)
         )
         cursor.close()
         self.connection.commit()
 
-    def get(self, client_name):
+    def set_application_status(self, client_name, status):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''UPDATE clients 
+                SET application_status = ?
+                WHERE client_name = ?''', (status, client_name)
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def get(self, client_id):
         cursor = self.connection.cursor()
         cursor.execute(
             '''SELECT date_of_birth,
                       phone_number,
                       email
-               FROM clients WHERE client_name = ?''', (client_name,)
+               FROM clients WHERE id = ?''', (client_id,)
         )
         row = cursor.fetchone()
         return row
@@ -69,16 +80,18 @@ class ClientsTable:
                       date_of_birth,
                       phone_number,
                       email,
-                      status
+                      client_status,
+                      application_status
                FROM clients'''
         )
         rows = cursor.fetchall()
         return rows
 
-    def get_client_id(self, name):
+    def get_client_id(self, name, date_of_birth):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''SELECT id FROM clients WHERE client_name=?''', (name,)
+            '''SELECT id FROM clients
+               WHERE client_name=? and date_of_birth=?''', (name, date_of_birth)
         )
         row = cursor.fetchone()
         return row
