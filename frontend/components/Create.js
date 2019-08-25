@@ -9,6 +9,7 @@ export default class Create extends Component{
     super(props);
     this.state = {
       name: '',
+      status: 'Статус заявки',
       dateOfBirth: '',
       number: '',
       mail: '',
@@ -32,15 +33,16 @@ export default class Create extends Component{
   sendProfile(whichWindow){
     let files = {
       name: this.state.name,
+      status: this.state.status,
       dateOfBirth: this.state.dateOfBirth,
       number: this.state.number,
       mail: this.state.mail,
       firstParent: this.state.firstParent,
       secondParent: this.state.secondParent,
     }
-    console.log(files);
     if(
-        files.user != '' &&
+        files.name != '' &&
+        files.status != 'Статус заявки' &&
         files.dateOfBirth != '' &&
         files.number != '' &&
         files.mail != ''
@@ -71,6 +73,17 @@ export default class Create extends Component{
           response.json()
           .then(function(data) {
             console.log(data);
+            if(data){
+              if(whichWindow == 1){
+                this.props.onHideCreate();
+              }
+              else if (whichWindow == 2) {
+                this.openContinue();
+              }
+            }
+            else{
+              console.log('Error submit!')
+            }
             return;
             });
         })
@@ -120,7 +133,7 @@ export default class Create extends Component{
               <InputGroup className="mb-3">
                 <Form.Control
                   type="text" placeholder="Ф.И.О."
-                  onChange={(e) => {this.setState({ user: e.target.value })}}
+                  onChange={(e) => {this.setState({ name: e.target.value })}}
                 />
 
 
@@ -128,12 +141,12 @@ export default class Create extends Component{
                       {/* Статус заявки выпадающее меню */}
                       <Dropdown>
                         <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-                        Статус заявки
+                        {this.state.status}
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                          <Dropdown.Item>V.I.P.</Dropdown.Item>
-                          <Dropdown.Item>Новый</Dropdown.Item>
-                          <Dropdown.Item>Повторный</Dropdown.Item>
+                          <Dropdown.Item onClick={() => {this.setState({status: 'V.I.P.'})}}>V.I.P.</Dropdown.Item>
+                          <Dropdown.Item onClick={() => {this.setState({status: 'Новый'})}}>Новый</Dropdown.Item>
+                          <Dropdown.Item onClick={() => {this.setState({status: 'Повторный'})}}>Повторный</Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                   </InputGroup.Append>
@@ -166,8 +179,8 @@ export default class Create extends Component{
                   onChange={(e) => {this.setState({ mail: e.target.value })}}
                 />
 
-                {(this.state.countParent > 0) ? <span>Заполните 1 родителя:</span> : null}
-                {(this.state.countParent > 0) ? <Parent data={this.state.firstParent} which={0} updateParent={this.updateParent}/> : null}
+                <span>Заполните 1 родителя:</span>
+                <Parent data={this.state.firstParent} which={0} updateParent={this.updateParent}/>
                 {(this.state.countParent > 1) ? <span>Заполните 2 родителя:</span> : null}
                 {(this.state.countParent > 1) ? <Parent data={this.state.secondParent} which={1} updateParent={this.updateParent}/>: null}
 
@@ -186,7 +199,7 @@ export default class Create extends Component{
             <Button onClick={this.sendProfile}
                     variant="outline-warning"
             >Сохранить</Button>
-            <Button onClick={this.sendProfile}
+            <Button onClick={this.openContinue}
                     variant="outline-info"
             >Продолжить</Button>
           </Modal.Footer>

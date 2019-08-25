@@ -27,9 +27,7 @@ export default class Parent extends Component{
       mail: this.state.mail,
       job: this.state.job,
     }
-
     this.props.updateParent(info, this.props.which);
-    console.log("Parent " + this.props.which + " work");
   }
 
   changeName(value){
@@ -58,7 +56,7 @@ export default class Parent extends Component{
 
     let parent =
           <Form className="ml-3 mt-3">
-              <Form.Control className="mb-3" type="text" placeholder="Ф.И.О."
+              <Form.Control className="mb-3" type="text" placeholder="Ф.И.О." required
                     onChange={(e) => this.changeName(e.target.value)}
               />
               {/* Почта и номер телефона ниже */}
