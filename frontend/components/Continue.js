@@ -39,7 +39,6 @@ export default class Continue extends Component{
       files.year_of_fly &&
       files.where_from &&
       files.data_of_will_fly &&
-      files.comment &&
       files.type_of_program
     ){
     fetch('/UserRequest',
@@ -67,12 +66,16 @@ export default class Continue extends Component{
           response.json()
           .then(function(data) {
             console.log(data);
+            if(data){
+              this.props.onHideContinue();
+              alert("Заявка добавлена.");
+            }
             return;
             });
         })
       }
       else{
-        console.log("Not all positions were written!")
+        console.log("Not all positions were written!");
       }
     };
 

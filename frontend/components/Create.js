@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import {Modal, Button, Form, Dropdown,
-  InputGroup, Col, Row, ButtonGroup} from "react-bootstrap";
+  InputGroup, Col, Row, ButtonGroup, Alert} from "react-bootstrap";
 import Parent from "./Parent.js";
 
 export default class Create extends Component{
@@ -10,12 +10,13 @@ export default class Create extends Component{
     this.state = {
       name: '',
       status: 'Статус заявки',
-      dateOfBirth: '',
+      date_of_birth: '',
       number: '',
       mail: '',
       countParent: 0,
       firstParent: {},
       secondParent: {},
+      error_window_show: false,
     };
 
     this.openContinue = this.openContinue.bind(this);
@@ -34,7 +35,7 @@ export default class Create extends Component{
     let files = {
       name: this.state.name,
       status: this.state.status,
-      dateOfBirth: this.state.dateOfBirth,
+      date_of_birth: this.state.date_of_birth,
       number: this.state.number,
       mail: this.state.mail,
       firstParent: this.state.firstParent,
@@ -43,7 +44,7 @@ export default class Create extends Component{
     if(
         files.name != '' &&
         files.status != 'Статус заявки' &&
-        files.dateOfBirth != '' &&
+        files.date_of_birth != '' &&
         files.number != '' &&
         files.mail != ''
       )
@@ -90,6 +91,7 @@ export default class Create extends Component{
       }
       else{
         console.log("Not all positions were written!")
+        this.setState({error_window_show: true});
       }
     };
 
@@ -106,8 +108,6 @@ export default class Create extends Component{
       }
       else{
         this.setState({firstParent: info});
-      console.log("Completely changed");
-
       }
     }
 
@@ -129,7 +129,7 @@ export default class Create extends Component{
           {/* Окно разных форм */}
           <Modal.Body style={{overflow: 'auto'}}>
             <h5>Заполните данные:</h5>
-            <Form>
+            <Form className="mb-3">
               <InputGroup className="mb-3">
                 <Form.Control
                   type="text" placeholder="Ф.И.О."
@@ -193,13 +193,24 @@ export default class Create extends Component{
                 </ButtonGroup>
           </Form>
 
+          {
+                  (this.state.error_window_show)?
+                    <Alert variant="danger" onClose={() => this.setState({error_window_show: false})} dismissible>
+                      <Alert.Heading>Не все позиции заполнены!</Alert.Heading>
+                      <p>
+                        Заполните все позиции и повторите сохранение.
+                      </p>
+                    </Alert>
+                  :null
+            }
+
         </Modal.Body>
           {/* Кнопки для сохранения и выхода */}
           <Modal.Footer>
-            <Button onClick={this.sendProfile}
+            <Button onClick={() => this.sendProfile(1)}
                     variant="outline-warning"
             >Сохранить</Button>
-            <Button onClick={this.openContinue}
+            <Button onClick={() => this.sendProfile(2)}
                     variant="outline-info"
             >Продолжить</Button>
           </Modal.Footer>

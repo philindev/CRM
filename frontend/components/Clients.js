@@ -9,88 +9,31 @@ export default class Clients extends React.Component{
 		this.state = {
 			tableHeight: "100%",
 			dropState: "Статус",
-			data: [
-				{
-					status:"Вылет",
-					name: `Красников Максим Николаевич`,
-					country: "Филиппины",
-					program: "5 недель Cambridge 2",
-					data: "30.06.2019",
-					dateBirth: "9 июня 2003 года",
-					clientStatus: "V.I.P.",
-					mail: "mimoz200385@gmail.com",
-					number: "+7 964-430-58-68",
-					year: "2019 год",
-					type: "Группа",
-					comment: null,
-				},
-				{
-					status:"Вылет",
-					name: `Вольных Елизавета Игоревна`,
-					country: "Филиппины",
-					program: "5 недель Cambridge 2",
-					data: "30.06.2019"
-				},
-				{
-					status:"Договор",
-					name: `Полубояринова Оксана Евгеньевна`,
-					country: "Корея",
-					program: "Подготовка IELTS",
-					data: "30.01.2020"
-				},
-				{
-					status:"Вылет",
-					name: `Вайсеро Ольга Степновна`,
-					country: "Филиппины",
-					program: "4 недели интенсив",
-					data: "30.05.2019"
-				},
-				{
-					status:"Не заполнен",
-					name: `Иванов Артем Ростиславович`,
-					country: "Англия",
-					program: "Oxford 5 недель",
-					data: "14.04.2021"
-				},
-				{
-					status:"Вылет",
-					name: `Красников Максим Николаевич`,
-					country: "Филиппины",
-					program: "5 недель Cambridge 2",
-					data: "30.06.2019"
-				},
-				{
-					status:"Вылет",
-					name: `Вольных Елизавета Игоревна`,
-					country: "Филиппины",
-					program: "5 недель Cambridge 2",
-					data: "30.06.2019"
-				},
-				{
-					status:"Договор",
-					name: `Полубояринова Оксана Евгеньевна`,
-					country: "Корея",
-					program: "Подготовка IELTS",
-					data: "30.01.2020"
-				},
-				{
-					status:"Вылет",
-					name: `Вайсеро Ольга Степновна`,
-					country: "Филиппины",
-					program: "4 недели интенсив",
-					data: "30.05.2019"
-				},
-				{
-					status:"Не заполнен",
-					name: `Иванов Артем Ростиславович`,
-					country: "Англия",
-					program: "Oxford 5 недель",
-					data: "14.04.2021"
-				},
-			]
+			data: [],
 		}
 		this.setHeight = this.setHeight.bind(this);
+		this.getClients = this.getClients.bind(this);
 }
+
+	getClients(){
+		fetch('/GetInfo')
+			  .then(function (response) {
+			    if (response.status !== 200) {
+			      return Promise.reject(new Error(response.statusText))
+			    }
+			    return Promise.resolve(response)
+			  })
+			  .then(function (response) {
+			    return response.json()
+			  })
+			  .then(function (data) {
+			    console.log('Info for table', data);
+					this.setState({data: data});
+			  })
+			  .catch(function (error) {
+			    console.log('error: ', error)
+			  })
+	}
 
 	// Определяем высоту окна и сохраняем
 	setHeight(){
@@ -98,10 +41,13 @@ export default class Clients extends React.Component{
 		this.setState({
 			tableHeight: String(scr - 295) + 'px',
 		})
+		this.getClients();
 	}
 
 
 	render(){
+		this.getClients();
+
 		if (this.state.tableHeight == "100%"){
 			this.setHeight();
 		}

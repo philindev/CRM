@@ -60,32 +60,46 @@ class App extends React.Component{
 				style={{ maxHeight: setHeight(), overflow: "auto",}}
 			>
 				<Modal.Header closeButton>
-						<Modal.Title>{info.name} <Badge variant="primary">{info.clientStatus}</Badge></Modal.Title>
+						<Modal.Title>{info.client.name} <Badge variant="primary">{info.client.status}</Badge></Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<p>
-					 <b>Дата рождения:</b> {info.dateBirth}
+					 <b>Дата рождения:</b> {info.client.date_of_birth}
 					 <br />
-					 <b>Номер телефона:</b> {info.number}, <b>Почта:</b> {info.mail}
+					 <b>Номер телефона:</b> {info.client.number}, <b>Почта:</b> {info.client.mail}
 					 <br />
-					 <b>Родители:</b> Не заполнено
+					 <b>Родители:</b>
+					 	<p>
+							<b></b>
+						</p>
 					</p>
 					<hr />
 					<p>
-						<h4>{info.country}</h4>
-						<b>Название программы:</b> {info.program} <Badge variant="success">{info.status}</Badge>
+						<h4>{info.request.country}</h4>
+						<b>Название программы:</b> {info.request.name_of_program} <Badge variant="success">{info.client.status}</Badge>
 						<br />
-						<b>Год поездки:</b> {info.year}
+						<b>Год поездки:</b> {info.request.year_of_fly}
 						<br />
-						<b>Дата отъезда:</b> {info.data} - {info.type}
+						<b>Дата отъезда:</b> {info.request.data_of_will_fly} - {info.client.type_of_program}
 						<br />
-						<b>Комментарии:</b> {info.comment}
+						<b>Комментарии:</b> {info.request.comment}
 					</p>
 					<hr />
 					<p>
 						<h5>История поездок:</h5>
 						<br />
-						Пусто
+						{
+							(info.history.length) ? Пусто :
+
+							info.history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
+																					        <th>{data.status}</th>
+																					        <td>{data.name_of_program}</td>
+																					        <td>{data.country}</td>
+																					        <td>{data.year_of_fly}</td>
+																					        <td>{data.type_of_program}</td>
+																					      </tr>)
+
+						}
 					</p>
 
 
