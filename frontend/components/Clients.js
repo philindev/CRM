@@ -35,6 +35,10 @@ export default class Clients extends React.Component{
 			  })
 	}
 
+	componentDidMount(){
+		this.getClients();
+	}
+
 	// Определяем высоту окна и сохраняем
 	setHeight(){
 		let scr = document.documentElement.clientHeight;
@@ -46,7 +50,6 @@ export default class Clients extends React.Component{
 
 
 	render(){
-		this.getClients();
 
 		if (this.state.tableHeight == "100%"){
 			this.setHeight();
