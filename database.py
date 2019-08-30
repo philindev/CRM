@@ -1,4 +1,5 @@
 from sqlite3 import connect
+from time import time
 
 
 class DB:
@@ -27,7 +28,7 @@ class ClientsTable:
             phone_number VARCHAR(19),
             email VARCHAR(254),
             client_status INTEGER DEFAULT 1,
-            application_status INTEGER DEFAULT 1)'''
+            date_of_creation TIMESTAMP)'''
         )
         cursor.close()
         self.connection.commit()
@@ -36,8 +37,8 @@ class ClientsTable:
         cursor = self.connection.cursor()
         cursor.execute(
             '''INSERT INTO clients 
-                (client_name, date_of_birth, phone_number, email) 
-               VALUES (?,?,?,?)''', (client_name, date, ph_number, email)
+                (client_name, date_of_birth, phone_number, email, date_of_creation) 
+               VALUES (?,?,?,?)''', (client_name, date, ph_number, email, time())
         )
         cursor.close()
         self.connection.commit()
@@ -52,22 +53,13 @@ class ClientsTable:
         cursor.close()
         self.connection.commit()
 
-    def set_application_status(self, client_name, status):
-        cursor = self.connection.cursor()
-        cursor.execute(
-            '''UPDATE clients 
-                SET application_status = ?
-                WHERE client_name = ?''', (status, client_name)
-        )
-        cursor.close()
-        self.connection.commit()
-
     def get(self, client_id):
         cursor = self.connection.cursor()
         cursor.execute(
             '''SELECT date_of_birth,
                       phone_number,
-                      email
+                      email,
+                      client_status,
                FROM clients WHERE id = ?''', (client_id,)
         )
         row = cursor.fetchone()
@@ -81,7 +73,6 @@ class ClientsTable:
                       phone_number,
                       email,
                       client_status,
-                      application_status
                FROM clients'''
         )
         rows = cursor.fetchall()
@@ -145,4 +136,131 @@ class ParentsTable:
                FROM clients WHERE client_id = ?''', (client_id,)
         )
         row = cursor.fetchone()
+        return row
+
+
+class HistoryTable:
+    def __init__(self, connection):
+        self.connection = connection
+
+    def init_table(self):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''CREATE TABLE IF NOT EXISTS history(
+                id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                client_id INTEGER,
+                program_name VARCHAR(254)
+                country VARCHAR(254),
+                status INTEGER DEFAULT 1,
+                type INTEGER,
+                departure_date TIMESTAMP,
+                date_of_creation TIMESTAMP
+            )'''
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def insert(self, client_id, program_name, country, program_type, departure_date):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''INSERT INTO current 
+                (client_id, program_name, country, type, departure_date, date_of_creation) 
+               VALUES (?,?,?,?, ?)''', (
+                client_id,
+                program_name,
+                country,
+                program_type,
+                departure_date,
+                time()
+            )
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def set_status(self, client_id, status):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''UPDATE history
+               SET status=? WHERE client_id = ?''', (status, client_id)
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def get_all_client_applications(self, client_id):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''SELECT *
+               FROM history WHERE id = ?''', (client_id,)
+        )
+        row = cursor.fetchall()
+        return row
+
+
+class CurrentRequestsTable:
+    def __init__(self, connection):
+        self.connection = connection
+
+    def init_table(self):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''CREATE TABLE IF NOT EXISTS current(
+                id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                client_id INTEGER,
+                program_name VARCHAR(254)
+                country VARCHAR(254),
+                status INTEGER DEFAULT 1,
+                type INTEGER,
+                departure_date TIMESTAMP,
+                date_of_creation TIMESTAMP
+            )'''
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def insert(self, client_id, program_name, country, program_type, departure_date):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''INSERT INTO current 
+                (client_id, program_name, country, type, departure_date, date_of_creation) 
+               VALUES (?,?,?,?, ?)''', (
+                client_id,
+                program_name,
+                country,
+                program_type,
+                departure_date,
+                time()
+            )
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def set_status(self, client_id, status):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''UPDATE current
+               SET status=? WHERE client_id = ?''', (status, client_id)
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def get(self, client_id):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''SELECT *
+               FROM current WHERE id = ?''', (client_id,)
+        )
+        row = cursor.fetchone()
+        return row
+
+    def pop(self, client_id):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''SELECT *
+               FROM current WHERE id = ?''', (client_id,)
+        )
+        row = cursor.fetchone()
+        cursor.execute(
+            '''DELETE FROM current WHERE id = ?''', (client_id,)
+        )
+        self.connection.commit()
         return row
