@@ -149,7 +149,7 @@ class HistoryTable:
             '''CREATE TABLE IF NOT EXISTS history(
                 id INTEGER PRIMARY KEY AUTOINCREMENT, 
                 client_id INTEGER,
-                program_name VARCHAR(254)
+                program_name VARCHAR(254),
                 country VARCHAR(254),
                 status INTEGER DEFAULT 1,
                 type INTEGER,
@@ -206,7 +206,7 @@ class CurrentRequestsTable:
             '''CREATE TABLE IF NOT EXISTS current(
                 id INTEGER PRIMARY KEY AUTOINCREMENT, 
                 client_id INTEGER,
-                program_name VARCHAR(254)
+                program_name VARCHAR(254),
                 country VARCHAR(254),
                 status INTEGER DEFAULT 1,
                 type INTEGER,
