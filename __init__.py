@@ -15,11 +15,11 @@ def main_page():
 def user_data():
     data = request.json
 
-    if clients_table.get_client_id(data["name"], data["dateOfBirth"]):
+    if clients_table.get_client_id(data["name"], data["date_of_birth"]):
         return jsonify("Client already exist")
 
-    clients_table.insert(data["name"], data["dateOfBirth"], data["number"], data["mail"])
-    client_id = clients_table.get_client_id(data["name"], data["dateOfBirth"])
+    clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"])
+    client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])
     first_parent = data["firstParent"]
     second_parent = data["secondParent"]
 
@@ -35,7 +35,7 @@ def user_data():
         return jsonify("Success, but missing parent information")
 
 
-@app.route("/GetClient", methods=["GET"])
+@app.route("/GetInfo", methods=["GET"])
 def get_client():
     def time_calculation(obj: dict):
         obj["date_of_creation"] = time_is_now - obj["date_of_creation"]

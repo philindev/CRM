@@ -17,6 +17,7 @@ export default class Create extends Component{
       firstParent: {},
       secondParent: {},
       error_window_show: false,
+      description: '',
     };
 
     this.openContinue = this.openContinue.bind(this);
@@ -46,7 +47,8 @@ export default class Create extends Component{
         files.status != 'Статус заявки' &&
         files.date_of_birth != '' &&
         files.number != '' &&
-        files.mail != ''
+        files.mail != '' &&
+        files.firstParent.length == 4
       )
     {
     fetch('/UserData',
@@ -91,7 +93,21 @@ export default class Create extends Component{
       }
       else{
         console.log("Not all positions were written!")
-        this.setState({error_window_show: true});
+        console.log(files)
+        let description = 'Заполните все позиции и повторите сохранение.'
+        if(files.name == ''){
+          description = "Заполните поле \"Ф.И.О.\""
+        }
+        else if (files.date_of_birth == '') {
+          description = "Введите дату рождения."
+        }
+        else if (files.number == '') {
+          description = "Введите номер телефона клиента."
+        }
+        else if (files.firstParent.length != 4) {
+          description = 'Данные родителя пропущенны в одном или нескольких местах!'
+        }
+        this.setState({error_window_show: true, description: description});
       }
     };
 
@@ -160,7 +176,7 @@ export default class Create extends Component{
                     <div class="well">
                       <div class="form-group">
                         <input type="date" class="form-control" id="exampleInputDOB1"
-                        onChange={(e) => {this.setState({ dateOfBirth: e.target.value })}}
+                        onChange={(e) => {this.setState({ date_of_birth: e.target.value })}}
                         />
                       </div>
                     </div>
@@ -198,7 +214,7 @@ export default class Create extends Component{
                     <Alert variant="danger" onClose={() => this.setState({error_window_show: false})} dismissible>
                       <Alert.Heading>Не все позиции заполнены!</Alert.Heading>
                       <p>
-                        Заполните все позиции и повторите сохранение.
+                        {this.state.description}
                       </p>
                     </Alert>
                   :null
