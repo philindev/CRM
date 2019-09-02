@@ -17,6 +17,7 @@ class App extends React.Component{
 			showCreate: false,
 			showContinue: false,
 			dataClient: {},
+			
 		}
 
 		this.onHideCreate = this.onHideCreate.bind(this);

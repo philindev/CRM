@@ -38,7 +38,8 @@ def user_data():
 @app.route("/GetInfo", methods=["GET"])
 def get_client():
     def time_calculation(obj: dict):
-        obj["date_of_creation"] = time_is_now - obj["date_of_creation"]
+        if(obj["date_of_creation"]):
+            obj["date_of_creation"] = time_is_now - obj["date_of_creation"]
         return obj
 
     time_is_now = time()

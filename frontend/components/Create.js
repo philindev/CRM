@@ -48,7 +48,7 @@ export default class Create extends Component{
         files.date_of_birth != '' &&
         files.number != '' &&
         files.mail != '' &&
-        files.firstParent.length == 4
+        Object.keys(files.firstParent).length == 4
       )
     {
     fetch('/UserData',
@@ -104,7 +104,7 @@ export default class Create extends Component{
         else if (files.number == '') {
           description = "Введите номер телефона клиента."
         }
-        else if (files.firstParent.length != 4) {
+        else if (Object.keys(files.firstParent).length != 4) {
           description = 'Данные родителя пропущенны в одном или нескольких местах!'
         }
         this.setState({error_window_show: true, description: description});
