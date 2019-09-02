@@ -33,6 +33,8 @@ export default class Create extends Component{
   }
 
   sendProfile(whichWindow){
+    const main = this;
+
     let files = {
       name: this.state.name,
       status: this.state.status,
@@ -78,10 +80,10 @@ export default class Create extends Component{
             console.log(data);
             if(data){
               if(whichWindow == 1){
-                this.props.onHideCreate();
+                main.props.onHideCreate();
               }
               else if (whichWindow == 2) {
-                this.openContinue();
+                main.openContinue();
               }
             }
             else{

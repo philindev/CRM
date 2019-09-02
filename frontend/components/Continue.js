@@ -22,13 +22,13 @@ export default class Continue extends Component{
 
   submit(){
     let files = {
-      name_of_programe: this.state.name_of_programe,
+      name_of_program: this.state.name_of_programe,
       status: this.state.status,
       country: this.state.country,
       year_of_fly: this.state.year_of_fly,
       where_from: this.state.where_from,
       data_of_will_fly: this.state.data_of_will_fly,
-      comment: this.state,comment,
+      comment: this.state.comment,
       type_of_program: this.state.type_of_program,
     }
 
@@ -100,6 +100,7 @@ export default class Continue extends Component{
           <InputGroup className="mb-3">
             <Form.Control
               type="text" placeholder="Название программы"
+              onClick={() => this.setState({name_of_program})}
             />
                 <InputGroup.Append>
                   {/* Статус клиента выпадающее меню */}
@@ -143,7 +144,7 @@ export default class Continue extends Component{
     </Modal.Body>
       {/* Кнопки для сохранения и выхода */}
       <Modal.Footer>
-        <Button onClick={this.props.onHideCreate}
+        <Button onClick={this.submit}
                 variant="outline-warning"
                 centered
         >Сохранить</Button>
