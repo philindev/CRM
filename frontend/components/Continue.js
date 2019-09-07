@@ -54,8 +54,7 @@ export default class Continue extends Component{
         .then(
         function(response) {
           if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
+            console.log('Looks like there was a problem. Status Code: ' + response.status);
             if(response.status === 500){
                 console.log("Status: 500")
             }
@@ -123,23 +122,35 @@ export default class Continue extends Component{
               <Form.Group as={Col} controlId="formGridText">
                 {/* Дата отъезда ниже */}
                 <div class="well">
-                    <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата отъезда"/>
+                    <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата отъезда"
+                           onClick={(e) => this.setState({data_of_will_fly: e.target.value})}
+                    />
                 </div>
               </Form.Group>
                 <Form.Group as={Col} controlId="formGridPassword">
-                  <Form.Control type="phone" placeholder="Год поездки" />
+                  <Form.Control type="phone" placeholder="Год поездки"
+                                onClick={(e) => this.setState({year_of_fly: e.target.value})}
+                  />
                 </Form.Group>
             </Form.Row>
             <Form.Row className="mt-0">
                 <Form.Group as={Col} controlId="formGridText">
-                  <Form.Control type="text" placeholder="Страна" />
+                  <Form.Control type="text" placeholder="Страна"
+                                onClick={(e) => this.setState({country: e.target.value})}
+                  />
                 </Form.Group>
               <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Control type="text" placeholder="Источник заявки" />
+                <Form.Control type="text" placeholder="Источник заявки"
+                              onClick={(e) => this.setState({where_from: e.target.value})}
+                />
               </Form.Group>
             </Form.Row>
-            <Form.Control className="mb-3" type="text" placeholder="Группа / Индивидуально" />
-            <Form.Control as="textarea" type="text" placeholder="Комментарий" style={{minHeight: "50px"}}/>
+            <Form.Control className="mb-3" type="text" placeholder="Группа / Индивидуально"
+                          onClick={(e) => this.setState({type_of_program: e.target.value})}
+            />
+            <Form.Control as="textarea" type="text" placeholder="Комментарий" style={{minHeight: "50px"}}
+                          onClick={(e) => this.setState({comment: e.target.value})}
+            />
       </Form>
     </Modal.Body>
       {/* Кнопки для сохранения и выхода */}

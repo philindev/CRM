@@ -7,6 +7,7 @@ import Search from "./Search";
 import Clients from "./Clients";
 import Create from './Create';
 import Continue from "./Continue";
+import HistoryTable from "./HistoryTable";
 
 class App extends React.Component{
 	constructor(props){
@@ -17,7 +18,7 @@ class App extends React.Component{
 			showCreate: false,
 			showContinue: false,
 			dataClient: {},
-			
+
 		}
 
 		this.onHideCreate = this.onHideCreate.bind(this);
@@ -140,6 +141,19 @@ class App extends React.Component{
 								{/*Главный блок с клиентами*/}
 								<Clients openInfo={this.openClient}/>
 							</Row>
+						</Col>
+
+						{/* Таблица последних клиентов, которые были изменены и таблица с
+							теми кто был просрочен на повышенном статусе */}
+						<Col>
+							<Row className="mt-3 mr-3"
+								lg={12}
+								md={12}
+								xl={12}
+							>
+								<HistoryTable />
+							</Row>
+							<Row></Row>
 						</Col>
 						{/*Модальные окна "Создать" и "Статистика"*/}
 						<Create showWindow={this.state.showCreate}
