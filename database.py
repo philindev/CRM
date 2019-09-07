@@ -56,11 +56,7 @@ class ClientsTable:
     def get(self, client_id):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''SELECT date_of_birth,
-                      phone_number,
-                      email,
-                      client_status,
-               FROM clients WHERE id = ?''', (client_id,)
+            '''SELECT * FROM clients WHERE id = ?''', (client_id,)
         )
         row = cursor.fetchone()
         return row
@@ -68,12 +64,7 @@ class ClientsTable:
     def get_all(self):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''SELECT client_name,
-                      date_of_birth,
-                      phone_number,
-                      email,
-                      client_status
-               FROM clients'''
+            '''SELECT * FROM clients'''
         )
         rows = cursor.fetchall()
         return rows
@@ -133,7 +124,7 @@ class ParentsTable:
         cursor = self.connection.cursor()
         cursor.execute(
             '''SELECT *
-               FROM clients WHERE client_id = ?''', (client_id,)
+               FROM parents WHERE client_id = ?''', (client_id,)
         )
         row = cursor.fetchone()
         return row
@@ -163,7 +154,7 @@ class HistoryTable:
     def insert(self, client_id, program_name, country, program_type, departure_date):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''INSERT INTO current
+            '''INSERT INTO history
                 (client_id, program_name, country, type, departure_date, date_of_creation)
                VALUES (?,?,?,?, ?)''', (
                 client_id,
