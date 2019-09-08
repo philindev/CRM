@@ -56,8 +56,9 @@ def get_client():
             "client_name": client[1],
             "date_of_birth": client[2],
             "phone_number": client[3],
-            "client_status": client[4],
-            "date_of_creation": client[5],
+            "mail": client[4],
+            "client_status": client[5],
+            "date_of_creation": client[6],
             "parents": {
                 "first_parent": {
                     "name": parents[2],
