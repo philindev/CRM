@@ -22,7 +22,7 @@ export default class Continue extends Component{
 
   submit(){
     let files = {
-      name_of_program: this.state.name_of_programe,
+      name_of_program: this.state.name_of_program,
       status: this.state.status,
       country: this.state.country,
       year_of_fly: this.state.year_of_fly,
@@ -31,9 +31,10 @@ export default class Continue extends Component{
       comment: this.state.comment,
       type_of_program: this.state.type_of_program,
     }
+    console.log(files);
 
     if(
-      files.name_of_programe &&
+      files.name_of_program &&
       files.status != 'Статус заявки' &&
       files.country &&
       files.year_of_fly &&
@@ -99,7 +100,7 @@ export default class Continue extends Component{
           <InputGroup className="mb-3">
             <Form.Control
               type="text" placeholder="Название программы"
-              onClick={() => this.setState({name_of_program})}
+              onChange={(e) => this.setState({name_of_program: e.target.value})}
             />
                 <InputGroup.Append>
                   {/* Статус клиента выпадающее меню */}
@@ -123,33 +124,33 @@ export default class Continue extends Component{
                 {/* Дата отъезда ниже */}
                 <div class="well">
                     <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата отъезда"
-                           onClick={(e) => this.setState({data_of_will_fly: e.target.value})}
+                           onChange={(e) => this.setState({data_of_will_fly: e.target.value})}
                     />
                 </div>
               </Form.Group>
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Control type="phone" placeholder="Год поездки"
-                                onClick={(e) => this.setState({year_of_fly: e.target.value})}
+                                onChange={(e) => this.setState({year_of_fly: e.target.value})}
                   />
                 </Form.Group>
             </Form.Row>
             <Form.Row className="mt-0">
                 <Form.Group as={Col} controlId="formGridText">
                   <Form.Control type="text" placeholder="Страна"
-                                onClick={(e) => this.setState({country: e.target.value})}
+                                onChange={(e) => this.setState({country: e.target.value})}
                   />
                 </Form.Group>
               <Form.Group as={Col} controlId="formGridPassword">
                 <Form.Control type="text" placeholder="Источник заявки"
-                              onClick={(e) => this.setState({where_from: e.target.value})}
+                              onChange={(e) => this.setState({where_from: e.target.value})}
                 />
               </Form.Group>
             </Form.Row>
             <Form.Control className="mb-3" type="text" placeholder="Группа / Индивидуально"
-                          onClick={(e) => this.setState({type_of_program: e.target.value})}
+                          onChange={(e) => this.setState({type_of_program: e.target.value})}
             />
             <Form.Control as="textarea" type="text" placeholder="Комментарий" style={{minHeight: "50px"}}
-                          onClick={(e) => this.setState({comment: e.target.value})}
+                          onChange={(e) => this.setState({comment: e.target.value})}
             />
       </Form>
     </Modal.Body>

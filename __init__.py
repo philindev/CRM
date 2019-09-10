@@ -19,18 +19,36 @@ def user_data():
     if clients_table.get_client_id(data["name"], data["date_of_birth"]):
         return dumps("Client already exist")
 
-    clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"])
-    client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])
     first_parent = data["firstParent"]
     second_parent = data["secondParent"]
 
-    if first_parent and second_parent:
+    if first_parent or second_parent:
+        if not first_parent:
+            first_parent["name"] = None
+            first_parent["number"] = None
+            first_parent["mail"] = None
+            first_parent["job"] = None
+
+        if not second_parent:
+            second_parent["name"] = None
+            second_parent["number"] = None
+            second_parent["mail"] = None
+            second_parent["job"] = None
+
+        if list(first_parent.keys()) != ["name", "number", "mail", "job"] or \
+                list(second_parent.keys()) != ["name", "number", "mail", "job"]:
+            return dumps("")
+
+        clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"])
+        client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])
+
         parents_table.insert(
             client_id[0], first_parent["name"], first_parent["number"],
             first_parent["mail"], first_parent["job"],
             second_parent["name"], second_parent["number"],
             second_parent["mail"], second_parent["job"]
         )
+
         return dumps("Success")
     else:
         return dumps("Success, but missing parent information")
@@ -89,7 +107,7 @@ def get_client():
             "country": current_request[3],
             "status": current_request[4],
             "type": current_request[5],
-            "departure_status": current_request[6],
+            "departure_date...": current_request[6],
             "date_of_creation": current_request[7]
         }
 
@@ -98,7 +116,7 @@ def get_client():
             "country": x[3] if len(x) > 3 else None,
             "status": x[4] if len(x) > 4 else None,
             "type": x[5] if len(x) > 5 else None,
-            "departure_status": x[6] if len(x) > 6 else None,
+            "departure_date": x[6] if len(x) > 6 else None,
             "date_of_creation": x[7] if len(x) > 7 else None
         }, history_table.get_all_client_applications(client["client_id"])))
 
