@@ -16,8 +16,9 @@ def main_page():
 def user_data():
     data = request.json
 
-    if clients_table.get_client_id(data["name"], data["date_of_birth"]):
-        return dumps("Client already exist")
+    client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])
+    if client_id:
+        return dumps(client_id[0])
 
     first_parent = data["firstParent"]
     second_parent = data["secondParent"]
@@ -37,21 +38,52 @@ def user_data():
 
         if list(first_parent.keys()) != ["name", "number", "mail", "job"] or \
                 list(second_parent.keys()) != ["name", "number", "mail", "job"]:
-            return dumps("")
+            return dumps(None)
 
         clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"])
-        client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])
+        client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])[0]
 
         parents_table.insert(
-            client_id[0], first_parent["name"], first_parent["number"],
-            first_parent["mail"], first_parent["job"],
-            second_parent["name"], second_parent["number"],
-            second_parent["mail"], second_parent["job"]
+            client_id,
+            first_parent["name"] if first_parent["name"] else None,
+            first_parent["number"] if first_parent["number"] else None,
+            first_parent["mail"] if first_parent["mail"] else None,
+            first_parent["job"] if first_parent["job"] else None,
+            second_parent["name"] if second_parent["name"] else None,
+            second_parent["number"] if second_parent["number"] else None,
+            second_parent["mail"] if second_parent["mail"] else None,
+            second_parent["job"] if second_parent["job"] else None
         )
 
-        return dumps("Success")
+        return dumps(client_id)
     else:
-        return dumps("Success, but missing parent information")
+        return dumps(None)
+
+
+@app.route("/UserRequest", methods=["POST"])
+def user_request():
+    data = request.json
+    client_id = data["client_id"]
+
+    if not clients_table.get(client_id):
+        return dumps(None)
+
+    if current_requests_table.get(client_id):
+        return dumps(None)
+
+    if list(data.keys()) != ["name_of_program", "status", "country",
+                             "where_from", "data_of_will_fly", "comment", "type_of_program"]:
+        return dumps(None)
+    current_requests_table.insert(client_id, data["name_of_program"],
+                                  data["country"], data["type_of_program"],
+                                  data["date_of_will_fly"], data["commit"],
+                                  1 if data["status"] == "Заявка" else
+                                  2 if data["status"] == "Договор" else
+                                  3 if data["status"] == "Оплата" else
+                                  4 if data["status"] == "Вылет" else
+                                  5 if data["status"] == "Консультирование" else 0)
+
+    return dumps("I hacked your system")
 
 
 @app.route("/GetInfo", methods=["GET"])

@@ -142,27 +142,30 @@ class HistoryTable:
                 client_id INTEGER,
                 program_name VARCHAR(254),
                 country VARCHAR(254),
-                status INTEGER DEFAULT 1,
+                status INTEGER DEFAULT 2,
                 type INTEGER,
-                departure_date TIMESTAMP,
-                date_of_creation TIMESTAMP
+                departure_date VARCHAR(10),
+                date_of_creation TIMESTAMP,
+                user_commit TEXT
             )'''
         )
         cursor.close()
         self.connection.commit()
 
-    def insert(self, client_id, program_name, country, program_type, departure_date):
+    def insert(self, client_id, program_name, country, program_type, departure_date, commit, status=1):
         cursor = self.connection.cursor()
         cursor.execute(
             '''INSERT INTO history
-                (client_id, program_name, country, type, departure_date, date_of_creation)
-               VALUES (?,?,?,?, ?)''', (
+                (client_id, program_name, country, type, departure_date, date_of_creation, user_commit, status)
+               VALUES (?,?,?,?,?,?,?)''', (
                 client_id,
                 program_name,
                 country,
                 program_type,
                 departure_date,
-                time()
+                time(),
+                commit,
+                status
             )
         )
         cursor.close()
@@ -201,25 +204,28 @@ class CurrentRequestsTable:
                 country VARCHAR(254),
                 status INTEGER DEFAULT 1,
                 type INTEGER,
-                departure_date TIMESTAMP,
-                date_of_creation TIMESTAMP
+                departure_date VARCHAR(10),
+                date_of_creation TIMESTAMP,
+                user_commit TEXT
             )'''
         )
         cursor.close()
         self.connection.commit()
 
-    def insert(self, client_id, program_name, country, program_type, departure_date):
+    def insert(self, client_id, program_name, country, program_type, departure_date, commit, status=1):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''INSERT INTO current
-                (client_id, program_name, country, type, departure_date, date_of_creation)
-               VALUES (?,?,?,?, ?)''', (
+            '''INSERT INTO current(client_id, program_name, country, type,
+             departure_date, date_of_creation, user_commit, status)
+               VALUES (?,?,?,?,?,?,?)''', (
                 client_id,
                 program_name,
                 country,
                 program_type,
                 departure_date,
-                time()
+                time(),
+                commit,
+                status
             )
         )
         cursor.close()
