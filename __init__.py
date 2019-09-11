@@ -63,6 +63,11 @@ def user_data():
 @app.route("/UserRequest", methods=["POST"])
 def user_request():
     data = request.json
+
+    if list(data.keys()) != ["client_id", "name_of_program", "status", "country",
+                             "where_from", "data_of_will_fly", "comment", "type_of_program"]:
+        return dumps(None)
+
     client_id = data["client_id"]
 
     if not clients_table.get(client_id):
@@ -71,9 +76,6 @@ def user_request():
     if current_requests_table.get(client_id):
         return dumps(None)
 
-    if list(data.keys()) != ["name_of_program", "status", "country",
-                             "where_from", "data_of_will_fly", "comment", "type_of_program"]:
-        return dumps(None)
     current_requests_table.insert(client_id, data["name_of_program"],
                                   data["country"], data["type_of_program"],
                                   data["date_of_will_fly"], data["commit"],
