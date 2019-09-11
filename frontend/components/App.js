@@ -51,7 +51,9 @@ class App extends React.Component{
 				return height;
 		}
 		// Открытие окна информации клиента
-		let info = this.state.dataClient;
+		let request = (this.state.dataClient) ? this.state.dataClient.request : null;
+		let client = (this.state.dataClient) ? this.state.dataClient.client : null;
+		let history = (this.state.dataClient) ? this.state.dataClient.history : null;
 		let modalInfo = (sizeOfData) ?
 
 		<Modal
@@ -62,13 +64,13 @@ class App extends React.Component{
 				style={{ maxHeight: setHeight(), overflow: "auto",}}
 			>
 				<Modal.Header closeButton>
-						<Modal.Title>{info.client.name} <Badge variant="primary">{info.client.status}</Badge></Modal.Title>
+						<Modal.Title>{client.client_name} <Badge variant="primary">{client.client_status}</Badge></Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<p>
-					 <b>Дата рождения:</b> {info.client.date_of_birth}
+					 <b>Дата рождения:</b> {client.date_of_birth}
 					 <br />
-					 <b>Номер телефона:</b> {info.client.number}, <b>Почта:</b> {info.client.mail}
+					 <b>Номер телефона:</b> {client.phone_number}, <b>Почта:</b> {client.mail}
 					 <br />
 					 <b>Родители:</b>
 					 	<p>
@@ -77,28 +79,28 @@ class App extends React.Component{
 					</p>
 					<hr />
 					<p>
-						<h4>{info.request.country}</h4>
-						<b>Название программы:</b> {info.request.name_of_program} <Badge variant="success">{info.client.status}</Badge>
+						<h4>{request.country}</h4>
+						<b>Название программы:</b> {request.program_name} <Badge variant="success">{request.status}</Badge>
 						<br />
-						<b>Год поездки:</b> {info.request.year_of_fly}
+						<b>Год поездки:</b> {request.year_of_fly}
 						<br />
-						<b>Дата отъезда:</b> {info.request.data_of_will_fly} - {info.client.type_of_program}
+						<b>Дата отъезда:</b> {request.data_of_will_fly} - {client.type_of_program}
 						<br />
-						<b>Комментарии:</b> {info.request.comment}
+						<b>Комментарии:</b> {request.comment}
 					</p>
 					<hr />
 					<p>
 						<h5>История поездок:</h5>
 						<br />
 						{
-							(info.history.length) ? Пусто :
+							(history.length) ? Пусто :
 
-							info.history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
+							history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
 																					        <th>{data.status}</th>
-																					        <td>{data.name_of_program}</td>
+																					        <td>{data.program_name}</td>
 																					        <td>{data.country}</td>
 																					        <td>{data.year_of_fly}</td>
-																					        <td>{data.type_of_program}</td>
+																					        <td>{data.type}</td>
 																					      </tr>)
 
 						}
