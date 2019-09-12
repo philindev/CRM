@@ -9,7 +9,7 @@ import Create from './Create';
 import Continue from "./Continue";
 import HistoryTable from "./HistoryTable";
 
-class App extends React.Component{
+export default class App extends React.Component{
 	constructor(props){
 		super();
 		this.state = {
@@ -50,67 +50,79 @@ class App extends React.Component{
 				let height = String(scr) + 'px';
 				return height;
 		}
+		let status = null;
+		let modalInfo = null;
+
 		// Открытие окна информации клиента
-		let request = (this.state.dataClient) ? this.state.dataClient.request : null;
-		let client = (this.state.dataClient) ? this.state.dataClient.client : null;
-		let history = (this.state.dataClient) ? this.state.dataClient.history : null;
-		let modalInfo = (sizeOfData) ?
+		if(sizeOfData){
+			let request = this.state.dataClient.request;
+			let client = this.state.dataClient.client;
+			let history = this.state.dataClient.history;
+			switch (client.client_status) {
+				case 1:
+					status = "V.I.P"
+					break;
+				case 3:
+					status = "Повторный"
+				default:
+					status = "Новый"
+			}
+				modalInfo =
 
-		<Modal
-				size="lg"
-				show
-				onHide={() => this.setState({dataClient: {}})}
-				aria-labelledby="example-modal-sizes-title-lg"
-				style={{ maxHeight: setHeight(), overflow: "auto",}}
-			>
-				<Modal.Header closeButton>
-						<Modal.Title>{client.client_name} <Badge variant="primary">{client.client_status}</Badge></Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
-					<p>
-					 <b>Дата рождения:</b> {client.date_of_birth}
-					 <br />
-					 <b>Номер телефона:</b> {client.phone_number}, <b>Почта:</b> {client.mail}
-					 <br />
-					 <b>Родители:</b>
-					 	<p>
-							<b></b>
-						</p>
-					</p>
-					<hr />
-					<p>
-						<h4>{request.country}</h4>
-						<b>Название программы:</b> {request.program_name} <Badge variant="success">{request.status}</Badge>
-						<br />
-						<b>Год поездки:</b> {request.year_of_fly}
-						<br />
-						<b>Дата отъезда:</b> {request.data_of_will_fly} - {client.type_of_program}
-						<br />
-						<b>Комментарии:</b> {request.comment}
-					</p>
-					<hr />
-					<p>
-						<h5>История поездок:</h5>
-						<br />
-						{
-							(history.length) ? Пусто :
+				<Modal
+						size="lg"
+						show
+						onHide={() => this.setState({dataClient: {}})}
+						aria-labelledby="example-modal-sizes-title-lg"
+						style={{ maxHeight: setHeight(), overflow: "auto",}}
+					>
+						<Modal.Header closeButton>
+								<Modal.Title>{client.client_name} <Badge variant="primary">{status}</Badge></Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							<p>
+							 <b>Дата рождения:</b> {client.date_of_birth}
+							 <br />
+							 <b>Номер телефона:</b> {client.phone_number}, <b>Почта:</b> {client.mail}
+							 <br />
+							 <b>Родители:</b>
+							 	<p>
+									<b></b>
+								</p>
+							</p>
+							<hr />
+							<p>
+								<h4>{request.country}</h4>
+								<b>Название программы:</b> {request.program_name} <Badge variant="success">{request.status}</Badge>
+								<br />
+								<b>Год поездки:</b> {request.year_of_fly}
+								<br />
+								<b>Дата отъезда:</b> {request.data_of_will_fly} - {client.type_of_program}
+								<br />
+								<b>Комментарии:</b> {request.comment}
+							</p>
+							<hr />
+							<p>
+								<h5>История поездок:</h5>
+								<br />
+								{
+									(history.length) ? Пусто :
 
-							history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
-																					        <th>{data.status}</th>
-																					        <td>{data.program_name}</td>
-																					        <td>{data.country}</td>
-																					        <td>{data.year_of_fly}</td>
-																					        <td>{data.type}</td>
-																					      </tr>)
+									history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
+																							        <th>{data.status}</th>
+																							        <td>{data.program_name}</td>
+																							        <td>{data.country}</td>
+																							        <td>{data.year_of_fly}</td>
+																							        <td>{data.type}</td>
+																							      </tr>)
 
-						}
-					</p>
+								}
+							</p>
 
 
-				</Modal.Body>
-			</Modal>
-
-		: null;
+						</Modal.Body>
+					</Modal>;
+				}
 
 		return(
 			<Container>
@@ -153,7 +165,7 @@ class App extends React.Component{
 								md={12}
 								xl={12}
 							>
-								<HistoryTable />
+								{/*<HistoryTable />*/}
 							</Row>
 							<Row></Row>
 						</Col>
@@ -164,10 +176,8 @@ class App extends React.Component{
 						/>
 						<Continue showWindow={this.state.showContinue}
 											onHideContinue={this.onHideContinue}/>
+										}}
 					</Row>
 					{modalInfo}
 			</Container>
-		)};
-};
-
-export default App;
+		)};}
