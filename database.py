@@ -28,17 +28,18 @@ class ClientsTable:
             phone_number VARCHAR(19),
             email VARCHAR(254),
             client_status INTEGER DEFAULT 1,
-            date_of_creation TIMESTAMP)'''
+            date_of_creation TIMESTAMP,
+            token VARCHAR(16))'''
         )
         cursor.close()
         self.connection.commit()
 
-    def insert(self, client_name, date, ph_number, email):
+    def insert(self, client_name, date, ph_number, email, status=2):
         cursor = self.connection.cursor()
         cursor.execute(
             '''INSERT INTO clients
-                (client_name, date_of_birth, phone_number, email, date_of_creation)
-               VALUES (?,?,?,?,?)''', (client_name, date, ph_number, email, time())
+                (client_name, date_of_birth, phone_number, email, date_of_creation, client_status)
+               VALUES (?,?,?,?,?,?)''', (client_name, date, ph_number, email, time(), status)
         )
         cursor.close()
         self.connection.commit()

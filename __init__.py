@@ -16,6 +16,9 @@ def main_page():
 def user_data():
     data = request.json
 
+    if list(data.keys()) != ['name', 'status', 'date_of_birth', 'number', 'mail', 'firstParent', 'secondParent']:
+        return dumps(None)
+
     client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])
     if client_id:
         return dumps(client_id[0])
@@ -23,41 +26,45 @@ def user_data():
     first_parent = data["firstParent"]
     second_parent = data["secondParent"]
 
-    if first_parent or second_parent:
-        if not first_parent:
-            first_parent["name"] = None
-            first_parent["number"] = None
-            first_parent["mail"] = None
-            first_parent["job"] = None
-
-        if not second_parent:
-            second_parent["name"] = None
-            second_parent["number"] = None
-            second_parent["mail"] = None
-            second_parent["job"] = None
-
-        if list(first_parent.keys()) != ["name", "number", "mail", "job"] or \
-                list(second_parent.keys()) != ["name", "number", "mail", "job"]:
-            return dumps(None)
-
-        clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"])
-        client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])[0]
-
-        parents_table.insert(
-            client_id,
-            first_parent["name"] if first_parent["name"] else None,
-            first_parent["number"] if first_parent["number"] else None,
-            first_parent["mail"] if first_parent["mail"] else None,
-            first_parent["job"] if first_parent["job"] else None,
-            second_parent["name"] if second_parent["name"] else None,
-            second_parent["number"] if second_parent["number"] else None,
-            second_parent["mail"] if second_parent["mail"] else None,
-            second_parent["job"] if second_parent["job"] else None
-        )
-
-        return dumps(client_id)
-    else:
+    if not (first_parent or second_parent):
         return dumps(None)
+
+    if not first_parent:
+        first_parent["name"] = None
+        first_parent["number"] = None
+        first_parent["mail"] = None
+        first_parent["job"] = None
+
+    if not second_parent:
+        second_parent["name"] = None
+        second_parent["number"] = None
+        second_parent["mail"] = None
+        second_parent["job"] = None
+
+    if list(first_parent.keys()) != ["name", "number", "mail", "job"] or \
+            list(second_parent.keys()) != ["name", "number", "mail", "job"]:
+        return dumps(None)
+
+    clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"],
+                         1 if data["status"] == "V.I.P." else
+                         2 if data["status"] == "Новый" else
+                         3 if data["status"] == "Повторный" else 0)
+
+    client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])[0]
+
+    parents_table.insert(
+        client_id,
+        first_parent["name"] if first_parent["name"] else None,
+        first_parent["number"] if first_parent["number"] else None,
+        first_parent["mail"] if first_parent["mail"] else None,
+        first_parent["job"] if first_parent["job"] else None,
+        second_parent["name"] if second_parent["name"] else None,
+        second_parent["number"] if second_parent["number"] else None,
+        second_parent["mail"] if second_parent["mail"] else None,
+        second_parent["job"] if second_parent["job"] else None
+    )
+    # token = "generating_token"
+    return dumps(client_id)
 
 
 @app.route("/UserRequest", methods=["POST"])
