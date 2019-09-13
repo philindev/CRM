@@ -11,7 +11,7 @@ export default class Continue extends Component{
       country: '',
       name_of_program: '',
       where_from: '',
-      data_of_will_fly: '',
+      date_of_will_fly: '',
       type_of_program: '',
       comment: '',
     }
@@ -25,7 +25,7 @@ export default class Continue extends Component{
       status: this.state.status,
       country: this.state.country,
       where_from: this.state.where_from,
-      data_of_will_fly: this.state.data_of_will_fly,
+      date_of_will_fly: this.state.date_of_will_fly,
       comment: this.state.comment,
       type_of_program: this.state.type_of_program,
       id: this.props.id
@@ -37,7 +37,7 @@ export default class Continue extends Component{
       files.status != 'Статус заявки' &&
       files.country &&
       files.where_from &&
-      files.data_of_will_fly &&
+      files.date_of_will_fly &&
       files.type_of_program
     ){
     fetch('/UserRequest',
@@ -122,7 +122,7 @@ export default class Continue extends Component{
                 {/* Дата отъезда ниже */}
                 <div class="well">
                     <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата отъезда"
-                           onChange={(e) => this.setState({data_of_will_fly: e.target.value})}
+                           onChange={(e) => this.setState({date_of_will_fly: e.target.value})}
                     />
                 </div>
               </Form.Group>
