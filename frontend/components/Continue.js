@@ -10,7 +10,6 @@ export default class Continue extends Component{
       status: 'Статус заявки',
       country: '',
       name_of_program: '',
-      year_of_fly: '',
       where_from: '',
       data_of_will_fly: '',
       type_of_program: '',
@@ -25,11 +24,11 @@ export default class Continue extends Component{
       name_of_program: this.state.name_of_program,
       status: this.state.status,
       country: this.state.country,
-      year_of_fly: this.state.year_of_fly,
       where_from: this.state.where_from,
       data_of_will_fly: this.state.data_of_will_fly,
       comment: this.state.comment,
       type_of_program: this.state.type_of_program,
+      id: this.props.id
     }
     console.log(files);
 
@@ -37,7 +36,6 @@ export default class Continue extends Component{
       files.name_of_program &&
       files.status != 'Статус заявки' &&
       files.country &&
-      files.year_of_fly &&
       files.where_from &&
       files.data_of_will_fly &&
       files.type_of_program
@@ -128,11 +126,11 @@ export default class Continue extends Component{
                     />
                 </div>
               </Form.Group>
-                <Form.Group as={Col} controlId="formGridPassword">
-                  <Form.Control type="phone" placeholder="Год поездки"
-                                onChange={(e) => this.setState({year_of_fly: e.target.value})}
-                  />
-                </Form.Group>
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Control type="text" placeholder="Источник заявки"
+                              onChange={(e) => this.setState({where_from: e.target.value})}
+                />
+              </Form.Group>
             </Form.Row>
             <Form.Row className="mt-0">
                 <Form.Group as={Col} controlId="formGridText">
@@ -140,11 +138,6 @@ export default class Continue extends Component{
                                 onChange={(e) => this.setState({country: e.target.value})}
                   />
                 </Form.Group>
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Control type="text" placeholder="Источник заявки"
-                              onChange={(e) => this.setState({where_from: e.target.value})}
-                />
-              </Form.Group>
             </Form.Row>
             <Form.Control className="mb-3" type="text" placeholder="Группа / Индивидуально"
                           onChange={(e) => this.setState({type_of_program: e.target.value})}

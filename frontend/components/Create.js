@@ -83,6 +83,7 @@ export default class Create extends Component{
                 main.props.onHideCreate();
               }
               else if (whichWindow == 2) {
+                main.props.changeId(data);
                 main.openContinue();
               }
             }

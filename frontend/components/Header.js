@@ -83,7 +83,7 @@ export default class Header extends React.Component{
 				  	>
 				    	<Nav.Link onClick={this.props.onCreate} style={{marginRight: "20px"}}
 							>Создать</Nav.Link>
-				    	<Nav.Link style={{marginRight: "20px"}}>
+				    	{/*<Nav.Link style={{marginRight: "20px"}}>
 				    	 {statistic}
 				    	</Nav.Link>
 							<OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
@@ -98,7 +98,7 @@ export default class Header extends React.Component{
 				                   height: "25px",
 				                 }}
 				            />
-					    </Nav.Link>
+					    </Nav.Link>*/}
 				    </Nav>
 				  </Navbar.Collapse>
 				</Navbar>;

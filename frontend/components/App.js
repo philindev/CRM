@@ -18,12 +18,17 @@ export default class App extends React.Component{
 			showCreate: false,
 			showContinue: false,
 			dataClient: {},
-
+			id: 0,
 		}
 
 		this.onHideCreate = this.onHideCreate.bind(this);
 		this.onHideContinue = this.onHideContinue.bind(this);
 		this.openClient = this.openClient.bind(this);
+		this.changeId = this.changeId.bind(this);
+	}
+
+	changeId(id){
+		this.setState({id: id});
 	}
 
 	// Показывает, скрывает анкету создания клиента
@@ -173,10 +178,12 @@ export default class App extends React.Component{
 						<Create showWindow={this.state.showCreate}
 										onHideCreate={this.onHideCreate}
 										onContinue={this.onHideContinue}
+										changeId={this.changeId}
 						/>
-						<Continue showWindow={this.state.showContinue}
-											onHideContinue={this.onHideContinue}/>
-										}}
+						<Continue showWindow={this.state.id}
+											onHideContinue={this.onHideContinue}
+											id={this.state.id}
+											/>
 					</Row>
 					{modalInfo}
 			</Container>
