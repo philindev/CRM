@@ -71,21 +71,18 @@ def user_data():
 def user_request():
     data = request.json
 
-    if list(data.keys()) != ["client_id", "name_of_program", "status", "country",
-                             "where_from", "data_of_will_fly", "comment", "type_of_program"]:
+    if list(data.keys()) != ["name_of_program", "status", "country", "where_from",
+                             "date_of_will_fly", "comment", "type_of_program", "id"]:
         return dumps(None)
 
-    client_id = data["client_id"]
+    client_id = data["id"]
 
-    if not clients_table.get(client_id):
-        return dumps(None)
-
-    if current_requests_table.get(client_id):
+    if not clients_table.get(client_id) or current_requests_table.get(client_id):
         return dumps(None)
 
     current_requests_table.insert(client_id, data["name_of_program"],
                                   data["country"], data["type_of_program"],
-                                  data["date_of_will_fly"], data["commit"],
+                                  data["date_of_will_fly"], data["comment"],
                                   1 if data["status"] == "Заявка" else
                                   2 if data["status"] == "Договор" else
                                   3 if data["status"] == "Оплата" else

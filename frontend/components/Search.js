@@ -59,7 +59,7 @@ export default class Search extends React.Component{
 		let popover =
 		<Popover id="popover-basic" title="Параметры">
 			<Form.Control type="text" placeholder="Номер телефона"
-						onChange={(e) = this.setState({phone_number: e.target.value})}
+						onChange={(e) => this.setState({phone_number: e.target.value})}
 			/>
 
 		</Popover>;
@@ -78,7 +78,7 @@ export default class Search extends React.Component{
 				              }
 				              return false;
 				            }}
-										onChange={(e) = this.setState({searchLine: e.target.value})}
+										onChange={(e) => this.setState({searchLine: e.target.value})}
 				            size="lg"
 				          />
 			          <InputGroup.Append>

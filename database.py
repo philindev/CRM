@@ -218,7 +218,7 @@ class CurrentRequestsTable:
         cursor.execute(
             '''INSERT INTO current(client_id, program_name, country, type,
              departure_date, date_of_creation, user_commit, status)
-               VALUES (?,?,?,?,?,?,?)''', (
+               VALUES (?,?,?,?,?,?,?,?)''', (
                 client_id,
                 program_name,
                 country,
