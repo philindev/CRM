@@ -21,10 +21,10 @@ export default class Search extends React.Component{
 			phone_number: this.state.phone_number,
 		}
 		if(
-			files.searchLine &&
+			files.searchLine ||
 			files.phone_number
 		){
-			fetch('/UserRequest',
+			fetch('/Search',
 	        {
 	          method: 'post',
 	          headers: {
