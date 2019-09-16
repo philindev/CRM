@@ -32,6 +32,8 @@ export default class Continue extends Component{
     }
     console.log(files);
 
+    const main = this;
+
     if(
       files.name_of_program &&
       files.status != 'Статус заявки' &&
@@ -65,7 +67,7 @@ export default class Continue extends Component{
           .then(function(data) {
             console.log(data);
             if(data){
-              this.props.onHideContinue();
+              main.props.onHideContinue();
               alert("Заявка добавлена.");
             }
             return;
@@ -112,6 +114,7 @@ export default class Continue extends Component{
                       <Dropdown.Item onClick={() => this.setState({status: 'Оплата'})}>Оплата</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Вылет'})}>Вылет</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Консультирование'})}>Консультирование</Dropdown.Item>
+                      <Dropdown.Item onClick={() => this.setState({status: 'Закрыто'})}>Закрыто</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Не заполнен'})}>Не заполнен</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>

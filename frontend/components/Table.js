@@ -21,7 +21,7 @@ export default class Table extends React.Component{
 	}
 
   render(){
-    let results = this.props.data.map((obj, inx) => <Row key={inx} data={obj} openInfo={this.props.openInfo}/>);
+    let results = this.props.data.map((obj, inx) => <Row key={inx} data={obj} openInfo={this.props.openInfo} StatusForm={this.props.StatusForm}/>);
     return(
       <div style={{
             overflow: "auto",

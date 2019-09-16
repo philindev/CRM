@@ -9,6 +9,34 @@ import Create from './Create';
 import Continue from "./Continue";
 import HistoryTable from "./HistoryTable";
 
+
+//Функция преобразования числа для статуса заявки
+function StatusForm(number) {
+	switch (number) {
+		case 1:
+			return "Заявка"
+
+		case 2:
+			return "Договор"
+
+		case 3:
+			return "Оплата"
+
+		case 4:
+			return "Вылет"
+
+		case 5:
+			return "Консудьтирование"
+
+		case 6:
+			return "Закрыто"
+
+		default:
+			return "Не заполнен"
+
+	}
+}
+
 export default class App extends React.Component{
 	constructor(props){
 		super();
@@ -98,7 +126,7 @@ export default class App extends React.Component{
 							<hr />
 							<p>
 								<h4>{request.country}</h4>
-								<b>Название программы:</b> {request.program_name} <Badge variant="success">{request.status}</Badge>
+								<b>Название программы:</b> {request.program_name} <Badge variant="success">{StatusForm(request.status)}</Badge>
 								<br />
 								<b>Год поездки:</b> {request.year_of_fly}
 								<br />
@@ -158,7 +186,9 @@ export default class App extends React.Component{
 							</Row>
 							<Row className="mt-4">
 								{/*Главный блок с клиентами*/}
-								<Clients openInfo={this.openClient}/>
+								<Clients openInfo={this.openClient}
+												 StatusForm={StatusForm}
+								/>
 							</Row>
 						</Col>
 
