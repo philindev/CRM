@@ -145,7 +145,7 @@ def get_client():
             "country": current_request[3],
             "status": current_request[4],
             "type": current_request[5],
-            "departure_date...": current_request[6],
+            "departure_date": current_request[6],
             "date_of_creation": current_request[7]
         }
 

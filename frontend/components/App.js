@@ -37,6 +37,11 @@ function StatusForm(number) {
 	}
 }
 
+function SetDate(date) {
+	let rest = date.split("-")
+	return `${rest[2]}.${rest[1]}.${rest[0]}`
+}
+
 export default class App extends React.Component{
 	constructor(props){
 		super();
@@ -128,9 +133,9 @@ export default class App extends React.Component{
 								<h4>{request.country}</h4>
 								<b>Название программы:</b> {request.program_name} <Badge variant="success">{StatusForm(request.status)}</Badge>
 								<br />
-								<b>Год поездки:</b> {request.year_of_fly}
+								<b>Год поездки:</b> {request.departure_date.split("-")[0]}
 								<br />
-								<b>Дата отъезда:</b> {request.data_of_will_fly} - {client.type_of_program}
+								<b>Дата отъезда:</b> {SetDate(request.departure_date)} - {request.type}
 								<br />
 								<b>Комментарии:</b> {request.comment}
 							</p>
