@@ -75,6 +75,7 @@ export default class Clients extends React.Component{
 						data={this.state.data} screen={this.state.tableHeight}
 						openInfo={this.props.openInfo}
 						StatusForm={this.props.StatusForm}
+						SetDate={this.props.SetDate}
 					/>
 			</Col>;
 

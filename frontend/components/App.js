@@ -186,13 +186,14 @@ export default class App extends React.Component{
 									md={11}
 									xl={11}
 								>
-									<Search />
+									<Search window={!this.state.showCreate && !this.state.showContinue && !Object.keys(this.state.dataClient).lenght}/>
 								</Col>
 							</Row>
 							<Row className="mt-4">
 								{/*Главный блок с клиентами*/}
 								<Clients openInfo={this.openClient}
 												 StatusForm={StatusForm}
+												 SetDate={SetDate}
 								/>
 							</Row>
 						</Col>

@@ -8,11 +8,17 @@ export default class Search extends React.Component{
 		super(props);
 		this.state = {
 			searchLine: '',
-			phone_number: ''
+			phone_number: '',
+			show: false,
+			window: !this.props.window
 		}
 
 		this.sendSubmit = this.sendSubmit.bind(this);
 
+	}
+
+	componentWillReceiveProps(nextProps){
+		this.setState({window: !nextProps.window})
 	}
 
 	sendSubmit(){
@@ -92,8 +98,12 @@ export default class Search extends React.Component{
 			            </Button>
 			            </InputGroup.Append>
 			        </InputGroup>
-					<OverlayTrigger trigger="click" placement="auto" overlay={popover}>
-			        <Button variant="outline-danger" size="sm">
+							{console.log(this.state.window)}
+					<OverlayTrigger trigger="click" placement="auto"
+													overlay={(this.state.window) ? popover : <div></div>}
+												>
+			        <Button variant="outline-danger" size="sm"
+							>
 							    Фильтр
 							</Button>
 					</OverlayTrigger>

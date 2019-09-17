@@ -11,7 +11,7 @@ export default class Row extends Component{
         <td>{this.props.data.client.client_name}</td>
         <td>{this.props.data.request.program_name}</td>
         <td>{this.props.data.request.country}</td>
-        <td>{this.props.data.request.departure_date}</td>
+        <td>{this.props.SetDate(this.props.data.request.departure_date)}</td>
       </tr>
     );
   }
