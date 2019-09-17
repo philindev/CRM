@@ -13,7 +13,7 @@ export default class Create extends Component{
       date_of_birth: '',
       number: '',
       mail: '',
-      countParent: 0,
+      countParent: 1,
       firstParent: {},
       secondParent: {},
       error_window_show: false,
@@ -24,12 +24,20 @@ export default class Create extends Component{
     this.sendProfile = this.sendProfile.bind(this);
     this.addParent = this.addParent.bind(this);
     this.updateParent = this.updateParent.bind(this);
+    this.permissionToDeleteParent = this.permissionToDeleteParent.bind(this);
   }
 
   // Закрывает и открывает окно заявки
   openContinue(){
     this.props.onHideCreate();
     this.props.onContinue();
+  }
+
+  permissionToDeleteParent(){
+        this.setState({
+          countParent: 1,
+          secondParent: {}
+        })
   }
 
   sendProfile(whichWindow){
@@ -115,7 +123,6 @@ export default class Create extends Component{
     };
 
     addParent(){
-      console.log(this.state.countParent);
       this.setState({countParent: (this.state.countParent == 2) ? 2
                                                  : this.state.countParent + 1});
     }
@@ -203,13 +210,27 @@ export default class Create extends Component{
                 {(this.state.countParent > 1) ? <span>Заполните 2 родителя:</span> : null}
                 {(this.state.countParent > 1) ? <Parent data={this.state.secondParent} which={1} updateParent={this.updateParent}/>: null}
 
+                {(this.state.countParent == 1) ?
+                  <ButtonGroup aria-label="Basic example" className="mt-3">
+                      <Button variant="danger" className="mr-3"
+                          onClick={this.addParent}
+                      >Добавить родителя</Button>
+                  </ButtonGroup>
 
-                <ButtonGroup aria-label="Basic example" className="mt-3">
-                    <Button variant="danger" className="mr-3"
-                        onClick={this.addParent}
-                    >Добавить родителя</Button>
-                    <Button variant="success">Добавить поле</Button>
-                </ButtonGroup>
+                  :
+
+                  <ButtonGroup aria-label="Basic example" className="mt-3">
+                      <Button variant="secondary" className="mr-3"
+                          onClick={this.permissionToDeleteParent}
+                      >Удалить родителя</Button>
+                  </ButtonGroup>
+                }
+
+
+                    {/* Вича для добавления дополнительного поля */}
+
+                    {/*<Button variant="success">Добавить поле</Button> */}
+
           </Form>
 
           {
