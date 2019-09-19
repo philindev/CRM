@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
-				Dropdown, DropdownButton, InputGroup, Badge} from "react-bootstrap";
+				Dropdown, DropdownButton, InputGroup, Badge, Button} from "react-bootstrap";
 import Header from "./Header";
 import Search from "./Search";
 import Clients from "./Clients";
@@ -115,36 +115,67 @@ export default class App extends React.Component{
 						style={{ maxHeight: setHeight(), overflow: "auto",}}
 					>
 						<Modal.Header closeButton>
-								<Modal.Title>{client.client_name} <Badge variant="primary">{status}</Badge></Modal.Title>
+								<Modal.Title><span className="gosha" style={{fontSize: "30px"}}> {client.client_name} </span><Badge variant="danger">{status}</Badge></Modal.Title>
 						</Modal.Header>
 						<Modal.Body>
-							<p>
-							 <b>Дата рождения:</b> {client.date_of_birth}
-							 <br />
-							 <b>Номер телефона:</b> {client.phone_number}, <b>Почта:</b> {client.mail}
-							 <br />
-							 <b>Родители:</b>
-							 	<p>
-									<b></b>
-								</p>
-							</p>
-							<hr />
-							<p>
-								<h4>{request.country}</h4>
-								<b>Название программы:</b> {request.program_name} <Badge variant="success">{StatusForm(request.status)}</Badge>
+
+						<Row>
+							<Col
+									md={8}
+									lg={8}
+									lx={8}
+								>
+									<p  className="commonRequest">
+									 <b>Дата рождения:</b> {SetDate(client.date_of_birth)}
+									 <br />
+									 <b>Номер телефона:</b> {client.phone_number}
+									 <br />
+									 <b>Почта:</b> {client.mail}
+									 <br />
+									 <b>Родители: </b>
+									 	<p>
+											<b>{client.parents.firstParent}</b>
+										</p>
+									</p>
+
+							</Col>
+
+							<Col>
+								<Button variant="primary" className="mt-3"
+										onClick={this.permissionToDeleteParent}
+										className="buttonEdit"
+										style={{
+											position: "absolute",
+											right: "10%",
+											fontSize: "14px",
+											padding: "6px"
+										}}
+										>Изменить</Button>
+							</Col>
+
+						</Row>
+						<hr />
+
+							{ (request) ?
+							<p className="commonRequest">
+								<h3 className="gosha">{request.program_name} <Badge variant="success" style={{fontSize: "18px"}}>{StatusForm(request.status)}</Badge> </h3>
+								<b>Страна:</b> {request.country}
 								<br />
 								<b>Год поездки:</b> {request.departure_date.split("-")[0]}
 								<br />
 								<b>Дата отъезда:</b> {SetDate(request.departure_date)} - {request.type}
 								<br />
-								<b>Комментарии:</b> {request.comment}
+								<b>Комментарии:</b> {request.comment || " Не указано "}
 							</p>
+							: <div> Нет текущей заявки </div> }
+
+
 							<hr />
 							<p>
-								<h5>История поездок:</h5>
+								<h5><b>История поездок:</b></h5>
 								<br />
 								{
-									(history.length) ? Пусто :
+									(!Object.keys(history).length) ? <span style={{paddingLeft: "40%"}}> Пусто </span> :
 
 									history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
 																							        <th>{data.status}</th>
