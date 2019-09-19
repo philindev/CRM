@@ -5,18 +5,31 @@ from time import time
 class DB:
     def __init__(self, db_name):
         conn = connect(db_name + ".db", check_same_thread=False)
+        self.name = db_name
         self.conn = conn
 
     def get_connection(self):
         return self.conn
 
+    def get_name(self):
+        return self.name
+
     def __del__(self):
         self.conn.close()
 
 
-class ClientsTable:
+class AbstractTable:
     def __init__(self, connection):
+        self.error = "-1"
         self.connection = connection
+
+    def get_error(self):
+        return self.error
+
+
+class ClientsTable(AbstractTable):
+    def __init__(self, connection):
+        super().__init__(connection)
 
     def init_table(self):
         cursor = self.connection.cursor()
@@ -80,9 +93,9 @@ class ClientsTable:
         return row
 
 
-class ParentsTable:
+class ParentsTable(AbstractTable):
     def __init__(self, connection):
-        self.connection = connection
+        super().__init__(connection)
 
     def init_table(self):
         cursor = self.connection.cursor()
@@ -131,9 +144,9 @@ class ParentsTable:
         return row
 
 
-class HistoryTable:
+class HistoryTable(AbstractTable):
     def __init__(self, connection):
-        self.connection = connection
+        super().__init__(connection)
 
     def init_table(self):
         cursor = self.connection.cursor()
@@ -191,9 +204,9 @@ class HistoryTable:
         return row
 
 
-class CurrentRequestsTable:
+class CurrentRequestsTable(AbstractTable):
     def __init__(self, connection):
-        self.connection = connection
+        super().__init__(connection)
 
     def init_table(self):
         cursor = self.connection.cursor()
