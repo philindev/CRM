@@ -7,11 +7,11 @@ export default class Row extends Component{
       <tr style={{textAlign: "center", fontSize: "10pt"}}
       onClick={() => this.props.openInfo(this.props.data)}
       >
-        <th>{this.props.StatusForm(this.props.data.request.status)}</th>
-        <td>{this.props.data.client.client_name}</td>
-        <td>{this.props.data.request.program_name}</td>
-        <td>{this.props.data.request.country}</td>
-        <td>{this.props.SetDate(this.props.data.request.departure_date)}</td>
+        <th>{this.props.StatusForm(this.props.data.request.status) || " Не заполнено"}</th>
+        <td>{this.props.data.client.client_name  || " Не заполнено "}</td>
+        <td>{this.props.data.request.program_name  || " Не заполнено "}</td>
+        <td>{this.props.data.request.country  || " Не заполнено "}</td>
+        <td>{this.props.SetDate(this.props.data.request.departure_date)  || " Не заполнено "}</td>
       </tr>
     );
   }

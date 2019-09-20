@@ -30,7 +30,6 @@ export default class Create extends Component{
   // Закрывает и открывает окно заявки
   openContinue(){
     this.props.onHideCreate();
-    this.props.onContinue();
   }
 
   permissionToDeleteParent(){

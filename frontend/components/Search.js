@@ -11,6 +11,7 @@ export default class Search extends React.Component{
 			phone_number: '',
 			show: false,
 			window: !this.props.window
+
 		}
 
 		this.sendSubmit = this.sendSubmit.bind(this);
@@ -22,6 +23,8 @@ export default class Search extends React.Component{
 	}
 
 	sendSubmit(){
+		const main = this;
+
 		let files = {
 			searchLine: this.state.searchLine,
 			phone_number: this.state.phone_number,
@@ -54,6 +57,10 @@ export default class Search extends React.Component{
 	          response.json()
 	          .then(function(data) {
 	            console.log(data);
+							if(data.length){
+								main.props.changeBySearch(data);
+								console.log("Completly changed!")
+							}
 	            });
 	        })
 		}
@@ -98,7 +105,6 @@ export default class Search extends React.Component{
 			            </Button>
 			            </InputGroup.Append>
 			        </InputGroup>
-							{console.log(this.state.window)}
 					<OverlayTrigger trigger="click" placement="auto"
 													overlay={(this.state.window) ? popover : <div></div>}
 												>

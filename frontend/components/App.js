@@ -52,12 +52,19 @@ export default class App extends React.Component{
 			showContinue: false,
 			dataClient: {},
 			id: 0,
+			data: [],
 		}
 
 		this.onHideCreate = this.onHideCreate.bind(this);
 		this.onHideContinue = this.onHideContinue.bind(this);
 		this.openClient = this.openClient.bind(this);
 		this.changeId = this.changeId.bind(this);
+		this.changeBySearch = this.changeBySearch.bind(this);
+	}
+
+	changeBySearch(value){
+		this.setState({data: value});
+		console.log("Data has changed by SearchLine!")
 	}
 
 	changeId(id){
@@ -70,7 +77,7 @@ export default class App extends React.Component{
 	}
 
 	onHideContinue(){
-		this.setState({showContinue: (this.state.showContinue)?false:true})
+		this.setState({showContinue: false})
 	}
 
 	// Вызывает карточку полной информации о клиенте
@@ -217,7 +224,9 @@ export default class App extends React.Component{
 									md={11}
 									xl={11}
 								>
-									<Search window={!this.state.showCreate && !this.state.showContinue && !Object.keys(this.state.dataClient).lenght}/>
+									<Search window={!this.state.showCreate && !this.state.showContinue && !Object.keys(this.state.dataClient).lenght}
+													changeBySearch={this.changeBySearch}
+									/>
 								</Col>
 							</Row>
 							<Row className="mt-4">
@@ -225,6 +234,7 @@ export default class App extends React.Component{
 								<Clients openInfo={this.openClient}
 												 StatusForm={StatusForm}
 												 SetDate={SetDate}
+												 searchItems={this.state.data}
 								/>
 							</Row>
 						</Col>
