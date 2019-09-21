@@ -9,6 +9,17 @@ import Create from './Create';
 import Continue from "./Continue";
 import HistoryTable from "./HistoryTable";
 
+class Edit extends React.Component{
+	constructor(props){
+		super(props);
+	}
+
+	render(){
+		let window = null
+
+		return(window);
+	}
+};
 
 //Функция преобразования числа для статуса заявки
 function StatusForm(number) {
@@ -44,7 +55,7 @@ function SetDate(date) {
 
 export default class App extends React.Component{
 	constructor(props){
-		super();
+		super(props);
 		this.state = {
 			whatsBlock : 0,
 			submit: null,
@@ -261,6 +272,7 @@ export default class App extends React.Component{
 											onHideContinue={this.onHideContinue}
 											id={this.state.id}
 											/>
+						<Edit />
 					</Row>
 					{modalInfo}
 			</Container>

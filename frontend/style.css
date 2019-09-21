@@ -28,3 +28,7 @@ table.table {
 .buttonEdit{
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.commonRequest b {
+  font-family: 'Gill Sans Bold', 'Arial Narrow Bold';
+}
