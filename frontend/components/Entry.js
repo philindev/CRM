@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import {Button} from "react-bootstrap"
 
 export default class Entry extends Component{
   constructor(props){
@@ -17,7 +18,6 @@ export default class Entry extends Component{
 
   submit(){
     let data = {login: this.state.login, password: this.state.password}
-    console.log(data)
     if(data.login && data.password){
       fetch('/Entry',
 	        {
@@ -55,9 +55,9 @@ export default class Entry extends Component{
       <div class="form">
           <div class="greetings">Добро пожаловать</div>
           <form class="login-form">
-            <input type="text" placeholder="Логин"/>
-            <input type="password" placeholder="Пароль"/>
-            <button onClick={() => console.log("OK")}>Войти</button>
+            <input type="text" placeholder="Логин" onChange={(e) => this.setState({login: e.target.value})}/>
+            <input type="password" placeholder="Пароль" onChange={(e) => this.setState({password: e.target.value})}/>
+            <Button onClick={this.submit}>Войти</Button>
           </form>
       </div>
     </div>
