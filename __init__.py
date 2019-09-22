@@ -1,9 +1,7 @@
 from flask import Flask, request, render_template
 from json import dumps
-import logging
-from string import ascii_letters, digits
-from random import choices
 from database import *
+import logging
 
 
 def time_calculation(obj: dict, time_is_now):
@@ -80,7 +78,30 @@ app = Flask(__name__, template_folder="./frontend", static_folder="./frontend")
 
 @app.route('/', methods=["GET"])
 def main_page():
+    print("[\x1b[31mWARNING\x1b[0m] - Access to the site from ", request.environ['REMOTE_ADDR'])
+    print(request.environ)  
+    print(request.remote_addr)
     return render_template("index.html")
+
+
+@app.route("/login", methods=["GET"])
+def login():
+    return render_template("login.html")
+
+
+@app.route("/Entry", methods=["GET"])
+def entry():
+    print("[\x1b[33mINFO\x1b[0m] - Login")
+
+    data = request.json()
+
+    if list(data.keys()) != ["login", "password"]:
+        print("[\x1b[31mFAILED\x1b[0m] - Invalid request data")
+        return dumps(None)
+
+    response = admins_table.check_password(data["login"], data["password"])
+    return dumps(response)
+# TODO: определиться, что делать с токеном
 
 
 @app.route("/UserData", methods=["POST"])
@@ -144,6 +165,23 @@ def user_data():
     print("[\x1b[32mOK\x1b[0m] - User’s parents are recorded")
     # token = "generating_token"
     return dumps(client_id)
+
+
+@app.route("/ChangeClient")
+def change_client():
+    data = request.json()
+    if list(data.keys()) != ["token", "client"]:
+        print("[\x1b[31mFAILED\x1b[0m] - Invalid request data")
+        return dumps(None)
+
+    new_client_data = data["client"]
+
+    clients_table.change(
+        new_client_data["id"], new_client_data["name"],
+        new_client_data["date_of_birth"], new_client_data["mail"],
+        new_client_data["phone_number"]
+    )
+    # TODO: доделать изменения, добавить проверку для безопастности
 
 
 @app.route("/UserRequest", methods=["POST"])
@@ -261,6 +299,14 @@ if __name__ == "__main__":
     db = DB("database")
     print("[\x1b[32mOK\x1b[0m] - Created or opened database | " f"Name {db.name}")
 
+    admins_table = AdminsTable(db.get_connection())
+    if admins_table.get_error() == "1":
+        print("[\x1b[32mOK\x1b[0m] - AdminsTable connected to the database")
+    else:
+        print("[\x1b[31mFAILED\x1b[0m] - AdminsTable could not connect to the database")
+        total_error += 1
+        errors.append(f"AdminsTableError {time()}\n#{admins_table}")
+
     clients_table = ClientsTable(db.get_connection())
     if clients_table.get_error() == "-1":
         print("[\x1b[32mOK\x1b[0m] - ClientsTable connected to the database")
@@ -293,9 +339,15 @@ if __name__ == "__main__":
         total_error += 1
         errors.append(f"CurrentsRequestsTableError {time()}\n#{current_requests_table}")
 
+    admins_table.init_table()
     clients_table.init_table()
     parents_table.init_table()
     history_table.init_table()
     current_requests_table.init_table()
+
+    # if total_error:
+    #     with open(".log.txt", "a") as log:
+    #         log.write("\n".join(errors))
+    #     print("Failure to start due to errors. Read more in the log file.")
 
     app.run(port=8000, host="127.0.0.1")

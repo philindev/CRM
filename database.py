@@ -1,4 +1,7 @@
 from sqlite3 import connect
+from passlib.hash import pbkdf2_sha256
+from string import ascii_letters, digits, punctuation
+from random import choices
 from time import time
 
 
@@ -27,6 +30,61 @@ class AbstractTable:
         return self.error
 
 
+class AdminsTable(AbstractTable):
+    def __init__(self, connection):
+        super().__init__(connection)
+
+    def init_table(self):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''CREATE TABLE IF NOT EXISTS admins
+            (id INTEGER PRIMARY KEY AUTOINCREMENT,
+            login VARCHAR(254),
+            password_hash VARCHAR(254),
+            token VARCHAR(16))'''
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def insert(self, login, password, ip):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''INSERT INTO admins (login, password_hash, date_of_creation, ip)
+               VALUES (?,?,?,?)''', (login, pbkdf2_sha256.hash(password), time(), ip)
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def get(self, login):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''SELECT * FROM admins WHERE login = ?''', (login,)
+        )
+        row = cursor.fetchone()
+        return row
+
+    def get_password_hash(self, login):
+        cursor = self.connection.cursor()
+        cursor.execute('''SELECT password_hash FROM admins WHERE login = ?''', (login,))
+        row = cursor.fetchone()
+        return row
+
+    def check_password(self, login, password):
+        row = self.get_password_hash(login)
+        if not row:
+            print("[\x1b[31mWARNING\x1b[0m] - User does not exist")
+            return None
+
+        password_hash = row[0]
+        if pbkdf2_sha256.verify(password, password_hash):
+            token = ''.join(choices(ascii_letters + digits + punctuation, k=16))
+            print(f"[\x1b[32mOK\x1b[0m] - Admin {login}")
+            return token
+        print("[\x1b[31mFAILED\x1b[0m] - Password is not suitable")
+        return None
+
+
+# TODO: сделать возможность внесения изменений
 class ClientsTable(AbstractTable):
     def __init__(self, connection):
         super().__init__(connection)
@@ -93,6 +151,7 @@ class ClientsTable(AbstractTable):
         return row
 
 
+# TODO: сделать возможность внесения изменений
 class ParentsTable(AbstractTable):
     def __init__(self, connection):
         super().__init__(connection)
