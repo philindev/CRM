@@ -10,9 +10,8 @@ export default class Continue extends Component{
       status: 'Статус заявки',
       country: '',
       name_of_program: '',
-      year_of_fly: '',
       where_from: '',
-      data_of_will_fly: '',
+      date_of_will_fly: '',
       type_of_program: '',
       comment: '',
     }
@@ -22,23 +21,25 @@ export default class Continue extends Component{
 
   submit(){
     let files = {
-      name_of_programe: this.state.name_of_programe,
+      name_of_program: this.state.name_of_program,
       status: this.state.status,
       country: this.state.country,
-      year_of_fly: this.state.year_of_fly,
       where_from: this.state.where_from,
-      data_of_will_fly: this.state.data_of_will_fly,
-      comment: this.state,comment,
+      date_of_will_fly: this.state.date_of_will_fly,
+      comment: this.state.comment,
       type_of_program: this.state.type_of_program,
+      id: this.props.id
     }
+    console.log(files);
+
+    const main = this;
 
     if(
-      files.name_of_programe &&
+      files.name_of_program &&
       files.status != 'Статус заявки' &&
       files.country &&
-      files.year_of_fly &&
       files.where_from &&
-      files.data_of_will_fly &&
+      files.date_of_will_fly &&
       files.type_of_program
     ){
     fetch('/UserRequest',
@@ -54,8 +55,7 @@ export default class Continue extends Component{
         .then(
         function(response) {
           if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
+            console.log('Looks like there was a problem. Status Code: ' + response.status);
             if(response.status === 500){
                 console.log("Status: 500")
             }
@@ -67,7 +67,7 @@ export default class Continue extends Component{
           .then(function(data) {
             console.log(data);
             if(data){
-              this.props.onHideContinue();
+              main.props.onHideContinue();
               alert("Заявка добавлена.");
             }
             return;
@@ -100,6 +100,7 @@ export default class Continue extends Component{
           <InputGroup className="mb-3">
             <Form.Control
               type="text" placeholder="Название программы"
+              onChange={(e) => this.setState({name_of_program: e.target.value})}
             />
                 <InputGroup.Append>
                   {/* Статус клиента выпадающее меню */}
@@ -113,6 +114,7 @@ export default class Continue extends Component{
                       <Dropdown.Item onClick={() => this.setState({status: 'Оплата'})}>Оплата</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Вылет'})}>Вылет</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Консультирование'})}>Консультирование</Dropdown.Item>
+                      <Dropdown.Item onClick={() => this.setState({status: 'Закрыто'})}>Закрыто</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Не заполнен'})}>Не заполнен</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -122,28 +124,35 @@ export default class Continue extends Component{
               <Form.Group as={Col} controlId="formGridText">
                 {/* Дата отъезда ниже */}
                 <div class="well">
-                    <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата отъезда"/>
+                    <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата отъезда"
+                           onChange={(e) => this.setState({date_of_will_fly: e.target.value})}
+                    />
                 </div>
               </Form.Group>
-                <Form.Group as={Col} controlId="formGridPassword">
-                  <Form.Control type="phone" placeholder="Год поездки" />
-                </Form.Group>
+              <Form.Group as={Col} controlId="formGridPassword">
+                <Form.Control type="text" placeholder="Источник заявки"
+                              onChange={(e) => this.setState({where_from: e.target.value})}
+                />
+              </Form.Group>
             </Form.Row>
             <Form.Row className="mt-0">
                 <Form.Group as={Col} controlId="formGridText">
-                  <Form.Control type="text" placeholder="Страна" />
+                  <Form.Control type="text" placeholder="Страна"
+                                onChange={(e) => this.setState({country: e.target.value})}
+                  />
                 </Form.Group>
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Control type="text" placeholder="Источник заявки" />
-              </Form.Group>
             </Form.Row>
-            <Form.Control className="mb-3" type="text" placeholder="Группа / Индивидуально" />
-            <Form.Control as="textarea" type="text" placeholder="Комментарий" style={{minHeight: "50px"}}/>
+            <Form.Control className="mb-3" type="text" placeholder="Группа / Индивидуально"
+                          onChange={(e) => this.setState({type_of_program: e.target.value})}
+            />
+            <Form.Control as="textarea" type="text" placeholder="Комментарий" style={{minHeight: "50px"}}
+                          onChange={(e) => this.setState({comment: e.target.value})}
+            />
       </Form>
     </Modal.Body>
       {/* Кнопки для сохранения и выхода */}
       <Modal.Footer>
-        <Button onClick={this.props.onHideCreate}
+        <Button onClick={this.submit}
                 variant="outline-warning"
                 centered
         >Сохранить</Button>

@@ -5,19 +5,75 @@ import {InputGroup, FormControl, Button, OverlayTrigger, Popover,
 
 export default class Search extends React.Component{
 	constructor(props){
-		super()
+		super(props);
+		this.state = {
+			searchLine: '',
+			phone_number: '',
+			show: false,
+			window: !this.props.window
+
+		}
+
+		this.sendSubmit = this.sendSubmit.bind(this);
+
+	}
+
+	componentWillReceiveProps(nextProps){
+		this.setState({window: !nextProps.window})
 	}
 
 	sendSubmit(){
-		return false;
+		const main = this;
+
+		let files = {
+			searchLine: this.state.searchLine,
+			phone_number: this.state.phone_number,
+		}
+		if(
+			files.searchLine ||
+			files.phone_number
+		){
+			fetch('/Search',
+	        {
+	          method: 'post',
+	          headers: {
+	            'Content-Type':'application/json',
+	            "Access-Control-Allow-Origin": "*",
+	            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+	          },
+	          body: JSON.stringify(files),
+	        })
+	        .then(
+	        function(response) {
+	          if (response.status !== 200) {
+	            console.log('Looks like there was a problem. Status Code: ' + response.status);
+	            if(response.status === 500){
+	                console.log("Status: 500")
+	            }
+	            return;
+	          }
+
+	          // Examine the text in the response
+	          response.json()
+	          .then(function(data) {
+	            console.log(data);
+							if(data.length){
+								main.props.changeBySearch(data);
+								console.log("Completly changed!")
+							}
+	            });
+	        })
+		}
 	}
 
 	render(){
 		const main = this;
 
-		const popover =
+		let popover =
 		<Popover id="popover-basic" title="Параметры">
-			<Form.Control type="text" placeholder="Номер телефона" />
+			<Form.Control type="text" placeholder="Номер телефона"
+						onChange={(e) => this.setState({phone_number: e.target.value})}
+			/>
 
 		</Popover>;
 
@@ -35,6 +91,7 @@ export default class Search extends React.Component{
 				              }
 				              return false;
 				            }}
+										onChange={(e) => this.setState({searchLine: e.target.value})}
 				            size="lg"
 				          />
 			          <InputGroup.Append>
@@ -48,8 +105,11 @@ export default class Search extends React.Component{
 			            </Button>
 			            </InputGroup.Append>
 			        </InputGroup>
-					<OverlayTrigger trigger="click" placement="auto" overlay={popover}>
-			        <Button variant="outline-danger" size="sm">
+					<OverlayTrigger trigger="click" placement="auto"
+													overlay={(this.state.window) ? popover : <div></div>}
+												>
+			        <Button variant="outline-danger" size="sm"
+							>
 							    Фильтр
 							</Button>
 					</OverlayTrigger>

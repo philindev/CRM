@@ -13,7 +13,7 @@ export default class Create extends Component{
       date_of_birth: '',
       number: '',
       mail: '',
-      countParent: 0,
+      countParent: 1,
       firstParent: {},
       secondParent: {},
       error_window_show: false,
@@ -24,15 +24,24 @@ export default class Create extends Component{
     this.sendProfile = this.sendProfile.bind(this);
     this.addParent = this.addParent.bind(this);
     this.updateParent = this.updateParent.bind(this);
+    this.permissionToDeleteParent = this.permissionToDeleteParent.bind(this);
   }
 
   // Закрывает и открывает окно заявки
   openContinue(){
     this.props.onHideCreate();
-    this.props.onContinue();
+  }
+
+  permissionToDeleteParent(){
+        this.setState({
+          countParent: 1,
+          secondParent: {}
+        })
   }
 
   sendProfile(whichWindow){
+    const main = this;
+
     let files = {
       name: this.state.name,
       status: this.state.status,
@@ -48,7 +57,7 @@ export default class Create extends Component{
         files.date_of_birth != '' &&
         files.number != '' &&
         files.mail != '' &&
-        files.firstParent.length == 4
+        Object.keys(files.firstParent).length == 4
       )
     {
     fetch('/UserData',
@@ -78,10 +87,11 @@ export default class Create extends Component{
             console.log(data);
             if(data){
               if(whichWindow == 1){
-                this.props.onHideCreate();
+                main.props.onHideCreate();
               }
               else if (whichWindow == 2) {
-                this.openContinue();
+                main.props.changeId(data);
+                main.openContinue();
               }
             }
             else{
@@ -104,7 +114,7 @@ export default class Create extends Component{
         else if (files.number == '') {
           description = "Введите номер телефона клиента."
         }
-        else if (files.firstParent.length != 4) {
+        else if (Object.keys(files.firstParent).length != 4) {
           description = 'Данные родителя пропущенны в одном или нескольких местах!'
         }
         this.setState({error_window_show: true, description: description});
@@ -112,7 +122,6 @@ export default class Create extends Component{
     };
 
     addParent(){
-      console.log(this.state.countParent);
       this.setState({countParent: (this.state.countParent == 2) ? 2
                                                  : this.state.countParent + 1});
     }
@@ -200,13 +209,27 @@ export default class Create extends Component{
                 {(this.state.countParent > 1) ? <span>Заполните 2 родителя:</span> : null}
                 {(this.state.countParent > 1) ? <Parent data={this.state.secondParent} which={1} updateParent={this.updateParent}/>: null}
 
+                {(this.state.countParent == 1) ?
+                  <ButtonGroup aria-label="Basic example" className="mt-3">
+                      <Button variant="danger" className="mr-3"
+                          onClick={this.addParent}
+                      >Добавить родителя</Button>
+                  </ButtonGroup>
 
-                <ButtonGroup aria-label="Basic example" className="mt-3">
-                    <Button variant="danger" className="mr-3"
-                        onClick={this.addParent}
-                    >Добавить родителя</Button>
-                    <Button variant="success">Добавить поле</Button>
-                </ButtonGroup>
+                  :
+
+                  <ButtonGroup aria-label="Basic example" className="mt-3">
+                      <Button variant="secondary" className="mr-3"
+                          onClick={this.permissionToDeleteParent}
+                      >Удалить родителя</Button>
+                  </ButtonGroup>
+                }
+
+
+                    {/* Вича для добавления дополнительного поля */}
+
+                    {/*<Button variant="success">Добавить поле</Button> */}
+
           </Form>
 
           {

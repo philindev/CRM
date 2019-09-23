@@ -16,6 +16,7 @@ export default class Clients extends React.Component{
 }
 
 	getClients(){
+		const main = this;
 		fetch('/GetInfo')
 			  .then(function (response) {
 			    if (response.status !== 200) {
@@ -28,16 +29,14 @@ export default class Clients extends React.Component{
 			  })
 			  .then(function (data) {
 			    console.log('Info for table', data);
-					this.setState({data: data});
+					main.setState({data: data});
 			  })
 			  .catch(function (error) {
 			    console.log('error: ', error)
 			  })
 	}
 
-	componentDidMount(){
-		this.getClients();
-	}
+
 
 	// Определяем высоту окна и сохраняем
 	setHeight(){
@@ -48,12 +47,22 @@ export default class Clients extends React.Component{
 		this.getClients();
 	}
 
+	componentWillReceiveProps(nextProps){
+		if(nextProps.searchItems.length){
+				this.setState({data: nextProps.searchItems});
+				console.log("Updated in this.state.searchItems")
+		}
+		else if (nextProps.searchItems.length == 0) {
+				this.getClients();
+		}
+	}
+
+	componentDidMount(){
+		this.setHeight();
+	}
+
 
 	render(){
-
-		if (this.state.tableHeight == "100%"){
-			this.setHeight();
-		}
 
 		let clients =
 			<Col lg={12} md={12} xl={12}>
@@ -75,6 +84,8 @@ export default class Clients extends React.Component{
 					<Table
 						data={this.state.data} screen={this.state.tableHeight}
 						openInfo={this.props.openInfo}
+						StatusForm={this.props.StatusForm}
+						SetDate={this.props.SetDate}
 					/>
 			</Col>;
 
