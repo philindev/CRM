@@ -2,7 +2,12 @@ from sqlite3 import connect
 from passlib.hash import pbkdf2_sha256
 from string import ascii_letters, digits, punctuation
 from random import choices
-from time import time
+from time import time, ctime
+
+
+def log(status_code, text):
+    statuses = ["33mINFO", "32mOK", "31mFAILED", "31mWARNING"]
+    print(f"{ctime(time())} - [\x1b[{statuses[status_code]}\x1b[0m] - {text}")
 
 
 class DB:
@@ -41,16 +46,17 @@ class AdminsTable(AbstractTable):
             (id INTEGER PRIMARY KEY AUTOINCREMENT,
             login VARCHAR(254),
             password_hash VARCHAR(254),
+            status INTEGER,
             token VARCHAR(16))'''
         )
         cursor.close()
         self.connection.commit()
 
-    def insert(self, login, password, ip):
+    def insert(self, login, password, status=1):  # .ip
         cursor = self.connection.cursor()
         cursor.execute(
-            '''INSERT INTO admins (login, password_hash, date_of_creation, ip)
-               VALUES (?,?,?,?)''', (login, pbkdf2_sha256.hash(password), time(), ip)
+            '''INSERT INTO admins (login, password_hash, date_of_creation, status)  
+               VALUES (?,?,?,?)''', (login, pbkdf2_sha256.hash(password), time(), status)  # ,ip
         )
         cursor.close()
         self.connection.commit()
@@ -72,19 +78,28 @@ class AdminsTable(AbstractTable):
     def check_password(self, login, password):
         row = self.get_password_hash(login)
         if not row:
-            print("[\x1b[31mWARNING\x1b[0m] - User does not exist")
+            log(2, "User does not exist")
             return None
 
         password_hash = row[0]
         if pbkdf2_sha256.verify(password, password_hash):
             token = ''.join(choices(ascii_letters + digits + punctuation, k=16))
-            print(f"[\x1b[32mOK\x1b[0m] - Admin {login}")
+            log(1, f"Admin {login}")
             return token
-        print("[\x1b[31mFAILED\x1b[0m] - Password is not suitable")
+        log(2, "Password is not suitable")
         return None
 
+    def check_access(self, token):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''SELECT status FROM admins WHERE token = ?''', (token,)
+        )
+        row = cursor.fetchone()
+        if not row:
+            return False
+        return 1 if row[0] == 1833 else 0 if row[0] == 1 else -1
 
-# TODO: сделать возможность внесения изменений
+
 class ClientsTable(AbstractTable):
     def __init__(self, connection):
         super().__init__(connection)
@@ -150,8 +165,31 @@ class ClientsTable(AbstractTable):
         row = cursor.fetchone()
         return row
 
+    def change(self, client_id, new_name,
+               new_date_of_birth, new_mail, new_phone_number,
+               new_status, first_parent, second_parent, parents_table):
+        row = self.get(client_id)
+        if not row:
+            log(3, "Attempt to modify a nonexistent user")
+            return False
 
-# TODO: сделать возможность внесения изменений
+        cursor = self.connection.cursor()
+        cursor.execute(
+
+            '''UPDATE clients
+                SET client_name = ?,
+                    date_of_birth = ?,
+                    phone_number = ?,
+                    email = ?,
+                    client_status = ?
+                WHERE id = ?''', (new_name, new_date_of_birth, new_mail, new_phone_number, new_status, client_id)
+        )
+        cursor.close()
+        self.connection.commit()
+        parents_table.change(client_id, first_parent, second_parent)
+        return True
+
+
 class ParentsTable(AbstractTable):
     def __init__(self, connection):
         super().__init__(connection)
@@ -201,6 +239,27 @@ class ParentsTable(AbstractTable):
         )
         row = cursor.fetchone()
         return row
+
+    def change(self, client_id, first_parent, second_parent):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''UPDATE parents
+                SET first_parent_name = ?,
+                    first_parent_number = ?,
+                    first_parent_email = ?,
+                    first_parent_work = ?,
+                    second_parent_name = ?,
+                    second_parent_number = ?,
+                    second_parent_email = ?,
+                    second_parent_work = ?
+                WHERE client_id = ?''', (
+                first_parent["name"], first_parent["number"], first_parent["mail"], first_parent["job"],
+                second_parent["name"], second_parent["number"], second_parent["mail"], second_parent["job"],
+                client_id
+            )
+        )
+        cursor.close()
+        self.connection.commit()
 
 
 class HistoryTable(AbstractTable):
@@ -300,6 +359,24 @@ class CurrentRequestsTable(AbstractTable):
                 commit,
                 status
             )
+        )
+        cursor.close()
+        self.connection.commit()
+
+    def change(self, client_id, program_name, country, program_type, departure_date, commit):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''UPDATE current
+                SET program_name = ?,
+                    country = ?,
+                    type = ?, 
+                    departure_date = ?,
+                    date_of_creation = ?,
+                    user_commit = ?, 
+                WHERE client_id = ?''', (
+                program_name, country,
+                program_type, departure_date,
+                commit, client_id)
         )
         cursor.close()
         self.connection.commit()

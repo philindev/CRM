@@ -10,6 +10,7 @@ export default class Clients extends React.Component{
 			tableHeight: "100%",
 			dropState: "Статус",
 			data: [],
+			error: false,
 		}
 		this.setHeight = this.setHeight.bind(this);
 		this.getClients = this.getClients.bind(this);
@@ -33,6 +34,7 @@ export default class Clients extends React.Component{
 			  })
 			  .catch(function (error) {
 			    console.log('error: ', error)
+					main.setState({error: true})
 			  })
 	}
 
