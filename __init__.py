@@ -6,8 +6,42 @@ import logging
 
 def time_calculation(obj: dict, time_is_now):
     if obj and obj["date_of_creation"]:
-        obj["date_of_creation"] = time_is_now - obj["date_of_creation"]
+        obj["date_of_creation"] = time_is_now - obj["date_of_creation"] // 86400
     return obj["date_of_creation"]
+
+
+def preparation_request(request_for_preparation):
+    new_request = {
+        "program_name": request_for_preparation[2] if len(request_for_preparation) > 2 else
+        log("3", "In history_table is not fully filled request"),
+        "country": request_for_preparation[3] if len(request_for_preparation) > 3 else
+        log("3", "In history_table is not fully filled request"),
+        "status": request_for_preparation[4] if len(request_for_preparation) > 4 else
+        log("3", "In history_table is not fully filled request"),
+        "type": request_for_preparation[5] if len(request_for_preparation) > 5 else
+        log("3", "In history_table is not fully filled request"),
+        "departure_date": request_for_preparation[6] if len(request_for_preparation) > 6 else
+        log("3", "In history_table is not fully filled request"),
+        "date_of_creation": request_for_preparation[7] if len(request_for_preparation) > 7 else
+        log("3", "In history_table is not fully filled request"),
+        "user_commit": request_for_preparation[8] if len(request_for_preparation) > 8 else
+        log("3", "In history_table is not fully filled request"),
+
+    }
+    if new_request["status"] == 6:
+        new_request["money"] = request_for_preparation[9] if len(request_for_preparation) > 9 else \
+                                   log("3", "In history_table is not fully filled request"),
+
+    elif new_request["status"] == 7:
+        new_request["cause"] = request_for_preparation[10] if len(request_for_preparation) > 10 else \
+                                   log("3", "In history_table is not fully filled request"),
+        new_request["brief"] = request_for_preparation[11] if len(request_for_preparation) > 11 else \
+            log("3", "In history_table is not fully filled request")
+
+    else:
+        log("3", "In history_table does not correctly indicate the status"),
+
+    return new_request
 
 
 def preparation_of_client_data(client, time_is_now):
@@ -55,14 +89,7 @@ def preparation_of_client_data(client, time_is_now):
         "date_of_creation": current_request[7]
     }
 
-    client_history = list(map(lambda x: {
-        "program_name": x[2] if len(x) > 2 else None,
-        "country": x[3] if len(x) > 3 else None,
-        "status": x[4] if len(x) > 4 else None,
-        "type": x[5] if len(x) > 5 else None,
-        "departure_date": x[6] if len(x) > 6 else None,
-        "date_of_creation": x[7] if len(x) > 7 else None
-    }, history_table.get_all_client_applications(client["client_id"])))
+    client_history = list(map(preparation_request, history_table.get_all_client_applications(client["client_id"])))
 
     client_data = {
         "client": client,
@@ -73,13 +100,21 @@ def preparation_of_client_data(client, time_is_now):
     return client_data
 
 
+def log_connect_table(table, ):
+    if table.get_error() == "-1":
+        log(1, f"{table.__class__.__name__} connected to the database")
+        return 0
+    log(2, f"{table.__class__.__name__} could not connect to the database")
+    return 1
+
+
 app = Flask(__name__, template_folder="./frontend", static_folder="./frontend")
 
 
 @app.route('/', methods=["GET"])
 def main_page():
-    print("[\x1b[31mWARNING\x1b[0m] - Access to the site from ", request.environ['REMOTE_ADDR'])
-    print(request.environ)  
+    log(3, "Access to the site from " + request.environ['REMOTE_ADDR'])
+    print(request.environ)
     print(request.remote_addr)
     return render_template("index.html")
 
@@ -89,41 +124,40 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/Entry", methods=["GET"])
+@app.route("/Entry", methods=["POST"])
 def entry():
-    print("[\x1b[33mINFO\x1b[0m] - Login")
-
-    data = request.json()
+    log(0, "Login")
+    data = request.json
+    print(data)
 
     if list(data.keys()) != ["login", "password"]:
-        print("[\x1b[31mFAILED\x1b[0m] - Invalid request data")
+        log(3, "Invalid request data")
         return dumps(None)
 
     response = admins_table.check_password(data["login"], data["password"])
     return dumps(response)
-# TODO: определиться, что делать с токеном
 
 
 @app.route("/UserData", methods=["POST"])
 def user_data():
-    print("[\x1b[33mINFO\x1b[0m] - UserData")
+    log(0, "UserData")
 
     data = request.json
 
     if list(data.keys()) != ['name', 'status', 'date_of_birth', 'number', 'mail', 'firstParent', 'secondParent']:
-        print("[\x1b[31mFAILED\x1b[0m] - Invalid request data")
+        log(3, "Invalid request data")
         return dumps(None)
 
     client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])
     if client_id:
-        print("[\x1b[31mWARNING\x1b[0m] - User already exists")
+        log(2, "User already exists")
         return dumps(client_id[0])
 
     first_parent = data["firstParent"]
     second_parent = data["secondParent"]
 
     if not (first_parent or second_parent):
-        print("[\x1b[31mFAILED\x1b[0m] - Missing parents data")
+        log(2, "Missing parents data")
         return dumps(None)
 
     if not first_parent:
@@ -140,14 +174,14 @@ def user_data():
 
     if list(first_parent.keys()) != ["name", "number", "mail", "job"] or \
             list(second_parent.keys()) != ["name", "number", "mail", "job"]:
-        print("[\x1b[31mFAILED\x1b[0m] - Invalid parents data")
+        log(3, "Invalid parents data")
         return dumps(None)
 
     clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"],
                          1 if data["status"] == "V.I.P." else
                          2 if data["status"] == "Новый" else
                          3 if data["status"] == "Повторный" else 0)
-    print("[\x1b[32mOK\x1b[0m] - User created")
+    log(0, "User created")
 
     client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])[0]
 
@@ -162,47 +196,151 @@ def user_data():
         second_parent["mail"] if second_parent["mail"] else None,
         second_parent["job"] if second_parent["job"] else None
     )
-    print("[\x1b[32mOK\x1b[0m] - User’s parents are recorded")
-    # token = "generating_token"
+    log(0, "User’s parents are recorded")
     return dumps(client_id)
 
 
 @app.route("/ChangeClient")
 def change_client():
-    data = request.json()
+    data = request.json
     if list(data.keys()) != ["token", "client"]:
-        print("[\x1b[31mFAILED\x1b[0m] - Invalid request data")
+        log(3, "Invalid request data")
         return dumps(None)
 
     new_client_data = data["client"]
 
-    clients_table.change(
-        new_client_data["id"], new_client_data["name"],
-        new_client_data["date_of_birth"], new_client_data["mail"],
-        new_client_data["phone_number"]
-    )
-    # TODO: доделать изменения, добавить проверку для безопастности
+    if list(data.keys()) != ["id", "name", "date_of_birth",
+                             "mail", "phone_number", "status",
+                             "first_parent", "second_parent"]:
+        log(3, "Invalid client data")
+        return dumps(None)
+
+    elif list(data["first_parent"].keys()) != ["name", "number", "mail", "job"]:
+        log(3, "Invalid first parent data")
+        return dumps(None)
+
+    elif list(data["second_parent"].keys()) != ["name", "number", "mail", "job"]:
+        log(3, "Invalid second parent data")
+        return dumps(None)
+
+    check = admins_table.check_access(data["token"])
+    if check != 1:
+        if check == -1:
+            log(3, "Token failed verification")
+        else:
+            log(2, "Token does not have access ")
+        return dumps(None)
+
+    if not clients_table.change(new_client_data["id"], new_client_data["name"],
+                                new_client_data["date_of_birth"], new_client_data["mail"],
+                                new_client_data["phone_number"], new_client_data["status"],
+                                new_client_data["first_parent"], new_client_data["second_parent"],
+                                parents_table):
+        log(1, "ChangeClient")
+
+    return dumps("Changed")
 
 
-@app.route("/UserRequest", methods=["POST"])
-def user_request():
-    print("[\x1b[33mINFO\x1b[0m] - UserRequest")
-
+@app.route("/ChangeCurrent", methods=["POST"])
+def change_current():
     data = request.json
-
-    if list(data.keys()) != ["name_of_program", "status", "country", "where_from",
+    if list(data.keys()) != ["token", "name_of_program", "status", "country", "where_from",
                              "date_of_will_fly", "comment", "type_of_program", "id"]:
-        print("[\x1b[31mFAILED\x1b[0m] - Invalid request data")
+        log(3, "Invalid request data")
         return dumps(None)
 
     client_id = data["id"]
 
     if not clients_table.get(client_id):
-        print("[\x1b[31mFAILED\x1b[0m] - User does not exist")
+        log(2, "User does not exist")
         return dumps(None)
 
     elif current_requests_table.get(client_id):
-        print("[\x1b[31mFAILED\x1b[0m] - User already has an open application")
+        log(2, "User already has an open application")
+        return dumps(None)
+
+    check = admins_table.check_access(data["token"])
+
+    if check != 1:
+        if check == -1:
+            log(3, "Token failed verification")
+        else:
+            log(2, "Token does not have access ")
+        return dumps(None)
+
+    current_requests_table.change(client_id, data["name_of_program"],
+                                  data["country"], data["type_of_program"],
+                                  data["date_of_will_fly"], data["comment"])
+    log(1, "Application changed")
+    return dumps("I hacked your system again")
+
+
+@app.route("/ChangeCurrentStatus", methods=["POST"])
+def change_current_status():
+    data = request.json
+    if list(data.keys()) != ["token", "status", "data"]:
+        log(3, "Invalid request data")
+        return dumps(None)
+
+    client_id = data["data"]["id"]
+
+    if not clients_table.get(client_id):
+        log(2, "User does not exist")
+        return dumps(None)
+
+    elif current_requests_table.get(client_id):
+        log(2, "User already has an open application")
+        return dumps(None)
+
+    check = admins_table.check_access(data["token"])
+
+    if check != 1:
+        if check == -1:
+            log(3, "Token failed verification")
+        else:
+            log(2, "Token does not have access ")
+        return dumps(None)
+    if data["status"] == "Закрыто":
+        current_request = current_requests_table.pop(client_id)
+        history_table.insert(current_request[1], current_request[2], current_request[3], current_request[4],
+                             current_request[5], current_request[6], current_request[7],
+                             status=6, money=data["data"]["money"])
+
+    elif data["status"] == "Отказ":
+        current_request = current_requests_table.pop(client_id)
+        history_table.insert(current_request[1], current_request[2], current_request[3], current_request[4],
+                             current_request[5], current_request[6], current_request[7],
+                             status=7, cause=data["data"]["cause"], brief=data["data"]["brief"])
+    else:
+        current_requests_table.set_status(client_id,
+                                          1 if data["status"] == "Заявка" else
+                                          2 if data["status"] == "Договор" else
+                                          3 if data["status"] == "Оплата" else
+                                          4 if data["status"] == "Вылет" else
+                                          5 if data["status"] == "Консультирование" else 0)
+    log(1, "Application changed")
+    return dumps("I hacked your system again")
+
+
+@app.route("/UserRequest", methods=["POST"])
+def user_request():
+    log(0, "UserRequest")
+
+    data = request.json
+
+    if list(data.keys()) != ["name_of_program", "status", "country", "where_from",
+                             "date_of_will_fly", "comment", "type_of_program", "id"]:
+        log(3, "Invalid request data")
+        return dumps(None)
+
+    client_id = data["id"]
+
+    if not clients_table.get(client_id):
+        log(2, "User does not exist")
+        return dumps(None)
+
+    elif current_requests_table.get(client_id):
+        log(2, "User already has an open application")
         return dumps(None)
 
     current_requests_table.insert(client_id, data["name_of_program"],
@@ -214,13 +352,13 @@ def user_request():
                                   4 if data["status"] == "Вылет" else
                                   5 if data["status"] == "Консультирование" else 0)
 
-    print("[\x1b[32mOK\x1b[0m] - Application is recorded")
+    log(1, "Application is recorded")
     return dumps("I hacked your system")
 
 
 @app.route("/GetInfo", methods=["GET"])
 def get_client():
-    print("[\x1b[33mINFO\x1b[0m] - GetInfo")
+    log(0, "GetInfo")
 
     time_is_now = time()
     response = []
@@ -228,15 +366,15 @@ def get_client():
     for client in clients_table.get_all():
         response.append(preparation_of_client_data(client, time_is_now))
 
-    print("[\x1b[32mOK\x1b[0m] - GetInfo")
+    log(1, "GetInfo")
     return dumps(response)
 
 
 @app.route("/Search", methods=["POST"])
 def search():
-    print("[\x1b[33mINFO\x1b[0m] - Search")
+    log(0, "Search")
     data = request.json
-    print("[\x1b[33mINFO\x1b[0m] - Search data: ", data)
+    log(0, f"Search data: {data}")
     time_is_now = time()
     phone = data["phone_number"]
     line = data["searchLine"].split()
@@ -263,7 +401,7 @@ def search():
         elif line:
             f = lambda x: ' '.join(line).lower() in x[1].lower()
         else:
-            print("[\x1b[31mFAILED\x1b[0m] - Empty search query")
+            log(2, "Empty search query")
             return dumps(None)
 
     res = clients_table.get_all()
@@ -273,9 +411,14 @@ def search():
     for client in res:
         response.append(preparation_of_client_data(client, time_is_now))
 
-    print("[\x1b[33mINFO\x1b[0m] - Number of coincidences:", len(response))
-    print("[\x1b[32mOK\x1b[0m] - Search completed")
+    log(0, f"Number of coincidences: {len(response)}")
+    log(1, "Search completed")
     return dumps(response)
+
+
+@app.route("/Download/1", methods=["POST"])
+def download_1():
+    data = request.json
 
 
 if __name__ == "__main__":
@@ -283,9 +426,7 @@ if __name__ == "__main__":
     # console_handler = logging.StreamHandler()
     # file_handler = logging.FileHandler(".log.txt")
 
-    # db = DB(''.join(choices(ascii_letters + digits, k=16)))
     total_error = 0
-    errors = []
     # start time
     t = "|" + " " * 5 + f"Start in {time()}" + " " * 5 + "|"
     print(
@@ -297,47 +438,22 @@ if __name__ == "__main__":
     )
 
     db = DB("database")
-    print("[\x1b[32mOK\x1b[0m] - Created or opened database | " f"Name {db.name}")
+    log(1, f"Created or opened database | Name {db.name}")
 
     admins_table = AdminsTable(db.get_connection())
-    if admins_table.get_error() == "1":
-        print("[\x1b[32mOK\x1b[0m] - AdminsTable connected to the database")
-    else:
-        print("[\x1b[31mFAILED\x1b[0m] - AdminsTable could not connect to the database")
-        total_error += 1
-        errors.append(f"AdminsTableError {time()}\n#{admins_table}")
+    total_error += log_connect_table(admins_table)
 
     clients_table = ClientsTable(db.get_connection())
-    if clients_table.get_error() == "-1":
-        print("[\x1b[32mOK\x1b[0m] - ClientsTable connected to the database")
-    else:
-        print("[\x1b[31mFAILED\x1b[0m] - ClientsTable could not connect to the database")
-        total_error += 1
-        errors.append(f"ClientsTableError {time()}\n#{clients_table}")
+    total_error += log_connect_table(clients_table)
 
     parents_table = ParentsTable(db.get_connection())
-    if parents_table.get_error() == "-1":
-        print("[\x1b[32mOK\x1b[0m] - ParentsTable connected to the database")
-    else:
-        print("[\x1b[31mFAILED\x1b[0m] - ParentsTable could not connect to the database")
-        total_error += 1
-        errors.append(f"ParentsTableError {time()}\n#{parents_table}")
+    total_error += log_connect_table(parents_table)
 
     history_table = HistoryTable(db.get_connection())
-    if history_table.get_error() == "-1":
-        print("[\x1b[32mOK\x1b[0m] - HistoryTable connected to the database")
-    else:
-        print("[\x1b[31mFAILED\x1b[0m] - HistoryTable could not connect to the database")
-        total_error += 1
-        errors.append(f"HistoryTableError {time()}\n#{history_table}")
+    total_error += log_connect_table(history_table)
 
     current_requests_table = CurrentRequestsTable(db.get_connection())
-    if current_requests_table.get_error() == "-1":
-        print("[\x1b[32mOK\x1b[0m] - CurrentsRequests connected to the database")
-    else:
-        print("[\x1b[31mFAILED\x1b[0m] - CurrentsRequests could not connect to the database")
-        total_error += 1
-        errors.append(f"CurrentsRequestsTableError {time()}\n#{current_requests_table}")
+    total_error += log_connect_table(current_requests_table)
 
     admins_table.init_table()
     clients_table.init_table()
