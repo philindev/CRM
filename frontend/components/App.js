@@ -1,25 +1,16 @@
-import React from "react";
+import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
-				Dropdown, DropdownButton, InputGroup, Badge, Button} from "react-bootstrap";
+				Dropdown, DropdownButton, InputGroup, Badge, Button,
+					FormControl} from "react-bootstrap";
 import Header from "./Header";
 import Search from "./Search";
 import Clients from "./Clients";
 import Create from './Create';
 import Continue from "./Continue";
 import HistoryTable from "./HistoryTable";
+import ClientInfo from "./ClientInfo";
 
-class Edit extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
-	render(){
-		let window = null
-
-		return(window);
-	}
-};
 
 //Функция преобразования числа для статуса заявки
 function StatusForm(number) {
@@ -37,7 +28,7 @@ function StatusForm(number) {
 			return "Вылет"
 
 		case 5:
-			return "Консудьтирование"
+			return "Консультирование"
 
 		case 6:
 			return "Закрыто"
@@ -49,6 +40,7 @@ function StatusForm(number) {
 }
 
 function SetDate(date) {
+	if(typeof(date) != "string") {return "Не заполнено"}
 	let rest = date.split("-")
 	return `${rest[2]}.${rest[1]}.${rest[0]}`
 }
@@ -98,118 +90,15 @@ export default class App extends React.Component{
 	}
 
 	render(){
-		// Определение размера объекта
-		let sizeOfData = Object.keys(this.state.dataClient).length;
+
 		// Определение максимальной высоты модульного окна
 		function setHeight(){
+
 				let scr = document.documentElement.clientHeight;
 				let height = String(scr) + 'px';
 				return height;
 		}
-		let status = null;
-		let modalInfo = null;
 
-		// Открытие окна информации клиента
-		if(sizeOfData){
-			let request = this.state.dataClient.request;
-			let client = this.state.dataClient.client;
-			let history = this.state.dataClient.history;
-			switch (client.client_status) {
-				case 1:
-					status = "V.I.P"
-					break;
-				case 3:
-					status = "Повторный"
-				default:
-					status = "Новый"
-			}
-				modalInfo =
-
-				<Modal
-						size="lg"
-						show
-						onHide={() => this.setState({dataClient: {}})}
-						aria-labelledby="example-modal-sizes-title-lg"
-						style={{ maxHeight: setHeight(), overflow: "auto",}}
-					>
-						<Modal.Header closeButton>
-								<Modal.Title><span className="gosha" style={{fontSize: "30px"}}> {client.client_name} </span><Badge variant="danger">{status}</Badge></Modal.Title>
-						</Modal.Header>
-						<Modal.Body>
-
-						<Row>
-							<Col
-									md={8}
-									lg={8}
-									lx={8}
-								>
-									<p  className="commonRequest">
-									 <b>Дата рождения:</b> {SetDate(client.date_of_birth)}
-									 <br />
-									 <b>Номер телефона:</b> {client.phone_number}
-									 <br />
-									 <b>Почта:</b> {client.mail}
-									 <br />
-									 <b>Родители: </b>
-									 	<p>
-											<b>{client.parents.firstParent}</b>
-										</p>
-									</p>
-
-							</Col>
-
-							<Col>
-								<Button variant="primary" className="mt-3"
-										onClick={this.permissionToDeleteParent}
-										className="buttonEdit"
-										style={{
-											position: "absolute",
-											right: "10%",
-											fontSize: "14px",
-											padding: "6px"
-										}}
-										>Изменить</Button>
-							</Col>
-
-						</Row>
-						<hr />
-
-							{ (request) ?
-							<p className="commonRequest">
-								<h3 className="gosha">{request.program_name} <Badge variant="success" style={{fontSize: "18px"}}>{StatusForm(request.status)}</Badge> </h3>
-								<b>Страна:</b> {request.country}
-								<br />
-								<b>Год поездки:</b> {request.departure_date.split("-")[0]}
-								<br />
-								<b>Дата отъезда:</b> {SetDate(request.departure_date)} - {request.type}
-								<br />
-								<b>Комментарии:</b> {request.comment || " Не указано "}
-							</p>
-							: <div> Нет текущей заявки </div> }
-
-
-							<hr />
-							<p>
-								<h5><b>История поездок:</b></h5>
-								<br />
-								{
-									(!Object.keys(history).length) ? <span style={{paddingLeft: "40%"}}> Пусто </span> :
-
-									history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
-																							        <th>{data.status}</th>
-																							        <td>{data.program_name}</td>
-																							        <td>{data.country}</td>
-																							        <td>{data.year_of_fly}</td>
-																							        <td>{data.type}</td>
-																							      </tr>)
-
-								}
-							</p>
-
-
-						</Modal.Body>
-					</Modal>;
-				}
 
 		return(
 			<Container>
@@ -219,7 +108,7 @@ export default class App extends React.Component{
             sm={12}
             xl={12}
 					>
-					<Header onCreate={this.onHideCreate}/>
+					<Header onCreate={this.onHideCreate} exit={this.props.exit}/>
 					</Col>
 				</Row>
 				<Row>
@@ -272,8 +161,9 @@ export default class App extends React.Component{
 											onHideContinue={this.onHideContinue}
 											id={this.state.id}
 											/>
-						<Edit />
 					</Row>
-					{modalInfo}
+					<ClientInfo dataClient={this.state.dataClient} setHeight={setHeight} SetDate={SetDate}
+											StatusForm={StatusForm} user={this.props.user}
+					/>
 			</Container>
 		)};}

@@ -10,13 +10,26 @@ export default class Entry extends Component{
       login: '',
       password: '',
       enter: false,
+      token: null,
+      user_status: "guest",
+      error: false,
     }
 
     this.submit = this.submit.bind(this);
+    this.exit = this.exit.bind(this);
 
   }
 
+  exit(){
+    this.setState({
+      token: null,
+      user_status: "guest",
+      enter: false,
+    })
+  }
+
   submit(){
+    const main = this;
     let data = {login: this.state.login, password: this.state.password}
     if(data.login && data.password){
       fetch('/Entry',
@@ -43,13 +56,33 @@ export default class Entry extends Component{
 	          response.json()
 	          .then(function(data) {
 	            console.log(data);
+              if(data != null){
+                main.setState({
+                  enter: true,
+                  token: data.token,
+                  user_status: data.status,
+                })
+                console.log("Welcome")
+              }
+              else{
+                console.log("Not right");
+
+              }
 	            });
-	        })
+	        }).catch(function (error) {
+  			    console.log('error: ', error)
+  					main.setState({error: true})
+  			  })
     }
   }
 
   render(){
-    let entryWindow =
+    let user = {
+      user_status: this.state.user_status,
+      token: this.state.token,
+    }
+
+    let entryWindow = (!this.state.enter) ?
 
     <div class="login-page" id="entry">
       <div class="form">
@@ -61,6 +94,8 @@ export default class Entry extends Component{
           </form>
       </div>
     </div>
+
+    : <App exit={this.exit} user={user}/>
 
     ;
 

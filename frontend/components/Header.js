@@ -90,15 +90,15 @@ export default class Header extends React.Component{
 							    <Nav.Link onClick={this.changeBell}>
 							    	{bell}
 							    </Nav.Link>
-								</OverlayTrigger>
-					    <Nav.Link>
+								</OverlayTrigger>*/}
+					    <Nav.Link onClick={this.props.exit}>
 					    	<img src="frontend/image/exit.png"
 				                 style={{
 				                   marginLeft: "20px",
 				                   height: "25px",
 				                 }}
 				            />
-					    </Nav.Link>*/}
+					    </Nav.Link>
 				    </Nav>
 				  </Navbar.Collapse>
 				</Navbar>;

@@ -1,27 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Dropdown, DropdownButton} from "react-bootstrap";
-import Row from "./Row";
+import Pow from "./Pow";
 
 export default class Table extends React.Component{
   constructor(props){
 		super(props);
 		this.state = {
 			dropState: "Статус",
+      data: this.props.data,
 		}
-
-		this.setNameStatus = this.setNameStatus.bind(this);
 	}
 
-  // Меняет имя Статусу заявки
-	setNameStatus(name){
-		this.setState({
-			dropState: name,
-		})
-	}
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps.data)
+    this.setState({data: nextProps.data})
+  }
 
   render(){
-    let results = this.props.data.map((obj, inx) => <Row key={inx} data={obj} openInfo={this.props.openInfo}
+    let results = this.state.data.map((obj, inx) => <Pow key={inx} data={obj} openInfo={this.props.openInfo}
                                                                   StatusForm={this.props.StatusForm}
                                                                   SetDate={this.props.SetDate}
                                                                   />);
