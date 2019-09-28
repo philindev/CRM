@@ -29,6 +29,7 @@ export default class Entry extends Component{
   }
 
   submit(){
+    const main = this;
     let data = {login: this.state.login, password: this.state.password}
     if(data.login && data.password){
       fetch('/Entry',
@@ -56,7 +57,7 @@ export default class Entry extends Component{
 	          .then(function(data) {
 	            console.log(data);
               if(data != null){
-                this.setState({
+                main.setState({
                   enter: true,
                   token: data.token,
                   user_status: data.status,
@@ -65,12 +66,12 @@ export default class Entry extends Component{
               }
               else{
                 console.log("Not right");
-              
+
               }
 	            });
 	        }).catch(function (error) {
   			    console.log('error: ', error)
-  					this.setState({error: true})
+  					main.setState({error: true})
   			  })
     }
   }
