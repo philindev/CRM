@@ -31,11 +31,12 @@ class Edit extends Component{
 
 	checkValue(){
 		const client = this.props.client;
+		
 		const state = this.state;
 		let files = {
 			token: this.props.user.token,
 			client: {
-				id: client.id,
+				id: client.client_id,
 				name: state.person_name,
 				date_of_birth: state.person_birth,
 				mail: state.person_mail,
