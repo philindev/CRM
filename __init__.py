@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_from_directory
 from json import dumps
+from pandas import DataFrame, ExcelWriter
 from database import *
 import logging
 
@@ -274,6 +275,10 @@ def change_current():
 
 @app.route("/ChangeCurrentStatus", methods=["POST"])
 def change_current_status():
+    global is_closed_application_file, is_refused_application_file
+    is_closed_application_file = False
+    is_refused_application_file = False
+
     data = request.json
     if list(data.keys()) != ["token", "status", "data"]:
         log(3, "Invalid request data")
@@ -354,7 +359,7 @@ def user_request():
 
 
 @app.route("/GetInfo", methods=["GET"])
-def get_client():
+def get_info():
     log(0, "GetInfo")
 
     time_is_now = time()
@@ -372,64 +377,180 @@ def search():
     log(0, "Search")
     data = request.json
     log(0, f"Search data: {data}")
+    if list(data.keys()) == ["searchLine", "phone_number", "status"]:
+        log(3, "Invalid request data")
+        return dumps(None)
     time_is_now = time()
     phone = data["phone_number"]
     line = data["searchLine"].split()
+    status = 1 if data["status"] == "Заявка" else \
+             2 if data["status"] == "Договор" else \
+             3 if data["status"] == "Оплата" else \
+             4 if data["status"] == "Вылет" else \
+             5 if data["status"] == "Консультирование" else 0
+    line_f = "f = lambda x:"
+    if len(line) > 1:
+        line_f += "x[1].lower() == ' '.join(line).lower()"
 
     if phone:
-        if len(line) > 1:
-            if len(phone) == 12:
-                f = lambda x: x[1].lower() == ' '.join(line).lower() and x[3] == phone
-            else:
-                f = lambda x: x[1].lower() == ''.join(line).lower() and phone in x[3]
-        elif line:
-            if len(phone) == 12:
-                f = lambda x: ' '.join(line).lower() in x[1].lower() and x[3] == phone
-            else:
-                f = lambda x: ' '.join(line).lower() in x[1].lower() and phone in x[3]
-        else:
-            if len(phone) == 12:
-                f = lambda x: x[3] == phone
-            else:
-                f = lambda x: phone in x[3]
-    else:
-        if len(line) > 1:
-            f = lambda x: ' '.join(line).lower() == x[1].lower()
-        elif line:
-            f = lambda x: ' '.join(line).lower() in x[1].lower()
-        else:
-            log(2, "Empty search query")
-            return dumps(None)
+        if len(line_f) > 13:
+            line_f += " and "
 
+        if len(phone) == 12:
+            line_f += "x[3] == phone"
+
+        else:
+            line_f += "phone in x[3]"
+
+    if status:
+        ff = lambda x: x["request"]["status"] == status
+    else:
+        ff = lambda x: True
+
+    if line_f == 13:
+        log(2, "Empty search query")
+        return dumps(None)
+
+
+    f = lambda x: True
+    exec(line_f)
     res = clients_table.get_all()
     res = list(filter(f, res))
     response = []
 
     for client in res:
         response.append(preparation_of_client_data(client, time_is_now))
-
+    response = list(filter(ff, response))
     log(0, f"Number of coincidences: {len(response)}")
     log(1, "Search completed")
     return dumps(response)
 
 
-# TODO: отправку закрытых запросов
-@app.route("/Download/1", methods=["POST"])
-def download_1():
+@app.route("/Download/closed", methods=["POST"])
+def download_closed():
+    global is_closed_application_file
+
     data = request.json
+    if list(data.keys()) == ["token"]:
+        log(3, "Invalid request data")
+        return dumps(None)
+
+    check = admins_table.check_access(data["token"])
+
+    if check != 1:
+        if check == -1:
+            log(3, "Token failed verification")
+        else:
+            log(2, "Token does not have access")
+        return dumps(None)
+
+    if not is_closed_application_file:
+        applications = history_table.get_closed_applications()
+        data_for_excel = {
+            "id": [],
+            "client_id": [],
+            "client_name": [],
+            "name_of_program": [],
+            "country": [],
+            "status": [],
+            "type": [],
+            "departure_date": [],
+            "user_commit": [],
+            "money": []
+        }
+
+        for application in applications:
+            data_for_excel["id"].append(application[0])
+            data_for_excel["client_id"].append(application[1])
+            data_for_excel["name_of_program"].append(application[2])
+            data_for_excel["country"].append(application[3])
+            data_for_excel["status"].append(application[4])
+            data_for_excel["type"].append(application[5])
+            data_for_excel["departure_date"].append(application[6])
+            data_for_excel["user_commit"].append(application[7])
+            data_for_excel["money"].append(application[8])
+            data_for_excel["client_name"].append(clients_table.get(application[1])[1])
+
+        df = DataFrame(data_for_excel)
+        writer = ExcelWriter("closed_applications.xlsx")
+        df.to_excel(writer, "Closed", index=False)
+        writer.save()
+        is_closed_application_file = True
+
+    log(1, "Closed file sent")
+    send_from_directory('./', "closed_applications.xlsx")
 
 
-# TODO: отправка отказов
-@app.route("/Download/2", methods=["POST"])
-def download_2():
+@app.route("/Download/refused", methods=["POST"])
+def download_refused():
+    global is_refused_application_file
+
     data = request.json
+    if list(data.keys()) == ["token"]:
+        log(3, "Invalid request data")
+        return dumps(None)
+
+    check = admins_table.check_access(data["token"])
+
+    if check != 1:
+        if check == -1:
+            log(3, "Token failed verification")
+        else:
+            log(2, "Token does not have access")
+        return dumps(None)
+
+    if not is_refused_application_file:
+        applications = history_table.get_refused_applications()
+        applications = list(map(lambda x: x + (clients_table.get(x[1])[1],), applications))
+        data_for_excel = {
+            "id": [],
+            "client_id": [],
+            "client_name": [],
+            "name_of_program": [],
+            "country": [],
+            "status": [],
+            "type": [],
+            "departure_date": [],
+            "user_commit": [],
+            "cause": [],
+            "brief": []
+        }
+
+        for application in applications:
+            data_for_excel["id"].append(application[0])
+            data_for_excel["client_id"].append(application[1])
+            data_for_excel["name_of_program"].append(application[2])
+            data_for_excel["country"].append(application[3])
+            data_for_excel["status"].append(application[4])
+            data_for_excel["type"].append(application[5])
+            data_for_excel["departure_date"].append(application[6])
+            data_for_excel["user_commit"].append(application[7])
+            data_for_excel["cause"].append(application[8])
+            data_for_excel["brief"].append(application[9])
+            data_for_excel["client_name"].append(clients_table.get(application[1])[1])
+
+        df = DataFrame(data_for_excel)
+        writer = ExcelWriter("refused_applications.xlsx")
+        df.to_excel(writer, "Refused", index=False)
+        writer.save()
+        is_refused_application_file = True
+
+    log(1, "Refused file sent")
+    send_from_directory('./', "refused_applications.xlsx")
+
+
+# TODO: сделать удаление токенов
+@app.route("/Exit", methods=["POST"])
+def end():
+    pass
 
 
 if __name__ == "__main__":
     # TODO: logging
     # console_handler = logging.StreamHandler()
     # file_handler = logging.FileHandler(".log.txt")
-
+    is_closed_application_file = False
+    is_refused_application_file = False
     total_error = 0
     # start time
     t = "|" + " " * 5 + f"Start in {time()}" + " " * 5 + "|"

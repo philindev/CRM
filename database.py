@@ -342,6 +342,43 @@ class HistoryTable(AbstractTable):
         row = cursor.fetchall()
         return row
 
+    def get_closed_applications(self):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''SELECT 
+                id, 
+                client_id,
+                program_name,
+                country,
+                status,
+                program_type,
+                departure_date,
+                commit,
+                money
+               FROM history WHERE status = 6'''
+        )
+        row = cursor.fetchall()
+        return row
+
+    def get_refused_applications(self):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''SELECT
+                id, 
+                client_id,
+                program_name,
+                country,
+                status,
+                program_type,
+                departure_date,
+                commit,
+                cause,
+                brief
+               FROM history WHERE status = 7'''
+        )
+        row = cursor.fetchall()
+        return row
+
 
 class CurrentRequestsTable(AbstractTable):
     def __init__(self, connection):
