@@ -233,8 +233,8 @@ def change_client():
                                 new_client_data["date_of_birth"], new_client_data["mail"],
                                 new_client_data["phone_number"], new_client_data["first_parent"],
                                 new_client_data["second_parent"], parents_table):
-        log(1, "ChangeClient")
-
+        return dumps(None)
+    log(1, "ChangeClient")
     return dumps("Changed")
 
 

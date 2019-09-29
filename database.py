@@ -61,6 +61,16 @@ class AdminsTable(AbstractTable):
         cursor.close()
         self.connection.commit()
 
+    def set_token(self, login, token):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''UPDATE admins
+                SET token = ?
+                WHERE login = ?''', (token, login)
+        )
+        cursor.close()
+        self.connection.commit()
+
     def get(self, login):
         cursor = self.connection.cursor()
         cursor.execute(
@@ -88,6 +98,7 @@ class AdminsTable(AbstractTable):
                      "User" if row[1] == 2 else \
                      "Admin" if row[1] == 3 else None
             log(1, status + " " + login)
+            self.set_token(login, token)
             return {"token": token, "status": status}
         log(2, "Password is not suitable")
         return None
