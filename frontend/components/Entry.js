@@ -95,9 +95,7 @@ export default class Entry extends Component{
       </div>
     </div>
 
-    : <App exit={this.exit} user={user}/>
-
-    ;
+    : <App exit={this.exit} user={user}/>;
 
     return(entryWindow)
   }
