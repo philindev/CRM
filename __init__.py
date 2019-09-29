@@ -383,11 +383,13 @@ def search():
     time_is_now = time()
     phone = data["phone_number"]
     line = data["searchLine"].split()
-    status = 1 if data["status"] == "Заявка" else \
-             2 if data["status"] == "Договор" else \
-             3 if data["status"] == "Оплата" else \
-             4 if data["status"] == "Вылет" else \
-             5 if data["status"] == "Консультирование" else 0
+    status = data["status"].lower()
+    status = 1 if status == "заявка" else \
+             2 if status == "договор" else \
+             3 if status == "оплата" else \
+             4 if status == "вылет" else \
+             5 if status == "консультирование" else 0
+
     line_f = "f = lambda x:"
     if len(line) > 1:
         line_f += "x[1].lower() == ' '.join(line).lower()"
@@ -410,7 +412,6 @@ def search():
     if line_f == 13:
         log(2, "Empty search query")
         return dumps(None)
-
 
     f = lambda x: True
     exec(line_f)
