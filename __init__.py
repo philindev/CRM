@@ -128,7 +128,6 @@ def login():
 def entry():
     log(0, "Login")
     data = request.json
-    print(data)
 
     if list(data.keys()) != ["login", "password"]:
         log(3, "Invalid request data")
@@ -200,7 +199,7 @@ def user_data():
     return dumps(client_id)
 
 
-@app.route("/ChangeClient")
+@app.route("/ChangeClient", methods=["POST"])
 def change_client():
     data = request.json
     if list(data.keys()) != ["token", "client"]:
@@ -208,18 +207,17 @@ def change_client():
         return dumps(None)
 
     new_client_data = data["client"]
-
-    if list(data.keys()) != ["id", "name", "date_of_birth",
-                             "mail", "phone_number", "status",
-                             "first_parent", "second_parent"]:
+    if list(new_client_data.keys()) != ["id", "name", "date_of_birth",
+                                        "mail", "phone_number",
+                                        "first_parent", "second_parent"]:
         log(3, "Invalid client data")
         return dumps(None)
 
-    elif list(data["first_parent"].keys()) != ["name", "number", "mail", "job"]:
+    elif list(new_client_data["first_parent"].keys()) != ["name", "number", "mail", "job"]:
         log(3, "Invalid first parent data")
         return dumps(None)
 
-    elif list(data["second_parent"].keys()) != ["name", "number", "mail", "job"]:
+    elif list(new_client_data["second_parent"].keys()) != ["name", "number", "mail", "job"]:
         log(3, "Invalid second parent data")
         return dumps(None)
 
@@ -233,9 +231,8 @@ def change_client():
 
     if not clients_table.change(new_client_data["id"], new_client_data["name"],
                                 new_client_data["date_of_birth"], new_client_data["mail"],
-                                new_client_data["phone_number"], new_client_data["status"],
-                                new_client_data["first_parent"], new_client_data["second_parent"],
-                                parents_table):
+                                new_client_data["phone_number"], new_client_data["first_parent"],
+                                new_client_data["second_parent"], parents_table):
         log(1, "ChangeClient")
 
     return dumps("Changed")
@@ -416,8 +413,15 @@ def search():
     return dumps(response)
 
 
+# TODO: отправку закрытых запросов
 @app.route("/Download/1", methods=["POST"])
 def download_1():
+    data = request.json
+
+
+# TODO: отправка отказов
+@app.route("/Download/2", methods=["POST"])
+def download_2():
     data = request.json
 
 

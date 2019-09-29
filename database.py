@@ -170,7 +170,7 @@ class ClientsTable(AbstractTable):
 
     def change(self, client_id, new_name,
                new_date_of_birth, new_mail, new_phone_number,
-               new_status, first_parent, second_parent, parents_table):
+               first_parent, second_parent, parents_table):
         row = self.get(client_id)
         if not row:
             log(3, "Attempt to modify a nonexistent user")
@@ -183,9 +183,8 @@ class ClientsTable(AbstractTable):
                 SET client_name = ?,
                     date_of_birth = ?,
                     phone_number = ?,
-                    email = ?,
-                    client_status = ?
-                WHERE id = ?''', (new_name, new_date_of_birth, new_mail, new_phone_number, new_status, client_id)
+                    email = ?
+                WHERE id = ?''', (new_name, new_date_of_birth, new_mail, new_phone_number, client_id)
         )
         cursor.close()
         self.connection.commit()
