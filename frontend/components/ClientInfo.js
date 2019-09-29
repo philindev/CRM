@@ -57,7 +57,13 @@ class Edit extends Component{
 			}
 		}
 
+		console.log(files);
 		this.props.submit(files);
+	}
+
+	componentWillUnmount(){
+		this.checkValue();
+		console.log("Changed Client")
 	}
 
 	render(){
@@ -242,11 +248,13 @@ export default class ClientInfo extends Component{
       dataClient: this.props.dataClient,
       edit: false,
 			loading: false,
+			ChangeClient: false,
+
     }
-		this.submit = this.submit.bind(this);
+		this.submitClient = this.submitClient.bind(this);
   }
 
-	submit(obj){
+	submitClient(obj){
 		fetch('/ChangeClient',
 				{
 					method: 'post',
@@ -317,7 +325,9 @@ export default class ClientInfo extends Component{
     <Row>
     {(this.state.edit) ?
 
-      <Edit client={client} submit={this.submit} user={this.props.user}/>
+      <Edit client={client} submit={this.submitClient} user={this.props.user}
+						addChangeClientFunc={this.addChangeClientFunc}
+				/>
       :
       <Col
       md={8}
@@ -352,7 +362,7 @@ export default class ClientInfo extends Component{
         }}
         >Изменить</Button>
         :
-        <Button variant="secondary" className="mt-3"
+				<Button variant="secondary" className="mt-3"
         onClick={() => this.setState({edit: !this.state.edit})}
         className="buttonEdit"
         style={{
@@ -361,7 +371,7 @@ export default class ClientInfo extends Component{
           fontSize: "14px",
           padding: "6px"
         }}
-        >Редактировать</Button>}
+        >Редактировать</Button> }
 
         </Col>
 
