@@ -31,7 +31,7 @@ class Edit extends Component{
 
 	checkValue(){
 		const client = this.props.client;
-		
+
 		const state = this.state;
 		let files = {
 			token: this.props.user.token,
@@ -57,14 +57,11 @@ class Edit extends Component{
 
 			}
 		}
-
-		console.log(files);
 		this.props.submit(files);
 	}
 
 	componentWillUnmount(){
 		this.checkValue();
-		console.log("Changed Client")
 	}
 
 	render(){
@@ -250,12 +247,22 @@ export default class ClientInfo extends Component{
       edit: false,
 			loading: false,
 			ChangeClient: false,
+			updateData: this.props.updateData,
 
     }
 		this.submitClient = this.submitClient.bind(this);
   }
 
+
+	componentWillReceiveProps(nextProps){
+    this.setState({
+			dataClient: nextProps.dataClient,
+			updateData: nextProps.updateData,
+		})
+  }
+
 	submitClient(obj){
+		const main = this;
 		fetch('/ChangeClient',
 				{
 					method: 'post',
@@ -281,16 +288,13 @@ export default class ClientInfo extends Component{
 					.then(function(data) {
 						console.log(data);
 						if(data != false){
-							console.log("Completly changed client!")
-							this.setState({edit: false, loading: false})
+							console.log(data)
+							main.setState({edit: false, loading: false})
+							main.state.updateData();
 						}
 						});
 	})
 }
-
-  componentWillReceiveProps(nextProps){
-    this.setState({dataClient: nextProps.dataClient})
-  }
 
   render(){
     let sizeOfData = Object.keys(this.state.dataClient).length;
@@ -327,7 +331,6 @@ export default class ClientInfo extends Component{
     {(this.state.edit) ?
 
       <Edit client={client} submit={this.submitClient} user={this.props.user}
-						addChangeClientFunc={this.addChangeClientFunc}
 				/>
       :
       <Col

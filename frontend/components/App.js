@@ -56,6 +56,8 @@ export default class App extends React.Component{
 			dataClient: {},
 			id: 0,
 			data: [],
+
+			updateData: null,
 		}
 
 		this.onHideCreate = this.onHideCreate.bind(this);
@@ -63,6 +65,11 @@ export default class App extends React.Component{
 		this.openClient = this.openClient.bind(this);
 		this.changeId = this.changeId.bind(this);
 		this.changeBySearch = this.changeBySearch.bind(this);
+		this.updatingData = this.updatingData.bind(this);
+	}
+
+	updatingData(f){
+		this.setState({updateData: f})
 	}
 
 	changeBySearch(value){
@@ -135,6 +142,7 @@ export default class App extends React.Component{
 												 StatusForm={StatusForm}
 												 SetDate={SetDate}
 												 searchItems={this.state.data}
+												 updatingData={this.updatingData}
 								/>
 							</Row>
 						</Col>
@@ -164,6 +172,7 @@ export default class App extends React.Component{
 					</Row>
 					<ClientInfo dataClient={this.state.dataClient} setHeight={setHeight} SetDate={SetDate}
 											StatusForm={StatusForm} user={this.props.user}
+											updateData={this.state.updateData}
 					/>
 			</Container>
 		)};}

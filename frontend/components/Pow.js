@@ -9,6 +9,10 @@ export default class Pow extends Component{
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({data: nextProps.data})
+  }
+
   render(){
     let row =
       <tr style={{textAlign: "center", fontSize: "10pt"}}

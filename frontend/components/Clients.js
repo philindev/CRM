@@ -29,7 +29,6 @@ export default class Clients extends React.Component{
 			    return response.json()
 			  })
 			  .then(function (data) {
-			    console.log('Info for table', data);
 					main.setState({data: data});
 			  })
 			  .catch(function (error) {
@@ -50,6 +49,7 @@ export default class Clients extends React.Component{
 	}
 
 	componentWillReceiveProps(nextProps){
+		this.setHeight()
 		if(nextProps.searchItems.length){
 				this.setState({data: nextProps.searchItems});
 				console.log("Updated in this.state.searchItems")
@@ -61,6 +61,7 @@ export default class Clients extends React.Component{
 
 	componentDidMount(){
 		this.setHeight();
+		this.props.updatingData(this.setHeight);
 	}
 
 

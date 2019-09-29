@@ -13,7 +13,6 @@ export default class Table extends React.Component{
 	}
 
   componentWillReceiveProps(nextProps){
-    console.log(nextProps.data)
     this.setState({data: nextProps.data})
   }
 
