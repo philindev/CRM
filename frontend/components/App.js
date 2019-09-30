@@ -66,6 +66,7 @@ export default class App extends React.Component{
 		this.changeId = this.changeId.bind(this);
 		this.changeBySearch = this.changeBySearch.bind(this);
 		this.updatingData = this.updatingData.bind(this);
+		this.clearData = this.clearData.bind(this);
 	}
 
 	updatingData(f){
@@ -83,7 +84,7 @@ export default class App extends React.Component{
 
 	// Показывает, скрывает анкету создания клиента
 	onHideCreate(){
-		this.setState({showCreate: (this.state.showCreate)?false:true})
+		this.setState({showCreate: !this.state.showCreate})
 	}
 
 	onHideContinue(){
@@ -94,6 +95,10 @@ export default class App extends React.Component{
 
 	openClient(data){
 		this.setState({ dataClient: data})
+	}
+
+	clearData(){
+		this.setState({ dataClient: {}})
 	}
 
 	render(){
@@ -131,7 +136,7 @@ export default class App extends React.Component{
 									md={11}
 									xl={11}
 								>
-									<Search window={!this.state.showCreate && !this.state.showContinue && !Object.keys(this.state.dataClient).lenght}
+									<Search
 													changeBySearch={this.changeBySearch}
 									/>
 								</Col>
@@ -173,6 +178,7 @@ export default class App extends React.Component{
 					<ClientInfo dataClient={this.state.dataClient} setHeight={setHeight} SetDate={SetDate}
 											StatusForm={StatusForm} user={this.props.user}
 											updateData={this.state.updateData}
+											closeWindow={this.clearData}
 					/>
 			</Container>
 		)};}

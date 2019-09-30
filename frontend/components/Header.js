@@ -83,10 +83,10 @@ export default class Header extends React.Component{
 				  	>
 				    	<Nav.Link onClick={this.props.onCreate} style={{marginRight: "20px"}}
 							>Создать</Nav.Link>
-				    	{/*<Nav.Link style={{marginRight: "20px"}}>
+				    	<Nav.Link style={{marginRight: "20px"}}>
 				    	 {statistic}
 				    	</Nav.Link>
-							<OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
+							{/*<OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
 							    <Nav.Link onClick={this.changeBell}>
 							    	{bell}
 							    </Nav.Link>

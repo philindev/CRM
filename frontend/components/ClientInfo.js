@@ -319,7 +319,7 @@ export default class ClientInfo extends Component{
     <Modal
     size="lg"
     show
-    onHide={() => this.setState({dataClient: {}})}
+    onHide={() => this.props.closeWindow()}
     aria-labelledby="example-modal-sizes-title-lg"
     style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
     <Modal.Header closeButton>
