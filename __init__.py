@@ -377,7 +377,7 @@ def search():
     log(0, "Search")
     data = request.json
     log(0, f"Search data: {data}")
-    if list(data.keys()) == ["searchLine", "phone_number", "status"]:
+    if list(data.keys()) != ["searchLine", "phone_number", "status"]:
         log(3, "Invalid request data")
         return dumps(None)
     time_is_now = time()
