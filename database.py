@@ -2,12 +2,8 @@ from sqlite3 import connect
 from passlib.hash import pbkdf2_sha256
 from string import ascii_letters, digits, punctuation
 from random import choices
-from time import time, ctime
-
-
-def log(status_code, text):
-    statuses = ["33mINFO", "32mOK", "31mFAILED", "31mWARNING"]
-    print(f"{ctime(time())} - [\x1b[{statuses[status_code]}\x1b[0m] - {text}")
+from time import time
+import logging
 
 
 class DB:
@@ -88,7 +84,7 @@ class AdminsTable(AbstractTable):
     def check_password(self, login, password):
         row = self.get_password_hash(login)
         if not row:
-            log(2, "User does not exist")
+            logging.info("[FAILED] - User does not exist")
             return None
 
         password_hash = row[0]
@@ -97,10 +93,10 @@ class AdminsTable(AbstractTable):
             status = "Guest" if row[1] == 1 else \
                      "User" if row[1] == 2 else \
                      "Admin" if row[1] == 3 else None
-            log(1, status + " " + login)
+            logging.info(f"[INFO] - {status} {login}")
             self.set_token(login, token)
             return {"token": token, "status": status}
-        log(2, "Password is not suitable")
+        logging.info("[FAILED] - Password is not suitable")
         return None
 
     def check_access(self, token):
@@ -184,7 +180,7 @@ class ClientsTable(AbstractTable):
                first_parent, second_parent, parents_table):
         row = self.get(client_id)
         if not row:
-            log(3, "Attempt to modify a nonexistent user")
+            logging.warning("[WARNING]] - Attempt to modify a nonexistent user")
             return False
 
         cursor = self.connection.cursor()
