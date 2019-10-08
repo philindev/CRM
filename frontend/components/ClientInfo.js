@@ -4,7 +4,7 @@ import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
 
-class Edit extends Component{
+class EditClient extends Component{
 	constructor(props){
 		super(props);
 		const first = this.props.client.parents.first_parent;
@@ -237,6 +237,102 @@ class Edit extends Component{
 	}
 }
 
+class EditRequest extends Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			program_name: this.props.request.program_name,
+			country: this.props.request.country,
+			type: this.props.request.type,
+			departure_date: this.props.request.departure_date,
+		}
+	}
+
+	checkValue(){
+		let request = {
+			token: this.props.user,
+			name_of_program: this.state.program_name,
+			country: this.state.country,
+			type_of_program: this.state.type,
+			comment: this.state.comment,
+		}
+
+		this.props.submit(request);
+	}
+
+	componentWillUnmount(){
+		this.checkValue();
+	}
+
+	render(){
+		let edit =
+
+		<Col
+			md={8}
+			lg={8}
+			lx={8}
+		>
+
+			<InputGroup className="mb-3">
+				<InputGroup.Prepend>
+					<InputGroup.Text id="basic-addon1">Название:</InputGroup.Text>
+				</InputGroup.Prepend>
+				<FormControl
+					placeholder="Название программы"
+					aria-label="Username"
+					aria-describedby="basic-addon1"
+					value={this.state.program_name}
+					onChange={(e) => this.setState({program_name: e.target.value})}
+				/>
+			</InputGroup>
+
+			<InputGroup className="mb-3">
+				<InputGroup.Prepend>
+					<InputGroup.Text id="basic-addon1">Страна:</InputGroup.Text>
+				</InputGroup.Prepend>
+				<FormControl
+					placeholder="Название программы"
+					aria-label="Username"
+					aria-describedby="basic-addon1"
+					value={this.state.country}
+					onChange={(e) => this.setState({country: e.target.value})}
+				/>
+			</InputGroup>
+
+			<InputGroup className="mb-3">
+				<InputGroup.Prepend>
+					<InputGroup.Text id="basic-addon1">Тип:</InputGroup.Text>
+				</InputGroup.Prepend>
+				<FormControl
+					placeholder="Группа/Индивидуально"
+					aria-label="Username"
+					aria-describedby="basic-addon1"
+					value={this.state.type}
+					onChange={(e) => this.setState({type: e.target.value})}
+				/>
+			</InputGroup>
+
+				<InputGroup className="mb-3">
+					<InputGroup.Prepend>
+						<InputGroup.Text id="basic-addon1">Дата отлета:</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl
+						type="date" className="form-control" id="exampleInputDOB1"
+						placeholder="Группа/Индивидуально"
+						aria-label="Username"
+						aria-describedby="basic-addon1"
+						value={this.state.departure_date}
+						onChange={(e) => this.setState({departure_date: e.target.value})}
+					/>
+				</InputGroup>
+
+		</Col>;
+
+		return(edit)
+	}
+
+}
+
 
 
 export default class ClientInfo extends Component{
@@ -244,13 +340,16 @@ export default class ClientInfo extends Component{
     super(props);
     this.state = {
       dataClient: this.props.dataClient,
-      edit: false,
+      editClient: false,
+			editRequest: false,
 			loading: false,
 			ChangeClient: false,
 			updateData: this.props.updateData,
 
     }
 		this.submitClient = this.submitClient.bind(this);
+		this.submitRequest = this.submitRequest.bind(this);
+		this.sendRequest = this.sendRequest.bind(this);
   }
 
 
@@ -262,6 +361,8 @@ export default class ClientInfo extends Component{
   }
 
 	submitClient(obj){
+		let id = this.state.dataClient.client.client_id;
+
 		const main = this;
 		fetch('/ChangeClient',
 				{
@@ -286,15 +387,107 @@ export default class ClientInfo extends Component{
 					// Examine the text in the response
 					response.json()
 					.then(function(data) {
-						console.log(data);
 						if(data != false){
 							console.log(data)
-							main.setState({edit: false, loading: false})
+							main.setState({
+								editClient: false,
+								loading: false,
+							})
 							main.state.updateData();
+							main.props.closeWindow();
 						}
 						});
 	})
 }
+
+	//Изменяет статус клиента
+	sendRequest(str){
+		let client = this.state.dataClient.client;
+		const main = this;
+		let id = this.state.dataClient.client.client_id;
+
+		if(str != "Отказ" || str != "Закрыто"){
+
+			fetch('/ChangeCurrentStatus',
+					{
+						method: 'post',
+						headers: {
+							'Content-Type':'application/json',
+							"Access-Control-Allow-Origin": "*",
+							"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						body: JSON.stringify({
+							token: this.props.user.token,
+							status: str,
+							data: {
+								id: client.client_id,
+							},
+						}),
+					})
+					.then(
+					function(response) {
+						if (response.status !== 200) {
+							console.log('Looks like there was a problem. Status Code: ' + response.status);
+							if(response.status === 500){
+									console.log("Status: 500")
+							}
+							return;
+						}
+
+						// Examine the text in the response
+						response.json()
+						.then(function(data) {
+							if(data != false){
+								console.log(data);
+								main.state.updateData();
+								main.props.closeWindow();
+							}
+							else{ console.log("Something goes wrong!") }
+							});
+					})
+			}}
+
+
+	submitRequest(obj){
+		const main = this;
+		fetch('/ChangeCurrent',
+				{
+					method: 'post',
+					headers: {
+						'Content-Type':'application/json',
+						"Access-Control-Allow-Origin": "*",
+						"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+					},
+					body: JSON.stringify(obj),
+				})
+				.then(
+				function(response) {
+					if (response.status !== 200) {
+						console.log('Looks like there was a problem. Status Code: ' + response.status);
+						if(response.status === 500){
+								console.log("Status: 500")
+						}
+						return;
+					}
+
+					// Examine the text in the response
+					response.json()
+					.then(function(data) {
+						if(data != false){
+								console.log(data)
+								main.setState({
+									editRequest: false,
+									loading: false,
+								})
+								main.state.updateData();
+								main.props.closeWindow();
+						}
+						else{ console.log("Something goes wrong!") }
+						});
+				})
+	}
+
+
 
   render(){
     let sizeOfData = Object.keys(this.state.dataClient).length;
@@ -318,7 +511,7 @@ export default class ClientInfo extends Component{
     modalInfo =
     <Modal
     size="lg"
-    show
+    show={ this.state.dataClient != {}? true: false}
     onHide={() => this.props.closeWindow()}
     aria-labelledby="example-modal-sizes-title-lg"
     style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
@@ -328,10 +521,9 @@ export default class ClientInfo extends Component{
     <Modal.Body>
 
     <Row>
-    {(this.state.edit) ?
+    {(this.state.editClient) ?
 
-      <Edit client={client} submit={this.submitClient} user={this.props.user}
-				/>
+      <EditClient client={client} submit={this.submitClient} user={this.props.user}/>
       :
       <Col
       md={8}
@@ -354,9 +546,9 @@ export default class ClientInfo extends Component{
       </Col>}
 
       <Col>
-      {this.state.edit ?
+      {this.state.editClient ?
         <Button variant="primary" className="mt-3"
-        onClick={() => this.setState({edit: !this.state.edit})}
+        onClick={() => this.setState({editClient: !this.state.editClient})}
         className="buttonEdit"
         style={{
           position: "absolute",
@@ -367,7 +559,7 @@ export default class ClientInfo extends Component{
         >Изменить</Button>
         :
 				<Button variant="secondary" className="mt-3"
-        onClick={() => this.setState({edit: !this.state.edit})}
+        onClick={() => this.setState({editClient: !this.state.editClient})}
         className="buttonEdit"
         style={{
           position: "absolute",
@@ -381,7 +573,7 @@ export default class ClientInfo extends Component{
 
         </Row>
         <hr />
-
+				<Row>
         {
 				(
 					request.program_name == null ||
@@ -390,27 +582,129 @@ export default class ClientInfo extends Component{
 				)
 				?
 
-					<div> Нет текущей заявки </div>
+					<Col><div> Нет текущей заявки </div></Col>
 
 				:
-          <p className="commonRequest">
-          <h3 className="gosha">{request.program_name} <Badge variant="success" style={{fontSize: "18px"}}>{this.props.StatusForm(request.status)}</Badge> </h3>
-          <b>Страна:</b> {request.country}
-          <br />
-          <b>Год поездки:</b> {request.departure_date.split("-")[0]}
-          <br />
-          <b>Дата отъезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
-          <br />
-          <b>Комментарии:</b> {request.comment || " Не указано "}
-          </p>
+
+				(this.state.editRequest) ?
+
+						<EditRequest request={request} submit={this.submitRequest} user={this.props.user}/>
+
+						:
+
+						<Col className="commonRequest"
+								md={8}
+								lg={8}
+								lx={8}
+						>
+		          <h3 className="gosha">{request.program_name} <Badge variant="success" style={{fontSize: "18px"}}>{this.props.StatusForm(request.status)}</Badge> </h3>
+		          <b>Страна:</b> {request.country}
+		          <br />
+		          <b>Год поездки:</b> {request.departure_date.split("-")[0]}
+		          <br />
+		          <b>Дата отъезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
+		          <br />
+		          <b>Комментарии:</b> {request.comment || " Не указано "}
+						</Col>
 				}
 
+				<Col
+				md={4}
+				lg={4}
+				lx={4}
+				>
+
+					<Row>
+
+						{this.state.editRequest ?
+							<Col
+								md={12}
+								lg={12}
+								lx={12}
+							>
+					        <Button variant="primary" className="mt-3"
+					        onClick={() => this.setState({editRequest: !this.state.editRequest})}
+					        className="buttonEdit"
+					        style={{
+					          position: "absolute",
+					          right: "10%",
+					          fontSize: "14px",
+					          padding: "6px"
+					        }}
+					        >Изменить</Button>
+							</Col>
+			        :
+							<Col
+								md={12}
+								lg={12}
+								lx={12}
+							>
+								<Row style={{height: "40px"}}>
+									<Col
+										md={12}
+										lg={12}
+										lx={12}
+									>
+										<Button variant="secondary" className="mt-3"
+						        onClick={() => this.setState({editRequest: !this.state.editRequest})}
+						        className="buttonEdit"
+						        style={{
+						          position: "absolute",
+						          right: "10%",
+						          fontSize: "14px",
+						          padding: "6px"
+						        }}
+						        >Редактировать</Button>
+									</Col>
+								</Row>
+								<Row  style={{height: "40px"}}>
+									<Col
+										md={12}
+										lg={12}
+										lx={12}
+									>
+										<DropdownButton
+											style={{
+												fontSize: "12px",
+												position: "absolute",
+												marginTop: "2px",
+												right: "10%"
+											}}
+											alignRight
+											title="Cтатус"
+											variant="secondary"
+											>
+												<Dropdown.Item onClick={() => this.sendRequest("Заявка")}>Заявка</Dropdown.Item>
+												<Dropdown.Item onClick={() => this.sendRequest("Договор")}>Договор</Dropdown.Item>
+												<Dropdown.Item onClick={() => this.sendRequest("Оплата")}>Оплата</Dropdown.Item>
+												<Dropdown.Item onClick={() => this.sendRequest("Оформление")}>Оформление</Dropdown.Item>
+												<Dropdown.Item onClick={() => this.sendRequest("Выезд")}>Выезд</Dropdown.Item>
+											<Dropdown.Divider/>
+												<Dropdown.Item onClick={() => this.sendRequest("Закрыто")}>Закрыто</Dropdown.Item>
+												<Dropdown.Item onClick={() => this.sendRequest("Отказ")}>Отказ</Dropdown.Item>
+										</DropdownButton>
+									</Col>
+								</Row>
+						</Col>
+
+						}
+					</Row>
+
+				</Col>
+
+
+				</Row>
           <hr />
-          <p>
+				<Row>
+					<Col>
           <h5><b>История поездок:</b></h5>
           <br />
           {
-            (!Object.keys(history).length) ? <span style={{paddingLeft: "40%"}}> Пусто </span> :
+            (!Object.keys(history).length) ?
+
+						<span style={{paddingLeft: "40%"}}> Пусто </span>
+
+						:
 
             history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
             <th>{data.status}</th>
@@ -421,7 +715,8 @@ export default class ClientInfo extends Component{
             </tr>)
 
           }
-          </p>
+					</Col>
+				</Row>
 
 
         </Modal.Body>
