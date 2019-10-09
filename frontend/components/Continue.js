@@ -14,6 +14,7 @@ export default class Continue extends Component{
       date_of_will_fly: '',
       type_of_program: '',
       comment: '',
+      id: this.props.id
     }
 
     this.submit = this.submit.bind(this);
@@ -28,7 +29,7 @@ export default class Continue extends Component{
       date_of_will_fly: this.state.date_of_will_fly,
       comment: this.state.comment,
       type_of_program: this.state.type_of_program,
-      id: this.props.id
+      id: this.state.id
     }
     console.log(files);
 
@@ -79,6 +80,10 @@ export default class Continue extends Component{
       }
     };
 
+    componentWillReceiveProps(nextProps){
+      this.setState({id: nextProps.id})
+    }
+
   render(){
     let modal =
     <Modal
@@ -86,7 +91,7 @@ export default class Continue extends Component{
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        onHide={this.props.onHideContinue}
+        onHide={() => this.props.updateId(0)}
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">

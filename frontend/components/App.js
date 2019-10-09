@@ -171,7 +171,7 @@ export default class App extends React.Component{
 										changeId={this.changeId}
 						/>
 						<Continue showWindow={this.state.id}
-											onHideContinue={this.onHideContinue}
+											updateId={this.changeId}
 											id={this.state.id}
 											/>
 					</Row>
@@ -179,6 +179,7 @@ export default class App extends React.Component{
 											StatusForm={StatusForm} user={this.props.user}
 											updateData={this.state.updateData}
 											closeWindow={this.clearData}
+											updateId={this.changeId}
 					/>
 			</Container>
 		)};}

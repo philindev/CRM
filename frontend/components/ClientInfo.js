@@ -546,7 +546,7 @@ export default class ClientInfo extends Component{
       </Col>}
 
       <Col>
-      {this.state.editClient ?
+      {(this.state.editClient && this.props.user.user_status == "Admin") ?
         <Button variant="primary" className="mt-3"
         onClick={() => this.setState({editClient: !this.state.editClient})}
         className="buttonEdit"
@@ -581,8 +581,37 @@ export default class ClientInfo extends Component{
 					request.departure_date == null
 				)
 				?
+				<Row>
+				<Col className="commonRequest"
+						md={8}
+						lg={8}
+						lx={8}
+						>
+					<div>
+							Нет текущей заявки - создайте новую заявку!
+					</div>
+				</Col>
+				<Col className="commonRequest"
+						md={4}
+						lg={4}
+						lx={4}>
 
-					<Col><div> Нет текущей заявки </div></Col>
+						<Button variant="warning" className="mt-3"
+						onClick={() => {
+							this.props.updateId(client.client_id)
+							this.props.closeWindow()
+						}}
+						className="buttonEdit"
+						style={{
+							position: "absolute",
+							right: "10%",
+							fontSize: "14px",
+							padding: "6px"
+						}}
+						>Создать</Button>
+
+				</Col>
+			</Row>
 
 				:
 
@@ -608,37 +637,53 @@ export default class ClientInfo extends Component{
 						</Col>
 				}
 
+				{
+
+					(
+						request.program_name == null ||
+						request.country == null ||
+						request.departure_date == null
+					)
+					?
+
+					null
+
+					:
+
 				<Col
 				md={4}
 				lg={4}
 				lx={4}
 				>
 
-					<Row>
+					{
 
-						{this.state.editRequest ?
-							<Col
-								md={12}
-								lg={12}
-								lx={12}
-							>
-					        <Button variant="primary" className="mt-3"
-					        onClick={() => this.setState({editRequest: !this.state.editRequest})}
-					        className="buttonEdit"
-					        style={{
-					          position: "absolute",
-					          right: "10%",
-					          fontSize: "14px",
-					          padding: "6px"
-					        }}
-					        >Изменить</Button>
-							</Col>
+							(this.state.editRequest  && this.props.user.user_status == "Admin")
+
+							?
+
+						<Col
+							md={12}
+							lg={12}
+							lx={12}
+						>
+				        <Button variant="primary" className="mt-3"
+				        onClick={() => this.setState({editRequest: !this.state.editRequest})}
+				        className="buttonEdit"
+				        style={{
+				          position: "absolute",
+				          right: "10%",
+				          fontSize: "14px",
+				          padding: "6px"
+				        }}
+				        >Изменить</Button>
+						</Col>
 			        :
-							<Col
-								md={12}
-								lg={12}
-								lx={12}
-							>
+						<Col
+							md={12}
+							lg={12}
+							lx={12}
+						>
 								<Row style={{height: "40px"}}>
 									<Col
 										md={12}
@@ -686,11 +731,10 @@ export default class ClientInfo extends Component{
 									</Col>
 								</Row>
 						</Col>
-
-						}
-					</Row>
-
+					}
 				</Col>
+			}
+
 
 
 				</Row>
