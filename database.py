@@ -3,7 +3,6 @@ from passlib.hash import pbkdf2_sha256
 from string import ascii_letters, digits, punctuation
 from random import choices
 from time import time
-import logging
 
 
 class DB:
@@ -84,7 +83,7 @@ class AdminsTable(AbstractTable):
     def check_password(self, login, password):
         row = self.get_password_hash(login)
         if not row:
-            logging.info("[FAILED] - User does not exist")
+            # app.logger.info("[FAILED] - User does not exist")
             return None
 
         password_hash = row[0]
@@ -93,10 +92,10 @@ class AdminsTable(AbstractTable):
             status = "Guest" if row[1] == 1 else \
                      "User" if row[1] == 2 else \
                      "Admin" if row[1] == 3 else None
-            logging.info(f"[INFO] - {status} {login}")
+            # app.logger.info(f"[INFO] - {status} {login}")
             self.set_token(login, token)
             return {"token": token, "status": status}
-        logging.info("[FAILED] - Password is not suitable")
+        # app.logger.info("[FAILED] - Password is not suitable")
         return None
 
     def check_access(self, token):
@@ -180,7 +179,7 @@ class ClientsTable(AbstractTable):
                first_parent, second_parent, parents_table):
         row = self.get(client_id)
         if not row:
-            logging.warning("[WARNING]] - Attempt to modify a nonexistent user")
+            # app.logger.warning("[WARNING]] - Attempt to modify a nonexistent user")
             return False
 
         cursor = self.connection.cursor()
@@ -347,9 +346,9 @@ class HistoryTable(AbstractTable):
                 program_name,
                 country,
                 status,
-                program_type,
+                type,
                 departure_date,
-                commit,
+                user_commit,
                 money
                FROM history WHERE status = 6'''
         )
@@ -365,9 +364,9 @@ class HistoryTable(AbstractTable):
                 program_name,
                 country,
                 status,
-                program_type,
+                type,
                 departure_date,
-                commit,
+                user_commit,
                 cause,
                 brief
                FROM history WHERE status = 7'''

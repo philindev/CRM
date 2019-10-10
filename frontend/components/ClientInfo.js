@@ -250,7 +250,7 @@ class EditRequest extends Component{
 
 	checkValue(){
 		let request = {
-			token: this.props.user,
+			token: this.props.user.token,
 			name_of_program: this.state.program_name,
 			country: this.state.country,
 			type_of_program: this.state.type,
