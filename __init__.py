@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, send_file
 from json import dumps
 from pandas import DataFrame, ExcelWriter
 from database import *
@@ -120,8 +120,7 @@ app = Flask(__name__, template_folder="./frontend", static_folder="./frontend")
 @app.route('/', methods=["GET"])
 def main_page():
     logging.warning(f"[WARNING] - Access to the site from {request.environ['REMOTE_ADDR']}")
-    print(request.environ)
-    print(request.remote_addr)
+    # logging.warning(f"[WARNING] - Access to the site")
     return render_template("index.html")
 
 
@@ -294,10 +293,6 @@ def change_current_status():
 
     if not clients_table.get(client_id):
         logging.warning("[WARNING] - User does not exist")
-        return dumps(None)
-
-    elif current_requests_table.get(client_id):
-        logging.warning("[WARNING] - User already has an open application")
         return dumps(None)
 
     check = admins_table.check_access(data["token"])
@@ -481,16 +476,16 @@ def download_closed():
             data_for_excel["client_name"].append(clients_table.get(application[1])[1])
 
         df = DataFrame(data_for_excel)
-        writer = ExcelWriter("closed_applications.xlsx")
+        writer = ExcelWriter("excel/closed_applications.xlsx")
         df.to_excel(writer, "Closed", index=False)
         writer.save()
         is_closed_application_file = True
 
     logging.info("[OK] - Closed file sent")
-    send_from_directory('./', "closed_applications.xlsx")
+    return send_file("excel/closed_applications.xlsx")
 
 
-@app.route("/Download/refused", methods=["POST"])
+@app.route("/Download/refused", methods=["GET"])
 def download_refused():
     global is_refused_application_file
 
@@ -539,13 +534,13 @@ def download_refused():
             data_for_excel["client_name"].append(clients_table.get(application[1])[1])
 
         df = DataFrame(data_for_excel)
-        writer = ExcelWriter("refused_applications.xlsx")
+        writer = ExcelWriter("excel/refused_applications.xlsx")
         df.to_excel(writer, "Refused", index=False)
         writer.save()
         is_refused_application_file = True
 
     logging.info("[OK] - Refused file sent")
-    send_from_directory('./', "refused_applications.xlsx")
+    return send_file("excel/refused_applications.xlsx")
 
 
 # TODO: сделать удаление токенов
@@ -554,38 +549,38 @@ def end():
     pass
 
 
-if __name__ == "__main__":
-    logging.basicConfig(format=u'%(levelname)-8s [%(asctime)s] %(message)s', level=logging.DEBUG, filename=u'.log.log')
+# if __name__ == "__main__":
+logging.basicConfig(format=u'%(levelname)-8s [%(asctime)s] %(message)s', level=logging.DEBUG, filename=u'log.log')
 
-    is_closed_application_file = False
-    is_refused_application_file = False
-    total_error = 0
-    # start time
-    logging.info(f"Start in {time()}")
+is_closed_application_file = False
+is_refused_application_file = False
+total_error = 0
+# start time
+logging.info(f"Start in {time()}")
 
-    db = DB("database")
-    logging.info("[OK] - "
-                 f"Created or opened database | Name {db.name}")
+db = DB("database")
+logging.info("[OK] - "
+             f"Created or opened database | Name {db.name}")
 
-    admins_table = AdminsTable(db.get_connection())
-    total_error += log_connect_table(admins_table)
+admins_table = AdminsTable(db.get_connection())
+total_error += log_connect_table(admins_table)
 
-    clients_table = ClientsTable(db.get_connection())
-    total_error += log_connect_table(clients_table)
+clients_table = ClientsTable(db.get_connection())
+total_error += log_connect_table(clients_table)
 
-    parents_table = ParentsTable(db.get_connection())
-    total_error += log_connect_table(parents_table)
+parents_table = ParentsTable(db.get_connection())
+total_error += log_connect_table(parents_table)
 
-    history_table = HistoryTable(db.get_connection())
-    total_error += log_connect_table(history_table)
+history_table = HistoryTable(db.get_connection())
+total_error += log_connect_table(history_table)
 
-    current_requests_table = CurrentRequestsTable(db.get_connection())
-    total_error += log_connect_table(current_requests_table)
+current_requests_table = CurrentRequestsTable(db.get_connection())
+total_error += log_connect_table(current_requests_table)
 
-    admins_table.init_table()
-    clients_table.init_table()
-    parents_table.init_table()
-    history_table.init_table()
-    current_requests_table.init_table()
+admins_table.init_table()
+clients_table.init_table()
+parents_table.init_table()
+history_table.init_table()
+current_requests_table.init_table()
 
-    app.run(port=8000, host="127.0.0.1")
+app.run(port=8000, host="127.0.0.1")

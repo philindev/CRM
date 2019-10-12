@@ -347,9 +347,9 @@ class HistoryTable(AbstractTable):
                 program_name,
                 country,
                 status,
-                program_type,
+                type,
                 departure_date,
-                commit,
+                user_commit,
                 money
                FROM history WHERE status = 6'''
         )
@@ -365,9 +365,9 @@ class HistoryTable(AbstractTable):
                 program_name,
                 country,
                 status,
-                program_type,
+                type,
                 departure_date,
-                commit,
+                user_commit,
                 cause,
                 brief
                FROM history WHERE status = 7'''
