@@ -3,6 +3,8 @@ from passlib.hash import pbkdf2_sha256
 from string import ascii_letters, digits, punctuation
 from random import choices
 from time import time
+from logging import getLogger
+from logging.handlers import RotatingFileHandler
 
 
 class DB:
@@ -23,8 +25,13 @@ class DB:
 
 class AbstractTable:
     def __init__(self, connection):
-        self.error = "-1"
         self.connection = connection
+        try:
+            self.connection.cursor()
+        except AttributeError:
+            self.error = 1
+        else:
+            self.error = -1
 
     def get_error(self):
         return self.error
@@ -38,20 +45,20 @@ class AdminsTable(AbstractTable):
         cursor = self.connection.cursor()
         cursor.execute(
             '''CREATE TABLE IF NOT EXISTS admins
-            (id INTEGER PRIMARY KEY AUTOINCREMENT,
-            login VARCHAR(254),
-            password_hash VARCHAR(254),
-            status INTEGER,
-            token VARCHAR(16))'''
+                        (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                         login VARCHAR(254),
+                         password_hash VARCHAR(254),
+                         status INTEGER,
+                         token VARCHAR(16))'''
         )
         cursor.close()
         self.connection.commit()
 
-    def insert(self, login, password, status=1):  # .ip
+    def insert(self, login, password, status=1):  # ip
         cursor = self.connection.cursor()
         cursor.execute(
             '''INSERT INTO admins (login, password_hash, date_of_creation, status)  
-               VALUES (?,?,?,?)''', (login, pbkdf2_sha256.hash(password), time(), status)  # ,ip
+               VALUES (?,?,?,?)''', (login, pbkdf2_sha256.hash(password), time(), status)  # ip
         )
         cursor.close()
         self.connection.commit()
@@ -83,7 +90,7 @@ class AdminsTable(AbstractTable):
     def check_password(self, login, password):
         row = self.get_password_hash(login)
         if not row:
-            # app.logger.info("[FAILED] - User does not exist")
+            logger.info("[FAILED] - User does not exist")
             return None
 
         password_hash = row[0]
@@ -92,10 +99,10 @@ class AdminsTable(AbstractTable):
             status = "Guest" if row[1] == 1 else \
                      "User" if row[1] == 2 else \
                      "Admin" if row[1] == 3 else None
-            # app.logger.info(f"[INFO] - {status} {login}")
+            logger.info(f"[INFO] - {status} {login}")
             self.set_token(login, token)
             return {"token": token, "status": status}
-        # app.logger.info("[FAILED] - Password is not suitable")
+        logger.info("[FAILED] - Password is not suitable")
         return None
 
     def check_access(self, token):
@@ -179,7 +186,7 @@ class ClientsTable(AbstractTable):
                first_parent, second_parent, parents_table):
         row = self.get(client_id)
         if not row:
-            # app.logger.warning("[WARNING]] - Attempt to modify a nonexistent user")
+            logger.warning("[WARNING]] - Attempt to modify a nonexistent user")
             return False
 
         cursor = self.connection.cursor()
@@ -464,3 +471,7 @@ class CurrentRequestsTable(AbstractTable):
         )
         self.connection.commit()
         return row
+
+
+handler = RotatingFileHandler('log.log', maxBytes=1024 * 1024 * 100)
+logger = getLogger('database')

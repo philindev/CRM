@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, send_file
 from json import dumps
 from pandas import DataFrame, ExcelWriter
 from database import *
-from logging import basicConfig, DEBUG
+from logging import basicConfig, DEBUG, getLogger
 from logging.handlers import RotatingFileHandler
 
 
@@ -15,36 +15,36 @@ def time_calculation(obj: dict, time_is_now):
 def preparation_request(request_for_preparation):
     new_request = {
         "program_name": request_for_preparation[2] if len(request_for_preparation) > 2 else
-        app.logger.warning("[WARNING] - In history_table is not fully filled request"),
+        logger.warning("[WARNING] - In history_table is not fully filled request"),
         "country": request_for_preparation[3] if len(request_for_preparation) > 3 else
-        app.logger.warning("[WARNING] - In history_table is not fully filled request"),
+        logger.warning("[WARNING] - In history_table is not fully filled request"),
         "status": request_for_preparation[4] if len(request_for_preparation) > 4 else
-        app.logger.warning("WARNING] - In history_table is not fully filled request"),
+        logger.warning("WARNING] - In history_table is not fully filled request"),
         "type": request_for_preparation[5] if len(request_for_preparation) > 5 else
-        app.logger.warning("WARNING] - In history_table is not fully filled request"),
+        logger.warning("WARNING] - In history_table is not fully filled request"),
         "departure_date": request_for_preparation[6] if len(request_for_preparation) > 6 else
-        app.logger.warning("[WARNING] - In history_table is not fully filled request"),
+        logger.warning("[WARNING] - In history_table is not fully filled request"),
         "date_of_creation": request_for_preparation[7] if len(request_for_preparation) > 7 else
-        app.logger.warning("[WARNING] - In history_table is not fully filled request"),
+        logger.warning("[WARNING] - In history_table is not fully filled request"),
         "user_commit": request_for_preparation[8] if len(request_for_preparation) > 8 else
-        app.logger.warning("[WARNING] - In history_table is not fully filled request"),
+        logger.warning("[WARNING] - In history_table is not fully filled request"),
 
     }
     if new_request["status"] == 6:
         new_request["money"] = request_for_preparation[9] if len(request_for_preparation) > 9 else \
-                                   app.logger.warning("[WARNING] - "
-                                                      "In history_table is not fully filled request"),
+                                   logger.warning("[WARNING] - "
+                                                  "In history_table is not fully filled request"),
 
     elif new_request["status"] == 7:
         new_request["cause"] = request_for_preparation[10] if len(request_for_preparation) > 10 else \
-                                   app.logger.warning("[WARNING] - "
-                                                      "In history_table is not fully filled request"),
+                                   logger.warning("[WARNING] - "
+                                                  "In history_table is not fully filled request"),
         new_request["brief"] = request_for_preparation[11] if len(request_for_preparation) > 11 else \
-            app.logger.warning("[WARNING] - "
-                               "In history_table is not fully filled request")
+            logger.warning("[WARNING] - "
+                           "In history_table is not fully filled request")
     else:
-        app.logger.warning("[WARNING] - "
-                           "In history_table does not correctly indicate the status"),
+        logger.warning("[WARNING] - "
+                       "In history_table does not correctly indicate the status"),
 
     return new_request
 
@@ -105,13 +105,11 @@ def preparation_of_client_data(client, time_is_now):
     return client_data
 
 
-def log_connect_table(table, ):
+def log_connect_table(table):
     if table.get_error() == "-1":
-        app.logger.info("[INFO] - "
-                        f"{table.__class__.__name__} connected to the database")
+        logger.info(f"[INFO] - {table.__class__.__name__} connected to the database")
         return 0
-    app.logger.info("[FAILED] - "
-                    f"{table.__class__.__name__} could not connect to the database")
+    logger.info(f"[FAILED] - {table.__class__.__name__} could not connect to the database")
     return 1
 
 
@@ -120,8 +118,8 @@ app = Flask(__name__, template_folder="./frontend", static_folder="./frontend")
 
 @app.route('/', methods=["GET"])
 def main_page():
-    app.logger.warning(f"[WARNING] - Access to the site from {request.environ['REMOTE_ADDR']}")
-    # app.logger.warning(f"[WARNING] - Access to the site")
+    logger.warning(f"[WARNING] - Access to the site from {request.environ['REMOTE_ADDR']}")
+    # logger.warning(f"[WARNING] - Access to the site")
     return render_template("index.html")
 
 
@@ -132,38 +130,38 @@ def login():
 
 @app.route("/Entry", methods=["POST"])
 def entry():
-    app.logger.info("[INFO] - Entry")
+    logger.info("[INFO] - Entry")
     data = request.json
 
     if list(data.keys()) != ["login", "password"]:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
     response = admins_table.check_password(data["login"], data["password"])
-    app.logger.info("[OK] - Entry")
+    logger.info("[OK] - Entry")
     return dumps(response)
 
 
 @app.route("/UserData", methods=["POST"])
 def user_data():
-    app.logger.info("[INFO] - UserData")
+    logger.info("[INFO] - UserData")
 
     data = request.json
 
     if list(data.keys()) != ['name', 'status', 'date_of_birth', 'number', 'mail', 'firstParent', 'secondParent']:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
     client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])
     if client_id:
-        app.logger.info("[FAILED] - User already exists")
+        logger.info("[FAILED] - User already exists")
         return dumps(client_id[0])
 
     first_parent = data["firstParent"]
     second_parent = data["secondParent"]
 
     if not (first_parent or second_parent):
-        app.logger.info("[FAILED] - Missing parents data")
+        logger.info("[FAILED] - Missing parents data")
         return dumps(None)
 
     if not first_parent:
@@ -180,14 +178,14 @@ def user_data():
 
     if list(first_parent.keys()) != ["name", "number", "mail", "job"] or \
             list(second_parent.keys()) != ["name", "number", "mail", "job"]:
-        app.logger.warning("[WARNING] - Invalid parents data")
+        logger.warning("[WARNING] - Invalid parents data")
         return dumps(None)
 
     clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"],
                          1 if data["status"] == "V.I.P." else
                          2 if data["status"] == "Новый" else
                          3 if data["status"] == "Повторный" else 0)
-    app.logger.info("[OK] - User created")
+    logger.info("[OK] - User created")
 
     client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])[0]
 
@@ -202,7 +200,7 @@ def user_data():
         second_parent["mail"] if second_parent["mail"] else None,
         second_parent["job"] if second_parent["job"] else None
     )
-    app.logger.info("[OK] - User’s parents are recorded")
+    logger.info("[OK] - User’s parents are recorded")
     return dumps(client_id)
 
 
@@ -210,30 +208,30 @@ def user_data():
 def change_client():
     data = request.json
     if list(data.keys()) != ["token", "client"]:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
     new_client_data = data["client"]
     if list(new_client_data.keys()) != ["id", "name", "date_of_birth",
                                         "mail", "phone_number",
                                         "first_parent", "second_parent"]:
-        app.logger.warning("[WARNING] - Invalid client data")
+        logger.warning("[WARNING] - Invalid client data")
         return dumps(None)
 
     elif list(new_client_data["first_parent"].keys()) != ["name", "number", "mail", "job"]:
-        app.logger.warning("[WARNING] - Invalid first parent data")
+        logger.warning("[WARNING] - Invalid first parent data")
         return dumps(None)
 
     elif list(new_client_data["second_parent"].keys()) != ["name", "number", "mail", "job"]:
-        app.logger.warning("[WARNING] - Invalid second parent data")
+        logger.warning("[WARNING] - Invalid second parent data")
         return dumps(None)
 
     check = admins_table.check_access(data["token"])
     if check != 1:
         if check == -1:
-            app.logger.warning("[WARNING] - Token failed verification")
+            logger.warning("[WARNING] - Token failed verification")
         else:
-            app.logger.info("[FAILED] - Token does not have access ")
+            logger.info("[FAILED] - Token does not have access ")
         return dumps(None)
 
     if not clients_table.change(new_client_data["id"], new_client_data["name"],
@@ -241,7 +239,7 @@ def change_client():
                                 new_client_data["phone_number"], new_client_data["first_parent"],
                                 new_client_data["second_parent"], parents_table):
         return dumps(None)
-    app.logger.info("[INFO] - ChangeClient")
+    logger.info("[INFO] - ChangeClient")
     return dumps("Changed")
 
 
@@ -250,32 +248,32 @@ def change_current():
     data = request.json
     if list(data.keys()) != ["token", "name_of_program", "status", "country", "where_from",
                              "date_of_will_fly", "comment", "type_of_program", "id"]:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
     client_id = data["id"]
 
     if not clients_table.get(client_id):
-        app.logger.warning("[WARNING] - User does not exist")
+        logger.warning("[WARNING] - User does not exist")
         return dumps(None)
 
     elif current_requests_table.get(client_id):
-        app.logger.warning("[WARNING] - User already has an open application")
+        logger.warning("[WARNING] - User already has an open application")
         return dumps(None)
 
     check = admins_table.check_access(data["token"])
 
     if check != 1:
         if check == -1:
-            app.logger.warning("[WARNING] - Token failed verification")
+            logger.warning("[WARNING] - Token failed verification")
         else:
-            app.logger.info("[FAILED] - Token does not have access")
+            logger.info("[FAILED] - Token does not have access")
         return dumps(None)
 
     current_requests_table.change(client_id, data["name_of_program"],
                                   data["country"], data["type_of_program"],
                                   data["date_of_will_fly"], data["comment"])
-    app.logger.info("[OK] - Application changed")
+    logger.info("[OK] - Application changed")
     return dumps("I hacked your system again")
 
 
@@ -287,22 +285,22 @@ def change_current_status():
 
     data = request.json
     if list(data.keys()) != ["token", "status", "data"]:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
     client_id = data["data"]["id"]
 
     if not clients_table.get(client_id):
-        app.logger.warning("[WARNING] - User does not exist")
+        logger.warning("[WARNING] - User does not exist")
         return dumps(None)
 
     check = admins_table.check_access(data["token"])
 
     if check != 1:
         if check == -1:
-            app.logger.warning("[WARNING] - Token failed verification")
+            logger.warning("[WARNING] - Token failed verification")
         else:
-            app.logger.info("[FAILED] - Token does not have access ")
+            logger.info("[FAILED] - Token does not have access ")
         return dumps(None)
     if data["status"] == "Закрыто":
         current_request = current_requests_table.pop(client_id)
@@ -322,29 +320,29 @@ def change_current_status():
                                           3 if data["status"] == "Оплата" else
                                           4 if data["status"] == "Вылет" else
                                           5 if data["status"] == "Консультирование" else 0)
-    app.logger.info("[OK] - Application changed")
+    logger.info("[OK] - Application changed")
     return dumps("I hacked your system again")
 
 
 @app.route("/UserRequest", methods=["POST"])
 def user_request():
-    app.logger.info("[INFO] - UserRequest")
+    logger.info("[INFO] - UserRequest")
 
     data = request.json
 
     if list(data.keys()) != ["name_of_program", "status", "country", "where_from",
                              "date_of_will_fly", "comment", "type_of_program", "id"]:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
     client_id = data["id"]
 
     if not clients_table.get(client_id):
-        app.logger.warning("[WARNING] - User does not exist")
+        logger.warning("[WARNING] - User does not exist")
         return dumps(None)
 
     elif current_requests_table.get(client_id):
-        app.logger.warning("[WARNING] - User already has an open application")
+        logger.warning("[WARNING] - User already has an open application")
         return dumps(None)
 
     current_requests_table.insert(client_id, data["name_of_program"],
@@ -356,13 +354,13 @@ def user_request():
                                   4 if data["status"] == "Вылет" else
                                   5 if data["status"] == "Консультирование" else 0)
 
-    app.logger.info("[OK] - Application is recorded")
+    logger.info("[OK] - Application is recorded")
     return dumps("I hacked your system")
 
 
 @app.route("/GetInfo", methods=["GET"])
 def get_info():
-    app.logger.info("[INFO] - GetInfo")
+    logger.info("[INFO] - GetInfo")
 
     time_is_now = time()
     response = []
@@ -370,18 +368,18 @@ def get_info():
     for client in clients_table.get_all():
         response.append(preparation_of_client_data(client, time_is_now))
 
-    app.logger.info("[OK] - GetInfo")
+    logger.info("[OK] - GetInfo")
     return dumps(response)
 
 
 @app.route("/Search", methods=["POST"])
 def search():
-    app.logger.info("[INFO] - Search")
+    logger.info("[INFO] - Search")
     data = request.json
-    app.logger.info("[INFO] - "
-                    f"Search data: {data}")
+    logger.info("[INFO] - "
+                f"Search data: {data}")
     if list(data.keys()) != ["searchLine", "phone_number", "status"]:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
     time_is_now = time()
     phone = data["phone_number"]
@@ -413,7 +411,7 @@ def search():
         ff = lambda x: True
 
     if line_f == 13:
-        app.logger.info("[FAILED] - Empty search query")
+        logger.info("[FAILED] - Empty search query")
         return dumps(None)
 
     f = lambda x: True
@@ -425,9 +423,9 @@ def search():
     for client in res:
         response.append(preparation_of_client_data(client, time_is_now))
     response = list(filter(ff, response))
-    app.logger.info("[INFO] - "
-                    f"Number of coincidences: {len(response)}")
-    app.logger.info("[OK] - Search completed")
+    logger.info("[INFO] - "
+                f"Number of coincidences: {len(response)}")
+    logger.info("[OK] - Search completed")
     return dumps(response)
 
 
@@ -437,16 +435,16 @@ def download_closed():
 
     data = request.json
     if list(data.keys()) == ["token"]:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
     check = admins_table.check_access(data["token"])
 
     if check != 1:
         if check == -1:
-            app.logger.warning("[WARNING] - Token failed verification")
+            logger.warning("[WARNING] - Token failed verification")
         else:
-            app.logger.info("[FAILED] - Token does not have access")
+            logger.info("[FAILED] - Token does not have access")
         return dumps(None)
 
     if not is_closed_application_file:
@@ -482,7 +480,7 @@ def download_closed():
         writer.save()
         is_closed_application_file = True
 
-    app.logger.info("[OK] - Closed file sent")
+    logger.info("[OK] - Closed file sent")
     return send_file("excel/closed_applications.xlsx")
 
 
@@ -492,16 +490,16 @@ def download_refused():
 
     data = request.json
     if list(data.keys()) == ["token"]:
-        app.logger.warning("[WARNING] - Invalid request data")
+        logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
     check = admins_table.check_access(data["token"])
 
     if check != 1:
         if check == -1:
-            app.logger.warning("[WARNING] - Token failed verification")
+            logger.warning("[WARNING] - Token failed verification")
         else:
-            app.logger.info("[FAILED] - Token does not have access")
+            logger.info("[FAILED] - Token does not have access")
         return dumps(None)
 
     if not is_refused_application_file:
@@ -540,7 +538,7 @@ def download_refused():
         writer.save()
         is_refused_application_file = True
 
-    app.logger.info("[OK] - Refused file sent")
+    logger.info("[OK] - Refused file sent")
     return send_file("excel/refused_applications.xlsx")
 
 
@@ -550,19 +548,18 @@ def end():
     pass
 
 
-handler = RotatingFileHandler('log.log', maxBytes=10000, backupCount=0)
-# handler.setLevel(logging.DEBUG)
 basicConfig(format=u'%(levelname)-8s [%(asctime)s] %(message)s', level=DEBUG, filename=u'log.log')
-app.logger.addHandler(handler)
+handler = RotatingFileHandler('log.log', maxBytes=1024 * 1024 * 100)
+logger = getLogger('init')
 
 is_closed_application_file = False
 is_refused_application_file = False
 total_error = 0
 # start time
-app.logger.info(f"Start in {time()}")
+logger.info(f"Start in {time()}")
 
 db = DB("database")
-app.logger.info(f"[OK] - Created or opened database | Name {db.name}")
+logger.info(f"[OK] - Created or opened database | Name {db.name}")
 
 admins_table = AdminsTable(db.get_connection())
 total_error += log_connect_table(admins_table)
