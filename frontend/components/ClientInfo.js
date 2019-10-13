@@ -719,6 +719,7 @@ export default class ClientInfo extends Component{
 											title="Cтатус"
 											variant="secondary"
 											>
+											
 												<Dropdown.Item onClick={() => this.sendRequest("Заявка")}>Заявка</Dropdown.Item>
 												<Dropdown.Item onClick={() => this.sendRequest("Договор")}>Договор</Dropdown.Item>
 												<Dropdown.Item onClick={() => this.sendRequest("Оплата")}>Оплата</Dropdown.Item>
