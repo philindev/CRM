@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
+import ParentCard from "./ParentsCard";
 
 class EditClient extends Component{
 	constructor(props){
@@ -537,14 +538,18 @@ export default class ClientInfo extends Component{
       <br />
       <b>Почта:</b> {client.mail}
       <br />
-      <b>Родители: </b>
-      <p>
-      <b>{client.parents.firstParent}</b>
-      </p>
+			<ParentCard data={client.parents.first_parent}/>
+			<br />
+			{
+				client.parents.second_parent.name == null ? null :
+				<ParentCard data={client.parents.second_parent}/>
+			}
       </p>
 
       </Col>}
-      <Col>
+
+
+      <Col >
 			{ this.props.user.user_status != "Guest" ?
       	(this.state.editClient) ?
 		        <Button variant="primary" className="mt-3"
@@ -576,7 +581,6 @@ export default class ClientInfo extends Component{
 
         </Row>
         <hr />
-				<Row>
         {
 				(
 					request.program_name == null ||
@@ -584,23 +588,17 @@ export default class ClientInfo extends Component{
 					request.departure_date == null
 				)
 				?
-				<Row>
-				<Col className="commonRequest"
+			<Row>
+				<Col
 						md={8}
 						lg={8}
 						lx={8}
+						className="ml-3"
 						>
-					<div>
 							Нет текущей заявки - создайте новую заявку!
-					</div>
 				</Col>
-				<Col className="commonRequest"
-						md={4}
-						lg={4}
-						lx={4}>
 
-				 this.props.user.user_status != "guest" ?
-
+				 <Col>
 						<Button variant="warning" className="mt-3"
 						onClick={() => {
 							this.props.updateId(client.client_id)
@@ -614,9 +612,6 @@ export default class ClientInfo extends Component{
 							padding: "6px"
 						}}
 						>Создать</Button>
-
-
-
 				</Col>
 			</Row>
 
@@ -658,9 +653,9 @@ export default class ClientInfo extends Component{
 					:
 
 				<Col
-				md={4}
-				lg={4}
-				lx={4}
+				md={12}
+				lg={12}
+				lx={12}
 				>
 
 
@@ -673,6 +668,7 @@ export default class ClientInfo extends Component{
 							md={12}
 							lg={12}
 							lx={12}
+							className="mr-3"
 						>
 
 				        <Button variant="primary" className="mt-3"
@@ -754,11 +750,7 @@ export default class ClientInfo extends Component{
 					}
 				</Col>
 			}
-
-
-
-				</Row>
-          <hr />
+      <hr />
 				<Row>
 					<Col>
           <h5><b>История поездок:</b></h5>
