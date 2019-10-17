@@ -569,7 +569,7 @@ export default class ClientInfo extends Component{
 					window_footer =
 							<Modal.Footer>
 								<Button onClick={() => {
-									fetch('/CloseRequest',
+									fetch('/ChangeCurrentStatus',
 											{
 												method: 'post',
 												headers: {
@@ -578,10 +578,13 @@ export default class ClientInfo extends Component{
 													"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
 												},
 												body: JSON.stringify({
-													money: this.state.money,
-													brief: this.state.brief,
-													id: client.client_id,
+													data: {
+														money: this.state.money,
+														brief: this.state.brief,
+														id: client.client_id,
+													},
 													token: this.props.user.token,
+													status: "Закрыто"
 												}),
 											})
 											.then(
@@ -636,7 +639,7 @@ export default class ClientInfo extends Component{
 									window_footer =
 											<Modal.Footer>
 												<Button onClick={() => {
-													fetch('/DeniedRequest',
+													fetch('/ChangeCurrentStatus',
 															{
 																method: 'post',
 																headers: {
@@ -645,10 +648,13 @@ export default class ClientInfo extends Component{
 																	"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
 																},
 																body: JSON.stringify({
-																	cause: this.state.money,
-																	brief: this.state.brief,
-																	id: client.client_id,
+																	data: {
+																		cause: this.state.money,
+																		brief: this.state.brief,
+																		id: client.client_id,
+																	},
 																	token: this.props.user.token,
+																	status: "Отказ"
 																}),
 															})
 															.then(
