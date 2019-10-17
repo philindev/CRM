@@ -68,7 +68,7 @@ export default class Continue extends Component{
           .then(function(data) {
             console.log(data);
             if(data){
-              main.props.onHideContinue();
+              main.props.updateId(0);
               alert("Заявка добавлена.");
             }
             return;

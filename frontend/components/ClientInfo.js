@@ -4,6 +4,7 @@ import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
 import ParentCard from "./ParentsCard";
+import Close from "./Close";
 
 class EditClient extends Component{
 	constructor(props){
@@ -406,6 +407,8 @@ export default class ClientInfo extends Component{
 		let client = this.state.dataClient.client;
 		const main = this;
 		let id = this.state.dataClient.client.client_id;
+		console.log(this.props.user);
+
 
 		if(str != "Отказ" || str != "Закрыто"){
 
@@ -446,7 +449,14 @@ export default class ClientInfo extends Component{
 							else{ console.log("Something goes wrong!") }
 							});
 					})
-			}}
+			}
+			else if (str == "Закрыто" && this.props.user.user_status == 'Admin') {
+				sure = confirm("Вы уверены, что хотите закрыть заявку?");
+				console.log(sure);
+			}
+
+
+	}
 
 
 	submitRequest(obj){
@@ -539,7 +549,6 @@ export default class ClientInfo extends Component{
       <b>Почта:</b> {client.mail}
       <br />
 			<ParentCard data={client.parents.first_parent}/>
-			<br />
 			{
 				client.parents.second_parent.name == null ? null :
 				<ParentCard data={client.parents.second_parent}/>
@@ -577,10 +586,12 @@ export default class ClientInfo extends Component{
 				null
 			}
 
-        </Col>
+      </Col>
+		</Row>
+		<hr />
 
-        </Row>
-        <hr />
+
+				{/*Редактирование заявки и ее показ*/}
         {
 				(
 					request.program_name == null ||
@@ -595,7 +606,7 @@ export default class ClientInfo extends Component{
 						lx={8}
 						className="ml-3"
 						>
-							Нет текущей заявки - создайте новую заявку!
+							<b>Нет текущей заявки - создайте новую заявку!</b>
 				</Col>
 
 				 <Col>
@@ -622,7 +633,7 @@ export default class ClientInfo extends Component{
 						<EditRequest request={request} submit={this.submitRequest} user={this.props.user}/>
 
 						:
-
+					<Row>
 						<Col className="commonRequest"
 								md={8}
 								lg={8}
@@ -637,119 +648,88 @@ export default class ClientInfo extends Component{
 		          <br />
 		          <b>Комментарии:</b> {request.comment || " Не указано "}
 						</Col>
-				}
+						{/*
+							Начало второго блока
+							Если существует заявка то будет отрисовка этого блока
+							*/}
+							{
 
-				{
-
-					(
-						request.program_name == null ||
-						request.country == null ||
-						request.departure_date == null
-					)
-					?
-
-					null
-
-					:
-
-				<Col
-				md={12}
-				lg={12}
-				lx={12}
-				>
-
-
-					{
-					(this.state.editRequest)
-
-							?
-
-						<Col
-							md={12}
-							lg={12}
-							lx={12}
-							className="mr-3"
-						>
-
-				        <Button variant="primary" className="mt-3"
-				        onClick={() => this.setState({editRequest: !this.state.editRequest})}
-				        className="buttonEdit"
-				        style={{
-				          position: "absolute",
-				          right: "10%",
-				          fontSize: "14px",
-				          padding: "6px"
-				        }}
-				        >Изменить</Button>
-						</Col>
-			        :
-						<Col
-							md={12}
-							lg={12}
-							lx={12}
-						>
-								<Row style={{height: "40px"}}>
-
-
-							{ this.props.user.user_status != "Guest"
-
+								(
+									request.program_name == null ||
+									request.country == null ||
+									request.departure_date == null
+								)
 								?
 
-									<Col
-										md={12}
-										lg={12}
-										lx={12}
-									>
-										<Button variant="secondary" className="mt-3"
-						        onClick={() => this.setState({editRequest: !this.state.editRequest})}
-						        className="buttonEdit"
-						        style={{
-						          position: "absolute",
-						          right: "10%",
-						          fontSize: "14px",
-						          padding: "6px"
-						        }}
-						        >Редактировать</Button>
-									</Col>
+								null
 
+								:
+
+									(this.state.editRequest) ?
+
+									<Col className="mr-3">
+
+									<Button variant="primary" className="mt-3"
+									onClick={() => this.setState({editRequest: !this.state.editRequest})}
+									className="buttonEdit"
+									style={{
+										position: "absolute",
+										right: "10%",
+										fontSize: "14px",
+										padding: "6px"
+									}}
+									>Изменить</Button>
+									</Col>
 									:
-
-									null
-							}
-
-								</Row>
-								<Row  style={{height: "40px"}}>
 									<Col
-										md={12}
-										lg={12}
-										lx={12}
+									md={4}
+									ls={4}
+									xl={4} >
+
+									{/* рендер кнопки если статус нужный */}
+									{ this.props.user.user_status != "Guest" ?
+									<Col md={12} ls={12} xl={12} style={{minHeight: "40px"}}>
+													<Button variant="secondary" className="mt-3"
+													onClick={() => this.setState({editRequest: !this.state.editRequest})}
+													className="buttonEdit"
+													style={{
+														position: "absolute",
+														right: "10%",
+														fontSize: "14px",
+														padding: "6px",
+													}}
+													>Редактировать</Button>
+										</Col>
+													:
+													null
+										}
+									<DropdownButton
+									alignRight
+									title="Cтатус"
+									variant="secondary"
+									style={{
+										position: "absolute",
+										right: "15%",
+									}}
 									>
-										<DropdownButton
-											style={{
-												fontSize: "12px",
-												position: "absolute",
-												marginTop: "2px",
-												right: "10%"
-											}}
-											alignRight
-											title="Cтатус"
-											variant="secondary"
-											>
-												<Dropdown.Item onClick={() => this.sendRequest("Заявка")}>Заявка</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Договор")}>Договор</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Оплата")}>Оплата</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Оформление")}>Оформление</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Выезд")}>Выезд</Dropdown.Item>
+											<Dropdown.Item onClick={() => this.sendRequest("Заявка")}>Заявка</Dropdown.Item>
+											<Dropdown.Item onClick={() => this.sendRequest("Договор")}>Договор</Dropdown.Item>
+											<Dropdown.Item onClick={() => this.sendRequest("Оплата")}>Оплата</Dropdown.Item>
+											<Dropdown.Item onClick={() => this.sendRequest("Оформление")}>Оформление</Dropdown.Item>
+											<Dropdown.Item onClick={() => this.sendRequest("Выезд")}>Выезд</Dropdown.Item>
 											<Dropdown.Divider/>
-												<Dropdown.Item onClick={() => this.sendRequest("Закрыто")}>Закрыто</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Отказ")}>Отказ</Dropdown.Item>
-										</DropdownButton>
-									</Col>
-								</Row>
-						</Col>
-					}
-				</Col>
+											<Dropdown.Item onClick={() => this.sendRequest("Закрыто")}>Закрыто</Dropdown.Item>
+											<Dropdown.Item onClick={() => this.sendRequest("Отказ")}>Отказ</Dropdown.Item>
+									</DropdownButton>
+
+								</Col>
+
+
+				}
+			</Row>
 			}
+
+
       <hr />
 				<Row>
 					<Col>

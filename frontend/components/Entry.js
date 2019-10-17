@@ -7,8 +7,8 @@ export default class Entry extends Component{
   constructor(props){
     super(props);
     this.state = {
-      login: '',
-      password: '',
+      login: 'admin',
+      password: 'AdminPassword',
       enter: false,
       token: null,
       user_status: "guest",
@@ -76,6 +76,10 @@ export default class Entry extends Component{
   					main.setState({error: true})
   			  })
     }
+  }
+
+  componentDidMount(){
+    this.submit();
   }
 
   render(){
