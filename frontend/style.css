@@ -152,3 +152,9 @@ table.table {
 .paw button{
   width: 1%;
 }
+
+.thisbtn .dropdown{
+  position: absolute;
+  font-family: "Gill Sans", Calibri,, sans-serif;
+  right: 10%;
+}
