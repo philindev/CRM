@@ -30,6 +30,10 @@ export default class Entry extends Component{
     })
   }
 
+  // componentDidMount(){
+  //   this.submit();
+  // }
+
   submit(){
     const main = this;
     let data = {login: this.state.login, password: this.state.password}

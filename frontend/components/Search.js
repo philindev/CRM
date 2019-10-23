@@ -1,25 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {InputGroup, FormControl, Button, OverlayTrigger, Popover,
-				Form} from "react-bootstrap";
+				Form, Col, Row} from "react-bootstrap";
+
+function preparingSt(string: String) :String {
+	if(string == null || string == false){
+		return "Все"
+	}
+	string = string[0].toUpperCase() + string.slice(1).toLowerCase()
+
+	return string
+}
 
 export default class Search extends React.Component{
 	constructor(props){
 		super(props);
+		console.log("work");
 		this.state = {
 			searchLine: '',
 			phone_number: '',
-			show: false,
-			window: !this.props.window
-
+			status: '',
+			show: false
 		}
 
 		this.sendSubmit = this.sendSubmit.bind(this);
-
-	}
-
-	componentWillReceiveProps(nextProps){
-		this.setState({window: !nextProps.window})
+		this.changeState = this.changeState.bind(this);
 	}
 
 	sendSubmit(){
@@ -27,11 +32,13 @@ export default class Search extends React.Component{
 
 		let files = {
 			searchLine: this.state.searchLine,
-			phone_number: this.state.phone_number,
+			phone_number: this.state.phone_number || "8",
+			status: preparingSt(this.state.status)
 		}
 		if(
 			files.searchLine ||
-			files.phone_number
+			files.phone_number ||
+			files.status
 		){
 			fetch('/Search',
 	        {
@@ -66,54 +73,69 @@ export default class Search extends React.Component{
 		}
 	}
 
+	changeState(){
+		this.setState({
+			show: !this.state.show,
+			phone_number: '',
+			status: ''
+		})
+	}
+
 	render(){
 		const main = this;
 
-		let popover =
-		<Popover id="popover-basic" title="Параметры">
-			<Form.Control type="text" placeholder="Номер телефона"
-						onChange={(e) => this.setState({phone_number: e.target.value})}
-			/>
-
-		</Popover>;
-
 		let searchLine =
-				<div>
+				<Row>
+					<Col lg={12} md={12} xl={12}>
 					<InputGroup className="my-3">
-				        <FormControl
-				            name="SearchLine"
-				            placeholder="Ф.И.О."
-				            aria-label="Recipient's username"
-				            aria-describedby="basic-addon2"
-				            onKeyPress={ (event) => {
-				              if(event.key == 'Enter' ){
-				                main.sendSubmit();
-				              }
-				              return false;
-				            }}
-										onChange={(e) => this.setState({searchLine: e.target.value})}
-				            size="lg"
-				          />
-			          <InputGroup.Append>
-			            <Button variant="outline-danger"
-			              onClick={this.sendSubmit}
-			              style={{
-			              	width: "100px",
-			              }}
-			            >
-			            Поиск
-			            </Button>
-			            </InputGroup.Append>
-			        </InputGroup>
-					<OverlayTrigger trigger="click" placement="auto"
-													overlay={(this.state.window) ? popover : <div></div>}
-												>
-			        <Button variant="outline-danger" size="sm"
-							>
-							    Фильтр
+						<FormControl
+							name="SearchLine"
+							placeholder="Ф.И.О."
+							aria-label="Recipient's username"
+							aria-describedby="basic-addon2"
+							onKeyPress={ (event) => {
+								if(event.key == 'Enter' ){
+									main.sendSubmit();
+								}
+								return false;
+							}}
+							onChange={(e) => this.setState({searchLine: e.target.value})}
+							size="lg"
+							/>
+						<InputGroup.Append>
+							<Button variant="outline-danger"
+								onClick={this.sendSubmit}
+								style={{
+									width: "100px",
+								}}
+								>
+								Поиск
 							</Button>
-					</OverlayTrigger>
-				</div>
+						</InputGroup.Append>
+					</InputGroup>
+				</Col>
+				<Col xs={12} lg={2} md={2} xl={2}>
+					<Button variant={this.state.show ? "outline-secondary" :"outline-danger"}
+									size="sm"
+									onClick={this.changeState}
+						>
+						{this.state.show ? 'Скрыть' : 'Фильтр'}
+					</Button>
+				</Col>
+				{ this.state.show?
+					<Col xs={8} lg={9} md={9} xl={9} className="ml-2">
+						<InputGroup>
+							<FormControl type="text" placeholder="Номер телефона" size="sm"
+								onChange={(e) => this.setState({phone_number: e.target.value})}
+								/>
+							<FormControl type="text" placeholder="Cтатус" size="sm"
+								onChange={(e) => this.setState({status: e.target.value})}
+								/>
+						</InputGroup>
+					</Col>
+					: null
+				}
+				</Row>
 
 		return(searchLine);
 	}
