@@ -11,6 +11,35 @@ import Continue from "./Continue";
 import HistoryTable from "./HistoryTable";
 import ClientInfo from "./ClientInfo";
 
+function preparingNumber(num: String) :String {
+	try {
+			all_num = '1234567890+'
+			answer = ''
+			for (let _ of num) {
+				if(!all_num.includes(_)){
+					continue
+				}
+				answer += _
+			}
+			if(answer.length == 11 && answer[0] == "8"){
+				answer = '+7' + answer.slice(2)
+			}
+			return answer
+	} catch (err) {
+		console.log(err.stack)
+		return num
+	}
+}
+
+
+function correctFormNumber(num: String) :String {
+	try {
+			return `+7 (${num.slice(2,5)}) ${num.slice(5,8)}-${num.slice(8,10)}-${num.slice(10)}`
+	} catch (err) {
+		console.log(err.stack)
+		return num
+	}
+}
 
 //Функция преобразования числа для статуса заявки
 function StatusForm(number) {
@@ -169,6 +198,7 @@ export default class App extends React.Component{
 										onHideCreate={this.onHideCreate}
 										onContinue={this.onHideContinue}
 										changeId={this.changeId}
+										preparingNumber={preparingNumber}
 						/>
 						<Continue showWindow={this.state.id}
 											updateId={this.changeId}
@@ -180,6 +210,8 @@ export default class App extends React.Component{
 											updateData={this.state.updateData}
 											closeWindow={this.clearData}
 											updateId={this.changeId}
+											correctFormNumber={correctFormNumber}
+											preparingNumber={preparingNumber}
 					/>
 			</Container>
 		)};}

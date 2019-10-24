@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {InputGroup, FormControl, Button, OverlayTrigger, Popover,
-				Form, Col, Row} from "react-bootstrap";
+				Form, Col, Row, DropdownButton, Dropdown} from "react-bootstrap";
 
 function preparingSt(string: String) :String {
 	if(string == null || string == false){
-		return "Все"
+		return ""
 	}
 	string = string[0].toUpperCase() + string.slice(1).toLowerCase()
 
@@ -20,7 +20,8 @@ export default class Search extends React.Component{
 			searchLine: '',
 			phone_number: '',
 			status: '',
-			show: false
+			show: false,
+			buttonName: 'Статус'
 		}
 
 		this.sendSubmit = this.sendSubmit.bind(this);
@@ -29,11 +30,12 @@ export default class Search extends React.Component{
 
 	sendSubmit(){
 		const main = this;
+		bn = this.state.buttonName;
 
 		let files = {
 			searchLine: this.state.searchLine,
-			phone_number: this.state.phone_number || "8",
-			status: preparingSt(this.state.status)
+			phone_number: this.state.phone_number || "",
+			status: bn == "Конс-ция" ? "Консультация" : bn
 		}
 		if(
 			files.searchLine ||
@@ -114,7 +116,7 @@ export default class Search extends React.Component{
 						</InputGroup.Append>
 					</InputGroup>
 				</Col>
-				<Col xs={12} lg={2} md={2} xl={2}>
+				<Col xs={12} lg={1} md={2} xl={1}>
 					<Button variant={this.state.show ? "outline-secondary" :"outline-danger"}
 									size="sm"
 									onClick={this.changeState}
@@ -123,14 +125,24 @@ export default class Search extends React.Component{
 					</Button>
 				</Col>
 				{ this.state.show?
-					<Col xs={8} lg={9} md={9} xl={9} className="ml-2">
+					<Col xs={8} lg={10} md={9} xl={10} className="ml-3">
 						<InputGroup>
 							<FormControl type="text" placeholder="Номер телефона" size="sm"
 								onChange={(e) => this.setState({phone_number: e.target.value})}
 								/>
-							<FormControl type="text" placeholder="Cтатус" size="sm"
-								onChange={(e) => this.setState({status: e.target.value})}
-								/>
+							<DropdownButton
+							alignRight
+							title={this.state.buttonName}
+							variant="secondary"
+							size="sm"
+							>
+										<Dropdown.Item onClick={() => this.setState({buttonName: "Заявка"})}>Заявка</Dropdown.Item>
+										<Dropdown.Item onClick={() => this.setState({buttonName: "Договор"})}>Договор</Dropdown.Item>
+										<Dropdown.Item onClick={() => this.setState({buttonName: "Оплата"})}>Оплата</Dropdown.Item>
+										<Dropdown.Item onClick={() => this.setState({buttonName: "Конс-ция"})}>Консультация</Dropdown.Item>
+										<Dropdown.Item onClick={() => this.setState({buttonName: "Оформление"})}>Оформление</Dropdown.Item>
+										<Dropdown.Item onClick={() => this.setState({buttonName: "Выезд"})}>Выезд</Dropdown.Item>
+								</DropdownButton>
 						</InputGroup>
 					</Col>
 					: null

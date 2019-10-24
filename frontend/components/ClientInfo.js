@@ -41,17 +41,17 @@ class EditClient extends Component{
 				name: state.person_name,
 				date_of_birth: state.person_birth,
 				mail: state.person_mail,
-				phone_number: state.person_phone,
+				phone_number: this.props.preparingNumber(state.person_phone),
 				status: client.status,
 				first_parent: {
 					name: state.first_name,
-					number: state.first_phone,
+					number: this.props.preparingNumber(state.first_phone),
 					mail: state.first_email,
 					job: state.first_work,
 				},
 				second_parent: {
 					name: state.second_name,
-					number: state.second_phone,
+					number: this.props.preparingNumber(state.second_phone),
 					mail: state.second_email,
 					job: state.second_work,
 				}
@@ -105,7 +105,7 @@ class EditClient extends Component{
 						<FormControl
 							aria-label="Username"
 							placeholder="Номер телефона"
-							value={this.state.person_phone}
+							value={this.props.correctFormNumber(this.state.person_phone)}
 							onChange={(e) => this.setState({person_phone: e.target.value})}
 							aria-describedby="basic-addon1"
 						/>
@@ -147,7 +147,7 @@ class EditClient extends Component{
 				      placeholder="Номер телефона"
 				      aria-label="Username"
 				      aria-describedby="basic-addon1"
-				      value={this.state.first_phone}
+				      value={this.props.correctFormNumber(this.state.first_phone)}
 							onChange={(e) => this.setState({first_phone: e.target.value})}
 				    />
 				  </InputGroup>
@@ -211,7 +211,7 @@ class EditClient extends Component{
 							 placeholder="Номер телефона"
 							 aria-label="Username"
 							 aria-describedby="basic-addon1"
-							 value={this.state.second_phone}
+							 value={this.props.correctFormNumber(this.state.second_phone)}
 							 onChange={(e) => this.setState({second_phone: e.target.value})}
 						 />
 					 </InputGroup>
@@ -688,7 +688,10 @@ export default class ClientInfo extends Component{
 				    <Row>
 				    {(this.state.editClient) ?
 
-				      <EditClient client={client} submit={this.submitClient} user={this.props.user}/>
+				      <EditClient client={client} submit={this.submitClient} user={this.props.user}
+													correctFormNumber={this.props.correctFormNumber}
+													preparingNumber={this.props.preparingNumber}
+								/>
 				      :
 				      <Col
 				      md={8}
@@ -698,14 +701,14 @@ export default class ClientInfo extends Component{
 				      <p  className="commonRequest">
 				      <b>Дата рождения:</b> {this.props.SetDate(client.date_of_birth)}
 				      <br />
-				      <b>Номер телефона:</b> {client.phone_number}
+				      <b>Номер телефона:</b> {this.props.correctFormNumber(client.phone_number)}
 				      <br />
 				      <b>Почта:</b> {client.mail}
 				      <br />
-							<ParentCard data={client.parents.first_parent}/>
+							<ParentCard data={client.parents.first_parent} correctFormNumber={this.props.correctFormNumber}/>
 							{
 								client.parents.second_parent.name == null ? null :
-								<ParentCard data={client.parents.second_parent}/>
+								<ParentCard data={client.parents.second_parent} correctFormNumber={this.props.correctFormNumber}/>
 							}
 				      </p>
 
@@ -869,6 +872,7 @@ export default class ClientInfo extends Component{
 															<Dropdown.Item onClick={() => this.sendRequest("Заявка")}>Заявка</Dropdown.Item>
 															<Dropdown.Item onClick={() => this.sendRequest("Договор")}>Договор</Dropdown.Item>
 															<Dropdown.Item onClick={() => this.sendRequest("Оплата")}>Оплата</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.sendRequest("Консультация")}>Консультация</Dropdown.Item>
 															<Dropdown.Item onClick={() => this.sendRequest("Оформление")}>Оформление</Dropdown.Item>
 															<Dropdown.Item onClick={() => this.sendRequest("Выезд")}>Выезд</Dropdown.Item>
 															<Dropdown.Divider/>

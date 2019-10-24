@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import {Modal, Button, Form, Dropdown,
-  InputGroup, Col, Row, ButtonGroup, Alert} from "react-bootstrap";
+  InputGroup, Col, Row, ButtonGroup, Alert, Input} from "react-bootstrap";
 import Parent from "./Parent.js";
 
 export default class Create extends Component{
@@ -46,7 +46,7 @@ export default class Create extends Component{
       name: this.state.name,
       status: this.state.status,
       date_of_birth: this.state.date_of_birth,
-      number: this.state.number,
+      number: this.props.preparingNumber('+7' + this.state.number),
       mail: this.state.mail,
       firstParent: this.state.firstParent,
       secondParent: this.state.secondParent,
@@ -192,11 +192,14 @@ export default class Create extends Component{
                   </Form.Group>
 
 
-                  <Form.Group as={Col} controlId="formGridPassword" style={{marginBottom: '0px', paddingBottom: "0px"}}>
+                  <InputGroup as={Col} controlId="formGridPassword" style={{marginBottom: '0px', paddingBottom: "0px"}}>
+                    <InputGroup.Prepend>
+                      <InputGroup.Text id="inputGroup-sizing-md"> +7</InputGroup.Text>
+                    </InputGroup.Prepend>
                     <Form.Control type="phone" placeholder="Номер телефона"
                     onChange={(e) => {this.setState({ number: e.target.value })}}
                     />
-                  </Form.Group>
+                </InputGroup>
                 </Form.Row>
 
 
