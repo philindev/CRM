@@ -30,7 +30,7 @@ export default class Search extends React.Component{
 
 	sendSubmit(){
 		const main = this;
-		bn = this.state.buttonName;
+		let bn = this.state.buttonName;
 
 		let files = {
 			searchLine: this.state.searchLine,
