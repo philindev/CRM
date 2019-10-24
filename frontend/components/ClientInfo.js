@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
+import ParentCard from "./ParentsCard";
 
 class EditClient extends Component{
 	constructor(props){
@@ -337,6 +338,7 @@ class EditRequest extends Component{
 
 export default class ClientInfo extends Component{
   constructor(props){
+
     super(props);
     this.state = {
       dataClient: this.props.dataClient,
@@ -345,12 +347,18 @@ export default class ClientInfo extends Component{
 			loading: false,
 			ChangeClient: false,
 			updateData: this.props.updateData,
+			window_status: 0,
 
+			money: 0,
+			brief: '',
+			cause: ''
     }
 		this.submitClient = this.submitClient.bind(this);
 		this.submitRequest = this.submitRequest.bind(this);
 		this.sendRequest = this.sendRequest.bind(this);
+		this.changeWindow = this.changeWindow.bind(this);
   }
+
 
 
 	componentWillReceiveProps(nextProps){
@@ -359,6 +367,10 @@ export default class ClientInfo extends Component{
 			updateData: nextProps.updateData,
 		})
   }
+
+	changeWindow(num){
+		this.setState({window_status: num})
+	}
 
 	submitClient(obj){
 		let id = this.state.dataClient.client.client_id;
@@ -405,6 +417,8 @@ export default class ClientInfo extends Component{
 		let client = this.state.dataClient.client;
 		const main = this;
 		let id = this.state.dataClient.client.client_id;
+		console.log(this.props.user);
+
 
 		if(str != "Отказ" || str != "Закрыто"){
 
@@ -445,7 +459,24 @@ export default class ClientInfo extends Component{
 							else{ console.log("Something goes wrong!") }
 							});
 					})
-			}}
+			}
+			else if (str == "Закрыто" && this.props.user.user_status == 'Admin') {
+				let sure = confirm("Вы уверены, что хотите закрыть заявку?");
+				if(sure){
+					this.props.dataClient();
+					this.changeWindow(1);
+				}
+			}
+			else if (str == "Отказ") {
+				let sure = confirm("Вы уверены, что хотите написать \'Отказ\'?");
+				if(sure){
+					this.props.dataClient();
+					this.changeWindow(2);
+				}
+			}
+
+
+	}
 
 
 	submitRequest(obj){
@@ -508,190 +539,199 @@ export default class ClientInfo extends Component{
 				default:
 					status = "Новый"
 			}
-    modalInfo =
-    <Modal
-    size="lg"
-    show={ this.state.dataClient != {}? true: false}
-    onHide={() => this.props.closeWindow()}
-    aria-labelledby="example-modal-sizes-title-lg"
-    style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
-    <Modal.Header closeButton>
-    <Modal.Title><span className="gosha" style={{fontSize: "30px"}}> {client.client_name} </span><Badge variant="danger">{status}</Badge></Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
+			let window_render = null;
+			let window_footer = null;
 
-    <Row>
-    {(this.state.editClient) ?
+			switch (this.state.window_status) {
 
-      <EditClient client={client} submit={this.submitClient} user={this.props.user}/>
-      :
-      <Col
-      md={8}
-      lg={8}
-      lx={8}
-      >
-      <p  className="commonRequest">
-      <b>Дата рождения:</b> {this.props.SetDate(client.date_of_birth)}
-      <br />
-      <b>Номер телефона:</b> {client.phone_number}
-      <br />
-      <b>Почта:</b> {client.mail}
-      <br />
-      <b>Родители: </b>
-      <p>
-      <b>{client.parents.firstParent}</b>
-      </p>
-      </p>
+				case 1:
 
-      </Col>}
+					window_render =
+					<Modal.Body>
+						<h4>{request.program_name} - {request.country}</h4>
+						< br />
+						<InputGroup className="mb-3" style={{fontSize: "14px"}}>
+							<InputGroup.Prepend>
+								<InputGroup.Text>Заработано:</InputGroup.Text>
+							</InputGroup.Prepend>
+					    <FormControl onChange={(e) => this.setState({money: e.target.value})}/>
+						</InputGroup>
 
-      <Col>
-      {(this.state.editClient && this.props.user.user_status == "Admin") ?
-        <Button variant="primary" className="mt-3"
-        onClick={() => this.setState({editClient: !this.state.editClient})}
-        className="buttonEdit"
-        style={{
-          position: "absolute",
-          right: "10%",
-          fontSize: "14px",
-          padding: "6px"
-        }}
-        >Изменить</Button>
-        :
-				<Button variant="secondary" className="mt-3"
-        onClick={() => this.setState({editClient: !this.state.editClient})}
-        className="buttonEdit"
-        style={{
-          position: "absolute",
-          right: "10%",
-          fontSize: "14px",
-          padding: "6px"
-        }}
-        >Редактировать</Button> }
+						<InputGroup style={{fontSize: "14px"}}>
+					    <InputGroup.Prepend>
+					      <InputGroup.Text>Заметки</InputGroup.Text>
+					    </InputGroup.Prepend>
+					    <FormControl as="textarea" aria-label="With textarea" onChange={(e) => this.setState({brief: e.target.value})}/>
+					  </InputGroup>
 
-        </Col>
+					</Modal.Body>;
 
-        </Row>
-        <hr />
-				<Row>
-        {
-				(
-					request.program_name == null ||
-					request.country == null ||
-					request.departure_date == null
-				)
-				?
-				<Row>
-				<Col className="commonRequest"
-						md={8}
-						lg={8}
-						lx={8}
-						>
-					<div>
-							Нет текущей заявки - создайте новую заявку!
-					</div>
-				</Col>
-				<Col className="commonRequest"
-						md={4}
-						lg={4}
-						lx={4}>
+					window_footer =
+							<Modal.Footer>
+								<Button onClick={() => {
+									fetch('/ChangeCurrentStatus',
+											{
+												method: 'post',
+												headers: {
+													'Content-Type':'application/json',
+													"Access-Control-Allow-Origin": "*",
+													"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+												},
+												body: JSON.stringify({
+													data: {
+														money: this.state.money,
+														brief: this.state.brief,
+														id: client.client_id,
+													},
+													token: this.props.user.token,
+													status: "Закрыто"
+												}),
+											})
+											.then(
+											function(response) {
+												if (response.status !== 200) {
+													console.log('Looks like there was a problem. Status Code: ' + response.status);
+													if(response.status === 500){
+															console.log("Status: 500")
+													}
+													return;
+												}
 
-						<Button variant="warning" className="mt-3"
-						onClick={() => {
-							this.props.updateId(client.client_id)
-							this.props.closeWindow()
-						}}
-						className="buttonEdit"
-						style={{
-							position: "absolute",
-							right: "10%",
-							fontSize: "14px",
-							padding: "6px"
-						}}
-						>Создать</Button>
+												// Examine the text in the response
+												response.json()
+												.then(function(data) {
+													if(data != false){
+															console.log(data)
+															this.state.updateData();
+															this.setState(window_status: 0);
+															this.props.closeWindow();
+													}
+								})})}}
+												variant="outline-warning"
+												centered
+								>Сохранить</Button>
+							</Modal.Footer>;
+					break;
 
-				</Col>
-			</Row>
+				case 2:
 
-				:
 
-				(this.state.editRequest) ?
+									window_render =
+									<Modal.Body>
+										<h4>{request.program_name} - {request.country}</h4>
+										< br />
+										<InputGroup className="mb-3" style={{fontSize: "14px"}}>
+											<InputGroup.Prepend>
+												<InputGroup.Text>Заголовок:</InputGroup.Text>
+											</InputGroup.Prepend>
+									    <FormControl onChange={(e) => this.setState({cause: e.target.value})}/>
+										</InputGroup>
 
-						<EditRequest request={request} submit={this.submitRequest} user={this.props.user}/>
+										<InputGroup style={{fontSize: "14px"}}>
+									    <InputGroup.Prepend>
+									      <InputGroup.Text>Причина:</InputGroup.Text>
+									    </InputGroup.Prepend>
+									    <FormControl as="textarea" aria-label="With textarea" onChange={(e) => this.setState({brief: e.target.value})}/>
+									  </InputGroup>
 
-						:
+									</Modal.Body>
 
-						<Col className="commonRequest"
-								md={8}
-								lg={8}
-								lx={8}
-						>
-		          <h3 className="gosha">{request.program_name} <Badge variant="success" style={{fontSize: "18px"}}>{this.props.StatusForm(request.status)}</Badge> </h3>
-		          <b>Страна:</b> {request.country}
-		          <br />
-		          <b>Год поездки:</b> {request.departure_date.split("-")[0]}
-		          <br />
-		          <b>Дата отъезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
-		          <br />
-		          <b>Комментарии:</b> {request.comment || " Не указано "}
-						</Col>
-				}
+									window_footer =
+											<Modal.Footer>
+												<Button onClick={() => {
+													fetch('/ChangeCurrentStatus',
+															{
+																method: 'post',
+																headers: {
+																	'Content-Type':'application/json',
+																	"Access-Control-Allow-Origin": "*",
+																	"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+																},
+																body: JSON.stringify({
+																	data: {
+																		cause: this.state.money,
+																		brief: this.state.brief,
+																		id: client.client_id,
+																	},
+																	token: this.props.user.token,
+																	status: "Отказ"
+																}),
+															})
+															.then(
+															function(response) {
+																if (response.status !== 200) {
+																	console.log('Looks like there was a problem. Status Code: ' + response.status);
+																	if(response.status === 500){
+																			console.log("Status: 500")
+																	}
+																	return;
+																}
 
-				{
+																// Examine the text in the response
+																response.json()
+																.then(function(data) {
+																	if(data != false){
+																			console.log(data)
+																			this.state.updateData();
+																			this.setState(window_status: 0);
+																			this.props.closeWindow();
+																	}
+												})})}}
+																variant="outline-warning"
+																centered
+												>Сохранить</Button>
+											</Modal.Footer>;
 
-					(
-						request.program_name == null ||
-						request.country == null ||
-						request.departure_date == null
-					)
-					?
+					break;
 
-					null
+				default:
 
-					:
+				window_render =
+						<Modal.Body>
 
-				<Col
-				md={4}
-				lg={4}
-				lx={4}
-				>
+				    <Row>
+				    {(this.state.editClient) ?
 
-					{
+				      <EditClient client={client} submit={this.submitClient} user={this.props.user}/>
+				      :
+				      <Col
+				      md={8}
+				      lg={8}
+				      lx={8}
+				      >
+				      <p  className="commonRequest">
+				      <b>Дата рождения:</b> {this.props.SetDate(client.date_of_birth)}
+				      <br />
+				      <b>Номер телефона:</b> {client.phone_number}
+				      <br />
+				      <b>Почта:</b> {client.mail}
+				      <br />
+							<ParentCard data={client.parents.first_parent}/>
+							{
+								client.parents.second_parent.name == null ? null :
+								<ParentCard data={client.parents.second_parent}/>
+							}
+				      </p>
 
-							(this.state.editRequest  && this.props.user.user_status == "Admin")
+				      </Col>}
 
-							?
 
-						<Col
-							md={12}
-							lg={12}
-							lx={12}
-						>
-				        <Button variant="primary" className="mt-3"
-				        onClick={() => this.setState({editRequest: !this.state.editRequest})}
-				        className="buttonEdit"
-				        style={{
-				          position: "absolute",
-				          right: "10%",
-				          fontSize: "14px",
-				          padding: "6px"
-				        }}
-				        >Изменить</Button>
-						</Col>
-			        :
-						<Col
-							md={12}
-							lg={12}
-							lx={12}
-						>
-								<Row style={{height: "40px"}}>
-									<Col
-										md={12}
-										lg={12}
-										lx={12}
-									>
+				      <Col >
+							{ this.props.user.user_status != "Guest" ?
+				      	(this.state.editClient) ?
+						        <Button variant="primary" className="mt-3"
+						        onClick={() => this.setState({editClient: !this.state.editClient})}
+						        className="buttonEdit"
+						        style={{
+						          position: "absolute",
+						          right: "10%",
+						          fontSize: "14px",
+						          padding: "6px"
+						        }}
+						        >Изменить</Button>
+						        :
 										<Button variant="secondary" className="mt-3"
-						        onClick={() => this.setState({editRequest: !this.state.editRequest})}
+						        onClick={() => this.setState({editClient: !this.state.editClient})}
 						        className="buttonEdit"
 						        style={{
 						          position: "absolute",
@@ -700,71 +740,198 @@ export default class ClientInfo extends Component{
 						          padding: "6px"
 						        }}
 						        >Редактировать</Button>
+								:
+								null
+							}
+
+				      </Col>
+						</Row>
+						<hr />
+
+
+								{/*Редактирование заявки и ее показ*/}
+				        {
+								(
+									request.program_name == null ||
+									request.country == null ||
+									request.departure_date == null
+								)
+								?
+							<Row>
+								<Col
+										md={8}
+										lg={8}
+										lx={8}
+										className="ml-3"
+										>
+											<b>Нет текущей заявки - создайте новую заявку!</b>
+								</Col>
+
+								 <Col>
+										<Button variant="warning" className="mt-3"
+										onClick={() => {
+											this.props.updateId(client.client_id)
+											this.props.closeWindow()
+										}}
+										className="buttonEdit"
+										style={{
+											position: "absolute",
+											right: "10%",
+											fontSize: "14px",
+											padding: "6px"
+										}}
+										>Создать</Button>
+								</Col>
+							</Row>
+
+								:
+
+								(this.state.editRequest) ?
+
+										<EditRequest request={request} submit={this.submitRequest} user={this.props.user}/>
+
+										:
+									<Row>
+										<Col className="commonRequest"
+												md={8}
+												lg={8}
+												lx={8}
+										>
+						          <h3 className="gosha">{request.program_name} <Badge variant="success" style={{fontSize: "18px"}}>{this.props.StatusForm(request.status)}</Badge> </h3>
+						          <b>Страна:</b> {request.country}
+						          <br />
+						          <b>Год поездки:</b> {request.departure_date.split("-")[0]}
+						          <br />
+						          <b>Дата отъезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
+						          <br />
+						          <b>Комментарии:</b> {request.comment || " Не указано "}
+										</Col>
+										{/*
+											Начало второго блока
+											Если существует заявка то будет отрисовка этого блока
+											*/}
+											{
+
+												(
+													request.program_name == null ||
+													request.country == null ||
+													request.departure_date == null
+												)
+												?
+
+												null
+
+												:
+
+													(this.state.editRequest) ?
+
+													<Col className="mr-3">
+
+													<Button variant="primary" className="mt-3"
+													onClick={() => this.setState({editRequest: !this.state.editRequest})}
+													className="buttonEdit"
+													style={{
+														position: "absolute",
+														right: "10%",
+														fontSize: "14px",
+														padding: "6px"
+													}}
+													>Изменить</Button>
+													</Col>
+													:
+													<Col
+													md={4}
+													ls={4}
+													xl={4} >
+
+													{/* рендер кнопки если статус нужный */}
+													{ this.props.user.user_status != "Guest" ?
+													<Col md={12} ls={12} xl={12} style={{minHeight: "40px"}}>
+																	<Button variant="secondary" className="mt-3"
+																	onClick={() => this.setState({editRequest: !this.state.editRequest})}
+																	className="buttonEdit"
+																	style={{
+																		position: "absolute",
+																		right: "10%",
+																		fontSize: "14px",
+																		padding: "6px",
+																	}}
+																	>Редактировать</Button>
+														</Col>
+																	:
+																	null
+														}
+													<DropdownButton
+													alignRight
+													title="Cтатус"
+													variant="secondary"
+													style={{
+														position: "absolute",
+														right: "15%",
+													}}
+													>
+															<Dropdown.Item onClick={() => this.sendRequest("Заявка")}>Заявка</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.sendRequest("Договор")}>Договор</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.sendRequest("Оплата")}>Оплата</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.sendRequest("Оформление")}>Оформление</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.sendRequest("Выезд")}>Выезд</Dropdown.Item>
+															<Dropdown.Divider/>
+															<Dropdown.Item onClick={() => this.sendRequest("Закрыто")}>Закрыто</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.sendRequest("Отказ")}>Отказ</Dropdown.Item>
+													</DropdownButton>
+
+												</Col>
+
+
+								}
+							</Row>
+							}
+
+
+				      <hr />
+								<Row>
+									<Col>
+				          <h5><b>История поездок:</b></h5>
+				          <br />
+				          {
+				            (!Object.keys(history).length) ?
+
+										<span style={{paddingLeft: "40%"}}> Пусто </span>
+
+										:
+
+				            history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
+				            <th>{data.status}</th>
+				            <td>{data.program_name}</td>
+				            <td>{data.country}</td>
+				            <td>{data.year_of_fly}</td>
+				            <td>{data.type}</td>
+				            </tr>)
+
+				          }
 									</Col>
 								</Row>
-								<Row  style={{height: "40px"}}>
-									<Col
-										md={12}
-										lg={12}
-										lx={12}
-									>
-										<DropdownButton
-											style={{
-												fontSize: "12px",
-												position: "absolute",
-												marginTop: "2px",
-												right: "10%"
-											}}
-											alignRight
-											title="Cтатус"
-											variant="secondary"
-											>
-												<Dropdown.Item onClick={() => this.sendRequest("Заявка")}>Заявка</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Договор")}>Договор</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Оплата")}>Оплата</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Оформление")}>Оформление</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Выезд")}>Выезд</Dropdown.Item>
-											<Dropdown.Divider/>
-												<Dropdown.Item onClick={() => this.sendRequest("Закрыто")}>Закрыто</Dropdown.Item>
-												<Dropdown.Item onClick={() => this.sendRequest("Отказ")}>Отказ</Dropdown.Item>
-										</DropdownButton>
-									</Col>
-								</Row>
-						</Col>
-					}
-				</Col>
-			}
 
 
+        </Modal.Body>;
 
-				</Row>
-          <hr />
-				<Row>
-					<Col>
-          <h5><b>История поездок:</b></h5>
-          <br />
-          {
-            (!Object.keys(history).length) ?
+				window_footer = null;
 
-						<span style={{paddingLeft: "40%"}}> Пусто </span>
+		}
 
-						:
-
-            history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
-            <th>{data.status}</th>
-            <td>{data.program_name}</td>
-            <td>{data.country}</td>
-            <td>{data.year_of_fly}</td>
-            <td>{data.type}</td>
-            </tr>)
-
-          }
-					</Col>
-				</Row>
-
-
-        </Modal.Body>
-      </Modal>;
+    modalInfo =
+    <Modal
+    size="lg"
+    show={ this.state.dataClient != {}? true: false}
+    onHide={() => this.props.closeWindow()}
+    aria-labelledby="example-modal-sizes-title-lg"
+    style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
+	    <Modal.Header closeButton>
+	    	<Modal.Title><span className="gosha" style={{fontSize: "30px"}}> {client.client_name} </span><Badge variant="danger">{status}</Badge></Modal.Title>
+	    </Modal.Header>
+    	{window_render}
+			{window_footer}
+    </Modal>;
 		}
 		else{
 			modalInfo = null

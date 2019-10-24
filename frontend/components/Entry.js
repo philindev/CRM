@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import {Button} from "react-bootstrap"
+import {Button, Alert, Row, Col} from "react-bootstrap"
 
 export default class Entry extends Component{
   constructor(props){
@@ -13,6 +13,8 @@ export default class Entry extends Component{
       token: null,
       user_status: "guest",
       error: false,
+      alert: false,
+      description: "Неправильно указан логин или пароль"
     }
 
     this.submit = this.submit.bind(this);
@@ -27,6 +29,10 @@ export default class Entry extends Component{
       enter: false,
     })
   }
+
+  // componentDidMount(){
+  //   this.submit();
+  // }
 
   submit(){
     const main = this;
@@ -66,7 +72,7 @@ export default class Entry extends Component{
               }
               else{
                 console.log("Not right");
-
+                main.setState({alert: true});
               }
 	            });
 	        }).catch(function (error) {
@@ -86,12 +92,22 @@ export default class Entry extends Component{
 
     <div class="login-page" id="entry">
       <div class="form">
-          <div class="greetings">Добро пожаловать</div>
-          <form class="login-form">
-            <input type="text" placeholder="Логин" onChange={(e) => this.setState({login: e.target.value})}/>
-            <input type="password" placeholder="Пароль" onChange={(e) => this.setState({password: e.target.value})}/>
-            <Button onClick={this.submit}>Войти</Button>
-          </form>
+            <div class="greetings">Добро пожаловать</div>
+            <form class="login-form" id="but">
+              <input type="text" placeholder="Логин" onChange={(e) => this.setState({login: e.target.value})}/>
+              <input type="password" placeholder="Пароль" onChange={(e) => this.setState({password: e.target.value})}/>
+              <Button onClick={this.submit}>Войти</Button>
+            </form>
+          {
+            (this.state.alert) ?
+            <Alert variant="danger" className="mt-3 paw" onClose={() => this.setState({alert: false})} dismissible>
+              <p>
+                {this.state.description}
+              </p>
+            </Alert>
+            :
+            null
+          }
       </div>
     </div>
 

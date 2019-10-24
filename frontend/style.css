@@ -42,7 +42,7 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-#entry .form button {
+#entry .form #but button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -56,7 +56,7 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
-#entry .form button:hover,.form button:active,.form button:focus {
+#entry .form #but button:hover,.form button:active,.form button:focus {
   background: #971238;
 }
 #entry .form .message {
@@ -143,4 +143,18 @@ table.table {
 
 .commonRequest b {
   font-family: 'Gill Sans Bold', 'Arial Narrow Bold';
+}
+
+.paw {
+  text-align: left;
+}
+
+.paw button{
+  width: 0;
+}
+
+.thisbtn .dropdown{
+  position: absolute;
+  font-family: "Gill Sans", Calibri,, sans-serif;
+  right: 10%;
 }
