@@ -33,8 +33,8 @@ export default class Search extends React.Component{
 		let bn = this.state.buttonName;
 
 		let files = {
-			searchLine: this.state.searchLine,
-			phone_number: this.state.phone_number || "",
+			searchLine: this.state.searchLine || " ",
+			phone_number: this.state.phone_number || "+7",
 			status: bn == "Конс-ция" ? "Консультация" : bn
 		}
 		if(
