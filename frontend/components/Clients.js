@@ -49,14 +49,12 @@ export default class Clients extends React.Component{
 	}
 
 	componentWillReceiveProps(nextProps){
-		this.setHeight()
 		console.log(nextProps.searchItems)
 		if(nextProps.searchItems.length > 0){
 				this.setState({data: nextProps.searchItems});
-				console.log("Updated in this.state.searchItems")
 		}
 		else if (nextProps.searchItems.length == 0) {
-				this.getClients();
+				this.setHeight();
 		}
 	}
 

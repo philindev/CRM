@@ -55,7 +55,7 @@ export default class App extends React.Component{
 			showContinue: false,
 			dataClient: {},
 			id: 0,
-			data: [],
+			searchedData: [],
 
 			updateData: null,
 		}
@@ -74,7 +74,7 @@ export default class App extends React.Component{
 	}
 
 	changeBySearch(value){
-		this.setState({data: value});
+		this.setState({searchedData: value});
 		console.log("Data has changed by SearchLine!")
 	}
 
@@ -147,7 +147,7 @@ export default class App extends React.Component{
 								<Clients openInfo={this.openClient}
 												 StatusForm={StatusForm}
 												 SetDate={SetDate}
-												 searchItems={this.state.data}
+												 searchItems={this.state.searchedData}
 												 updatingData={this.updatingData}
 								/>
 							</Row>
