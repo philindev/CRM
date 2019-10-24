@@ -75,7 +75,6 @@ export default class App extends React.Component{
 
 	changeBySearch(value){
 		this.setState({searchedData: value});
-		console.log("Data has changed by SearchLine!")
 	}
 
 	changeId(id){

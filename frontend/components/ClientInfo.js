@@ -405,7 +405,6 @@ export default class ClientInfo extends Component{
 								editClient: false,
 								loading: false,
 							})
-							main.state.updateData();
 							main.props.closeWindow();
 						}
 						});
@@ -417,8 +416,7 @@ export default class ClientInfo extends Component{
 		let client = this.state.dataClient.client;
 		const main = this;
 		let id = this.state.dataClient.client.client_id;
-		console.log(this.props.user);
-
+		console.log("Send Request");
 
 		if(str != "Отказ" || str != "Закрыто"){
 
@@ -452,7 +450,6 @@ export default class ClientInfo extends Component{
 						response.json()
 						.then(function(data) {
 							if(data != false){
-								console.log(data);
 								main.state.updateData();
 								main.props.closeWindow();
 							}
@@ -463,19 +460,17 @@ export default class ClientInfo extends Component{
 			else if (str == "Закрыто" && this.props.user.user_status == 'Admin') {
 				let sure = confirm("Вы уверены, что хотите закрыть заявку?");
 				if(sure){
-					this.props.dataClient();
+					this.props.closeWindow();
 					this.changeWindow(1);
 				}
 			}
 			else if (str == "Отказ") {
 				let sure = confirm("Вы уверены, что хотите написать \'Отказ\'?");
 				if(sure){
-					this.props.dataClient();
+					this.props.closeWindow();
 					this.changeWindow(2);
 				}
 			}
-
-
 	}
 
 
@@ -510,7 +505,6 @@ export default class ClientInfo extends Component{
 									editRequest: false,
 									loading: false,
 								})
-								main.state.updateData();
 								main.props.closeWindow();
 						}
 						else{ console.log("Something goes wrong!") }
@@ -518,7 +512,9 @@ export default class ClientInfo extends Component{
 				})
 	}
 
-
+	componentWillUnmount(){
+		this.state.updateData();
+	}
 
   render(){
     let sizeOfData = Object.keys(this.state.dataClient).length;

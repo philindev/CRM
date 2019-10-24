@@ -49,7 +49,6 @@ export default class Clients extends React.Component{
 	}
 
 	componentWillReceiveProps(nextProps){
-		console.log(nextProps.searchItems)
 		if(nextProps.searchItems.length > 0){
 				this.setState({data: nextProps.searchItems});
 		}

@@ -61,7 +61,6 @@ export default class Entry extends Component{
 	          // Examine the text in the response
 	          response.json()
 	          .then(function(data) {
-	            console.log(data);
               if(data != null){
                 main.setState({
                   enter: true,
