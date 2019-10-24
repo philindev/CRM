@@ -376,8 +376,7 @@ def get_info():
 def search():
     logger.info("[INFO] - Search")
     data = request.json
-    logger.info("[INFO] - "
-                f"Search data: {data}")
+    logger.info(f"[INFO] - Search data: {data}")
     if list(data.keys()) != ["searchLine", "phone_number", "status"]:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
@@ -387,42 +386,44 @@ def search():
     status = data["status"].lower()
     status = 1 if status == "заявка" else \
         2 if status == "договор" else \
-            3 if status == "оплата" else \
-                4 if status == "вылет" else \
-                    5 if status == "консультирование" else 0
+        3 if status == "оплата" else \
+        4 if status == "вылет" else \
+        5 if status == "консультирование" else 0
 
-    line_f = "f = lambda x:"
+    line_f = "lambda x:"
     if len(line) > 1:
-        line_f += "x[1].lower() == ' '.join(line).lower()"
+        line_f += f"x[1].lower() == \"{' '.join(line).lower()}\""
+    else:
+        line_f += f"\"{' '.join(line).lower()}\" in x[1].lower()"
 
     if phone:
-        if len(line_f) > 13:
+        if len(line_f) > 9:
             line_f += " and "
 
-        if len(phone) == 12:
-            line_f += "x[3] == phone"
+        if phone == '8':
+            line_f += "True"
+
+        elif len(phone) == 12:
+            line_f += f"x[3] == \"{phone}\""
 
         else:
-            line_f += "phone in x[3]"
+            line_f += f"\"{phone}\" in x[3]"
 
-    if status:
-        ff = lambda x: x["request"]["status"] == status
-    else:
-        ff = lambda x: True
-
-    if line_f == 13:
+    if line_f == 9:
         logger.info("[FAILED] - Empty search query")
         return dumps(None)
 
-    f = lambda x: True
-    exec(line_f)
+    f = eval(line_f)
     res = clients_table.get_all()
     res = list(filter(f, res))
     response = []
 
     for client in res:
         response.append(preparation_of_client_data(client, time_is_now))
-    response = list(filter(ff, response))
+    response = list(filter(
+        lambda x: x['request']['status'] == status if status else lambda y: True,
+        response
+    ))
     logger.info("[INFO] - "
                 f"Number of coincidences: {len(response)}")
     logger.info("[OK] - Search completed")

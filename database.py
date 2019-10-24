@@ -454,7 +454,7 @@ class CurrentRequestsTable(AbstractTable):
         cursor = self.connection.cursor()
         cursor.execute(
             '''SELECT *
-               FROM current WHERE id = ?''', (client_id,)
+               FROM current WHERE client_id = ?''', (client_id,)
         )
         row = cursor.fetchone()
         return row
