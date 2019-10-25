@@ -37,6 +37,7 @@ export default class Search extends React.Component{
 			phone_number: this.state.phone_number || "+7",
 			status: bn == "Конс-ция" ? "Консультация" : bn
 		}
+		if(files.status == "Статус"){ files.status = "Все" }
 		if(
 			files.searchLine ||
 			files.phone_number ||
@@ -142,6 +143,8 @@ export default class Search extends React.Component{
 										<Dropdown.Item onClick={() => this.setState({buttonName: "Конс-ция"})}>Консультация</Dropdown.Item>
 										<Dropdown.Item onClick={() => this.setState({buttonName: "Оформление"})}>Оформление</Dropdown.Item>
 										<Dropdown.Item onClick={() => this.setState({buttonName: "Выезд"})}>Выезд</Dropdown.Item>
+										<Dropdown.Divider />
+										<Dropdown.Item onClick={() => this.setState({buttonName: "Все"})}>Все</Dropdown.Item>
 								</DropdownButton>
 						</InputGroup>
 					</Col>

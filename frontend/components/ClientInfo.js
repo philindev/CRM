@@ -4,6 +4,7 @@ import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
 import ParentCard from "./ParentsCard";
+import HistoryTable from "./HistoryTable";
 
 class EditClient extends Component{
 	constructor(props){
@@ -890,26 +891,16 @@ export default class ClientInfo extends Component{
 
 				      <hr />
 								<Row>
-									<Col>
-				          <h5><b>История поездок:</b></h5>
-				          <br />
-				          {
-				            (!Object.keys(history).length) ?
+									{ (history.length == 0) ?
 
-										<span style={{paddingLeft: "40%"}}> Пусто </span>
+										<Col xs={12} md={12} xl={12} lg={12}>
+											<b>История поездок:</b>  Нет ни одной заявки в истории!
+										</Col>
 
 										:
 
-				            history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
-				            <th>{data.status}</th>
-				            <td>{data.program_name}</td>
-				            <td>{data.country}</td>
-				            <td>{data.year_of_fly}</td>
-				            <td>{data.type}</td>
-				            </tr>)
-
-				          }
-									</Col>
+										<HistoryTable data={history} />
+									}
 								</Row>
 
 

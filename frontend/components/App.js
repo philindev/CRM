@@ -8,7 +8,6 @@ import Search from "./Search";
 import Clients from "./Clients";
 import Create from './Create';
 import Continue from "./Continue";
-import HistoryTable from "./HistoryTable";
 import ClientInfo from "./ClientInfo";
 
 function preparingNumber(num: String) :String {
@@ -191,7 +190,6 @@ export default class App extends React.Component{
 							>
 								{/*<HistoryTable />*/}
 							</Row>
-							<Row></Row>
 						</Col>
 						{/*Модальные окна "Создать" и "Статистика"*/}
 						<Create showWindow={this.state.showCreate}
