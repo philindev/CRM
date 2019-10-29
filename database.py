@@ -204,6 +204,14 @@ class ClientsTable(AbstractTable):
         parents_table.change(client_id, first_parent, second_parent)
         return True
 
+    def delete(self, client_id):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''DELETE FROM clients
+                WHERE id = ?''', client_id)
+        cursor.close()
+        self.connection.commit()
+
 
 class ParentsTable(AbstractTable):
     def __init__(self, connection):

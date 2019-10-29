@@ -400,7 +400,7 @@ def search():
         if len(line_f) > 9:
             line_f += " and "
 
-        if phone == '8':
+        if phone == '+7':
             line_f += "True"
 
         elif len(phone) == 12:
@@ -428,6 +428,29 @@ def search():
                 f"Number of coincidences: {len(response)}")
     logger.info("[OK] - Search completed")
     return dumps(response)
+
+
+@app.route("/Delete/Client", methods=["POST"])
+def delete():
+    logger.info("[INFO] - Delete client")
+    data = request.json
+
+    if list(data.keys()) != ["token", "client_id"]:
+        logger.warning("[WARNING] - Invalid request data")
+        return dumps(None)
+
+    check = admins_table.check_access(data["token"])
+
+    if check != 1:
+        if check == -1:
+            logger.warning("[WARNING] - Token failed verification")
+        else:
+            logger.info("[FAILED] - Token does not have access")
+        return dumps(None)
+
+    clients_table.delete(data["client_id"])
+    logger.info("[OK] - Client deleted")
+    return dumps("sudo rm -rf /client/")
 
 
 @app.route("/Download/closed", methods=["POST"])
