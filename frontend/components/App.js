@@ -147,7 +147,7 @@ export default class App extends React.Component{
             sm={12}
             xl={12}
 					>
-					<Header onCreate={this.onHideCreate} exit={this.props.exit}/>
+					<Header onCreate={this.onHideCreate} exit={this.props.exit} user={this.props.user}/>
 					</Col>
 				</Row>
 				<Row>
@@ -198,7 +198,7 @@ export default class App extends React.Component{
 										changeId={this.changeId}
 										preparingNumber={preparingNumber}
 						/>
-						<Continue showWindow={this.state.id}
+					<Continue 	showWindow={this.state.id}
 											updateId={this.changeId}
 											id={this.state.id}
 											/>

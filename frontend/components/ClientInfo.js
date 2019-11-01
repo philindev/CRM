@@ -891,15 +891,16 @@ export default class ClientInfo extends Component{
 
 				      <hr />
 								<Row>
-									{ (history.length == 0) ?
+									{(history.length == 0) ?
 
-										<Col xs={12} md={12} xl={12} lg={12}>
+										<Col xs={12} md={12} xl={12} lg={12} style={{maxHeight: "400px"}}>
 											<b>История поездок:</b>  Нет ни одной заявки в истории!
 										</Col>
 
 										:
-
-										<HistoryTable data={history} />
+										<Col xs={12} md={12} xl={12} lg={12} style={{overflow: 'auto'}}>
+											 <HistoryTable data={history} user={this.props.user}/>
+										</Col>
 									}
 								</Row>
 

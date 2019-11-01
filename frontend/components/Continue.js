@@ -135,9 +135,16 @@ export default class Continue extends Component{
                 </div>
               </Form.Group>
               <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Control type="text" placeholder="Источник заявки"
-                              onChange={(e) => this.setState({where_from: e.target.value})}
-                />
+                <Dropdown>
+                  <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+                    {this.state.suggestion || "Источник заявки"}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => this.setState({suggestion: 'Агент'})}>Агент</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.setState({suggestion: 'Соц.сети'})}>Соц.сети</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.setState({suggestion: 'Повторный клиент'})}>Повторный клиент</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </Form.Group>
             </Form.Row>
             <Form.Row className="mt-0">

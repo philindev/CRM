@@ -1,38 +1,58 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Table } from "react-bootstrap";
 
 export default class HistoryTable extends Component{
 
   constructor(props){
     super(props);
+    this.state = {
+      data: this.props.data,
+    }
   }
 
   render(){
     let table =
-        <div style={{
-              border: "1px solid grey",
-              overflow: "auto",
-              position: "absolute",
-              top: "2rem",
-              maxWidth: "98%",
-              height: "300px"
-            }}
-            id="tableDiv"
-            className="mr-3"
-          >
-          <table class="table table-hover">
-                <thead class="thead-light">
-                    <tr style={{textAlign: "center", overflow: "auto"}}>
-                      <th scope="col" width="250px" style={{background: "#E4E0DC"}}>Статус</th>
-                      <th scope="col" width="250px" style={{background: "#E4E0DC"}}>Ф.И.О.</th>
-                      <th scope="col" width="400px"  style={{background: "#E4E0DC"}}>Программа</th>
-                    </tr>
-                </thead>
-                <tbody>
+    <div style={{maxHeight: "400px", overflow: 'auto'}}>
 
-               </tbody>
-          </table>
-        </div>;
+      <Table striped bordered hover size="sm"
+        style={{
+          fontFamily: "sans-serif",
+          fontWeight: "light",
+          fontSize: "10pt",
+          textAlign: "center",
+        }}
+        >
+        <thead id="history">
+          <tr>
+            <th>Год</th>
+            { this.props.user.user_status == 'Admin' ? <th>Финансы</th> : null}
+              <th>Статус</th>
+              <th>Название</th>
+              <th>Страна</th>
+              <th>Дата отъезда</th>
+              <th>Тип</th>
+              <th>Причина</th>
+              <th>Заметки</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.state.data.map((obj, ind) =>
+          <tr key={ind}>
+            <td>{obj.year || " - "}</td>
+            {this.props.user.user_status == 'Admin' ? <td>{obj.money || " - "}</td> : null}
+            <td>{obj.status || " - "}</td>
+            <td style={{maxWidth: "150px"}}>{obj.program_name || " - "}</td>
+            <td>{obj.country || " - "}</td>
+            <td>{obj.departure_date || " - "}</td>
+            <td>{obj.type || " - "}</td>
+            <td style={{maxWidth: "150px"}}>{obj.cause || " - "}</td>
+            <td style={{maxWidth: "150px"}}>{obj.brief || " - "}</td>
+          </tr> )}
+        </tbody>
+      </Table>
+    </div>
+
 
     return(table);
   }

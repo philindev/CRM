@@ -1,15 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Navbar, Nav, NavDropdown, Popover, OverlayTrigger,
-				Dropdown, DropdownButton} from "react-bootstrap"
+				Dropdown, DropdownButton, Modal} from "react-bootstrap"
 
 export default class Header extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
 			notification_bell: 0,
+			alert: false,
 		}
 		this.changeBell = this.changeBell.bind(this);
+		this.get_file_url = this.get_file_url.bind(this);
 	};
 	// Функция меняет цвет колокольчика после нажатия
 	changeBell() {
@@ -18,7 +20,60 @@ export default class Header extends React.Component{
 		});
 	}
 
+
+	get_file_url(url) {
+		let token = this.props.user.token;
+		const main = this;
+		fetch("/Download/" + url, {
+			method: 'post',
+			headers: {
+				'Content-Type':'application/json',
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+			},
+			body: JSON.stringify({
+				token: this.props.user.token,
+			}),
+	  })
+		.then(
+		function(response) {
+			if (response.status !== 200) {
+				console.log('Looks like there was a problem. Status Code: ' +
+					response.status);
+				if(response.status === 500){
+						console.log("Status: 500")
+				}
+				return;
+			}
+
+			response.json()
+			.then(function(data) {
+				if(data === null){
+					main.setState({alert: true})
+				};
+				return;
+				});
+		})
+	  .catch(function (error) {
+	    console.log('Request failed', error);
+	  });
+
+	}
+
 	render(){
+	// Окно ошибок
+	let wrongTabs =
+	<Modal onHide={() => this.setState({alert: false})} show={this.state.alert}>
+	  <Modal.Header closeButton>
+	    <Modal.Title>Скачивание таблицы</Modal.Title>
+	  </Modal.Header>
+
+	  <Modal.Body>
+	    <p>Что-то пошло не так. Скорее всего данной информации нет на сервере.
+				 Если такое повториться снова, обратитесь в тех.поддержку!</p>
+	  </Modal.Body>
+</Modal>;
+
 	// Окно уведомлений
 	const popover =
 			<Popover id="popover-basic" style={{ minHeight: "200px", minWidth: "250px"}}>
@@ -52,11 +107,11 @@ export default class Header extends React.Component{
 			  title="Статистика"
 				variant="light"
 				>
-				<Dropdown.Item>Статистика отказов - причины</Dropdown.Item>
-				<Dropdown.Item>Финансовые показатели</Dropdown.Item>
-				<Dropdown.Item>Общая статистика</Dropdown.Item>
-			  <Dropdown.Divider />
-			  <Dropdown.Item>Другое</Dropdown.Item>
+				<Dropdown.Item onClick={() => this.get_file_url('closed')}>Статистика отказов - причины</Dropdown.Item>
+				<Dropdown.Item onClick={() => this.get_file_url('finance')}>Финансовые показатели</Dropdown.Item>
+				<Dropdown.Item onClick={() => this.get_file_url('statics')}>Общая статистика</Dropdown.Item>
+			  {/*}<Dropdown.Divider />
+			<Dropdown.Item>Другое</Dropdown.Item>*/}
 			</DropdownButton>;
 
 	// Отрисовка главного навигатора
@@ -101,6 +156,7 @@ export default class Header extends React.Component{
 					    </Nav.Link>
 				    </Nav>
 				  </Navbar.Collapse>
+					{wrongTabs}
 				</Navbar>;
 
 		return(header)
