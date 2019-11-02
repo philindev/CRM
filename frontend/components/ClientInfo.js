@@ -513,6 +513,43 @@ export default class ClientInfo extends Component{
 				})
 	}
 
+	deleteInfo(parametr: String, id: Number){
+		let booly = confirm("Вы уверенны, что хотите удалить?")
+		if (parametr === 'Client' && booly){
+			fetch('/Delete/Client',
+					{
+						method: 'post',
+						headers: {
+							'Content-Type':'application/json',
+							"Access-Control-Allow-Origin": "*",
+							"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						body: JSON.stringify({
+							token: this.props.user.token,
+							client_id: id,
+						}),
+					})
+					.then(
+					function(response) {
+						if (response.status !== 200) {
+							console.log('Looks like there was a problem. Status Code: ' + response.status);
+							if(response.status === 500){
+									console.log("Status: 500")
+							}
+							return;
+						}
+
+						// Examine the text in the response
+						response.json()
+						.then(function(data) {
+							if(data != false){
+									this.state.updateData();
+									this.props.closeWindow();
+							}
+		})})
+		}
+	}
+
 	componentWillUnmount(){
 		this.state.updateData();
 	}
@@ -907,7 +944,19 @@ export default class ClientInfo extends Component{
 
         </Modal.Body>;
 
-				window_footer = null;
+				window_footer = this.props.user.user_status != "Admin" ? null :
+					<Modal.Footer id="specialRed">
+						<DropdownButton
+						alignRight
+						title="Дополнительные опции"
+						variant="#fff"
+						>
+								<Dropdown.Item onClick={() => this.deleteInfo('Client', client.client_id)}>Удалить клиента</Dropdown.Item>
+								<Dropdown.Divider />
+
+						</DropdownButton>
+					</Modal.Footer>
+				;
 
 		}
 

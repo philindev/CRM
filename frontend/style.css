@@ -158,3 +158,9 @@ table.table {
   font-family: "Gill Sans", Calibri,, sans-serif;
   right: 10%;
 }
+
+#specialRed .dropdown-item:focus, .dropdown-item:hover {
+    color: #a11331;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
