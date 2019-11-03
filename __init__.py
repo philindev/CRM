@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_file
+from flask import Flask, request, render_template, send_from_directory, send_file
 from json import dumps
 from pandas import DataFrame, ExcelWriter
 from database import *
@@ -458,7 +458,7 @@ def download_closed():
     global is_closed_application_file
 
     data = request.json
-    if list(data.keys()) == ["token"]:
+    if list(data.keys()) != ["token"]:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
@@ -505,15 +505,16 @@ def download_closed():
         is_closed_application_file = True
 
     logger.info("[OK] - Closed file sent")
-    return send_file("excel/closed_applications.xlsx")
+    return send_from_directory("./excel", filename="closed_applications.xlsx")
+    # return send_file("excel/closed_applications.xlsx")
 
 
-@app.route("/Download/refused", methods=["GET"])
+@app.route("/Download/Refused", methods=["GET"])
 def download_refused():
     global is_refused_application_file
 
     data = request.json
-    if list(data.keys()) == ["token"]:
+    if list(data.keys()) != ["token"]:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
@@ -563,8 +564,7 @@ def download_refused():
         is_refused_application_file = True
 
     logger.info("[OK] - Refused file sent")
-    return send_file("excel/refused_applications.xlsx")
-
+    return send_from_directory("./excel", "refused_applications.xlsx")
 
 # TODO: сделать удаление токенов
 @app.route("/Exit", methods=["POST"])
