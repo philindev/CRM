@@ -453,7 +453,7 @@ class CurrentRequestsTable(AbstractTable):
         cursor = self.connection.cursor()
         cursor.execute(
             '''UPDATE current
-               SET status=? WHERE client_id = ?''', (status, client_id)
+               SET status=?, date_of_creation=? WHERE client_id = ?''', (status, time(), client_id)
         )
         cursor.close()
         self.connection.commit()
