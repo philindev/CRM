@@ -9,6 +9,37 @@ import Clients from "./Clients";
 import Create from './Create';
 import Continue from "./Continue";
 import ClientInfo from "./ClientInfo";
+import RequestTable from "./RequestTable";
+
+
+function days(seconds: Number, status: String) :Boolean {
+	let days = seconds / 60 / 60 / 24;
+	console.log(seconds, status);
+	switch (status) {
+	case "Заявка":
+			if(days >= 20){
+				return true
+			}
+		break;
+	case "Договор":
+			if(days >= 10){
+				return true
+			}
+		break;
+	case "Оплата":
+			if(days >= 14){
+				return true
+			}
+		break;
+	case "Оформление":
+			if(days >= 40){
+				return true
+			}
+		break;
+	return false;
+
+	}
+}
 
 function preparingNumber(num: String) :String {
 	try {
@@ -152,13 +183,15 @@ export default class App extends React.Component{
 				</Row>
 				<Row>
 						<Col
-							lg={8}
-							md={8}
-							xl={8}
+							xs={12}
+							lg={7}
+							md={7}
+							xl={7}
 						>
 							<Row>
 								{/*Здесь рендер поисковой строки*/}
 								<Col className="mt-4"
+									xs={12}
 									lg={11}
 									md={11}
 									xl={11}
@@ -182,13 +215,25 @@ export default class App extends React.Component{
 
 						{/* Таблица последних клиентов, которые были изменены и таблица с
 							теми кто был просрочен на повышенном статусе */}
-						<Col>
+						<Col
+							xs={12}
+							lg={5}
+							md={5}
+							xl={5}
+						>
 							<Row className="mt-3 mr-3"
 								lg={12}
 								md={12}
 								xl={12}
 							>
-								{/*<HistoryTable />*/}
+							{this.state.updateData === null ? null :
+										<RequestTable
+															openInfo={this.openClient}
+															StatusForm={StatusForm}
+															SetDate={SetDate}
+															filtering={days}
+
+									/>}
 							</Row>
 						</Col>
 						{/*Модальные окна "Создать" и "Статистика"*/}
