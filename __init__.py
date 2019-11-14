@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory, send_file
+from flask import Flask, request, render_template, send_from_directory, make_response, send_file
 from json import dumps
 from pandas import DataFrame, ExcelWriter
 from database import *
@@ -453,16 +453,12 @@ def delete():
     return dumps("sudo rm -rf /client/")
 
 
-@app.route("/Download/closed", methods=["POST"])
-def download_closed():
+@app.route("/Download/closed/<token>", methods=["GET"])
+def download_closed(token):
     global is_closed_application_file
-
-    data = request.json
-    if list(data.keys()) != ["token"]:
-        logger.warning("[WARNING] - Invalid request data")
-        return dumps(None)
-
-    check = admins_table.check_access(data["token"])
+    if len(token) != 16 and "where" not in token.lower():
+        return render_template("errors/404.html"), 404
+    check = admins_table.check_access(token)
 
     if check != 1:
         if check == -1:
@@ -505,20 +501,17 @@ def download_closed():
         is_closed_application_file = True
 
     logger.info("[OK] - Closed file sent")
-    return send_from_directory("./excel", filename="closed_applications.xlsx")
-    # return send_file("excel/closed_applications.xlsx")
+    # return send_from_directory("./excel", filename="closed_applications.xlsx")
+    return send_file("excel/closed_applications.xlsx")
 
 
-@app.route("/Download/Refused", methods=["GET"])
-def download_refused():
+@app.route("/Download/Refused/<token>", methods=["GET"])
+def download_refused(token):
     global is_refused_application_file
+    if len(token) != 16 and "where" not in token.lower():
+        return render_template("errors/404.html"), 404
 
-    data = request.json
-    if list(data.keys()) != ["token"]:
-        logger.warning("[WARNING] - Invalid request data")
-        return dumps(None)
-
-    check = admins_table.check_access(data["token"])
+    check = admins_table.check_access(token)
 
     if check != 1:
         if check == -1:

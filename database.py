@@ -1,6 +1,6 @@
 from sqlite3 import connect
 from passlib.hash import pbkdf2_sha256
-from string import ascii_letters, digits, punctuation
+from string import ascii_letters, digits
 from random import choices
 from time import time
 from logging import getLogger
@@ -95,7 +95,7 @@ class AdminsTable(AbstractTable):
 
         password_hash = row[0]
         if pbkdf2_sha256.verify(password, password_hash):
-            token = ''.join(choices(ascii_letters + digits + punctuation, k=16))
+            token = ''.join(choices(ascii_letters + digits + '!"#%\'()*-.<>[\\]^_`{|}~', k=16))
             status = "Guest" if row[1] == 1 else \
                      "User" if row[1] == 2 else \
                      "Admin" if row[1] == 3 else None
@@ -106,6 +106,8 @@ class AdminsTable(AbstractTable):
         return None
 
     def check_access(self, token):
+        if len(token) != 16 and "where" not in token.lower():
+            return False
         cursor = self.connection.cursor()
         cursor.execute(
             '''SELECT status FROM admins WHERE token = ?''', (token,)
@@ -483,3 +485,18 @@ class CurrentRequestsTable(AbstractTable):
 
 handler = RotatingFileHandler('log.log', maxBytes=1024 * 1024 * 100)
 logger = getLogger('database')
+
+if __name__ == "__main__":
+    db = DB("database")
+
+    admins_table = AdminsTable(db.get_connection())
+    clients_table = ClientsTable(db.get_connection())
+    parents_table = ParentsTable(db.get_connection())
+    history_table = HistoryTable(db.get_connection())
+    current_requests_table = CurrentRequestsTable(db.get_connection())
+
+    admins_table.init_table()
+    clients_table.init_table()
+    parents_table.init_table()
+    history_table.init_table()
+    current_requests_table.init_table()
