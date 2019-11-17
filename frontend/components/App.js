@@ -198,6 +198,7 @@ export default class App extends React.Component{
 									<Search
 													changeBySearch={this.changeBySearch}
 													showFilter={this.state.dataClient != {} && this.state.id == 0}
+													user={this.props.user}
 									/>
 								</Col>
 							</Row>

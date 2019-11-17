@@ -86,6 +86,7 @@ export default class Entry extends Component{
       user_status: this.state.user_status,
       token: this.state.token,
     }
+    const main = this;
 
     let entryWindow = (!this.state.enter) ?
 
@@ -93,8 +94,22 @@ export default class Entry extends Component{
       <div class="form">
             <div class="greetings">Добро пожаловать</div>
             <form class="login-form" id="but">
-              <input type="text" placeholder="Логин" onChange={(e) => this.setState({login: e.target.value})}/>
-              <input type="password" placeholder="Пароль" onChange={(e) => this.setState({password: e.target.value})}/>
+              <input type="text" placeholder="Логин" onChange={(e) => this.setState({login: e.target.value})}
+                                                      onKeyPress={ event => {
+                                                        if(event.key == 'Enter' ){
+                                                          main.submit();
+                                                        }
+                                                        return false;
+                                                      }}
+                />
+              <input type="password" placeholder="Пароль" onChange={(e) => this.setState({password: e.target.value})}
+                                                          onKeyPress={ event => {
+                                                            if(event.key == 'Enter' ){
+                                                              main.submit();
+                                                            }
+                                                            return false;
+                                                          }}
+                />
               <Button onClick={this.submit}>Войти</Button>
             </form>
           {

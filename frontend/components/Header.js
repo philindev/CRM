@@ -24,7 +24,7 @@ export default class Header extends React.Component{
 	get_file_url(url) {
 		let token = this.props.user.token;
 		const main = this;
-		fetch("/Download/" + url, {
+		fetch("/Download/" + url + "/" + token, {
 			method: 'post',
 			headers: {
 				'Content-Type':'application/json',
@@ -50,8 +50,10 @@ export default class Header extends React.Component{
 			.then(function(data) {
 				if(data === null){
 					main.setState({alert: true})
-				};
-				return;
+				} else {
+					let current_location = document.location.href;
+					window.open(current_location + '/' + data, '_blank');
+				}
 				});
 		})
 	  .catch(function (error) {

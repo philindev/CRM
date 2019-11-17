@@ -419,7 +419,7 @@ export default class ClientInfo extends Component{
 		let id = this.state.dataClient.client.client_id;
 		console.log("Send Request");
 
-		if(str != "Отказ" || str != "Закрыто"){
+		if(str != "Отказ" && str != "Закрыто"){
 
 			fetch('/ChangeCurrentStatus',
 					{
@@ -461,14 +461,12 @@ export default class ClientInfo extends Component{
 			else if (str == "Закрыто" && this.props.user.user_status == 'Admin') {
 				let sure = confirm("Вы уверены, что хотите закрыть заявку?");
 				if(sure){
-					this.props.closeWindow();
 					this.changeWindow(1);
 				}
 			}
 			else if (str == "Отказ") {
 				let sure = confirm("Вы уверены, что хотите написать \'Отказ\'?");
 				if(sure){
-					this.props.closeWindow();
 					this.changeWindow(2);
 				}
 			}
@@ -636,9 +634,9 @@ export default class ClientInfo extends Component{
 												.then(function(data) {
 													if(data != false){
 															console.log(data)
-															this.state.updateData();
 															this.setState(window_status: 0);
 															this.props.closeWindow();
+															this.state.updateData();
 													}
 								})})}}
 												variant="outline-warning"
@@ -706,9 +704,9 @@ export default class ClientInfo extends Component{
 																.then(function(data) {
 																	if(data != false){
 																			console.log(data)
-																			this.state.updateData();
 																			this.setState(window_status: 0);
 																			this.props.closeWindow();
+																			this.state.updateData();
 																	}
 												})})}}
 																variant="outline-warning"
@@ -964,7 +962,10 @@ export default class ClientInfo extends Component{
     <Modal
     size="lg"
     show={ this.state.dataClient != {}? true: false}
-    onHide={() => this.props.closeWindow()}
+    onHide={() => {
+			this.changeWindow(0);
+			this.props.closeWindow();
+		}}
     aria-labelledby="example-modal-sizes-title-lg"
     style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
 	    <Modal.Header closeButton>
