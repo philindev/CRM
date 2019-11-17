@@ -930,7 +930,7 @@ export default class ClientInfo extends Component{
 								<Row>
 									{(history.length == 0) ?
 
-										<Col xs={12} md={12} xl={12} lg={12} style={{maxHeight: "400px"}}>
+										<Col xs={12} md={12} xl={12} lg={12} style={{maxHeight: "400px", marginLeft: "1rem"}}>
 											<b>История поездок:</b>  Нет ни одной заявки в истории!
 										</Col>
 

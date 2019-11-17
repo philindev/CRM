@@ -5,6 +5,15 @@
   font-family: Calibri, sans-serif;
 }
 
+tbody #clear {
+    align-items: center;
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    font-size: 12pt;
+    color: gray;
+}
+
 #entry .greetings {
   text-align: center;
   padding-bottom: 1rem;

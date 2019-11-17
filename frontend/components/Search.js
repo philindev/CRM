@@ -117,7 +117,7 @@ export default class Search extends React.Component{
 						</InputGroup.Append>
 					</InputGroup>
 				</Col>
-				<Col xs={12} lg={1} md={2} xl={1}>
+				<Col xs={12} lg={1} md={2} xl={1} className="mr-3">
 					<Button variant={this.state.show ? "outline-secondary" :"outline-danger"}
 									size="sm"
 									onClick={this.changeState}

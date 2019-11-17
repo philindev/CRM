@@ -14,7 +14,6 @@ import RequestTable from "./RequestTable";
 
 function days(seconds: Number, status: String) :Boolean {
 	let days = seconds / 60 / 60 / 24;
-	console.log(seconds, status);
 	switch (status) {
 	case "Заявка":
 			if(days >= 20){

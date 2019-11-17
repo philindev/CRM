@@ -194,7 +194,7 @@ export default class Create extends Component{
 
                   <InputGroup as={Col} controlId="formGridPassword" style={{marginBottom: '0px', paddingBottom: "0px"}}>
                     <InputGroup.Prepend>
-                      <InputGroup.Text id="inputGroup-sizing-md"> +7</InputGroup.Text>
+                      <InputGroup.Text id="inputGroup-sizing-md" style={{height: "38px"}}> +7</InputGroup.Text>
                     </InputGroup.Prepend>
                     <Form.Control type="phone" placeholder="Номер телефона"
                     onChange={(e) => {this.setState({ number: e.target.value })}}

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {Modal, Dropdown, Button, InputGroup,
-  Form, Col, Row, ButtonGroup} from "react-bootstrap";
+  Form, Col, Row, ButtonGroup, Alert} from "react-bootstrap";
 
 export default class Continue extends Component{
   constructor(props){
@@ -10,11 +10,12 @@ export default class Continue extends Component{
       status: 'Статус заявки',
       country: '',
       name_of_program: '',
-      where_from: '',
       date_of_will_fly: '',
       type_of_program: '',
       comment: '',
-      id: this.props.id
+      id: this.props.id,
+
+      alert: false,
     }
 
     this.submit = this.submit.bind(this);
@@ -25,7 +26,6 @@ export default class Continue extends Component{
       name_of_program: this.state.name_of_program,
       status: this.state.status,
       country: this.state.country,
-      where_from: this.state.where_from,
       date_of_will_fly: this.state.date_of_will_fly,
       comment: this.state.comment,
       type_of_program: this.state.type_of_program,
@@ -39,7 +39,6 @@ export default class Continue extends Component{
       files.name_of_program &&
       files.status != 'Статус заявки' &&
       files.country &&
-      files.where_from &&
       files.date_of_will_fly &&
       files.type_of_program
     ){
@@ -69,7 +68,6 @@ export default class Continue extends Component{
             console.log(data);
             if(data){
               main.props.updateId(0);
-              alert("Заявка добавлена.");
             }
             return;
             });
@@ -77,6 +75,7 @@ export default class Continue extends Component{
       }
       else{
         console.log("Not all positions were written!");
+        main.setState({alert: true})
       }
     };
 
@@ -161,6 +160,14 @@ export default class Continue extends Component{
                           onChange={(e) => this.setState({comment: e.target.value})}
             />
       </Form>
+
+      {this.state.alert ?
+      <Alert variant="danger" className="mt-3" onClose={() => this.setState({alert: false})} dismissible>
+        <p>
+          Не все позиции заполнены!
+        </p>
+      </Alert> : null}
+
     </Modal.Body>
       {/* Кнопки для сохранения и выхода */}
       <Modal.Footer>

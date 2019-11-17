@@ -58,7 +58,7 @@ export default class RequestTable extends Component{
 		let filteringData = this.state.data ?
 				this.state.data.filter(
 										function(obj){
-													return filtering(3456000, StatusForm(obj.request.status));
+													return filtering(obj.date_of_creation, StatusForm(obj.request.status));
 												}
 									)	: null;
 		// Выдаем каждую стору таблицы, используя отфильрованный массив выше
@@ -93,7 +93,7 @@ export default class RequestTable extends Component{
                   </tr>
               </thead>
               <tbody>
-								{results == null ? <h4>Нет просроченных клиентов</h4>: results}
+								{results == null ? <p id="clear">Нет просроченных клиентов</p>: results}
              </tbody>
         </table>
       </div>
