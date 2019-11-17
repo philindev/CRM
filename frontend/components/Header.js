@@ -24,7 +24,7 @@ export default class Header extends React.Component{
 	get_file_url(url) {
 		let token = this.props.user.token;
 		const main = this;
-		fetch("/Download/" + url + "/" + token, {
+		fetch("/Download/" + url, {
 			method: 'post',
 			headers: {
 				'Content-Type':'application/json',
