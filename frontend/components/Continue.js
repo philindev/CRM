@@ -68,6 +68,7 @@ export default class Continue extends Component{
             console.log(data);
             if(data){
               main.props.updateId(0);
+              main.props.updateData();
             }
             return;
             });

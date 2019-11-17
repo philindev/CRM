@@ -246,7 +246,7 @@ def change_client():
 @app.route("/ChangeCurrent", methods=["POST"])
 def change_current():
     data = request.json
-    if list(data.keys()) != ["token", "name_of_program", "status", "country", "where_from",
+    if list(data.keys()) != ["token", "name_of_program", "status", "country",
                              "date_of_will_fly", "comment", "type_of_program", "id"]:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
@@ -330,8 +330,8 @@ def user_request():
 
     data = request.json
 
-    if list(data.keys()) != ["name_of_program", "status", "country", "where_from",
-                             "date_of_will_fly", "comment", "type_of_program", "id"]:
+    if list(data.keys()) != ["name_of_program", "status", "country",
+                        "date_of_will_fly", "comment", "type_of_program", "id"]:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 

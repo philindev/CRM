@@ -241,10 +241,12 @@ export default class App extends React.Component{
 										onContinue={this.onHideContinue}
 										changeId={this.changeId}
 										preparingNumber={preparingNumber}
+										updateData={this.state.updateData}
 						/>
 					<Continue 	showWindow={this.state.id}
 											updateId={this.changeId}
 											id={this.state.id}
+											updateData={this.state.updateData}
 											/>
 					</Row>
 					<ClientInfo dataClient={this.state.dataClient} setHeight={setHeight} SetDate={SetDate}

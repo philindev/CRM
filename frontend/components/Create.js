@@ -88,6 +88,7 @@ export default class Create extends Component{
             if(data){
               if(whichWindow == 1){
                 main.props.onHideCreate();
+                main.props.updateData();
               }
               else if (whichWindow == 2) {
                 main.props.changeId(data);
