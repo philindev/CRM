@@ -24,28 +24,16 @@ export default class Header extends React.Component{
 	get_file_url(url) {
 		let token = this.props.user.token;
 		const main = this;
-		fetch("/Download/" + url + "/" + token, {
-			method: 'post',
-			headers: {
-				'Content-Type':'application/json',
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-			},
-			body: JSON.stringify({
-				token: this.props.user.token,
-			}),
-	  })
-		.then(
-		function(response) {
-			if (response.status !== 200) {
-				console.log('Looks like there was a problem. Status Code: ' +
-					response.status);
-				if(response.status === 500){
-						console.log("Status: 500")
-				}
-				return;
-			}
-
+		fetch("/Download/" + url + "/" + token).then(
+									function(response) {
+										if (response.status !== 200) {
+											console.log('Looks like there was a problem. Status Code: ' +
+												response.status);
+											if(response.status === 500){
+													console.log("Status: 500")
+											}
+											return;
+										}
 			response.json()
 			.then(function(data) {
 				if(data === null){
@@ -56,6 +44,7 @@ export default class Header extends React.Component{
 				}
 				});
 		})
+		
 	  .catch(function (error) {
 	    console.log('Request failed', error);
 	  });
