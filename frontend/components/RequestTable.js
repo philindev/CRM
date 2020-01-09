@@ -93,7 +93,7 @@ export default class RequestTable extends Component{
                   </tr>
               </thead>
               <tbody>
-								{results == null ? <p id="clear">Нет просроченных клиентов</p>: results}
+								{results == null ? <p id="clear">Нет просроченных заявок</p>: results}
              </tbody>
         </table>
       </div>
