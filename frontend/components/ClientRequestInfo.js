@@ -60,7 +60,7 @@ class EditRequest extends Component{
 					<InputGroup.Text id="basic-addon1">Страна:</InputGroup.Text>
 				</InputGroup.Prepend>
 				<FormControl
-					placeholder="Название программы"
+					placeholder="например: Англия"
 					aria-label="Username"
 					aria-describedby="basic-addon1"
 					value={this.state.country}
@@ -87,7 +87,7 @@ class EditRequest extends Component{
 					</InputGroup.Prepend>
 					<FormControl
 						type="date" className="form-control" id="exampleInputDOB1"
-						placeholder="Группа/Индивидуально"
+						placeholder="Дата"
 						aria-label="Username"
 						aria-describedby="basic-addon1"
 						value={this.state.departure_date}
@@ -102,18 +102,17 @@ class EditRequest extends Component{
 
 }
 
-export default class ClienRequestInfo extends Component{
+export default class ClientRequestInfo extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			status: this.props.status,
+			status: false,
 			request: this.props.request,
 		}
 	}
 
 	componentWillReceiveProps(nextProps){
 		this.setState({
-			status: nextProps.status,
 			request: nextProps.request,
 		})
 	}
@@ -194,41 +193,22 @@ export default class ClienRequestInfo extends Component{
 															title="Cтатус"
 															variant="secondary"
 													>
-															<Dropdown.Item onClick={() => this.sendRequest("Заявка")}>Заявка</Dropdown.Item>
-															<Dropdown.Item onClick={() => this.sendRequest("Договор")}>Договор</Dropdown.Item>
-															<Dropdown.Item onClick={() => this.sendRequest("Оплата")}>Оплата</Dropdown.Item>
-															<Dropdown.Item onClick={() => this.sendRequest("Оформление")}>Оформление</Dropdown.Item>
-															<Dropdown.Item onClick={() => this.sendRequest("Выезд")}>Выезд</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.props.sendRequest("Заявка")}>Заявка</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.props.sendRequest("Договор")}>Договор</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.props.sendRequest("Оплата")}>Оплата</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.props.sendRequest("Оформление")}>Оформление</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.props.sendRequest("Выезд")}>Выезд</Dropdown.Item>
 													<Dropdown.Divider/>
-															<Dropdown.Item onClick={() => this.sendRequest("Закрыто")}>Закрыто</Dropdown.Item>
-															<Dropdown.Item onClick={() => this.sendRequest("Отказ")}>Отказ</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.props.sendRequest("Закрыто")}>Закрыто</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.props.sendRequest("Отказ")}>Отказ</Dropdown.Item>
 												</DropdownButton>
 									</Col>
 							</Row>
 					</Col>;
 
-					{/* Отрисовывает блок с информацией и двумя кнопками*/}
-		let request_information =
-					<Row>
-							<Col className="commonRequest"
-										md={8}
-										lg={8}
-										lx={8}
-							>
-								<h3 className="gosha">{request.program_name} <Badge variant="success" style={{fontSize: "18px"}}>{this.props.StatusForm(request.status)}</Badge> </h3>
-								<b>Страна:</b> {request.country}
-									<br />
-									<b>Год поездки:</b> {request.departure_date.split("-")[0]}
-										<br />
-										<b>Дата отъезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
-											<br />
-											<b>Комментарии:</b> {request.comment || " Не указано "}
-							</Col>
-						{editbtns}
-					</Row>
 
 		let block = null;
-
+		console.log(this.state);
 		if(
 			request.program_name == null ||
 			request.country == null ||
@@ -274,8 +254,25 @@ export default class ClienRequestInfo extends Component{
 				block = editBlock;
 
 			} else {
-
-				block = request_information;
+					{/* Отрисовывает блок с информацией и двумя кнопками*/}
+				block =
+					<Row>
+							<Col className="commonRequest"
+										md={8}
+										lg={8}
+										lx={8}
+							>
+								<h3 className="gosha">{request.program_name} <Badge variant="success" style={{fontSize: "18px"}}>{this.props.StatusForm(request.status)}</Badge> </h3>
+								<b>Страна:</b> {request.country}
+									<br />
+									<b>Год поездки:</b> {request.departure_date.split("-")[0]}
+										<br />
+										<b>Дата отъезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
+											<br />
+											<b>Комментарии:</b> {request.comment || " Не указано "}
+							</Col>
+						{editbtns}
+					</Row>;
 
 			}
 		}

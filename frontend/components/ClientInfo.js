@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
-import ClienRequestInfo from "./ClientRequestInfo"
+import ClientRequestInfo from "./ClientRequestInfo"
 
 class EditClient extends Component{
 	constructor(props){
@@ -171,6 +171,7 @@ class EditClient extends Component{
 						 this.state.second_email == null ||
 						 this.state.second_phone == null
 					 )
+
 					 ?
 
 					 null
@@ -238,104 +239,6 @@ class EditClient extends Component{
 	}
 }
 
-class EditRequest extends Component{
-constructor(props){
-	super(props);
-	this.state = {
-		program_name: this.props.request.program_name,
-		country: this.props.request.country,
-		type: this.props.request.type,
-		departure_date: this.props.request.departure_date,
-	}
-}
-
-checkValue(){
-	let request = {
-		token: this.props.user.token,
-		name_of_program: this.state.program_name,
-		country: this.state.country,
-		type_of_program: this.state.type,
-		comment: this.state.comment,
-	}
-
-	this.props.submit(request);
-}
-
-componentWillUnmount(){
-	this.checkValue();
-}
-
-render(){
-	let edit =
-
-	<Col
-		md={8}
-		lg={8}
-		lx={8}
-	>
-
-		<InputGroup className="mb-3">
-			<InputGroup.Prepend>
-				<InputGroup.Text id="basic-addon1">Название:</InputGroup.Text>
-			</InputGroup.Prepend>
-			<FormControl
-				placeholder="Название программы"
-				aria-label="Username"
-				aria-describedby="basic-addon1"
-				value={this.state.program_name}
-				onChange={(e) => this.setState({program_name: e.target.value})}
-			/>
-		</InputGroup>
-
-		<InputGroup className="mb-3">
-			<InputGroup.Prepend>
-				<InputGroup.Text id="basic-addon1">Страна:</InputGroup.Text>
-			</InputGroup.Prepend>
-			<FormControl
-				placeholder="Название программы"
-				aria-label="Username"
-				aria-describedby="basic-addon1"
-				value={this.state.country}
-				onChange={(e) => this.setState({country: e.target.value})}
-			/>
-		</InputGroup>
-
-		<InputGroup className="mb-3">
-			<InputGroup.Prepend>
-				<InputGroup.Text id="basic-addon1">Тип:</InputGroup.Text>
-			</InputGroup.Prepend>
-			<FormControl
-				placeholder="Группа/Индивидуально"
-				aria-label="Username"
-				aria-describedby="basic-addon1"
-				value={this.state.type}
-				onChange={(e) => this.setState({type: e.target.value})}
-			/>
-		</InputGroup>
-
-			<InputGroup className="mb-3">
-				<InputGroup.Prepend>
-					<InputGroup.Text id="basic-addon1">Дата отлета:</InputGroup.Text>
-				</InputGroup.Prepend>
-				<FormControl
-					type="date" className="form-control" id="exampleInputDOB1"
-					placeholder="Группа/Индивидуально"
-					aria-label="Username"
-					aria-describedby="basic-addon1"
-					value={this.state.departure_date}
-					onChange={(e) => this.setState({departure_date: e.target.value})}
-				/>
-			</InputGroup>
-
-	</Col>;
-
-	return(edit)
-}
-
-}
-
-
-
 export default class ClientInfo extends Component{
   constructor(props){
     super(props);
@@ -361,9 +264,13 @@ export default class ClientInfo extends Component{
 		})
   }
 
+	componentWillUnmount(){
+		console.log("Closed")
+	}
+
 	submitClient(obj){
 		let id = this.state.dataClient.client.client_id;
-
+		console.log('1');
 		const main = this;
 		fetch('/ChangeClient',
 				{
@@ -404,8 +311,9 @@ export default class ClientInfo extends Component{
 	//Изменяет статус клиента
 	sendRequest(str){
 		let client = this.state.dataClient.client;
+		console.log('2');
 		const main = this;
-		let id = this.state.dataClient.client.client_id;
+		let id = tclient.client_id;
 
 		if(str != "Отказ" || str != "Закрыто"){
 
@@ -494,12 +402,13 @@ export default class ClientInfo extends Component{
     let sizeOfData = Object.keys(this.state.dataClient).length;
     let modalInfo = null;
     let status = null;
-
+		console.log(this.state.dataClient);
 		// Открытие окна информации клиента
 		if(sizeOfData){
 			let request = this.state.dataClient.request;
 			let client = this.state.dataClient.client;
 			let history = this.state.dataClient.history;
+
 			switch (client.client_status) {
 				case 1:
 					status = "V.I.P"
@@ -514,7 +423,7 @@ export default class ClientInfo extends Component{
 
     <Modal
 			    size="lg"
-			    show={ this.state.dataClient != {}? true: false}
+			    show={ this.state.dataClient != {} }
 			    onHide={() => this.props.closeWindow()}
 			    aria-labelledby="example-modal-sizes-title-lg"
 			    style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
@@ -591,15 +500,16 @@ export default class ClientInfo extends Component{
 
 		      <hr/>
 
-						<ClienRequestInfo status={this.state.editRequest}
-															request={request}
+						<ClientRequestInfo request={request}
 															submitRequest={this.submitRequest}
 															user={this.props.user}
 															StatusForm={this.props.StatusForm}
 															closeWindow={this.props.closeWindow}
 															updateId={this.props.updateId}
 															client={client}
-															SetDate={this.props.SetDate}/>
+															SetDate={this.props.SetDate}
+															sendRequest={this.sendRequest}/>
+
 	          <hr/>
 						<Row>
 									<Col>
