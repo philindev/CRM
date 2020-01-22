@@ -81,17 +81,17 @@ def preparation_of_client_data(client, time_is_now):
 
     current_request = current_requests_table.get(client["client_id"])
     if not current_request:
-        current_request = [None] * 8
+        current_request = [None] * 9
     else:
         current_request = list(current_request)
-        current_request[7] = time_is_now - current_request[7]
+        current_request[6] = float(time_is_now) - float(current_request[6])
     current_request = {
         "program_name": current_request[2],
         "country": current_request[3],
-        "status": current_request[4],
-        "type": current_request[5],
-        "departure_date": current_request[6],
-        "date_of_creation": current_request[7]
+        "status": current_request[8],
+        "type": current_request[4],
+        "departure_date": current_request[5],
+        "date_of_creation": current_request[6]
     }
 
     client_history = list(map(preparation_request, history_table.get_all_client_applications(client["client_id"])))
@@ -318,8 +318,9 @@ def change_current_status():
                                           1 if data["status"] == "Заявка" else
                                           2 if data["status"] == "Договор" else
                                           3 if data["status"] == "Оплата" else
-                                          4 if data["status"] == "Вылет" else
-                                          5 if data["status"] == "Консультирование" else 0)
+                                          4 if data["status"] == "Консультация" else
+                                          5 if data["status"] == "Оформление" else
+                                          6 if data["status"] == "Выезд" else 0)
     logger.info("[OK] - Application changed")
     return dumps("I hacked your system again")
 
@@ -351,8 +352,9 @@ def user_request():
                                   1 if data["status"] == "Заявка" else
                                   2 if data["status"] == "Договор" else
                                   3 if data["status"] == "Оплата" else
-                                  4 if data["status"] == "Вылет" else
-                                  5 if data["status"] == "Консультирование" else 0)
+                                  4 if data["status"] == "Консультация" else
+                                  5 if data["status"] == "Оформление" else
+                                  6 if data["status"] == "Выезд" else 0)
 
     logger.info("[OK] - Application is recorded")
     return dumps("I hacked your system")
@@ -384,11 +386,12 @@ def search():
     phone = data["phone_number"]
     line = data["searchLine"].split()
     status = data["status"].lower()
-    status = 1 if status == "заявка" else \
-        2 if status == "договор" else \
-        3 if status == "оплата" else \
-        4 if status == "вылет" else \
-        5 if status == "консультирование" else 0
+    status = 1 if status == "Заявка" else \
+        2 if status == "Договор" else \
+        3 if status == "Оплата" else \
+        4 if status == "Консультация" else \
+        5 if status == "Оформление" else \
+        6 if status == "Выезд" else 0
 
     line_f = "lambda x:"
     if len(line) > 1:
