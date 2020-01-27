@@ -1531,3 +1531,194 @@ INFO     [2020-01-27 19:42:12,352] 127.0.0.1 - - [27/Jan/2020 19:42:12] "[37mGE
 INFO     [2020-01-27 19:42:12,526] [INFO] - GetInfo
 INFO     [2020-01-27 19:42:12,528] [OK] - GetInfo
 INFO     [2020-01-27 19:42:12,528] 127.0.0.1 - - [27/Jan/2020 19:42:12] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:49:28,018] Start in 1580125768.0179803
+INFO     [2020-01-27 21:49:28,018] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 21:49:28,018] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 21:49:28,018] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 21:49:28,018] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 21:49:28,018] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 21:49:28,018] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 21:49:28,029]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 21:49:32,270] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 21:49:32,280] 127.0.0.1 - - [27/Jan/2020 21:49:32] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:49:32,544] 127.0.0.1 - - [27/Jan/2020 21:49:32] "[36mGET /frontend/style.css HTTP/1.1[0m" 304 -
+INFO     [2020-01-27 21:49:32,549] 127.0.0.1 - - [27/Jan/2020 21:49:32] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:49:38,456] [INFO] - Entry
+INFO     [2020-01-27 21:49:38,502] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 21:49:38,599] [OK] - Entry
+INFO     [2020-01-27 21:49:38,599] 127.0.0.1 - - [27/Jan/2020 21:49:38] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:49:38,641] 127.0.0.1 - - [27/Jan/2020 21:49:38] "[36mGET /frontend/image/logo.svg HTTP/1.1[0m" 304 -
+INFO     [2020-01-27 21:49:38,695] 127.0.0.1 - - [27/Jan/2020 21:49:38] "[36mGET /frontend/image/exit.png HTTP/1.1[0m" 304 -
+INFO     [2020-01-27 21:49:38,743] [INFO] - GetInfo
+INFO     [2020-01-27 21:49:38,748] [OK] - GetInfo
+INFO     [2020-01-27 21:49:38,749] 127.0.0.1 - - [27/Jan/2020 21:49:38] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:49:38,756] [INFO] - GetInfo
+INFO     [2020-01-27 21:49:38,758] [OK] - GetInfo
+INFO     [2020-01-27 21:49:38,758] 127.0.0.1 - - [27/Jan/2020 21:49:38] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:49:38,784] [INFO] - GetInfo
+INFO     [2020-01-27 21:49:38,786] [OK] - GetInfo
+INFO     [2020-01-27 21:49:38,787] 127.0.0.1 - - [27/Jan/2020 21:49:38] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:49:40,489] [INFO] - GetInfo
+INFO     [2020-01-27 21:49:40,490] [OK] - GetInfo
+INFO     [2020-01-27 21:49:40,491] 127.0.0.1 - - [27/Jan/2020 21:49:40] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:49:40,517] [INFO] - GetInfo
+INFO     [2020-01-27 21:49:40,521] [OK] - GetInfo
+INFO     [2020-01-27 21:49:40,529] 127.0.0.1 - - [27/Jan/2020 21:49:40] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+WARNING  [2020-01-27 21:51:01,741] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 21:51:01,742] 127.0.0.1 - - [27/Jan/2020 21:51:01] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:01,945] 127.0.0.1 - - [27/Jan/2020 21:51:01] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:01,946] 127.0.0.1 - - [27/Jan/2020 21:51:01] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:08,217] [INFO] - Entry
+INFO     [2020-01-27 21:51:08,263] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 21:51:08,368] [OK] - Entry
+INFO     [2020-01-27 21:51:08,369] 127.0.0.1 - - [27/Jan/2020 21:51:08] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:08,423] 127.0.0.1 - - [27/Jan/2020 21:51:08] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:08,452] 127.0.0.1 - - [27/Jan/2020 21:51:08] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:08,496] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:08,502] [OK] - GetInfo
+INFO     [2020-01-27 21:51:08,504] 127.0.0.1 - - [27/Jan/2020 21:51:08] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:08,529] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:08,532] [OK] - GetInfo
+INFO     [2020-01-27 21:51:08,547] 127.0.0.1 - - [27/Jan/2020 21:51:08] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:08,916] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:08,920] [OK] - GetInfo
+INFO     [2020-01-27 21:51:08,920] 127.0.0.1 - - [27/Jan/2020 21:51:08] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:10,250] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:10,253] [OK] - GetInfo
+INFO     [2020-01-27 21:51:10,255] 127.0.0.1 - - [27/Jan/2020 21:51:10] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:18,977] [INFO] - Delete client
+ERROR    [2020-01-27 21:51:18,980] Exception on /Delete/Client [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 454, in delete
+    clients_table.delete(data["client_id"])
+  File "/root/Рабочий стол/CRM/database.py", line 211, in delete
+    WHERE id = ?''', client_id)
+ValueError: parameters are of unsupported type
+INFO     [2020-01-27 21:51:18,985] 127.0.0.1 - - [27/Jan/2020 21:51:18] "[1m[35mPOST /Delete/Client HTTP/1.1[0m" 500 -
+INFO     [2020-01-27 21:51:23,177] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:23,178] [OK] - GetInfo
+INFO     [2020-01-27 21:51:23,179] 127.0.0.1 - - [27/Jan/2020 21:51:23] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:27,200] 127.0.0.1 - - [27/Jan/2020 21:51:27] "[33mGET /frontend/files/text.txt HTTP/1.1[0m" 404 -
+INFO     [2020-01-27 21:51:29,300] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:29,301] [OK] - GetInfo
+INFO     [2020-01-27 21:51:29,302] 127.0.0.1 - - [27/Jan/2020 21:51:29] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+ERROR    [2020-01-27 21:51:31,603] Exception on /ChangeCurrentStatus [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 309, in change_current_status
+    status=6, money=data["data"]["money"])
+KeyError: 'money'
+INFO     [2020-01-27 21:51:31,604] 127.0.0.1 - - [27/Jan/2020 21:51:31] "[1m[35mPOST /ChangeCurrentStatus HTTP/1.1[0m" 500 -
+ERROR    [2020-01-27 21:51:37,491] Exception on /ChangeCurrentStatus [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 313, in change_current_status
+    history_table.insert(current_request[1], current_request[2], current_request[3], current_request[4],
+TypeError: 'NoneType' object is not subscriptable
+INFO     [2020-01-27 21:51:37,493] 127.0.0.1 - - [27/Jan/2020 21:51:37] "[1m[35mPOST /ChangeCurrentStatus HTTP/1.1[0m" 500 -
+INFO     [2020-01-27 21:51:42,033] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:42,035] [OK] - GetInfo
+INFO     [2020-01-27 21:51:42,035] 127.0.0.1 - - [27/Jan/2020 21:51:42] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:48,730] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:48,734] [OK] - GetInfo
+INFO     [2020-01-27 21:51:48,736] 127.0.0.1 - - [27/Jan/2020 21:51:48] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:54,593] [INFO] - Delete client
+ERROR    [2020-01-27 21:51:54,597] Exception on /Delete/Client [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 454, in delete
+    clients_table.delete(data["client_id"])
+  File "/root/Рабочий стол/CRM/database.py", line 211, in delete
+    WHERE id = ?''', client_id)
+ValueError: parameters are of unsupported type
+INFO     [2020-01-27 21:51:54,599] 127.0.0.1 - - [27/Jan/2020 21:51:54] "[1m[35mPOST /Delete/Client HTTP/1.1[0m" 500 -
+INFO     [2020-01-27 21:51:55,987] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:55,988] [OK] - GetInfo
+INFO     [2020-01-27 21:51:55,988] 127.0.0.1 - - [27/Jan/2020 21:51:55] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:51:59,883] [INFO] - GetInfo
+INFO     [2020-01-27 21:51:59,884] [OK] - GetInfo
+INFO     [2020-01-27 21:51:59,884] 127.0.0.1 - - [27/Jan/2020 21:51:59] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:52:01,273] [INFO] - GetInfo
+INFO     [2020-01-27 21:52:01,274] [OK] - GetInfo
+INFO     [2020-01-27 21:52:01,275] 127.0.0.1 - - [27/Jan/2020 21:52:01] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:52:03,881] [INFO] - GetInfo
+INFO     [2020-01-27 21:52:03,882] [OK] - GetInfo
+INFO     [2020-01-27 21:52:03,882] 127.0.0.1 - - [27/Jan/2020 21:52:03] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:52:07,169] [INFO] - Delete client
+ERROR    [2020-01-27 21:52:07,171] Exception on /Delete/Client [POST]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/lib/python3/dist-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 454, in delete
+    clients_table.delete(data["client_id"])
+  File "/root/Рабочий стол/CRM/database.py", line 211, in delete
+    WHERE id = ?''', client_id)
+ValueError: parameters are of unsupported type
+INFO     [2020-01-27 21:52:07,174] 127.0.0.1 - - [27/Jan/2020 21:52:07] "[1m[35mPOST /Delete/Client HTTP/1.1[0m" 500 -
+INFO     [2020-01-27 21:52:08,933] [INFO] - GetInfo
+INFO     [2020-01-27 21:52:08,934] [OK] - GetInfo
+INFO     [2020-01-27 21:52:08,935] 127.0.0.1 - - [27/Jan/2020 21:52:08] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:52:11,373] [INFO] - GetInfo
+INFO     [2020-01-27 21:52:11,374] [OK] - GetInfo
+INFO     [2020-01-27 21:52:11,375] 127.0.0.1 - - [27/Jan/2020 21:52:11] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:52:13,553] [INFO] - GetInfo
+INFO     [2020-01-27 21:52:13,553] [OK] - GetInfo
+INFO     [2020-01-27 21:52:13,554] 127.0.0.1 - - [27/Jan/2020 21:52:13] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 21:52:13,782] [INFO] - GetInfo
+INFO     [2020-01-27 21:52:13,783] [OK] - GetInfo
+INFO     [2020-01-27 21:52:13,783] 127.0.0.1 - - [27/Jan/2020 21:52:13] "[37mGET /GetInfo HTTP/1.1[0m" 200 -

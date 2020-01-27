@@ -10,17 +10,22 @@ export default class ClientInfo extends Component{
   constructor(props){
     super(props);
     this.state = {
-      dataClient: this.props.dataClient,
+			dataClient: this.props.dataClient,
       editClient: false,
 			editRequest: false,
 			loading: false,
 			ChangeClient: false,
 			updateData: this.props.updateData,
+			window_status: 0,
 
+			money: 0,
+			brief: '',
+			cause: ''
     }
 		this.submitClient = this.submitClient.bind(this);
 		this.submitRequest = this.submitRequest.bind(this);
 		this.sendRequest = this.sendRequest.bind(this);
+		this.changeWindow = this.changeWindow.bind(this);
   }
 
 
@@ -30,6 +35,10 @@ export default class ClientInfo extends Component{
 			updateData: nextProps.updateData,
 		})
   }
+
+	changeWindow(num){
+		this.setState({window_status: num})
+	}
 
 	submitClient(obj){
 		const main = this;
@@ -67,6 +76,10 @@ export default class ClientInfo extends Component{
 						});
 	})
 }
+
+	componentWillUnmount(){
+		this.state.updateData();
+	}
 
 	//Изменяет статус клиента
 	sendRequest(str){
@@ -112,7 +125,59 @@ export default class ClientInfo extends Component{
 							else{ console.log("Something goes wrong!") }
 							});
 					})
-			}}
+			}
+			else if (str == "Закрыто" && this.props.user.user_status == 'Admin') {
+				let sure = confirm("Вы уверены, что хотите закрыть заявку?");
+				if(sure){
+					this.props.closeWindow();
+					this.changeWindow(1);
+				}
+			}
+			else if (str == "Отказ") {
+				let sure = confirm("Вы уверены, что хотите написать \'Отказ\'?");
+				if(sure){
+					this.props.closeWindow();
+					this.changeWindow(2);
+				}
+			}
+	}
+
+	deleteInfo(parametr: String, id: Number){
+		let booly = confirm("Вы уверенны, что хотите удалить?")
+		if (parametr === 'Client' && booly){
+			fetch('/Delete/Client',
+					{
+						method: 'post',
+						headers: {
+							'Content-Type':'application/json',
+							"Access-Control-Allow-Origin": "*",
+							"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						body: JSON.stringify({
+							token: this.props.user.token,
+							client_id: id,
+						}),
+					})
+					.then(
+					function(response) {
+						if (response.status !== 200) {
+							console.log('Looks like there was a problem. Status Code: ' + response.status);
+							if(response.status === 500){
+									console.log("Status: 500")
+							}
+							return;
+						}
+
+						// Examine the text in the response
+						response.json()
+						.then(function(data) {
+							if(data != false){
+									this.state.updateData();
+									this.props.closeWindow();
+							}
+		})})
+		}
+	}
 
 
 	submitRequest(obj){
@@ -175,69 +240,236 @@ export default class ClientInfo extends Component{
 					status = "Новый"
 			}
 
-    modalInfo =
-
-    <Modal
-			    size="lg"
-			    show={ this.state.dataClient != {} }
-			    onHide={() => this.props.closeWindow()}
-			    aria-labelledby="example-modal-sizes-title-lg"
-			    style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
-	    <Modal.Header closeButton>
-	    			<Modal.Title><span className="gosha" style={{fontSize: "30px"}}> {client.client_name} </span><Badge variant="danger">{status}</Badge></Modal.Title>
-	    </Modal.Header>
+    let commonWindow =
     	<Modal.Body>
 
-		    		<ClientPersonalInfo SetDate={this.props.SetDate}
-												client={client}
-												submitClient={this.submitClient}
-												user={this.props.user}/>
+	    		<ClientPersonalInfo SetDate={this.props.SetDate}
+											client={client}
+											submitClient={this.submitClient}
+											user={this.props.user}/>
 
 		      <hr/>
 
-						<ClientRequestInfo request={request}
-															submitRequest={this.submitRequest}
-															user={this.props.user}
-															StatusForm={this.props.StatusForm}
-															closeWindow={this.props.closeWindow}
-															updateId={this.props.updateId}
-															client={client}
-															SetDate={this.props.SetDate}
-															sendRequest={this.sendRequest}/>
+					<ClientRequestInfo request={request}
+														submitRequest={this.submitRequest}
+														user={this.props.user}
+														StatusForm={this.props.StatusForm}
+														closeWindow={this.props.closeWindow}
+														updateId={this.props.updateId}
+														client={client}
+														SetDate={this.props.SetDate}
+														sendRequest={this.sendRequest}/>
 
-	          <hr/>
-						<Row>
-									<Col>
-				          <h5>	<b>История поездок:</b>	</h5>
-				          <br />
-						          {
-						            (!Object.keys(history).length) ?
+          <hr/>
+					<Row>
+								<Col>
+			          <h5>	<b>История поездок:</b>	</h5>
+			          <br />
+					          {
+					            (!Object.keys(history).length) ?
 
-												<span style={{paddingLeft: "40%"}}> Пусто </span>
+											<span style={{paddingLeft: "40%"}}> Пусто </span>
 
-												:
+											:
 
-						            history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
-						            <th>{data.status}</th>
-						            <td>{data.program_name}</td>
-						            <td>{data.country}</td>
-						            <td>{data.year_of_fly}</td>
-						            <td>{data.type}</td>
-						            </tr>)
+					            history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
+					            <th>{data.status}</th>
+					            <td>{data.program_name}</td>
+					            <td>{data.country}</td>
+					            <td>{data.year_of_fly}</td>
+					            <td>{data.type}</td>
+					            </tr>)
 
-						          }
-									</Col>
-						</Row>
+					          }
+								</Col>
+					</Row>
 
 
-        </Modal.Body>
-      </Modal>;
+      </Modal.Body>;
+
+	let window_render = null;
+	let window_footer = null;
+
+	switch (this.state.window_status) {
+
+		case 1:
+
+			window_render =
+			<Modal.Body>
+				<h4>{request.program_name} - {request.country}</h4>
+				< br />
+				<InputGroup className="mb-3" style={{fontSize: "14px"}}>
+					<InputGroup.Prepend>
+						<InputGroup.Text>Заработано:</InputGroup.Text>
+					</InputGroup.Prepend>
+			    <FormControl onChange={(e) => this.setState({money: e.target.value})}/>
+				</InputGroup>
+
+				<InputGroup style={{fontSize: "14px"}}>
+			    <InputGroup.Prepend>
+			      <InputGroup.Text>Заметки</InputGroup.Text>
+			    </InputGroup.Prepend>
+			    <FormControl as="textarea" aria-label="With textarea" onChange={(e) => this.setState({brief: e.target.value})}/>
+			  </InputGroup>
+
+			</Modal.Body>;
+
+			window_footer =
+					<Modal.Footer>
+						<Button onClick={() => {
+							fetch('/ChangeCurrentStatus',
+									{
+										method: 'post',
+										headers: {
+											'Content-Type':'application/json',
+											"Access-Control-Allow-Origin": "*",
+											"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+										},
+										body: JSON.stringify({
+											data: {
+												money: this.state.money,
+												brief: this.state.brief,
+												id: client.client_id,
+											},
+											token: this.props.user.token,
+											status: "Закрыто"
+										}),
+									})
+									.then(
+									function(response) {
+										if (response.status !== 200) {
+											console.log('Looks like there was a problem. Status Code: ' + response.status);
+											if(response.status === 500){
+													console.log("Status: 500")
+											}
+											return;
+										}
+
+										// Examine the text in the response
+										response.json()
+										.then(function(data) {
+											if(data != false){
+													console.log(data)
+													this.state.updateData();
+													this.setState(window_status: 0);
+													this.props.closeWindow();
+											}
+						})})}}
+										variant="outline-warning"
+										centered
+						>Сохранить</Button>
+					</Modal.Footer>;
+			break;
+
+		case 2:
+
+
+							window_render =
+							<Modal.Body>
+								<h4>{request.program_name} - {request.country}</h4>
+								< br />
+								<InputGroup className="mb-3" style={{fontSize: "14px"}}>
+									<InputGroup.Prepend>
+										<InputGroup.Text>Заголовок:</InputGroup.Text>
+									</InputGroup.Prepend>
+							    <FormControl onChange={(e) => this.setState({cause: e.target.value})}/>
+								</InputGroup>
+
+								<InputGroup style={{fontSize: "14px"}}>
+							    <InputGroup.Prepend>
+							      <InputGroup.Text>Причина:</InputGroup.Text>
+							    </InputGroup.Prepend>
+							    <FormControl as="textarea" aria-label="With textarea" onChange={(e) => this.setState({brief: e.target.value})}/>
+							  </InputGroup>
+
+							</Modal.Body>
+
+							window_footer =
+									<Modal.Footer>
+										<Button onClick={() => {
+											fetch('/ChangeCurrentStatus',
+													{
+														method: 'post',
+														headers: {
+															'Content-Type':'application/json',
+															"Access-Control-Allow-Origin": "*",
+															"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+														},
+														body: JSON.stringify({
+															data: {
+																cause: this.state.money,
+																brief: this.state.brief,
+																id: client.client_id,
+															},
+															token: this.props.user.token,
+															status: "Отказ"
+														}),
+													})
+													.then(
+													function(response) {
+														if (response.status !== 200) {
+															console.log('Looks like there was a problem. Status Code: ' + response.status);
+															if(response.status === 500){
+																	console.log("Status: 500")
+															}
+															return;
+														}
+
+														// Examine the text in the response
+														response.json()
+														.then(function(data) {
+															if(data != false){
+																	console.log(data)
+																	this.state.updateData();
+																	this.setState(window_status: 0);
+																	this.props.closeWindow();
+															}
+										})})}}
+														variant="outline-warning"
+														centered
+										>Сохранить</Button>
+									</Modal.Footer>;
+
+			break;
+
+			default:
+
+			window_render = commonWindow
+			window_footer = this.props.user.user_status != "Admin" ? null :
+					<Modal.Footer id="specialRed">
+						<DropdownButton
+						alignRight
+						title="Дополнительные опции"
+						variant="#fff"
+						>
+								<Dropdown.Item onClick={() => this.deleteInfo('Client', client.client_id)}>Удалить клиента</Dropdown.Item>
+								<Dropdown.Divider />
+
+						</DropdownButton>
+					</Modal.Footer>;
+
 		}
-		else {
+
+
+		modalInfo =
+			    <Modal
+						    size="lg"
+						    show={ this.state.dataClient != {}? true: false}
+						    onHide={() => this.props.closeWindow()}
+						    aria-labelledby="example-modal-sizes-title-lg"
+						    style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
+							    <Modal.Header closeButton>
+							    			<Modal.Title><span className="gosha" style={{fontSize: "30px"}}> {client.client_name} </span><Badge variant="danger">{status}</Badge></Modal.Title>
+							    </Modal.Header>
+						    	{window_render}
+									{window_footer}
+			    </Modal>;
+		} else {
 			modalInfo = null
 		}
 
 
-    return(modalInfo)
+		return(modalInfo)
+
  }
 }
