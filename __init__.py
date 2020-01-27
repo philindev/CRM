@@ -4,6 +4,7 @@ from pandas import DataFrame, ExcelWriter
 from database import *
 from logging import basicConfig, DEBUG, getLogger
 from logging.handlers import RotatingFileHandler
+from datetime import datetime
 
 
 def time_calculation(obj: dict, time_is_now):
@@ -280,8 +281,6 @@ def change_current():
 @app.route("/ChangeCurrentStatus", methods=["POST"])
 def change_current_status():
     global is_closed_application_file, is_refused_application_file
-    is_closed_application_file = False
-    is_refused_application_file = False
 
     data = request.json
     if list(data.keys()) != ["token", "status", "data"]:
@@ -307,12 +306,14 @@ def change_current_status():
         history_table.insert(current_request[1], current_request[2], current_request[3], current_request[4],
                              current_request[5], current_request[6], current_request[7],
                              status=6, money=data["data"]["money"])
+        is_closed_application_file = False
 
     elif data["status"] == "Отказ":
         current_request = current_requests_table.pop(client_id)
         history_table.insert(current_request[1], current_request[2], current_request[3], current_request[4],
                              current_request[5], current_request[6], current_request[7],
                              status=7, cause=data["data"]["cause"], brief=data["data"]["brief"])
+        is_refused_application_file = False
     else:
         current_requests_table.set_status(client_id,
                                           1 if data["status"] == "Заявка" else
@@ -327,12 +328,13 @@ def change_current_status():
 
 @app.route("/UserRequest", methods=["POST"])
 def user_request():
+    global is_current_application_file
     logger.info("[INFO] - UserRequest")
 
     data = request.json
 
     if list(data.keys()) != ["name_of_program", "status", "country",
-                        "date_of_will_fly", "comment", "type_of_program", "id"]:
+                             "date_of_will_fly", "comment", "type_of_program", "id"]:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
@@ -355,7 +357,7 @@ def user_request():
                                   4 if data["status"] == "Консультация" else
                                   5 if data["status"] == "Оформление" else
                                   6 if data["status"] == "Выезд" else 0)
-
+    is_current_application_file = False
     logger.info("[OK] - Application is recorded")
     return dumps("I hacked your system")
 
@@ -388,10 +390,10 @@ def search():
     status = data["status"].lower()
     status = 1 if status == "Заявка" else \
         2 if status == "Договор" else \
-        3 if status == "Оплата" else \
-        4 if status == "Консультация" else \
-        5 if status == "Оформление" else \
-        6 if status == "Выезд" else 0
+            3 if status == "Оплата" else \
+                4 if status == "Консультация" else \
+                    5 if status == "Оформление" else \
+                        6 if status == "Выезд" else 0
 
     line_f = "lambda x:"
     if len(line) > 1:
@@ -456,22 +458,21 @@ def delete():
     return dumps("sudo rm -rf /client/")
 
 
-@app.route("/Download/closed", methods=["POST"])
-def download_closed():
+@app.route("/Download/finance/<path:token>", methods=["GET"])
+def download_closed(token):
     global is_closed_application_file
-
-    data = request.json
-    if list(data.keys()) != ["token"]:
+    if len(token) != 16:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
-    check = admins_table.check_access(data["token"])
+    check = admins_table.check_access(token)
 
     if check != 1:
         if check == -1:
             logger.warning("[WARNING] - Token failed verification")
         else:
             logger.info("[FAILED] - Token does not have access")
+
         return dumps(None)
 
     if not is_closed_application_file:
@@ -512,16 +513,16 @@ def download_closed():
     # return send_file("excel/closed_applications.xlsx")
 
 
-@app.route("/Download/Refused", methods=["GET"])
-def download_refused():
+@app.route("/Download/closed/<path:token>", methods=["GET"])
+def download_refused(token):
     global is_refused_application_file
 
-    data = request.json
-    if list(data.keys()) != ["token"]:
+    # data = request.json
+    if len(token) != 16:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
-    check = admins_table.check_access(data["token"])
+    check = admins_table.check_access(token)
 
     if check != 1:
         if check == -1:
@@ -569,6 +570,69 @@ def download_refused():
     logger.info("[OK] - Refused file sent")
     return send_from_directory("./excel", "refused_applications.xlsx")
 
+
+@app.route("/Download/general/<path:token>", methods=["GET"])
+def download_general(token):
+    global is_current_application_file
+    print(token)
+    print(len(token))
+    # data = request.json
+    if len(token) != 16:
+        logger.warning("[WARNING] - Invalid request data")
+        return dumps(None)
+
+    check = admins_table.check_access(token)
+
+    if check != 1:
+        if check == -1:
+            logger.warning("[WARNING] - Token failed verification")
+        else:
+            logger.info("[FAILED] - Token does not have access")
+        return dumps(None)
+
+    if not is_current_application_file:
+        data_for_excel = {
+            "application_id": [],
+            "client_id": [],
+            "client_name": [],
+            "date_of_birth": [],
+            "phone_name": [],
+            "email": [],
+            "name_of_program": [],
+            "country": [],
+            "status": [],
+            "type": [],
+            "departure_date": [],
+            "date_of_creation": [],
+            "user_commit": [],
+        }
+        currents = current_requests_table.get_all()
+        for current in currents:
+            user = clients_table.get(current[1])
+            data_for_excel["application_id"].append(current[0])
+            data_for_excel["client_id"].append(current[1])
+            data_for_excel["client_name"].append(user[1])
+            data_for_excel["date_of_birth"].append(user[2])
+            data_for_excel["phone_name"].append(user[3])
+            data_for_excel["email"].append(user[4])
+            data_for_excel["name_of_program"].append(current[2])
+            data_for_excel["country"].append(current[3])
+            data_for_excel["status"].append(current[4])
+            data_for_excel["type"].append(current[5])
+            data_for_excel["departure_date"].append(current[6])
+            data_for_excel["date_of_creation"].append(datetime.fromtimestamp(current[7]))
+            data_for_excel["user_commit"].append(current[8])
+
+        df = DataFrame(data_for_excel)
+        writer = ExcelWriter("excel/current_applications.xlsx")
+        df.to_excel(writer, "Current", index=False)
+        writer.save()
+        is_current_application_file = True
+
+    logger.info("[OK] - Current file sent")
+    return send_from_directory("./excel", "current_applications.xlsx")
+
+
 # TODO: сделать удаление токенов
 @app.route("/Exit", methods=["POST"])
 def end():
@@ -581,6 +645,7 @@ logger = getLogger('init')
 
 is_closed_application_file = False
 is_refused_application_file = False
+is_current_application_file = False
 total_error = 0
 # start time
 logger.info(f"Start in {time()}")
