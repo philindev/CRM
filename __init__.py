@@ -319,9 +319,8 @@ def change_current_status():
                                           1 if data["status"] == "Заявка" else
                                           2 if data["status"] == "Договор" else
                                           3 if data["status"] == "Оплата" else
-                                          4 if data["status"] == "Консультация" else
                                           5 if data["status"] == "Оформление" else
-                                          6 if data["status"] == "Выезд" else 0)
+                                          4 if data["status"] == "Выезд" else 0)
     logger.info("[OK] - Application changed")
     return dumps("I hacked your system again")
 
