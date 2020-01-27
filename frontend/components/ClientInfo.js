@@ -26,6 +26,7 @@ export default class ClientInfo extends Component{
 		this.submitRequest = this.submitRequest.bind(this);
 		this.sendRequest = this.sendRequest.bind(this);
 		this.changeWindow = this.changeWindow.bind(this);
+		this.deleteInfo = this.deleteInfo.bind(this);
   }
 
 
@@ -144,6 +145,7 @@ export default class ClientInfo extends Component{
 
 	deleteInfo(parametr: String, id: Number){
 		let booly = confirm("Вы уверенны, что хотите удалить?")
+		const main = this;
 		if (parametr === 'Client' && booly){
 			fetch('/Delete/Client',
 					{
@@ -171,9 +173,9 @@ export default class ClientInfo extends Component{
 						// Examine the text in the response
 						response.json()
 						.then(function(data) {
-							if(data != false){
-									this.state.updateData();
-									this.props.closeWindow();
+							if(data != false || data != null){
+									main.state.updateData();
+									main.props.closeWindow();
 							}
 		})})
 		}

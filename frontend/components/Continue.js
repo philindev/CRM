@@ -142,7 +142,12 @@ export default class Continue extends Component{
                   <Dropdown.Menu>
                     <Dropdown.Item onClick={() => this.setState({suggestion: 'Агент'})}>Агент</Dropdown.Item>
                     <Dropdown.Item onClick={() => this.setState({suggestion: 'Соц.сети'})}>Соц.сети</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.setState({suggestion: 'Партнерство'})}>Партнерство</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.setState({suggestion: 'Выставка'})}>Выставка</Dropdown.Item>
                     <Dropdown.Item onClick={() => this.setState({suggestion: 'Повторный клиент'})}>Повторный клиент</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.setState({suggestion: 'Рекомендации'})}>Рекомендации</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.setState({suggestion: 'Реклама'})}>Реклама</Dropdown.Item>
+                    <Dropdown.Item onClick={() => this.setState({suggestion: 'Прочее'})}>Прочее</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Form.Group>

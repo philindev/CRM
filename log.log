@@ -1,0 +1,479 @@
+INFO     [2020-01-27 22:52:44,916] Start in 1580129564.9166489
+INFO     [2020-01-27 22:52:44,939] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 22:52:44,940] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 22:52:44,940] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 22:52:44,940] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 22:52:44,941] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 22:52:44,941] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 22:52:45,631]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 22:52:45,709] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 22:52:45,732] 127.0.0.1 - - [27/Jan/2020 22:52:45] "GET / HTTP/1.1" 200 -
+INFO     [2020-01-27 22:52:45,803] 127.0.0.1 - - [27/Jan/2020 22:52:45] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-01-27 22:52:45,862] 127.0.0.1 - - [27/Jan/2020 22:52:45] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-01-27 22:52:55,831] [INFO] - Entry
+INFO     [2020-01-27 22:52:55,885] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 22:52:55,892] [OK] - Entry
+INFO     [2020-01-27 22:52:55,893] 127.0.0.1 - - [27/Jan/2020 22:52:55] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 22:52:55,918] 127.0.0.1 - - [27/Jan/2020 22:52:55] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-01-27 22:52:55,984] 127.0.0.1 - - [27/Jan/2020 22:52:55] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-01-27 22:52:56,045] [INFO] - GetInfo
+INFO     [2020-01-27 22:52:56,048] [OK] - GetInfo
+INFO     [2020-01-27 22:52:56,049] 127.0.0.1 - - [27/Jan/2020 22:52:56] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:52:56,079] [INFO] - GetInfo
+INFO     [2020-01-27 22:52:56,082] [OK] - GetInfo
+INFO     [2020-01-27 22:52:56,082] 127.0.0.1 - - [27/Jan/2020 22:52:56] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:52:56,099] [INFO] - GetInfo
+INFO     [2020-01-27 22:52:56,102] [OK] - GetInfo
+INFO     [2020-01-27 22:52:56,103] 127.0.0.1 - - [27/Jan/2020 22:52:56] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:52:59,039] [INFO] - GetInfo
+INFO     [2020-01-27 22:52:59,041] [OK] - GetInfo
+INFO     [2020-01-27 22:52:59,042] 127.0.0.1 - - [27/Jan/2020 22:52:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:02,144] [OK] - Application changed
+INFO     [2020-01-27 22:53:02,144] 127.0.0.1 - - [27/Jan/2020 22:53:02] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:02,191] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:02,191] [OK] - GetInfo
+INFO     [2020-01-27 22:53:02,191] 127.0.0.1 - - [27/Jan/2020 22:53:02] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:02,245] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:02,245] [OK] - GetInfo
+INFO     [2020-01-27 22:53:02,245] 127.0.0.1 - - [27/Jan/2020 22:53:02] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:04,986] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:04,988] [OK] - GetInfo
+INFO     [2020-01-27 22:53:04,989] 127.0.0.1 - - [27/Jan/2020 22:53:04] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:07,617] [OK] - Application changed
+INFO     [2020-01-27 22:53:07,617] 127.0.0.1 - - [27/Jan/2020 22:53:07] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:07,663] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:07,665] [OK] - GetInfo
+INFO     [2020-01-27 22:53:07,666] 127.0.0.1 - - [27/Jan/2020 22:53:07] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:07,686] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:07,689] [OK] - GetInfo
+INFO     [2020-01-27 22:53:07,690] 127.0.0.1 - - [27/Jan/2020 22:53:07] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:08,596] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:08,596] [OK] - GetInfo
+INFO     [2020-01-27 22:53:08,596] 127.0.0.1 - - [27/Jan/2020 22:53:08] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:10,400] [OK] - Application changed
+INFO     [2020-01-27 22:53:10,400] 127.0.0.1 - - [27/Jan/2020 22:53:10] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:10,416] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:10,416] [OK] - GetInfo
+INFO     [2020-01-27 22:53:10,416] 127.0.0.1 - - [27/Jan/2020 22:53:10] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:10,432] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:10,432] [OK] - GetInfo
+INFO     [2020-01-27 22:53:10,432] 127.0.0.1 - - [27/Jan/2020 22:53:10] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:11,318] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:11,318] [OK] - GetInfo
+INFO     [2020-01-27 22:53:11,318] 127.0.0.1 - - [27/Jan/2020 22:53:11] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:14,355] [OK] - Application changed
+INFO     [2020-01-27 22:53:14,356] 127.0.0.1 - - [27/Jan/2020 22:53:14] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:14,394] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:14,394] [OK] - GetInfo
+INFO     [2020-01-27 22:53:14,394] 127.0.0.1 - - [27/Jan/2020 22:53:14] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:14,410] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:14,426] [OK] - GetInfo
+INFO     [2020-01-27 22:53:14,426] 127.0.0.1 - - [27/Jan/2020 22:53:14] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:15,197] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:15,197] [OK] - GetInfo
+INFO     [2020-01-27 22:53:15,197] 127.0.0.1 - - [27/Jan/2020 22:53:15] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:22,212] [OK] - Application changed
+INFO     [2020-01-27 22:53:22,212] 127.0.0.1 - - [27/Jan/2020 22:53:22] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:22,263] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:22,264] [OK] - GetInfo
+INFO     [2020-01-27 22:53:22,265] 127.0.0.1 - - [27/Jan/2020 22:53:22] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:22,270] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:22,270] [OK] - GetInfo
+INFO     [2020-01-27 22:53:22,270] 127.0.0.1 - - [27/Jan/2020 22:53:22] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:23,028] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:23,031] [OK] - GetInfo
+INFO     [2020-01-27 22:53:23,032] 127.0.0.1 - - [27/Jan/2020 22:53:23] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:25,035] [OK] - Application changed
+INFO     [2020-01-27 22:53:25,035] 127.0.0.1 - - [27/Jan/2020 22:53:25] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:25,080] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:25,080] [OK] - GetInfo
+INFO     [2020-01-27 22:53:25,080] 127.0.0.1 - - [27/Jan/2020 22:53:25] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:25,094] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:25,094] [OK] - GetInfo
+INFO     [2020-01-27 22:53:25,094] 127.0.0.1 - - [27/Jan/2020 22:53:25] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:25,927] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:25,929] [OK] - GetInfo
+INFO     [2020-01-27 22:53:25,930] 127.0.0.1 - - [27/Jan/2020 22:53:25] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:27,490] [OK] - Application changed
+INFO     [2020-01-27 22:53:27,490] 127.0.0.1 - - [27/Jan/2020 22:53:27] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:27,538] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:27,538] [OK] - GetInfo
+INFO     [2020-01-27 22:53:27,538] 127.0.0.1 - - [27/Jan/2020 22:53:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:27,553] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:27,553] [OK] - GetInfo
+INFO     [2020-01-27 22:53:27,553] 127.0.0.1 - - [27/Jan/2020 22:53:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:28,274] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:28,274] [OK] - GetInfo
+INFO     [2020-01-27 22:53:28,274] 127.0.0.1 - - [27/Jan/2020 22:53:28] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:31,829] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:31,831] [OK] - GetInfo
+INFO     [2020-01-27 22:53:31,832] 127.0.0.1 - - [27/Jan/2020 22:53:31] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:53:36,207] [INFO] - GetInfo
+INFO     [2020-01-27 22:53:36,207] [OK] - GetInfo
+INFO     [2020-01-27 22:53:36,207] 127.0.0.1 - - [27/Jan/2020 22:53:36] "GET /GetInfo HTTP/1.1" 200 -
+ERROR    [2020-01-27 22:53:37,881] Exception on /ChangeCurrentStatus [POST]
+Traceback (most recent call last):
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 308, in change_current_status
+    status=6, money=data["data"]["money"])
+KeyError: 'money'
+INFO     [2020-01-27 22:53:37,946] 127.0.0.1 - - [27/Jan/2020 22:53:37] "POST /ChangeCurrentStatus HTTP/1.1" 500 -
+ERROR    [2020-01-27 22:53:48,290] Exception on /ChangeCurrentStatus [POST]
+Traceback (most recent call last):
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 306, in change_current_status
+    history_table.insert(current_request[1], current_request[2], current_request[3], current_request[4],
+TypeError: 'NoneType' object is not subscriptable
+INFO     [2020-01-27 22:53:48,290] 127.0.0.1 - - [27/Jan/2020 22:53:48] "POST /ChangeCurrentStatus HTTP/1.1" 500 -
+INFO     [2020-01-27 22:55:39,867] [INFO] - Delete client
+INFO     [2020-01-27 22:55:39,875] [OK] - Client deleted
+INFO     [2020-01-27 22:55:39,875] 127.0.0.1 - - [27/Jan/2020 22:55:39] "POST /Delete/Client HTTP/1.1" 200 -
+INFO     [2020-01-27 22:55:41,893] [INFO] - GetInfo
+INFO     [2020-01-27 22:55:41,895] [OK] - GetInfo
+INFO     [2020-01-27 22:55:41,895] 127.0.0.1 - - [27/Jan/2020 22:55:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:55:43,357] [INFO] - GetInfo
+INFO     [2020-01-27 22:55:43,357] [OK] - GetInfo
+INFO     [2020-01-27 22:55:43,357] 127.0.0.1 - - [27/Jan/2020 22:55:43] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:55:46,097] [INFO] - Delete client
+INFO     [2020-01-27 22:55:46,111] [OK] - Client deleted
+INFO     [2020-01-27 22:55:46,111] 127.0.0.1 - - [27/Jan/2020 22:55:46] "POST /Delete/Client HTTP/1.1" 200 -
+INFO     [2020-01-27 22:55:47,066] [INFO] - GetInfo
+INFO     [2020-01-27 22:55:47,066] [OK] - GetInfo
+INFO     [2020-01-27 22:55:47,066] 127.0.0.1 - - [27/Jan/2020 22:55:47] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:29,647] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:29,655] [OK] - GetInfo
+INFO     [2020-01-27 22:58:29,657] 127.0.0.1 - - [27/Jan/2020 22:58:29] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:32,960] [OK] - Application changed
+INFO     [2020-01-27 22:58:32,960] 127.0.0.1 - - [27/Jan/2020 22:58:32] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:33,081] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:33,083] [OK] - GetInfo
+INFO     [2020-01-27 22:58:33,083] 127.0.0.1 - - [27/Jan/2020 22:58:33] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:33,107] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:33,111] [OK] - GetInfo
+INFO     [2020-01-27 22:58:33,111] 127.0.0.1 - - [27/Jan/2020 22:58:33] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:43,937] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:43,938] [OK] - GetInfo
+INFO     [2020-01-27 22:58:43,939] 127.0.0.1 - - [27/Jan/2020 22:58:43] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:50,048] [OK] - Application changed
+INFO     [2020-01-27 22:58:50,049] 127.0.0.1 - - [27/Jan/2020 22:58:50] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:50,178] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:50,184] [OK] - GetInfo
+INFO     [2020-01-27 22:58:50,184] 127.0.0.1 - - [27/Jan/2020 22:58:50] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:50,241] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:50,245] [OK] - GetInfo
+INFO     [2020-01-27 22:58:50,247] 127.0.0.1 - - [27/Jan/2020 22:58:50] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:50,864] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:50,877] [OK] - GetInfo
+INFO     [2020-01-27 22:58:50,877] 127.0.0.1 - - [27/Jan/2020 22:58:50] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:53,023] [OK] - Application changed
+INFO     [2020-01-27 22:58:53,024] 127.0.0.1 - - [27/Jan/2020 22:58:53] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:53,074] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:53,076] [OK] - GetInfo
+INFO     [2020-01-27 22:58:53,077] 127.0.0.1 - - [27/Jan/2020 22:58:53] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:53,153] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:53,154] [OK] - GetInfo
+INFO     [2020-01-27 22:58:53,155] 127.0.0.1 - - [27/Jan/2020 22:58:53] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:58:53,904] [INFO] - GetInfo
+INFO     [2020-01-27 22:58:53,906] [OK] - GetInfo
+INFO     [2020-01-27 22:58:53,907] 127.0.0.1 - - [27/Jan/2020 22:58:53] "GET /GetInfo HTTP/1.1" 200 -
+ERROR    [2020-01-27 22:59:03,098] Exception on /ChangeCurrentStatus [POST]
+Traceback (most recent call last):
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 308, in change_current_status
+    status=6, money=data["data"]["money"])
+KeyError: 'money'
+INFO     [2020-01-27 22:59:03,098] 127.0.0.1 - - [27/Jan/2020 22:59:03] "POST /ChangeCurrentStatus HTTP/1.1" 500 -
+INFO     [2020-01-27 22:59:49,043] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:49,048] [OK] - GetInfo
+INFO     [2020-01-27 22:59:49,052] 127.0.0.1 - - [27/Jan/2020 22:59:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:49,075] [INFO] - ChangeClient
+INFO     [2020-01-27 22:59:49,075] 127.0.0.1 - - [27/Jan/2020 22:59:49] "POST /ChangeClient HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:49,175] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:49,177] [OK] - GetInfo
+INFO     [2020-01-27 22:59:49,178] 127.0.0.1 - - [27/Jan/2020 22:59:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:49,207] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:49,208] [OK] - GetInfo
+INFO     [2020-01-27 22:59:49,209] 127.0.0.1 - - [27/Jan/2020 22:59:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:53,545] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:53,545] [OK] - GetInfo
+INFO     [2020-01-27 22:59:53,545] 127.0.0.1 - - [27/Jan/2020 22:59:53] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:55,058] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:55,065] [OK] - GetInfo
+INFO     [2020-01-27 22:59:55,066] 127.0.0.1 - - [27/Jan/2020 22:59:55] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:55,091] [INFO] - ChangeClient
+INFO     [2020-01-27 22:59:55,092] 127.0.0.1 - - [27/Jan/2020 22:59:55] "POST /ChangeClient HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:55,149] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:55,150] [OK] - GetInfo
+INFO     [2020-01-27 22:59:55,151] 127.0.0.1 - - [27/Jan/2020 22:59:55] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:55,173] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:55,175] [OK] - GetInfo
+INFO     [2020-01-27 22:59:55,176] 127.0.0.1 - - [27/Jan/2020 22:59:55] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:57,518] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:57,518] [OK] - GetInfo
+INFO     [2020-01-27 22:59:57,518] 127.0.0.1 - - [27/Jan/2020 22:59:57] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:58,900] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:58,901] [OK] - GetInfo
+INFO     [2020-01-27 22:59:58,902] 127.0.0.1 - - [27/Jan/2020 22:59:58] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 22:59:59,672] [INFO] - GetInfo
+INFO     [2020-01-27 22:59:59,672] [OK] - GetInfo
+INFO     [2020-01-27 22:59:59,672] 127.0.0.1 - - [27/Jan/2020 22:59:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:00:00,967] [INFO] - GetInfo
+INFO     [2020-01-27 23:00:00,970] [OK] - GetInfo
+INFO     [2020-01-27 23:00:00,971] 127.0.0.1 - - [27/Jan/2020 23:00:00] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:00:02,572] [INFO] - GetInfo
+INFO     [2020-01-27 23:00:02,587] [OK] - GetInfo
+INFO     [2020-01-27 23:00:02,587] 127.0.0.1 - - [27/Jan/2020 23:00:02] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:00:03,418] [INFO] - GetInfo
+INFO     [2020-01-27 23:00:03,418] [OK] - GetInfo
+INFO     [2020-01-27 23:00:03,418] 127.0.0.1 - - [27/Jan/2020 23:00:03] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:10,255] [INFO] - UserRequest
+INFO     [2020-01-27 23:01:10,271] [OK] - Application is recorded
+INFO     [2020-01-27 23:01:10,274] 127.0.0.1 - - [27/Jan/2020 23:01:10] "POST /UserRequest HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:10,303] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:10,305] [OK] - GetInfo
+INFO     [2020-01-27 23:01:10,306] 127.0.0.1 - - [27/Jan/2020 23:01:10] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:10,401] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:10,401] [OK] - GetInfo
+INFO     [2020-01-27 23:01:10,401] 127.0.0.1 - - [27/Jan/2020 23:01:10] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:12,652] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:12,652] [OK] - GetInfo
+INFO     [2020-01-27 23:01:12,652] 127.0.0.1 - - [27/Jan/2020 23:01:12] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:15,236] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:15,252] [OK] - GetInfo
+INFO     [2020-01-27 23:01:15,252] 127.0.0.1 - - [27/Jan/2020 23:01:15] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:15,274] [INFO] - ChangeClient
+INFO     [2020-01-27 23:01:15,275] 127.0.0.1 - - [27/Jan/2020 23:01:15] "POST /ChangeClient HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:15,331] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:15,336] [OK] - GetInfo
+INFO     [2020-01-27 23:01:15,336] 127.0.0.1 - - [27/Jan/2020 23:01:15] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:15,384] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:15,388] [OK] - GetInfo
+INFO     [2020-01-27 23:01:15,389] 127.0.0.1 - - [27/Jan/2020 23:01:15] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:16,336] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:16,336] [OK] - GetInfo
+INFO     [2020-01-27 23:01:16,336] 127.0.0.1 - - [27/Jan/2020 23:01:16] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:18,905] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:18,911] [OK] - GetInfo
+INFO     [2020-01-27 23:01:18,912] 127.0.0.1 - - [27/Jan/2020 23:01:18] "GET /GetInfo HTTP/1.1" 200 -
+WARNING  [2020-01-27 23:01:18,916] [WARNING] - Invalid request data
+INFO     [2020-01-27 23:01:18,916] 127.0.0.1 - - [27/Jan/2020 23:01:18] "POST /ChangeCurrent HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:18,937] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:18,939] [OK] - GetInfo
+INFO     [2020-01-27 23:01:18,939] 127.0.0.1 - - [27/Jan/2020 23:01:18] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:18,949] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:18,952] [OK] - GetInfo
+INFO     [2020-01-27 23:01:18,952] 127.0.0.1 - - [27/Jan/2020 23:01:18] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:21,310] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:21,310] [OK] - GetInfo
+INFO     [2020-01-27 23:01:21,310] 127.0.0.1 - - [27/Jan/2020 23:01:21] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:01:22,993] [INFO] - GetInfo
+INFO     [2020-01-27 23:01:22,995] [OK] - GetInfo
+INFO     [2020-01-27 23:01:22,996] 127.0.0.1 - - [27/Jan/2020 23:01:22] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:05:35,437] Start in 1580130335.4370277
+INFO     [2020-01-27 23:05:35,474] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 23:05:35,474] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 23:05:35,474] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 23:05:35,474] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 23:05:35,474] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 23:05:35,474] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 23:05:35,929]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 23:05:35,946] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 23:05:35,990] 127.0.0.1 - - [27/Jan/2020 23:05:35] "GET / HTTP/1.1" 200 -
+INFO     [2020-01-27 23:05:36,084] 127.0.0.1 - - [27/Jan/2020 23:05:36] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-01-27 23:05:36,319] 127.0.0.1 - - [27/Jan/2020 23:05:36] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-01-27 23:05:47,821] [INFO] - Entry
+INFO     [2020-01-27 23:05:47,861] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 23:05:47,870] [OK] - Entry
+INFO     [2020-01-27 23:05:47,871] 127.0.0.1 - - [27/Jan/2020 23:05:47] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:05:47,968] 127.0.0.1 - - [27/Jan/2020 23:05:47] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-01-27 23:05:47,997] 127.0.0.1 - - [27/Jan/2020 23:05:47] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-01-27 23:05:48,018] [INFO] - GetInfo
+INFO     [2020-01-27 23:05:48,021] [OK] - GetInfo
+INFO     [2020-01-27 23:05:48,022] 127.0.0.1 - - [27/Jan/2020 23:05:48] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:05:48,078] [INFO] - GetInfo
+INFO     [2020-01-27 23:05:48,080] [OK] - GetInfo
+INFO     [2020-01-27 23:05:48,081] 127.0.0.1 - - [27/Jan/2020 23:05:48] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:05:48,107] [INFO] - GetInfo
+INFO     [2020-01-27 23:05:48,110] [OK] - GetInfo
+INFO     [2020-01-27 23:05:48,110] 127.0.0.1 - - [27/Jan/2020 23:05:48] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:05:49,901] [INFO] - GetInfo
+INFO     [2020-01-27 23:05:49,902] [OK] - GetInfo
+INFO     [2020-01-27 23:05:49,903] 127.0.0.1 - - [27/Jan/2020 23:05:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:05:52,610] [INFO] - Delete client
+INFO     [2020-01-27 23:05:52,625] [OK] - Client deleted
+INFO     [2020-01-27 23:05:52,625] 127.0.0.1 - - [27/Jan/2020 23:05:52] "POST /Delete/Client HTTP/1.1" 200 -
+INFO     [2020-01-27 23:06:22,351] [INFO] - GetInfo
+INFO     [2020-01-27 23:06:22,351] [OK] - GetInfo
+INFO     [2020-01-27 23:06:22,351] 127.0.0.1 - - [27/Jan/2020 23:06:22] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:06:35,658] Start in 1580130395.6580794
+INFO     [2020-01-27 23:06:35,673] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 23:06:35,673] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 23:06:35,673] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 23:06:35,673] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 23:06:35,673] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 23:06:35,673] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 23:06:36,016]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-01-27 23:07:34,540] [INFO] - GetInfo
+INFO     [2020-01-27 23:07:34,540] [OK] - GetInfo
+INFO     [2020-01-27 23:07:34,540] 127.0.0.1 - - [27/Jan/2020 23:07:34] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:07:39,916] [INFO] - Delete client
+INFO     [2020-01-27 23:07:39,942] [OK] - Client deleted
+INFO     [2020-01-27 23:07:39,942] 127.0.0.1 - - [27/Jan/2020 23:07:39] "POST /Delete/Client HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:30,086] Start in 1580130630.0869012
+INFO     [2020-01-27 23:10:30,097] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 23:10:30,097] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 23:10:30,097] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 23:10:30,097] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 23:10:30,097] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 23:10:30,098] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 23:10:30,411]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-01-27 23:10:30,612] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:30,612] [OK] - GetInfo
+INFO     [2020-01-27 23:10:30,612] 127.0.0.1 - - [27/Jan/2020 23:10:30] "GET /GetInfo HTTP/1.1" 200 -
+WARNING  [2020-01-27 23:10:30,628] [WARNING]] - Attempt to modify a nonexistent user
+INFO     [2020-01-27 23:10:30,628] 127.0.0.1 - - [27/Jan/2020 23:10:30] "POST /ChangeClient HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:30,697] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:30,697] [OK] - GetInfo
+INFO     [2020-01-27 23:10:30,697] 127.0.0.1 - - [27/Jan/2020 23:10:30] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:30,697] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:30,697] [OK] - GetInfo
+INFO     [2020-01-27 23:10:30,712] 127.0.0.1 - - [27/Jan/2020 23:10:30] "GET /GetInfo HTTP/1.1" 200 -
+WARNING  [2020-01-27 23:10:33,127] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 23:10:33,127] 127.0.0.1 - - [27/Jan/2020 23:10:33] "GET / HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:33,217] 127.0.0.1 - - [27/Jan/2020 23:10:33] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-01-27 23:10:33,439] 127.0.0.1 - - [27/Jan/2020 23:10:33] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:40,758] [INFO] - Entry
+INFO     [2020-01-27 23:10:40,796] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 23:10:40,811] [OK] - Entry
+INFO     [2020-01-27 23:10:40,812] 127.0.0.1 - - [27/Jan/2020 23:10:40] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:40,859] 127.0.0.1 - - [27/Jan/2020 23:10:40] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-01-27 23:10:40,927] 127.0.0.1 - - [27/Jan/2020 23:10:40] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-01-27 23:10:40,947] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:40,949] [OK] - GetInfo
+INFO     [2020-01-27 23:10:40,949] 127.0.0.1 - - [27/Jan/2020 23:10:40] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:41,000] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:41,000] [OK] - GetInfo
+INFO     [2020-01-27 23:10:41,000] 127.0.0.1 - - [27/Jan/2020 23:10:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:41,059] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:41,061] [OK] - GetInfo
+INFO     [2020-01-27 23:10:41,061] 127.0.0.1 - - [27/Jan/2020 23:10:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:42,258] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:42,258] [OK] - GetInfo
+INFO     [2020-01-27 23:10:42,258] 127.0.0.1 - - [27/Jan/2020 23:10:42] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:45,685] [INFO] - Delete client
+INFO     [2020-01-27 23:10:45,700] [OK] - Client deleted
+INFO     [2020-01-27 23:10:45,700] 127.0.0.1 - - [27/Jan/2020 23:10:45] "POST /Delete/Client HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:45,732] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:45,732] [OK] - GetInfo
+INFO     [2020-01-27 23:10:45,732] 127.0.0.1 - - [27/Jan/2020 23:10:45] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:10:45,754] [INFO] - GetInfo
+INFO     [2020-01-27 23:10:45,754] [OK] - GetInfo
+INFO     [2020-01-27 23:10:45,754] 127.0.0.1 - - [27/Jan/2020 23:10:45] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:12:07,763] Start in 1580130727.7634423
+INFO     [2020-01-27 23:12:07,773] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 23:12:07,773] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 23:12:07,774] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 23:12:07,774] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 23:12:07,774] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 23:12:07,774] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 23:12:08,038]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 23:12:15,047] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 23:12:15,058] 127.0.0.1 - - [27/Jan/2020 23:12:15] "GET / HTTP/1.1" 200 -
+INFO     [2020-01-27 23:12:15,107] 127.0.0.1 - - [27/Jan/2020 23:12:15] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-01-27 23:12:15,130] 127.0.0.1 - - [27/Jan/2020 23:12:15] "GET /frontend/project.js HTTP/1.1" 304 -
+INFO     [2020-01-27 23:12:21,659] [INFO] - Entry
+INFO     [2020-01-27 23:12:21,660] [FAILED] - User does not exist
+INFO     [2020-01-27 23:12:21,660] [OK] - Entry
+INFO     [2020-01-27 23:12:21,661] 127.0.0.1 - - [27/Jan/2020 23:12:21] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:12:22,555] [INFO] - Entry
+INFO     [2020-01-27 23:12:22,556] [FAILED] - User does not exist
+INFO     [2020-01-27 23:12:22,556] [OK] - Entry
+INFO     [2020-01-27 23:12:22,556] 127.0.0.1 - - [27/Jan/2020 23:12:22] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:12:22,730] [INFO] - Entry
+INFO     [2020-01-27 23:12:22,731] [FAILED] - User does not exist
+INFO     [2020-01-27 23:12:22,731] [OK] - Entry
+INFO     [2020-01-27 23:12:22,731] 127.0.0.1 - - [27/Jan/2020 23:12:22] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:12:22,875] [INFO] - Entry
+INFO     [2020-01-27 23:12:22,876] [FAILED] - User does not exist
+INFO     [2020-01-27 23:12:22,876] [OK] - Entry
+INFO     [2020-01-27 23:12:22,877] 127.0.0.1 - - [27/Jan/2020 23:12:22] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:12:23,022] [INFO] - Entry
+INFO     [2020-01-27 23:12:23,023] [FAILED] - User does not exist
+INFO     [2020-01-27 23:12:23,023] [OK] - Entry
+INFO     [2020-01-27 23:12:23,023] 127.0.0.1 - - [27/Jan/2020 23:12:23] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:12:50,924] [INFO] - Entry
+INFO     [2020-01-27 23:12:50,924] [FAILED] - User does not exist
+INFO     [2020-01-27 23:12:50,925] [OK] - Entry
+INFO     [2020-01-27 23:12:50,925] 127.0.0.1 - - [27/Jan/2020 23:12:50] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:15,469] Start in 1580130855.4698262
+INFO     [2020-01-27 23:14:15,478] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 23:14:15,478] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 23:14:15,478] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 23:14:15,478] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 23:14:15,478] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 23:14:15,479] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 23:14:15,790]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 23:14:15,870] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 23:14:15,881] 127.0.0.1 - - [27/Jan/2020 23:14:15] "GET / HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:15,935] 127.0.0.1 - - [27/Jan/2020 23:14:15] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-01-27 23:14:15,941] 127.0.0.1 - - [27/Jan/2020 23:14:15] "GET /frontend/project.js HTTP/1.1" 304 -
+INFO     [2020-01-27 23:14:25,413] [INFO] - Entry
+INFO     [2020-01-27 23:14:25,452] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 23:14:25,459] [OK] - Entry
+INFO     [2020-01-27 23:14:25,459] 127.0.0.1 - - [27/Jan/2020 23:14:25] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:25,501] 127.0.0.1 - - [27/Jan/2020 23:14:25] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-01-27 23:14:25,520] 127.0.0.1 - - [27/Jan/2020 23:14:25] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-01-27 23:14:25,580] [INFO] - GetInfo
+INFO     [2020-01-27 23:14:25,583] [OK] - GetInfo
+INFO     [2020-01-27 23:14:25,585] 127.0.0.1 - - [27/Jan/2020 23:14:25] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:25,604] [INFO] - GetInfo
+INFO     [2020-01-27 23:14:25,606] [OK] - GetInfo
+INFO     [2020-01-27 23:14:25,606] 127.0.0.1 - - [27/Jan/2020 23:14:25] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:25,618] [INFO] - GetInfo
+INFO     [2020-01-27 23:14:25,619] [OK] - GetInfo
+INFO     [2020-01-27 23:14:25,620] 127.0.0.1 - - [27/Jan/2020 23:14:25] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:27,873] [INFO] - GetInfo
+INFO     [2020-01-27 23:14:27,875] [OK] - GetInfo
+INFO     [2020-01-27 23:14:27,876] 127.0.0.1 - - [27/Jan/2020 23:14:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:35,550] [INFO] - Delete client
+INFO     [2020-01-27 23:14:35,561] [OK] - Client deleted
+INFO     [2020-01-27 23:14:35,562] 127.0.0.1 - - [27/Jan/2020 23:14:35] "POST /Delete/Client HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:35,576] [INFO] - GetInfo
+INFO     [2020-01-27 23:14:35,577] [OK] - GetInfo
+INFO     [2020-01-27 23:14:35,578] 127.0.0.1 - - [27/Jan/2020 23:14:35] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:14:35,603] [INFO] - GetInfo
+INFO     [2020-01-27 23:14:35,604] [OK] - GetInfo
+INFO     [2020-01-27 23:14:35,604] 127.0.0.1 - - [27/Jan/2020 23:14:35] "GET /GetInfo HTTP/1.1" 200 -
