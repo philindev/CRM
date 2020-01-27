@@ -24,23 +24,19 @@ export default class Header extends React.Component{
 	get_file_url(url) {
 		let token = this.props.user.token;
 		const main = this;
-		fetch('/Download/' + url + "/" + token)
-			  .then(function (response) {
-			    if (response.status !== 200) {
-			      return Promise.reject(new Error(response.statusText))
-			    }
-			    return Promise.resolve(response)
-			  })
-			  .then(function (response) {
-			    return response.json()
-			  })
-			  .then(function (data) {
-					console.log("Start downloading file");
-			  })
-			  .catch(function (error) {
-			    console.log('error: ', error)
-					main.setState({alert: true})
-			  })
+		let link = '/Download/' + url + "/" + token
+		// let link = 'google.com'
+	  var newWin = window.open(link, 'Download Table', 'width=600,height=400');
+
+	  newWin.onload = function() {
+
+	    // создать div в документе нового окна
+	    var div = newWin.document.createElement('div'),
+	        body = newWin.document.body;
+
+	    // вставить первым элементом в body нового окна
+	    body.insertBefore(div, body.firstChild);
+	  }
 	}
 
 	render(){
