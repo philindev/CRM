@@ -208,7 +208,8 @@ class ClientsTable(AbstractTable):
         cursor = self.connection.cursor()
         cursor.execute(
             '''DELETE FROM clients
-                WHERE id = ?''', client_id)
+                WHERE id = ?''', (client_id,)
+        )
         cursor.close()
         self.connection.commit()
 
