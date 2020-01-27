@@ -24,42 +24,23 @@ export default class Header extends React.Component{
 	get_file_url(url) {
 		let token = this.props.user.token;
 		const main = this;
-		fetch("/Download/" + url, {
-			method: 'post',
-			headers: {
-				'Content-Type':'application/json',
-				"Access-Control-Allow-Origin": "*",
-				"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
-			},
-			body: JSON.stringify({
-				token: this.props.user.token,
-			}),
-	  })
-		.then(
-		function(response) {
-			if (response.status !== 200) {
-				console.log('Looks like there was a problem. Status Code: ' +
-					response.status);
-				if(response.status === 500){
-						console.log("Status: 500")
-				}
-				return;
-			}
-			response.json()
-			.then(function(data) {
-				if(data === null){
+		fetch('/Download/' + url + "/" + token)
+			  .then(function (response) {
+			    if (response.status !== 200) {
+			      return Promise.reject(new Error(response.statusText))
+			    }
+			    return Promise.resolve(response)
+			  })
+			  .then(function (response) {
+			    return response.json()
+			  })
+			  .then(function (data) {
+					console.log("Start downloading file");
+			  })
+			  .catch(function (error) {
+			    console.log('error: ', error)
 					main.setState({alert: true})
-				} else {
-					let current_location = document.location.href;
-					window.open(current_location + '/' + data, '_blank');
-				}
-				});
-		})
-
-	  .catch(function (error) {
-	    console.log('Request failed', error);
-	  });
-
+			  })
 	}
 
 	render(){
@@ -111,7 +92,7 @@ export default class Header extends React.Component{
 				>
 				<Dropdown.Item onClick={() => this.get_file_url('closed')}>Статистика отказов - причины</Dropdown.Item>
 				<Dropdown.Item onClick={() => this.get_file_url('finance')}>Финансовые показатели</Dropdown.Item>
-				<Dropdown.Item onClick={() => this.get_file_url('statics')}>Общая статистика</Dropdown.Item>
+				<Dropdown.Item onClick={() => this.get_file_url('general')}>Общая статистика</Dropdown.Item>
 			  {/*}<Dropdown.Divider />
 			<Dropdown.Item>Другое</Dropdown.Item>*/}
 			</DropdownButton>;

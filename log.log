@@ -850,3 +850,105 @@ INFO     [2020-01-27 23:44:28,127] 127.0.0.1 - - [27/Jan/2020 23:44:28] "GET /Ge
 INFO     [2020-01-27 23:44:28,189] [INFO] - GetInfo
 INFO     [2020-01-27 23:44:28,193] [OK] - GetInfo
 INFO     [2020-01-27 23:44:28,194] 127.0.0.1 - - [27/Jan/2020 23:44:28] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:52:24,563] Start in 1580133144.5634282
+INFO     [2020-01-27 23:52:24,572] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 23:52:24,572] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 23:52:24,572] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 23:52:24,572] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 23:52:24,573] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 23:52:24,573] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 23:52:24,860]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-01-27 23:53:48,770] Start in 1580133228.7704294
+INFO     [2020-01-27 23:53:48,771] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 23:53:48,771] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 23:53:48,772] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 23:53:48,772] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 23:53:48,772] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 23:53:48,772] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 23:53:49,109]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 23:53:50,524] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 23:53:50,545] 127.0.0.1 - - [27/Jan/2020 23:53:50] "GET / HTTP/1.1" 200 -
+INFO     [2020-01-27 23:53:50,686] 127.0.0.1 - - [27/Jan/2020 23:53:50] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-01-27 23:53:50,912] 127.0.0.1 - - [27/Jan/2020 23:53:50] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-01-27 23:53:57,622] [INFO] - Entry
+INFO     [2020-01-27 23:53:57,662] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 23:53:57,673] [OK] - Entry
+INFO     [2020-01-27 23:53:57,674] 127.0.0.1 - - [27/Jan/2020 23:53:57] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-01-27 23:53:57,759] 127.0.0.1 - - [27/Jan/2020 23:53:57] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-01-27 23:53:57,809] 127.0.0.1 - - [27/Jan/2020 23:53:57] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-01-27 23:53:57,832] [INFO] - GetInfo
+INFO     [2020-01-27 23:53:57,833] [OK] - GetInfo
+INFO     [2020-01-27 23:53:57,834] 127.0.0.1 - - [27/Jan/2020 23:53:57] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:53:57,898] [INFO] - GetInfo
+INFO     [2020-01-27 23:53:57,899] [OK] - GetInfo
+INFO     [2020-01-27 23:53:57,900] 127.0.0.1 - - [27/Jan/2020 23:53:57] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:53:57,917] [INFO] - GetInfo
+INFO     [2020-01-27 23:53:57,919] [OK] - GetInfo
+INFO     [2020-01-27 23:53:57,921] 127.0.0.1 - - [27/Jan/2020 23:53:57] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:53:59,038] [INFO] - GetInfo
+INFO     [2020-01-27 23:53:59,039] [OK] - GetInfo
+INFO     [2020-01-27 23:53:59,040] 127.0.0.1 - - [27/Jan/2020 23:53:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:54:00,249] [INFO] - GetInfo
+INFO     [2020-01-27 23:54:00,250] [OK] - GetInfo
+INFO     [2020-01-27 23:54:00,251] 127.0.0.1 - - [27/Jan/2020 23:54:00] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-01-27 23:54:00,272] [INFO] - GetInfo
+INFO     [2020-01-27 23:54:00,273] [OK] - GetInfo
+INFO     [2020-01-27 23:54:00,274] 127.0.0.1 - - [27/Jan/2020 23:54:00] "GET /GetInfo HTTP/1.1" 200 -
+ERROR    [2020-01-27 23:54:01,552] Exception on /Download/closed/g&m9'*!CX5p'v*h* [GET]
+Traceback (most recent call last):
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 564, in download_refused
+    writer = ExcelWriter("excel/refused_applications.xlsx")
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\pandas\io\excel\_openpyxl.py", line 19, in __init__
+    from openpyxl.workbook import Workbook
+ModuleNotFoundError: No module named 'openpyxl'
+INFO     [2020-01-27 23:54:01,580] 127.0.0.1 - - [27/Jan/2020 23:54:01] "GET /Download/closed/g&m9'*!CX5p'v*h* HTTP/1.1" 500 -
+ERROR    [2020-01-27 23:54:33,532] Exception on /Download/finance/g&m9'*!CX5p'v*h* [GET]
+Traceback (most recent call last):
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 505, in download_closed
+    writer = ExcelWriter("excel/closed_applications.xlsx")
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\pandas\io\excel\_openpyxl.py", line 19, in __init__
+    from openpyxl.workbook import Workbook
+ModuleNotFoundError: No module named 'openpyxl'
+INFO     [2020-01-27 23:54:33,533] 127.0.0.1 - - [27/Jan/2020 23:54:33] "GET /Download/finance/g&m9'*!CX5p'v*h* HTTP/1.1" 500 -
+ERROR    [2020-01-27 23:54:36,611] Exception on /Download/general/g&m9'*!CX5p'v*h* [GET]
+Traceback (most recent call last):
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\MI\AppData\Local\Programs\Python\Python37-32\lib\site-packages\flask\app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "__init__.py", line 613, in download_general
+    data_for_excel["client_name"].append(user[1])
+TypeError: 'NoneType' object is not subscriptable
+INFO     [2020-01-27 23:54:36,613] 127.0.0.1 - - [27/Jan/2020 23:54:36] "GET /Download/general/g&m9'*!CX5p'v*h* HTTP/1.1" 500 -
