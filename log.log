@@ -1160,3 +1160,374 @@ INFO     [2020-01-22 21:23:12,163] 127.0.0.1 - - [22/Jan/2020 21:23:12] "[37mGE
 INFO     [2020-01-22 21:23:13,237] [INFO] - GetInfo
 INFO     [2020-01-22 21:23:13,238] [OK] - GetInfo
 INFO     [2020-01-22 21:23:13,239] 127.0.0.1 - - [22/Jan/2020 21:23:13] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:46,864] Start in 1580115166.8644578
+INFO     [2020-01-27 18:52:46,864] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 18:52:46,865] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 18:52:46,865] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 18:52:46,865] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 18:52:46,865] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 18:52:46,865] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 18:52:46,876]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 18:52:49,287] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 18:52:49,297] 127.0.0.1 - - [27/Jan/2020 18:52:49] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:49,550] 127.0.0.1 - - [27/Jan/2020 18:52:49] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:49,562] 127.0.0.1 - - [27/Jan/2020 18:52:49] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:55,066] [INFO] - Entry
+INFO     [2020-01-27 18:52:55,114] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 18:52:55,251] [OK] - Entry
+INFO     [2020-01-27 18:52:55,252] 127.0.0.1 - - [27/Jan/2020 18:52:55] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:55,305] 127.0.0.1 - - [27/Jan/2020 18:52:55] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:55,333] 127.0.0.1 - - [27/Jan/2020 18:52:55] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:55,371] [INFO] - GetInfo
+INFO     [2020-01-27 18:52:55,386] [OK] - GetInfo
+INFO     [2020-01-27 18:52:55,386] 127.0.0.1 - - [27/Jan/2020 18:52:55] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:55,711] [INFO] - GetInfo
+INFO     [2020-01-27 18:52:55,717] [OK] - GetInfo
+INFO     [2020-01-27 18:52:55,720] 127.0.0.1 - - [27/Jan/2020 18:52:55] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:55,745] [INFO] - GetInfo
+INFO     [2020-01-27 18:52:55,749] [OK] - GetInfo
+INFO     [2020-01-27 18:52:55,753] 127.0.0.1 - - [27/Jan/2020 18:52:55] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:52:59,254] [INFO] - GetInfo
+INFO     [2020-01-27 18:52:59,257] [OK] - GetInfo
+INFO     [2020-01-27 18:52:59,260] 127.0.0.1 - - [27/Jan/2020 18:52:59] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:53:05,103] [INFO] - GetInfo
+INFO     [2020-01-27 18:53:05,105] [OK] - GetInfo
+INFO     [2020-01-27 18:53:05,105] 127.0.0.1 - - [27/Jan/2020 18:53:05] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+WARNING  [2020-01-27 18:56:15,388] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 18:56:15,389] 127.0.0.1 - - [27/Jan/2020 18:56:15] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:15,560] 127.0.0.1 - - [27/Jan/2020 18:56:15] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:15,564] 127.0.0.1 - - [27/Jan/2020 18:56:15] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:26,139] [INFO] - Entry
+INFO     [2020-01-27 18:56:26,185] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 18:56:26,314] [OK] - Entry
+INFO     [2020-01-27 18:56:26,314] 127.0.0.1 - - [27/Jan/2020 18:56:26] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:26,364] 127.0.0.1 - - [27/Jan/2020 18:56:26] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:26,393] 127.0.0.1 - - [27/Jan/2020 18:56:26] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:26,432] [INFO] - GetInfo
+INFO     [2020-01-27 18:56:26,435] [OK] - GetInfo
+INFO     [2020-01-27 18:56:26,437] 127.0.0.1 - - [27/Jan/2020 18:56:26] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:26,570] [INFO] - GetInfo
+INFO     [2020-01-27 18:56:26,574] [OK] - GetInfo
+INFO     [2020-01-27 18:56:26,577] 127.0.0.1 - - [27/Jan/2020 18:56:26] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:26,656] [INFO] - GetInfo
+INFO     [2020-01-27 18:56:26,659] [OK] - GetInfo
+INFO     [2020-01-27 18:56:26,661] 127.0.0.1 - - [27/Jan/2020 18:56:26] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:56:27,684] [INFO] - GetInfo
+INFO     [2020-01-27 18:56:27,688] [OK] - GetInfo
+INFO     [2020-01-27 18:56:27,692] 127.0.0.1 - - [27/Jan/2020 18:56:27] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:57:41,645] [INFO] - GetInfo
+INFO     [2020-01-27 18:57:41,647] [OK] - GetInfo
+INFO     [2020-01-27 18:57:41,648] 127.0.0.1 - - [27/Jan/2020 18:57:41] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:57:43,174] [INFO] - GetInfo
+INFO     [2020-01-27 18:57:43,177] [OK] - GetInfo
+INFO     [2020-01-27 18:57:43,180] 127.0.0.1 - - [27/Jan/2020 18:57:43] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 18:58:17,821] [INFO] - GetInfo
+INFO     [2020-01-27 18:58:17,823] [OK] - GetInfo
+INFO     [2020-01-27 18:58:17,824] 127.0.0.1 - - [27/Jan/2020 18:58:17] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+WARNING  [2020-01-27 19:03:13,988] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 19:03:13,989] 127.0.0.1 - - [27/Jan/2020 19:03:13] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:14,153] 127.0.0.1 - - [27/Jan/2020 19:03:14] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:14,165] 127.0.0.1 - - [27/Jan/2020 19:03:14] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:21,441] [INFO] - Entry
+INFO     [2020-01-27 19:03:21,488] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 19:03:21,616] [OK] - Entry
+INFO     [2020-01-27 19:03:21,617] 127.0.0.1 - - [27/Jan/2020 19:03:21] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:21,662] 127.0.0.1 - - [27/Jan/2020 19:03:21] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:21,695] 127.0.0.1 - - [27/Jan/2020 19:03:21] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:21,733] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:21,736] [OK] - GetInfo
+INFO     [2020-01-27 19:03:21,739] 127.0.0.1 - - [27/Jan/2020 19:03:21] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:21,989] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:21,991] [OK] - GetInfo
+INFO     [2020-01-27 19:03:21,991] 127.0.0.1 - - [27/Jan/2020 19:03:21] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:22,002] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:22,009] [OK] - GetInfo
+INFO     [2020-01-27 19:03:22,012] 127.0.0.1 - - [27/Jan/2020 19:03:22] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:26,020] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:26,021] [OK] - GetInfo
+INFO     [2020-01-27 19:03:26,022] 127.0.0.1 - - [27/Jan/2020 19:03:26] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:28,644] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:28,648] [OK] - GetInfo
+INFO     [2020-01-27 19:03:28,651] 127.0.0.1 - - [27/Jan/2020 19:03:28] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+WARNING  [2020-01-27 19:03:28,702] [WARNING] - Invalid request data
+INFO     [2020-01-27 19:03:28,703] 127.0.0.1 - - [27/Jan/2020 19:03:28] "[37mPOST /ChangeCurrent HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:28,775] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:28,776] [OK] - GetInfo
+INFO     [2020-01-27 19:03:28,777] 127.0.0.1 - - [27/Jan/2020 19:03:28] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:28,842] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:28,848] [OK] - GetInfo
+INFO     [2020-01-27 19:03:28,850] 127.0.0.1 - - [27/Jan/2020 19:03:28] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:30,835] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:30,836] [OK] - GetInfo
+INFO     [2020-01-27 19:03:30,837] 127.0.0.1 - - [27/Jan/2020 19:03:30] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:34,373] [INFO] - ChangeClient
+INFO     [2020-01-27 19:03:34,373] 127.0.0.1 - - [27/Jan/2020 19:03:34] "[37mPOST /ChangeClient HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:34,570] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:34,575] [OK] - GetInfo
+INFO     [2020-01-27 19:03:34,578] 127.0.0.1 - - [27/Jan/2020 19:03:34] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:34,666] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:34,669] [OK] - GetInfo
+INFO     [2020-01-27 19:03:34,674] 127.0.0.1 - - [27/Jan/2020 19:03:34] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:35,687] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:35,689] [OK] - GetInfo
+INFO     [2020-01-27 19:03:35,690] 127.0.0.1 - - [27/Jan/2020 19:03:35] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+WARNING  [2020-01-27 19:03:37,494] [WARNING] - Invalid request data
+INFO     [2020-01-27 19:03:37,495] 127.0.0.1 - - [27/Jan/2020 19:03:37] "[37mPOST /ChangeCurrent HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:37,698] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:37,700] [OK] - GetInfo
+INFO     [2020-01-27 19:03:37,701] 127.0.0.1 - - [27/Jan/2020 19:03:37] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:37,703] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:37,704] [OK] - GetInfo
+INFO     [2020-01-27 19:03:37,705] 127.0.0.1 - - [27/Jan/2020 19:03:37] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:38,802] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:38,805] [OK] - GetInfo
+INFO     [2020-01-27 19:03:38,808] 127.0.0.1 - - [27/Jan/2020 19:03:38] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:55,118] [INFO] - ChangeClient
+INFO     [2020-01-27 19:03:55,118] 127.0.0.1 - - [27/Jan/2020 19:03:55] "[37mPOST /ChangeClient HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:55,158] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:55,162] [OK] - GetInfo
+INFO     [2020-01-27 19:03:55,166] 127.0.0.1 - - [27/Jan/2020 19:03:55] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:55,185] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:55,188] [OK] - GetInfo
+INFO     [2020-01-27 19:03:55,193] 127.0.0.1 - - [27/Jan/2020 19:03:55] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:03:56,265] [INFO] - GetInfo
+INFO     [2020-01-27 19:03:56,266] [OK] - GetInfo
+INFO     [2020-01-27 19:03:56,267] 127.0.0.1 - - [27/Jan/2020 19:03:56] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:04,878] [INFO] - GetInfo
+INFO     [2020-01-27 19:04:04,880] [OK] - GetInfo
+INFO     [2020-01-27 19:04:04,881] 127.0.0.1 - - [27/Jan/2020 19:04:04] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:37,043] Start in 1580115877.0434353
+INFO     [2020-01-27 19:04:37,043] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 19:04:37,044] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 19:04:37,044] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 19:04:37,044] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 19:04:37,044] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 19:04:37,044] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 19:04:37,055]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 19:04:42,323] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 19:04:42,334] 127.0.0.1 - - [27/Jan/2020 19:04:42] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:42,653] 127.0.0.1 - - [27/Jan/2020 19:04:42] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:42,655] 127.0.0.1 - - [27/Jan/2020 19:04:42] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:50,623] [INFO] - Entry
+INFO     [2020-01-27 19:04:50,668] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 19:04:51,064] [OK] - Entry
+INFO     [2020-01-27 19:04:51,065] 127.0.0.1 - - [27/Jan/2020 19:04:51] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:51,110] 127.0.0.1 - - [27/Jan/2020 19:04:51] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:51,145] 127.0.0.1 - - [27/Jan/2020 19:04:51] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:51,189] [INFO] - GetInfo
+INFO     [2020-01-27 19:04:51,199] [OK] - GetInfo
+INFO     [2020-01-27 19:04:51,200] 127.0.0.1 - - [27/Jan/2020 19:04:51] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:51,392] [INFO] - GetInfo
+INFO     [2020-01-27 19:04:51,396] [INFO] - GetInfo
+INFO     [2020-01-27 19:04:51,398] [OK] - GetInfo
+INFO     [2020-01-27 19:04:51,400] 127.0.0.1 - - [27/Jan/2020 19:04:51] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:04:51,399] [OK] - GetInfo
+INFO     [2020-01-27 19:04:51,401] 127.0.0.1 - - [27/Jan/2020 19:04:51] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:05:06,433] [INFO] - GetInfo
+INFO     [2020-01-27 19:05:06,435] [OK] - GetInfo
+INFO     [2020-01-27 19:05:06,436] 127.0.0.1 - - [27/Jan/2020 19:05:06] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:05:09,920] [INFO] - ChangeClient
+INFO     [2020-01-27 19:05:09,921] 127.0.0.1 - - [27/Jan/2020 19:05:09] "[37mPOST /ChangeClient HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:05:09,984] [INFO] - GetInfo
+INFO     [2020-01-27 19:05:09,989] [OK] - GetInfo
+INFO     [2020-01-27 19:05:09,991] 127.0.0.1 - - [27/Jan/2020 19:05:09] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:05:10,072] [INFO] - GetInfo
+INFO     [2020-01-27 19:05:10,087] [OK] - GetInfo
+INFO     [2020-01-27 19:05:10,090] 127.0.0.1 - - [27/Jan/2020 19:05:10] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:05:13,190] [INFO] - GetInfo
+INFO     [2020-01-27 19:05:13,191] [OK] - GetInfo
+INFO     [2020-01-27 19:05:13,192] 127.0.0.1 - - [27/Jan/2020 19:05:13] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:05:15,127] [INFO] - GetInfo
+INFO     [2020-01-27 19:05:15,131] [OK] - GetInfo
+INFO     [2020-01-27 19:05:15,132] 127.0.0.1 - - [27/Jan/2020 19:05:15] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:21:53,436] Start in 1580116913.4368315
+INFO     [2020-01-27 19:21:53,437] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 19:21:53,437] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 19:21:53,437] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 19:21:53,437] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 19:21:53,437] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 19:21:53,437] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 19:21:53,448]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 19:22:33,208] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 19:22:33,218] 127.0.0.1 - - [27/Jan/2020 19:22:33] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:22:33,535] 127.0.0.1 - - [27/Jan/2020 19:22:33] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:22:33,538] 127.0.0.1 - - [27/Jan/2020 19:22:33] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:22:38,929] [INFO] - Entry
+INFO     [2020-01-27 19:22:38,975] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 19:22:39,098] [OK] - Entry
+INFO     [2020-01-27 19:22:39,099] 127.0.0.1 - - [27/Jan/2020 19:22:39] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:22:39,149] 127.0.0.1 - - [27/Jan/2020 19:22:39] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:22:39,194] 127.0.0.1 - - [27/Jan/2020 19:22:39] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:22:39,231] [INFO] - GetInfo
+INFO     [2020-01-27 19:22:39,240] [OK] - GetInfo
+INFO     [2020-01-27 19:22:39,243] 127.0.0.1 - - [27/Jan/2020 19:22:39] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:22:39,501] [INFO] - GetInfo
+INFO     [2020-01-27 19:22:39,503] [INFO] - GetInfo
+INFO     [2020-01-27 19:22:39,507] [OK] - GetInfo
+INFO     [2020-01-27 19:22:39,509] 127.0.0.1 - - [27/Jan/2020 19:22:39] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:22:39,510] [OK] - GetInfo
+INFO     [2020-01-27 19:22:39,514] 127.0.0.1 - - [27/Jan/2020 19:22:39] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+WARNING  [2020-01-27 19:23:18,083] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 19:23:18,084] 127.0.0.1 - - [27/Jan/2020 19:23:18] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:18,350] 127.0.0.1 - - [27/Jan/2020 19:23:18] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:18,355] 127.0.0.1 - - [27/Jan/2020 19:23:18] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:25,986] [INFO] - Entry
+INFO     [2020-01-27 19:23:26,034] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 19:23:26,133] [OK] - Entry
+INFO     [2020-01-27 19:23:26,133] 127.0.0.1 - - [27/Jan/2020 19:23:26] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:26,184] 127.0.0.1 - - [27/Jan/2020 19:23:26] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:26,234] 127.0.0.1 - - [27/Jan/2020 19:23:26] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:26,267] [INFO] - GetInfo
+INFO     [2020-01-27 19:23:26,271] [OK] - GetInfo
+INFO     [2020-01-27 19:23:26,280] 127.0.0.1 - - [27/Jan/2020 19:23:26] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:26,521] [INFO] - GetInfo
+INFO     [2020-01-27 19:23:26,529] [INFO] - GetInfo
+INFO     [2020-01-27 19:23:26,532] [OK] - GetInfo
+INFO     [2020-01-27 19:23:26,534] 127.0.0.1 - - [27/Jan/2020 19:23:26] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:26,535] [OK] - GetInfo
+INFO     [2020-01-27 19:23:26,537] 127.0.0.1 - - [27/Jan/2020 19:23:26] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:23:39,132] [INFO] - GetInfo
+INFO     [2020-01-27 19:23:39,133] [OK] - GetInfo
+INFO     [2020-01-27 19:23:39,134] 127.0.0.1 - - [27/Jan/2020 19:23:39] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:24,667] Start in 1580117064.6678746
+INFO     [2020-01-27 19:24:24,668] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 19:24:24,668] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 19:24:24,668] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 19:24:24,668] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 19:24:24,668] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 19:24:24,668] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 19:24:24,679]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 19:24:26,562] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 19:24:26,577] 127.0.0.1 - - [27/Jan/2020 19:24:26] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:26,816] 127.0.0.1 - - [27/Jan/2020 19:24:26] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:26,820] 127.0.0.1 - - [27/Jan/2020 19:24:26] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:35,862] [INFO] - Entry
+INFO     [2020-01-27 19:24:35,908] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 19:24:36,013] [OK] - Entry
+INFO     [2020-01-27 19:24:36,014] 127.0.0.1 - - [27/Jan/2020 19:24:36] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:36,062] 127.0.0.1 - - [27/Jan/2020 19:24:36] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:36,097] 127.0.0.1 - - [27/Jan/2020 19:24:36] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:36,140] [INFO] - GetInfo
+INFO     [2020-01-27 19:24:36,142] [OK] - GetInfo
+INFO     [2020-01-27 19:24:36,143] 127.0.0.1 - - [27/Jan/2020 19:24:36] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:36,385] [INFO] - GetInfo
+INFO     [2020-01-27 19:24:36,390] [OK] - GetInfo
+INFO     [2020-01-27 19:24:36,392] 127.0.0.1 - - [27/Jan/2020 19:24:36] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:36,395] [INFO] - GetInfo
+INFO     [2020-01-27 19:24:36,399] [OK] - GetInfo
+INFO     [2020-01-27 19:24:36,401] 127.0.0.1 - - [27/Jan/2020 19:24:36] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:45,069] [INFO] - GetInfo
+INFO     [2020-01-27 19:24:45,072] [OK] - GetInfo
+INFO     [2020-01-27 19:24:45,074] 127.0.0.1 - - [27/Jan/2020 19:24:45] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:24:48,717] [INFO] - GetInfo
+INFO     [2020-01-27 19:24:48,719] [OK] - GetInfo
+INFO     [2020-01-27 19:24:48,720] 127.0.0.1 - - [27/Jan/2020 19:24:48] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:21,988] Start in 1580117181.9887094
+INFO     [2020-01-27 19:26:21,989] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 19:26:21,989] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 19:26:21,989] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 19:26:21,989] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 19:26:21,989] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 19:26:21,989] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 19:26:22,000]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 19:26:23,844] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 19:26:23,859] 127.0.0.1 - - [27/Jan/2020 19:26:23] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:24,150] 127.0.0.1 - - [27/Jan/2020 19:26:24] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:24,164] 127.0.0.1 - - [27/Jan/2020 19:26:24] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:30,099] [INFO] - Entry
+INFO     [2020-01-27 19:26:30,180] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 19:26:30,394] [OK] - Entry
+INFO     [2020-01-27 19:26:30,395] 127.0.0.1 - - [27/Jan/2020 19:26:30] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:30,454] 127.0.0.1 - - [27/Jan/2020 19:26:30] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:30,487] 127.0.0.1 - - [27/Jan/2020 19:26:30] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:30,553] [INFO] - GetInfo
+INFO     [2020-01-27 19:26:30,554] [OK] - GetInfo
+INFO     [2020-01-27 19:26:30,561] 127.0.0.1 - - [27/Jan/2020 19:26:30] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:30,796] [INFO] - GetInfo
+INFO     [2020-01-27 19:26:30,798] [OK] - GetInfo
+INFO     [2020-01-27 19:26:30,799] 127.0.0.1 - - [27/Jan/2020 19:26:30] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:30,800] [INFO] - GetInfo
+INFO     [2020-01-27 19:26:30,802] [OK] - GetInfo
+INFO     [2020-01-27 19:26:30,802] 127.0.0.1 - - [27/Jan/2020 19:26:30] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:31,673] [INFO] - GetInfo
+INFO     [2020-01-27 19:26:31,674] [OK] - GetInfo
+INFO     [2020-01-27 19:26:31,675] 127.0.0.1 - - [27/Jan/2020 19:26:31] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:26:33,455] [INFO] - GetInfo
+INFO     [2020-01-27 19:26:33,457] [OK] - GetInfo
+INFO     [2020-01-27 19:26:33,460] 127.0.0.1 - - [27/Jan/2020 19:26:33] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:33:53,646] Start in 1580117633.646587
+INFO     [2020-01-27 19:33:53,647] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 19:33:53,647] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 19:33:53,647] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 19:33:53,647] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 19:33:53,647] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 19:33:53,647] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 19:33:53,693]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 19:33:55,649] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 19:33:55,660] 127.0.0.1 - - [27/Jan/2020 19:33:55] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:33:55,905] 127.0.0.1 - - [27/Jan/2020 19:33:55] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:33:55,907] 127.0.0.1 - - [27/Jan/2020 19:33:55] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:14,737] [INFO] - Entry
+INFO     [2020-01-27 19:34:14,782] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 19:34:14,887] [OK] - Entry
+INFO     [2020-01-27 19:34:14,889] 127.0.0.1 - - [27/Jan/2020 19:34:14] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:14,941] 127.0.0.1 - - [27/Jan/2020 19:34:14] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:14,976] 127.0.0.1 - - [27/Jan/2020 19:34:14] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:15,014] [INFO] - GetInfo
+INFO     [2020-01-27 19:34:15,016] [OK] - GetInfo
+INFO     [2020-01-27 19:34:15,017] 127.0.0.1 - - [27/Jan/2020 19:34:15] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:15,301] [INFO] - GetInfo
+INFO     [2020-01-27 19:34:15,303] [OK] - GetInfo
+INFO     [2020-01-27 19:34:15,304] 127.0.0.1 - - [27/Jan/2020 19:34:15] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:15,390] [INFO] - GetInfo
+INFO     [2020-01-27 19:34:15,392] [OK] - GetInfo
+INFO     [2020-01-27 19:34:15,393] 127.0.0.1 - - [27/Jan/2020 19:34:15] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:16,097] [INFO] - GetInfo
+INFO     [2020-01-27 19:34:16,098] [OK] - GetInfo
+INFO     [2020-01-27 19:34:16,099] 127.0.0.1 - - [27/Jan/2020 19:34:16] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:18,179] [INFO] - GetInfo
+INFO     [2020-01-27 19:34:18,183] [OK] - GetInfo
+INFO     [2020-01-27 19:34:18,187] 127.0.0.1 - - [27/Jan/2020 19:34:18] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:18,388] [INFO] - ChangeClient
+INFO     [2020-01-27 19:34:18,388] 127.0.0.1 - - [27/Jan/2020 19:34:18] "[37mPOST /ChangeClient HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:18,441] [INFO] - GetInfo
+INFO     [2020-01-27 19:34:18,442] [OK] - GetInfo
+INFO     [2020-01-27 19:34:18,443] 127.0.0.1 - - [27/Jan/2020 19:34:18] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:34:18,466] [INFO] - GetInfo
+INFO     [2020-01-27 19:34:18,467] [OK] - GetInfo
+INFO     [2020-01-27 19:34:18,468] 127.0.0.1 - - [27/Jan/2020 19:34:18] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:40:30,629] Start in 1580118030.6292481
+INFO     [2020-01-27 19:40:30,629] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 19:40:30,629] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 19:40:30,629] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 19:40:30,630] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 19:40:30,630] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 19:40:30,630] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 19:40:30,640]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-01-27 19:41:33,053] Start in 1580118093.0536957
+INFO     [2020-01-27 19:41:33,054] [OK] - Created or opened database | Name database
+INFO     [2020-01-27 19:41:33,054] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-01-27 19:41:33,054] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-01-27 19:41:33,054] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-01-27 19:41:33,054] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-01-27 19:41:33,054] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-01-27 19:41:33,065]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-01-27 19:41:38,878] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-01-27 19:41:38,892] 127.0.0.1 - - [27/Jan/2020 19:41:38] "[37mGET / HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:41:39,164] 127.0.0.1 - - [27/Jan/2020 19:41:39] "[37mGET /frontend/style.css HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:41:39,171] 127.0.0.1 - - [27/Jan/2020 19:41:39] "[37mGET /frontend/project.js HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:42:11,964] [INFO] - Entry
+INFO     [2020-01-27 19:42:12,015] [INFO] - Admin Ulia.fa
+INFO     [2020-01-27 19:42:12,181] [OK] - Entry
+INFO     [2020-01-27 19:42:12,182] 127.0.0.1 - - [27/Jan/2020 19:42:12] "[37mPOST /Entry HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:42:12,228] 127.0.0.1 - - [27/Jan/2020 19:42:12] "[37mGET /frontend/image/logo.svg HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:42:12,263] 127.0.0.1 - - [27/Jan/2020 19:42:12] "[37mGET /frontend/image/exit.png HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:42:12,297] [INFO] - GetInfo
+INFO     [2020-01-27 19:42:12,299] [OK] - GetInfo
+INFO     [2020-01-27 19:42:12,300] 127.0.0.1 - - [27/Jan/2020 19:42:12] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:42:12,347] [INFO] - GetInfo
+INFO     [2020-01-27 19:42:12,351] [OK] - GetInfo
+INFO     [2020-01-27 19:42:12,352] 127.0.0.1 - - [27/Jan/2020 19:42:12] "[37mGET /GetInfo HTTP/1.1[0m" 200 -
+INFO     [2020-01-27 19:42:12,526] [INFO] - GetInfo
+INFO     [2020-01-27 19:42:12,528] [OK] - GetInfo
+INFO     [2020-01-27 19:42:12,528] 127.0.0.1 - - [27/Jan/2020 19:42:12] "[37mGET /GetInfo HTTP/1.1[0m" 200 -

@@ -208,7 +208,6 @@ export default class ClientRequestInfo extends Component{
 
 
 		let block = null;
-		console.log(this.state);
 		if(
 			request.program_name == null ||
 			request.country == null ||

@@ -84,14 +84,14 @@ def preparation_of_client_data(client, time_is_now):
         current_request = [None] * 9
     else:
         current_request = list(current_request)
-        current_request[6] = float(time_is_now) - float(current_request[6])
+        current_request[7] = float(time_is_now) - float(current_request[7])
     current_request = {
         "program_name": current_request[2],
         "country": current_request[3],
-        "status": current_request[8],
-        "type": current_request[4],
-        "departure_date": current_request[5],
-        "date_of_creation": current_request[6]
+        "status": current_request[4],
+        "type": current_request[5],
+        "departure_date": current_request[6],
+        "date_of_creation": current_request[7]
     }
 
     client_history = list(map(preparation_request, history_table.get_all_client_applications(client["client_id"])))
