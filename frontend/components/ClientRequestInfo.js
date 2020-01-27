@@ -194,6 +194,7 @@ export default class ClientRequestInfo extends Component{
 															variant="secondary"
 													>
 															<Dropdown.Item onClick={() => this.props.sendRequest("Заявка")}>Заявка</Dropdown.Item>
+															<Dropdown.Item onClick={() => this.props.sendRequest("Консультирование")}>Консультирование</Dropdown.Item>
 															<Dropdown.Item onClick={() => this.props.sendRequest("Договор")}>Договор</Dropdown.Item>
 															<Dropdown.Item onClick={() => this.props.sendRequest("Оплата")}>Оплата</Dropdown.Item>
 															<Dropdown.Item onClick={() => this.props.sendRequest("Оформление")}>Оформление</Dropdown.Item>

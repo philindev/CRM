@@ -27,6 +27,7 @@ export default class ClientInfo extends Component{
 		this.sendRequest = this.sendRequest.bind(this);
 		this.changeWindow = this.changeWindow.bind(this);
 		this.deleteInfo = this.deleteInfo.bind(this);
+		this.SetDefault = this.SetDefault.bind(this);
   }
 
 
@@ -36,6 +37,12 @@ export default class ClientInfo extends Component{
 			updateData: nextProps.updateData,
 		})
   }
+
+	SetDefault(){
+		this.state.updateData();
+		this.changeWindow("Default");
+		this.props.closeWindow();
+	}
 
 	changeWindow(num){
 		this.setState({window_status: num})
@@ -78,17 +85,13 @@ export default class ClientInfo extends Component{
 	})
 }
 
-	componentWillUnmount(){
-		this.state.updateData();
-	}
-
 	//Изменяет статус клиента
 	sendRequest(str){
 		let client = this.state.dataClient.client;
 		const main = this;
 		let id = client.client_id;
 
-		if(str != "Отказ" || str != "Закрыто"){
+		if(str != "Отказ" && str != "Закрыто"){
 
 			fetch('/ChangeCurrentStatus',
 					{
@@ -130,15 +133,13 @@ export default class ClientInfo extends Component{
 			else if (str == "Закрыто" && this.props.user.user_status == 'Admin') {
 				let sure = confirm("Вы уверены, что хотите закрыть заявку?");
 				if(sure){
-					this.props.closeWindow();
-					this.changeWindow(1);
+					main.changeWindow(1);
 				}
 			}
 			else if (str == "Отказ") {
 				let sure = confirm("Вы уверены, что хотите написать \'Отказ\'?");
 				if(sure){
-					this.props.closeWindow();
-					this.changeWindow(2);
+					main.changeWindow(2);
 				}
 			}
 	}
@@ -457,7 +458,7 @@ export default class ClientInfo extends Component{
 			    <Modal
 						    size="lg"
 						    show={ this.state.dataClient != {}? true: false}
-						    onHide={() => this.props.closeWindow()}
+						    onHide={() => this.SetDefault()}
 						    aria-labelledby="example-modal-sizes-title-lg"
 						    style={{ maxHeight: this.props.setHeight(), overflow: "auto"}}>
 							    <Modal.Header closeButton>
