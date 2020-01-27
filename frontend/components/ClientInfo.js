@@ -227,6 +227,7 @@ export default class ClientInfo extends Component{
     let sizeOfData = Object.keys(this.state.dataClient).length;
     let modalInfo = null;
     let status = null;
+		const main = this;
 		// Открытие окна информации клиента
 		if(sizeOfData){
 			let request = this.state.dataClient.request;
@@ -330,11 +331,11 @@ export default class ClientInfo extends Component{
 										},
 										body: JSON.stringify({
 											data: {
-												money: this.state.money,
-												brief: this.state.brief,
+												money: main.state.money,
+												brief: main.state.brief,
 												id: client.client_id,
 											},
-											token: this.props.user.token,
+											token: main.props.user.token,
 											status: "Закрыто"
 										}),
 									})
@@ -352,10 +353,7 @@ export default class ClientInfo extends Component{
 										response.json()
 										.then(function(data) {
 											if(data != false){
-													console.log(data)
-													this.state.updateData();
-													this.setState(window_status: 0);
-													this.props.closeWindow();
+													main.SetDefault();
 											}
 						})})}}
 										variant="outline-warning"
@@ -366,8 +364,7 @@ export default class ClientInfo extends Component{
 
 		case 2:
 
-
-							window_render =
+				window_render =
 							<Modal.Body>
 								<h4>{request.program_name} - {request.country}</h4>
 								< br />
@@ -385,9 +382,9 @@ export default class ClientInfo extends Component{
 							    <FormControl as="textarea" aria-label="With textarea" onChange={(e) => this.setState({brief: e.target.value})}/>
 							  </InputGroup>
 
-							</Modal.Body>
+							</Modal.Body>;
 
-							window_footer =
+					window_footer =
 									<Modal.Footer>
 										<Button onClick={() => {
 											fetch('/ChangeCurrentStatus',
@@ -400,11 +397,11 @@ export default class ClientInfo extends Component{
 														},
 														body: JSON.stringify({
 															data: {
-																cause: this.state.money,
-																brief: this.state.brief,
+																cause: main.state.money,
+																brief: main.state.brief,
 																id: client.client_id,
 															},
-															token: this.props.user.token,
+															token: main.props.user.token,
 															status: "Отказ"
 														}),
 													})
@@ -422,10 +419,7 @@ export default class ClientInfo extends Component{
 														response.json()
 														.then(function(data) {
 															if(data != false){
-																	console.log(data)
-																	this.state.updateData();
-																	this.setState(window_status: 0);
-																	this.props.closeWindow();
+																	main.SetDefault();
 															}
 										})})}}
 														variant="outline-warning"
