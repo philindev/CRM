@@ -95,7 +95,7 @@ class AdminsTable(AbstractTable):
 
         password_hash = row[0]
         if pbkdf2_sha256.verify(password, password_hash):
-            token = ''.join(choices(ascii_letters + digits + "!\"%&'()*+, -./:;<=>@[\]^_`{|}~", k=16))
+            token = ''.join(choices(ascii_letters + digits + "!%&'()*+, -.:;<=>@[\]^_`{|}~", k=16))
             status = "Guest" if row[1] == 1 else \
                      "User" if row[1] == 2 else \
                      "Admin" if row[1] == 3 else None
@@ -318,7 +318,7 @@ class HistoryTable(AbstractTable):
             '''INSERT INTO history
                 (client_id, program_name, country, type, departure_date, date_of_creation,
                  user_commit, status, money, cause, brief)
-               VALUES (?,?,?,?,?,?,?,?,?,?)''', (
+               VALUES (?,?,?,?,?,?,?,?,?,?,?)''', (
                 client_id,
                 program_name,
                 country,
@@ -348,7 +348,7 @@ class HistoryTable(AbstractTable):
         cursor = self.connection.cursor()
         cursor.execute(
             '''SELECT *
-               FROM history WHERE id = ?''', (client_id,)
+               FROM history WHERE client_id = ?''', (client_id,)
         )
         row = cursor.fetchall()
         return row
@@ -480,11 +480,11 @@ class CurrentRequestsTable(AbstractTable):
         cursor = self.connection.cursor()
         cursor.execute(
             '''SELECT *
-               FROM current WHERE id = ?''', (client_id,)
+               FROM current WHERE client_id = ?''', (client_id,)
         )
         row = cursor.fetchone()
         cursor.execute(
-            '''DELETE FROM current WHERE id = ?''', (client_id,)
+            '''DELETE FROM current WHERE id = ?''', (row[0],)
         )
         self.connection.commit()
         return row

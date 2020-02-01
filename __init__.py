@@ -5,11 +5,12 @@ from database import *
 from logging import basicConfig, DEBUG, getLogger
 from logging.handlers import RotatingFileHandler
 from datetime import datetime
+from os import getcwd
 
 
 def time_calculation(obj: dict, time_is_now):
     if obj and obj["date_of_creation"]:
-        obj["date_of_creation"] = time_is_now - obj["date_of_creation"] // 86400
+        obj["date_of_creation"] = (time_is_now - obj["date_of_creation"]) // 86400
     return obj["date_of_creation"]
 
 
@@ -29,24 +30,13 @@ def preparation_request(request_for_preparation):
         logger.warning("[WARNING] - In history_table is not fully filled request"),
         "user_commit": request_for_preparation[8] if len(request_for_preparation) > 8 else
         logger.warning("[WARNING] - In history_table is not fully filled request"),
-
+        "money": request_for_preparation[9] if len(request_for_preparation) > 9 else
+        logger.warning("[WARNING] - In history_table is not fully filled request"),
+        "cause": request_for_preparation[10] if len(request_for_preparation) > 10 else
+        logger.warning("[WARNING] - In history_table is not fully filled request"),
+        "brief": request_for_preparation[11] if len(request_for_preparation) > 11 else
+        logger.warning("[WARNING] - In history_table is not fully filled request")
     }
-    if new_request["status"] == 6:
-        new_request["money"] = request_for_preparation[9] if len(request_for_preparation) > 9 else \
-                                   logger.warning("[WARNING] - "
-                                                  "In history_table is not fully filled request"),
-
-    elif new_request["status"] == 7:
-        new_request["cause"] = request_for_preparation[10] if len(request_for_preparation) > 10 else \
-                                   logger.warning("[WARNING] - "
-                                                  "In history_table is not fully filled request"),
-        new_request["brief"] = request_for_preparation[11] if len(request_for_preparation) > 11 else \
-            logger.warning("[WARNING] - "
-                           "In history_table is not fully filled request")
-    else:
-        logger.warning("[WARNING] - "
-                       "In history_table does not correctly indicate the status"),
-
     return new_request
 
 
@@ -92,15 +82,20 @@ def preparation_of_client_data(client, time_is_now):
         "status": current_request[4],
         "type": current_request[5],
         "departure_date": current_request[6],
-        "date_of_creation": current_request[7]
+        "date_of_creation": current_request[7],
+        "comment": current_request[8]
     }
 
     client_history = list(map(preparation_request, history_table.get_all_client_applications(client["client_id"])))
+    history_data = []
+    for history in client_history:
+        history["date_of_creation"] = time_calculation(history, time_is_now)
+        history_data.append(history)
 
     client_data = {
         "client": client,
         "request": current_request,
-        "history": list(map(time_calculation, client_history))
+        "history": history_data
     }
 
     return client_data
@@ -283,7 +278,7 @@ def change_current_status():
     global is_closed_application_file, is_refused_application_file
 
     data = request.json
-    if list(data.keys()) != ["token", "status", "data"]:
+    if list(data.keys()) != ["token", "status", "data"] and list(data.keys()) != ['data', 'token', 'status']:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
@@ -303,15 +298,15 @@ def change_current_status():
         return dumps(None)
     if data["status"] == "Закрыто":
         current_request = current_requests_table.pop(client_id)
-        history_table.insert(current_request[1], current_request[2], current_request[3], current_request[4],
-                             current_request[5], current_request[6], current_request[7],
+        history_table.insert(current_request[1], current_request[2], current_request[3], current_request[5],
+                             current_request[6], current_request[7], current_request[8],
                              status=6, money=data["data"]["money"])
         is_closed_application_file = False
 
     elif data["status"] == "Отказ":
         current_request = current_requests_table.pop(client_id)
-        history_table.insert(current_request[1], current_request[2], current_request[3], current_request[4],
-                             current_request[5], current_request[6], current_request[7],
+        history_table.insert(current_request[1], current_request[2], current_request[3], current_request[5],
+                             current_request[6], current_request[7], current_request[8],
                              status=7, cause=data["data"]["cause"], brief=data["data"]["brief"])
         is_refused_application_file = False
     else:
@@ -370,7 +365,6 @@ def get_info():
 
     for client in clients_table.get_all():
         response.append(preparation_of_client_data(client, time_is_now))
-
     logger.info("[OK] - GetInfo")
     return dumps(response)
 
@@ -388,11 +382,11 @@ def search():
     line = data["searchLine"].split()
     status = data["status"].lower()
     status = 1 if status == "Заявка" else \
-        2 if status == "Договор" else \
-            3 if status == "Оплата" else \
-                4 if status == "Консультация" else \
-                    5 if status == "Оформление" else \
-                        6 if status == "Выезд" else 0
+        2 if status == "договор" else \
+            3 if status == "оплата" else \
+                4 if status == "консультация" else \
+                    5 if status == "оформление" else \
+                        6 if status == "выезд" else 0
 
     line_f = "lambda x:"
     if len(line) > 1:
@@ -424,10 +418,11 @@ def search():
 
     for client in res:
         response.append(preparation_of_client_data(client, time_is_now))
-    response = list(filter(
-        lambda x: x['request']['status'] == status if status else lambda y: True,
-        response
-    ))
+    if status:
+        response = list(filter(
+            lambda x: x['request']['status'] == status if status else lambda y: True,
+            response
+        ))
     logger.info("[INFO] - "
                 f"Number of coincidences: {len(response)}")
     logger.info("[OK] - Search completed")
@@ -459,6 +454,7 @@ def delete():
 
 @app.route("/Download/finance/<path:token>", methods=["GET"])
 def download_closed(token):
+    print(token)
     global is_closed_application_file
     if len(token) != 16:
         logger.warning("[WARNING] - Invalid request data")
@@ -473,7 +469,7 @@ def download_closed(token):
             logger.info("[FAILED] - Token does not have access")
 
         return dumps(None)
-
+    logger.info(getcwd())
     if not is_closed_application_file:
         applications = history_table.get_closed_applications()
         data_for_excel = {
@@ -490,6 +486,7 @@ def download_closed(token):
         }
 
         for application in applications:
+            client = clients_table.get(application[1])
             data_for_excel["id"].append(application[0])
             data_for_excel["client_id"].append(application[1])
             data_for_excel["name_of_program"].append(application[2])
@@ -499,16 +496,16 @@ def download_closed(token):
             data_for_excel["departure_date"].append(application[6])
             data_for_excel["user_commit"].append(application[7])
             data_for_excel["money"].append(application[8])
-            data_for_excel["client_name"].append(clients_table.get(application[1])[1])
+            data_for_excel["client_name"].append(client[1] if client else "")
 
         df = DataFrame(data_for_excel)
-        writer = ExcelWriter("excel/closed_applications.xlsx")
+        writer = ExcelWriter("Main/excel/closed_applications.xlsx")
         df.to_excel(writer, "Closed", index=False)
         writer.save()
         is_closed_application_file = True
 
     logger.info("[OK] - Closed file sent")
-    return send_from_directory("./excel", filename="closed_applications.xlsx")
+    return send_from_directory("excel", filename="closed_applications.xlsx")
     # return send_file("excel/closed_applications.xlsx")
 
 
@@ -530,9 +527,9 @@ def download_refused(token):
             logger.info("[FAILED] - Token does not have access")
         return dumps(None)
 
+    logger.info(getcwd())
     if not is_refused_application_file:
-        applications = history_table.get_refused_applications()
-        applications = list(map(lambda x: x + (clients_table.get(x[1])[1],), applications))
+
         data_for_excel = {
             "id": [],
             "client_id": [],
@@ -546,8 +543,14 @@ def download_refused(token):
             "cause": [],
             "brief": []
         }
+        applications = history_table.get_refused_applications()
+        for i, application in enumerate(applications):
+            client = clients_table.get(application[1])
+            if client:
+                applications[i] += (client[1],)
+            else:
+                applications[i] += ("",)
 
-        for application in applications:
             data_for_excel["id"].append(application[0])
             data_for_excel["client_id"].append(application[1])
             data_for_excel["name_of_program"].append(application[2])
@@ -558,23 +561,22 @@ def download_refused(token):
             data_for_excel["user_commit"].append(application[7])
             data_for_excel["cause"].append(application[8])
             data_for_excel["brief"].append(application[9])
-            data_for_excel["client_name"].append(clients_table.get(application[1])[1])
+            client = clients_table.get(application[1])
+            data_for_excel["client_name"].append(client[1] if client else "")
 
         df = DataFrame(data_for_excel)
-        writer = ExcelWriter("excel/refused_applications.xlsx")
+        writer = ExcelWriter("Main/excel/refused_applications.xlsx")
         df.to_excel(writer, "Refused", index=False)
         writer.save()
         is_refused_application_file = True
 
     logger.info("[OK] - Refused file sent")
-    return send_from_directory("./excel", "refused_applications.xlsx")
+    return send_from_directory("excel", "refused_applications.xlsx")
 
 
 @app.route("/Download/general/<path:token>", methods=["GET"])
 def download_general(token):
     global is_current_application_file
-    print(token)
-    print(len(token))
     # data = request.json
     if len(token) != 16:
         logger.warning("[WARNING] - Invalid request data")
@@ -589,6 +591,7 @@ def download_general(token):
             logger.info("[FAILED] - Token does not have access")
         return dumps(None)
 
+    logger.info(getcwd())
     if not is_current_application_file:
         data_for_excel = {
             "application_id": [],
@@ -610,10 +613,10 @@ def download_general(token):
             user = clients_table.get(current[1])
             data_for_excel["application_id"].append(current[0])
             data_for_excel["client_id"].append(current[1])
-            data_for_excel["client_name"].append(user[1])
-            data_for_excel["date_of_birth"].append(user[2])
-            data_for_excel["phone_name"].append(user[3])
-            data_for_excel["email"].append(user[4])
+            data_for_excel["client_name"].append(user[1] if user else "")
+            data_for_excel["date_of_birth"].append(user[2] if user else "")
+            data_for_excel["phone_name"].append(user[3] if user else "")
+            data_for_excel["email"].append(user[4] if user else "")
             data_for_excel["name_of_program"].append(current[2])
             data_for_excel["country"].append(current[3])
             data_for_excel["status"].append(current[4])
@@ -623,13 +626,13 @@ def download_general(token):
             data_for_excel["user_commit"].append(current[8])
 
         df = DataFrame(data_for_excel)
-        writer = ExcelWriter("excel/current_applications.xlsx")
+        writer = ExcelWriter("Main/excel/current_applications.xlsx")
         df.to_excel(writer, "Current", index=False)
         writer.save()
         is_current_application_file = True
 
     logger.info("[OK] - Current file sent")
-    return send_from_directory("./excel", "current_applications.xlsx")
+    return send_from_directory("excel", "current_applications.xlsx")
 
 
 # TODO: сделать удаление токенов
