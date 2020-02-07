@@ -14,18 +14,25 @@ class EditRequest extends Component{
 			country: this.props.request.country,
 			type: this.props.request.type,
 			departure_date: this.props.request.departure_date,
+			comment: this.props.request.comment,
 		}
+
+		this.checkValue = this.checkValue.bind(this);
 	}
 
 	checkValue(){
 		let request = {
 			token: this.props.user.token,
+			status: this.props.request.status,
 			name_of_program: this.state.program_name,
 			country: this.state.country,
 			type_of_program: this.state.type,
 			comment: this.state.comment,
+			id: this.props.client.client_id,
+			date_of_will_fly: this.state.departure_date,
 		}
-
+		console.log(this.props.request)
+		console.log(request)
 		this.props.submit(request);
 	}
 
@@ -129,7 +136,9 @@ export default class ClientRequestInfo extends Component{
 								lg={8}
 								lx={8}
 						>
-							<EditRequest request={request} submit={this.props.submitRequest} user={this.props.user}/>
+							<EditRequest request={request} submit={this.props.submitRequest} user={this.props.user}
+													client={this.props.client}
+									/>
 					</Col>
 					<Col	md={4}
 								lg={4}
