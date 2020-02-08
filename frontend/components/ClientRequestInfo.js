@@ -102,6 +102,19 @@ class EditRequest extends Component{
 					/>
 				</InputGroup>
 
+				<InputGroup className="mb-3">
+					<InputGroup.Prepend>
+						<InputGroup.Text id="basic-addon1">Комментарий:</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl
+						placeholder="Комментарий"
+						aria-label="Username"
+						aria-describedby="basic-addon1"
+						value={this.state.comment}
+						onChange={(e) => this.setState({comment: e.target.value})}
+					/>
+				</InputGroup>
+
 		</Col>;
 
 		return(edit)
@@ -276,7 +289,7 @@ export default class ClientRequestInfo extends Component{
 									<br />
 									<b>Год поездки:</b> {request.departure_date.split("-")[0]}
 										<br />
-										<b>Дата отъезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
+										<b>Дата выезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
 											<br />
 											<b>Комментарии:</b> {request.comment || " Не указано "}
 							</Col>

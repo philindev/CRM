@@ -1532,3 +1532,101 @@ INFO     [2020-02-08 22:22:50,976] 127.0.0.1 - - [08/Feb/2020 22:22:50] "GET /Ge
 INFO     [2020-02-08 22:22:50,991] [INFO] - GetInfo
 INFO     [2020-02-08 22:22:50,991] [OK] - GetInfo
 INFO     [2020-02-08 22:22:50,991] 127.0.0.1 - - [08/Feb/2020 22:22:50] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:11,932] Start in 1581170771.932598
+INFO     [2020-02-09 00:06:11,944] [OK] - Created or opened database | Name database
+INFO     [2020-02-09 00:06:11,944] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-02-09 00:06:11,944] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-02-09 00:06:11,944] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-02-09 00:06:11,944] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-02-09 00:06:11,944] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-02-09 00:06:12,264]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-02-09 00:06:14,985] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-02-09 00:06:15,064] 127.0.0.1 - - [09/Feb/2020 00:06:15] "GET / HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:15,257] 127.0.0.1 - - [09/Feb/2020 00:06:15] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-02-09 00:06:15,602] 127.0.0.1 - - [09/Feb/2020 00:06:15] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:26,426] [INFO] - Entry
+INFO     [2020-02-09 00:06:26,467] [INFO] - Admin Ulia.fa
+INFO     [2020-02-09 00:06:26,481] [OK] - Entry
+INFO     [2020-02-09 00:06:26,482] 127.0.0.1 - - [09/Feb/2020 00:06:26] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:26,619] 127.0.0.1 - - [09/Feb/2020 00:06:26] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-02-09 00:06:26,671] 127.0.0.1 - - [09/Feb/2020 00:06:26] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-02-09 00:06:26,682] [INFO] - GetInfo
+INFO     [2020-02-09 00:06:26,686] [OK] - GetInfo
+INFO     [2020-02-09 00:06:26,687] 127.0.0.1 - - [09/Feb/2020 00:06:26] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:26,700] [INFO] - GetInfo
+INFO     [2020-02-09 00:06:26,711] [OK] - GetInfo
+INFO     [2020-02-09 00:06:26,711] 127.0.0.1 - - [09/Feb/2020 00:06:26] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:26,781] [INFO] - GetInfo
+INFO     [2020-02-09 00:06:26,786] [OK] - GetInfo
+INFO     [2020-02-09 00:06:26,787] 127.0.0.1 - - [09/Feb/2020 00:06:26] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:36,920] [INFO] - GetInfo
+INFO     [2020-02-09 00:06:36,921] [OK] - GetInfo
+INFO     [2020-02-09 00:06:36,922] 127.0.0.1 - - [09/Feb/2020 00:06:36] "GET /GetInfo HTTP/1.1" 200 -
+WARNING  [2020-02-09 00:06:45,219] [WARNING] - Invalid request data
+INFO     [2020-02-09 00:06:45,219] 127.0.0.1 - - [09/Feb/2020 00:06:45] "POST /ChangeCurrent HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:45,348] [INFO] - GetInfo
+INFO     [2020-02-09 00:06:45,349] [OK] - GetInfo
+INFO     [2020-02-09 00:06:45,351] 127.0.0.1 - - [09/Feb/2020 00:06:45] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:45,361] [INFO] - GetInfo
+INFO     [2020-02-09 00:06:45,363] [OK] - GetInfo
+INFO     [2020-02-09 00:06:45,364] 127.0.0.1 - - [09/Feb/2020 00:06:45] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:06:47,761] [INFO] - GetInfo
+INFO     [2020-02-09 00:06:47,762] [OK] - GetInfo
+INFO     [2020-02-09 00:06:47,763] 127.0.0.1 - - [09/Feb/2020 00:06:47] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:00,245] [OK] - Application changed
+INFO     [2020-02-09 00:07:00,246] 127.0.0.1 - - [09/Feb/2020 00:07:00] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:00,297] [INFO] - GetInfo
+INFO     [2020-02-09 00:07:00,299] [OK] - GetInfo
+INFO     [2020-02-09 00:07:00,301] 127.0.0.1 - - [09/Feb/2020 00:07:00] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:00,331] [INFO] - GetInfo
+INFO     [2020-02-09 00:07:00,338] [OK] - GetInfo
+INFO     [2020-02-09 00:07:00,339] 127.0.0.1 - - [09/Feb/2020 00:07:00] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:02,465] [INFO] - GetInfo
+INFO     [2020-02-09 00:07:02,468] [OK] - GetInfo
+INFO     [2020-02-09 00:07:02,469] 127.0.0.1 - - [09/Feb/2020 00:07:02] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:11,610] [INFO] - GetInfo
+INFO     [2020-02-09 00:07:11,622] [OK] - GetInfo
+INFO     [2020-02-09 00:07:11,624] 127.0.0.1 - - [09/Feb/2020 00:07:11] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:11,630] [INFO] - GetInfo
+INFO     [2020-02-09 00:07:11,631] [OK] - GetInfo
+INFO     [2020-02-09 00:07:11,633] 127.0.0.1 - - [09/Feb/2020 00:07:11] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:36,873] [INFO] - GetInfo
+INFO     [2020-02-09 00:07:36,875] [OK] - GetInfo
+INFO     [2020-02-09 00:07:36,875] 127.0.0.1 - - [09/Feb/2020 00:07:36] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:41,765] [INFO] - GetInfo
+INFO     [2020-02-09 00:07:41,766] [OK] - GetInfo
+INFO     [2020-02-09 00:07:41,767] 127.0.0.1 - - [09/Feb/2020 00:07:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:07:41,777] [INFO] - GetInfo
+INFO     [2020-02-09 00:07:41,779] [OK] - GetInfo
+INFO     [2020-02-09 00:07:41,780] 127.0.0.1 - - [09/Feb/2020 00:07:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:09:13,307] [INFO] - GetInfo
+INFO     [2020-02-09 00:09:13,308] [OK] - GetInfo
+INFO     [2020-02-09 00:09:13,308] 127.0.0.1 - - [09/Feb/2020 00:09:13] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:09:23,133] [INFO] - GetInfo
+INFO     [2020-02-09 00:09:23,135] [OK] - GetInfo
+INFO     [2020-02-09 00:09:23,136] 127.0.0.1 - - [09/Feb/2020 00:09:23] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:09:23,151] [INFO] - GetInfo
+INFO     [2020-02-09 00:09:23,152] [OK] - GetInfo
+INFO     [2020-02-09 00:09:23,153] 127.0.0.1 - - [09/Feb/2020 00:09:23] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:09:26,810] [INFO] - Search
+INFO     [2020-02-09 00:09:26,811] [INFO] - Search data: {'searchLine': ' ', 'phone_number': '03924092о', 'status': 'Все'}
+INFO     [2020-02-09 00:09:26,812] [INFO] - Number of coincidences: 1
+INFO     [2020-02-09 00:09:26,813] [OK] - Search completed
+INFO     [2020-02-09 00:09:26,813] 127.0.0.1 - - [09/Feb/2020 00:09:26] "POST /Search HTTP/1.1" 200 -
+INFO     [2020-02-09 00:09:32,036] [INFO] - GetInfo
+INFO     [2020-02-09 00:09:32,038] [OK] - GetInfo
+INFO     [2020-02-09 00:09:32,039] 127.0.0.1 - - [09/Feb/2020 00:09:32] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:09:40,333] [INFO] - GetInfo
+INFO     [2020-02-09 00:09:40,334] [OK] - GetInfo
+INFO     [2020-02-09 00:09:40,334] 127.0.0.1 - - [09/Feb/2020 00:09:40] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:11:20,974] [INFO] - GetInfo
+INFO     [2020-02-09 00:11:20,975] [OK] - GetInfo
+INFO     [2020-02-09 00:11:20,976] 127.0.0.1 - - [09/Feb/2020 00:11:20] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-09 00:11:22,765] [INFO] - Search
+INFO     [2020-02-09 00:11:22,766] [INFO] - Search data: {'searchLine': ' ', 'phone_number': '+7914', 'status': 'Все'}
+INFO     [2020-02-09 00:11:22,767] [INFO] - Number of coincidences: 1
+INFO     [2020-02-09 00:11:22,768] [OK] - Search completed
+INFO     [2020-02-09 00:11:22,768] 127.0.0.1 - - [09/Feb/2020 00:11:22] "POST /Search HTTP/1.1" 200 -
+INFO     [2020-02-09 00:11:26,203] [INFO] - GetInfo
+INFO     [2020-02-09 00:11:26,204] [OK] - GetInfo
+INFO     [2020-02-09 00:11:26,205] 127.0.0.1 - - [09/Feb/2020 00:11:26] "GET /GetInfo HTTP/1.1" 200 -

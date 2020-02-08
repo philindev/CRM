@@ -114,13 +114,13 @@ export default class Continue extends Component{
                       {this.state.status}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
+                      <Dropdown.Item onClick={() => this.setState({status: 'Не заполнен'})}>Не заполнен</Dropdown.Item>
+                      <Dropdown.Item onClick={() => this.setState({status: 'Консультирование'})}>Консультирование</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Заявка'})}>Заявка</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Договор'})}>Договор</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Оплата'})}>Оплата</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Вылет'})}>Вылет</Dropdown.Item>
-                      <Dropdown.Item onClick={() => this.setState({status: 'Консультирование'})}>Консультирование</Dropdown.Item>
                       <Dropdown.Item onClick={() => this.setState({status: 'Закрыто'})}>Закрыто</Dropdown.Item>
-                      <Dropdown.Item onClick={() => this.setState({status: 'Не заполнен'})}>Не заполнен</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
               </InputGroup.Append>

@@ -83,7 +83,7 @@ function StatusForm(number) {
 			return "Оплата"
 
 		case 4:
-			return "Вылет"
+			return "Выезд"
 
 		case 5:
 			return "Консультирование"
