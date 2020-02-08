@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import ParentCard from "./ParentsCard";
 import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
@@ -275,9 +276,12 @@ export default class ClientPersonalInfo extends Component{
 								<br />
 										<b>Почта:</b> {client.mail}
 								<br />
-										<b>Родители: </b>
 									<p>
-											<b>{client.parents.firstParent}</b>
+										<ParentCard data={client.parents.first_parent}/>
+										{
+											client.parents.second_parent.name == null ? null :
+											<ParentCard data={client.parents.second_parent}/>
+										}
 									</p>
 							</p>
 
