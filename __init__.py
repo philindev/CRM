@@ -242,8 +242,8 @@ def change_client():
 @app.route("/ChangeCurrent", methods=["POST"])
 def change_current():
     data = request.json
-    if list(data.keys()) != ["token", "name_of_program", "status", "country",
-                             "date_of_will_fly", "comment", "type_of_program", "id"]:
+    if list(data.keys()) != ["token", "status", "name_of_program", "country",
+                             "type_of_program", "comment", "id", "date_of_will_fly"]:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
 
@@ -251,10 +251,6 @@ def change_current():
 
     if not clients_table.get(client_id):
         logger.warning("[WARNING] - User does not exist")
-        return dumps(None)
-
-    elif current_requests_table.get(client_id):
-        logger.warning("[WARNING] - User already has an open application")
         return dumps(None)
 
     check = admins_table.check_access(data["token"])

@@ -440,8 +440,7 @@ class CurrentRequestsTable(AbstractTable):
                     country = ?,
                     type = ?, 
                     departure_date = ?,
-                    date_of_creation = ?,
-                    user_commit = ?, 
+                    user_commit = ?
                 WHERE client_id = ?''', (
                 program_name, country,
                 program_type, departure_date,
