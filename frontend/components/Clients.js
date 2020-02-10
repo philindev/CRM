@@ -46,11 +46,14 @@ export default class Clients extends React.Component{
 			tableHeight: String(scr - 295) + 'px',
 		})
 		this.getClients();
+		this.props.SearchToBase();
 	}
 
 	componentWillReceiveProps(nextProps){
 		if(nextProps.searchItems.length > 0){
-				this.setState({data: nextProps.searchItems});
+				this.setState({
+					data: nextProps.searchItems,
+				});
 		}
 		else if (nextProps.searchItems.length == 0) {
 				this.setHeight();
@@ -67,20 +70,19 @@ export default class Clients extends React.Component{
 
 		let clients =
 			<Col lg={12} md={12} xl={12}>
-					<Button
-						onClick={this.setHeight}
-						size="sm" variant="outline-info"
-						style={{
-							fontFamily: "sans-serif",
-							fontWeight: "light",
-							fontSize: "8pt",
-							textAlign: "center",
-							position: "absolute",
-							right: "10px",
-						}}
-					>
-						обновить
-					</Button>
+							<Button
+									size="sm" variant="outline-info"
+									style={{
+										fontFamily: "sans-serif",
+										fontWeight: "light",
+										fontSize: "8pt",
+										textAlign: "center",
+										position: "absolute",
+										right: "10px",
+									}}
+									onClick={this.setHeight}>
+												Обновить
+							</Button>
 					{/*Ниже данные с сервера*/}
 					<Table
 						data={this.state.data} screen={this.state.tableHeight}

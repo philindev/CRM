@@ -116,6 +116,7 @@ export default class App extends React.Component{
 			searchedData: [],
 
 			updateData: null,
+			SearchToBase: null,
 		}
 
 		this.onHideCreate = this.onHideCreate.bind(this);
@@ -125,6 +126,11 @@ export default class App extends React.Component{
 		this.changeBySearch = this.changeBySearch.bind(this);
 		this.updatingData = this.updatingData.bind(this);
 		this.clearData = this.clearData.bind(this);
+		this.addSearchToBase = this.addSearchToBase.bind(this);
+	}
+
+	addSearchToBase(f){
+		this.setState({SearchToBase: f})
 	}
 
 	updatingData(f){
@@ -199,17 +205,22 @@ export default class App extends React.Component{
 													changeBySearch={this.changeBySearch}
 													showFilter={this.state.dataClient != {} && this.state.id == 0}
 													user={this.props.user}
+													addSearchToBase={this.addSearchToBase}
 									/>
 								</Col>
 							</Row>
 							<Row className="mt-4">
 								{/*Главный блок с клиентами*/}
-								<Clients openInfo={this.openClient}
-												 StatusForm={StatusForm}
-												 SetDate={SetDate}
-												 searchItems={this.state.searchedData}
-												 updatingData={this.updatingData}
-								/>
+								{this.state.SearchToBase === null ? null :
+
+									<Clients openInfo={this.openClient}
+										StatusForm={StatusForm}
+										SetDate={SetDate}
+										searchItems={this.state.searchedData}
+										updatingData={this.updatingData}
+										SearchToBase={this.state.SearchToBase}
+										/>
+								}
 							</Row>
 						</Col>
 

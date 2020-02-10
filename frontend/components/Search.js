@@ -15,7 +15,6 @@ function preparingSt(string: String) :String {
 export default class Search extends React.Component{
 	constructor(props){
 		super(props);
-		console.log("work");
 		this.state = {
 			searchLine: '',
 			phone_number: '',
@@ -26,6 +25,21 @@ export default class Search extends React.Component{
 
 		this.sendSubmit = this.sendSubmit.bind(this);
 		this.changeState = this.changeState.bind(this);
+		this.SearchStartPosition = this.SearchStartPosition.bind(this);
+	}
+
+	componentDidMount(){
+		this.props.addSearchToBase(this.SearchStartPosition);
+	}
+
+	SearchStartPosition(){
+		this.setState({
+			searchLine: '',
+			phone_number: '',
+			status: '',
+			show: false,
+			buttonName: 'Статус'
+		});
 	}
 
 	sendSubmit(){
@@ -96,6 +110,7 @@ export default class Search extends React.Component{
 							placeholder="Ф.И.О."
 							aria-label="Recipient's username"
 							aria-describedby="basic-addon2"
+							value={this.state.searchLine}
 							onKeyPress={ (event) => {
 								if(event.key == 'Enter' ){
 									main.sendSubmit();
