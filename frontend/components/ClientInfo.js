@@ -5,6 +5,7 @@ import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 					FormControl} from "react-bootstrap";
 import ClientRequestInfo from "./ClientRequestInfo";
 import ClientPersonalInfo from "./ClientEditInfo";
+import HistoryTable from "./HistoryTable";
 
 export default class ClientInfo extends Component{
   constructor(props){
@@ -262,27 +263,20 @@ export default class ClientInfo extends Component{
 														updateId={this.props.updateId}
 														client={client}
 														SetDate={this.props.SetDate}
-														sendRequest={this.sendRequest}/>
+														sendRequest={this.sendRequest}
+														user={this.props.user}/>
 
           <hr/>
 					<Row>
-								<Col>
+								<Col  xs={12} md={12} xl={12} lg={12} style={{overflow: 'auto'}}>
 			          <h5>	<b>История поездок:</b>	</h5>
 			          <br />
 					          {
 					            (!Object.keys(history).length) ?
 
-											<span style={{paddingLeft: "40%"}}> Пусто </span>
-
+											<span style={{paddingLeft: "40%"}}> История пуста </span>
 											:
-
-					            history.map((data, ind) => <tr style={{textAlign: "center", fontSize: "10pt", border: "1px solid grey"}}																					      >
-					            <th>{data.status}</th>
-					            <td>{data.program_name}</td>
-					            <td>{data.country}</td>
-					            <td>{data.year_of_fly}</td>
-					            <td>{data.type}</td>
-					            </tr>)
+											<HistoryTable data={history} user={this.props.user} />
 
 					          }
 								</Col>

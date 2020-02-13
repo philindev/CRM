@@ -37,18 +37,21 @@ export default class HistoryTable extends Component{
           </tr>
         </thead>
         <tbody>
-          {this.state.data.map((obj, ind) =>
-          <tr key={ind}>
-            <td>{obj.year || " - "}</td>
-            {this.props.user.user_status == 'Admin' ? <td>{obj.money || " - "}</td> : null}
-            <td>{obj.status || " - "}</td>
-            <td style={{maxWidth: "150px"}}>{obj.program_name || " - "}</td>
-            <td>{obj.country || " - "}</td>
-            <td>{obj.departure_date || " - "}</td>
-            <td>{obj.type || " - "}</td>
-            <td style={{maxWidth: "150px"}}>{obj.cause || " - "}</td>
-            <td style={{maxWidth: "150px"}}>{obj.brief || " - "}</td>
-          </tr> )}
+          {
+            this.state.data.map((obj, ind) =>
+              <tr key={ind}>
+                    <td>{obj.year || " - "}</td>
+                    {this.props.user.user_status == 'Admin' ? <td> {obj.money || " - "} </td> : null}
+                    <td>{obj.status || " - "}</td>
+                    <td style={{maxWidth: "150px"}}>{obj.program_name || " - "}</td>
+                    <td>{obj.country || " - "}</td>
+                    <td>{obj.departure_date || " - "}</td>
+                    <td>{obj.type || " - "}</td>
+                    <td style={{maxWidth: "150px"}}>{obj.cause || " - "}</td>
+                    <td style={{maxWidth: "150px"}}>{obj.brief || " - "}</td>
+              </tr> 
+              )
+            }
         </tbody>
       </Table>
     </div>
