@@ -276,7 +276,10 @@ export default class ClientInfo extends Component{
 
 											<span style={{paddingLeft: "40%"}}> История пуста </span>
 											:
-											<HistoryTable data={history} user={this.props.user} />
+											<HistoryTable data={history} user={this.props.user}
+														SetDate={this.props.SetDate}
+														StatusForm={this.props.StatusForm}
+												/>
 
 					          }
 								</Col>
