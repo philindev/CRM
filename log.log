@@ -2701,3 +2701,485 @@ INFO     [2020-02-15 20:44:11,741] 127.0.0.1 - - [15/Feb/2020 20:44:11] "GET /Ge
 INFO     [2020-02-15 20:44:11,751] [INFO] - GetInfo
 INFO     [2020-02-15 20:44:11,752] [OK] - GetInfo
 INFO     [2020-02-15 20:44:11,752] 127.0.0.1 - - [15/Feb/2020 20:44:11] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:45:43,736] Start in 1581828343.7362194
+INFO     [2020-02-16 14:45:43,741] [OK] - Created or opened database | Name database
+INFO     [2020-02-16 14:45:43,741] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-02-16 14:45:43,741] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-02-16 14:45:43,742] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-02-16 14:45:43,742] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-02-16 14:45:43,742] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-02-16 14:45:43,745]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-02-16 14:45:52,290] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-02-16 14:45:52,336] 127.0.0.1 - - [16/Feb/2020 14:45:52] "GET / HTTP/1.1" 200 -
+INFO     [2020-02-16 14:45:52,453] 127.0.0.1 - - [16/Feb/2020 14:45:52] "GET /frontend/style.css HTTP/1.1" 200 -
+INFO     [2020-02-16 14:45:52,489] 127.0.0.1 - - [16/Feb/2020 14:45:52] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-02-16 14:45:53,198] 127.0.0.1 - - [16/Feb/2020 14:45:53] "GET /frontend/images/icons/favicon.ico HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:01,539] [INFO] - Entry
+INFO     [2020-02-16 14:46:01,578] [INFO] - Admin Feedback
+INFO     [2020-02-16 14:46:01,651] [OK] - Entry
+INFO     [2020-02-16 14:46:01,652] 127.0.0.1 - - [16/Feb/2020 14:46:01] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:01,709] 127.0.0.1 - - [16/Feb/2020 14:46:01] "GET /frontend/image/logo.svg HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:01,734] 127.0.0.1 - - [16/Feb/2020 14:46:01] "GET /frontend/image/exit.png HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:01,761] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:01,762] [OK] - GetInfo
+INFO     [2020-02-16 14:46:01,762] 127.0.0.1 - - [16/Feb/2020 14:46:01] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:01,771] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:01,772] [OK] - GetInfo
+INFO     [2020-02-16 14:46:01,772] 127.0.0.1 - - [16/Feb/2020 14:46:01] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:01,778] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:01,778] [OK] - GetInfo
+INFO     [2020-02-16 14:46:01,779] 127.0.0.1 - - [16/Feb/2020 14:46:01] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:04,524] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:04,525] [OK] - GetInfo
+INFO     [2020-02-16 14:46:04,526] 127.0.0.1 - - [16/Feb/2020 14:46:04] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:06,911] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:06,913] [OK] - GetInfo
+INFO     [2020-02-16 14:46:06,915] 127.0.0.1 - - [16/Feb/2020 14:46:06] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:06,942] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:06,942] [OK] - GetInfo
+INFO     [2020-02-16 14:46:06,943] 127.0.0.1 - - [16/Feb/2020 14:46:06] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:07,971] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:07,972] [OK] - GetInfo
+INFO     [2020-02-16 14:46:07,972] 127.0.0.1 - - [16/Feb/2020 14:46:07] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:09,451] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:09,453] [OK] - GetInfo
+INFO     [2020-02-16 14:46:09,455] 127.0.0.1 - - [16/Feb/2020 14:46:09] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:46:09,486] [INFO] - GetInfo
+INFO     [2020-02-16 14:46:09,487] [OK] - GetInfo
+INFO     [2020-02-16 14:46:09,489] 127.0.0.1 - - [16/Feb/2020 14:46:09] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 14:50:27,326] [INFO] - GetInfo
+INFO     [2020-02-16 14:50:27,326] [OK] - GetInfo
+INFO     [2020-02-16 14:50:27,327] 127.0.0.1 - - [16/Feb/2020 14:50:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:10,641] Start in 1581829450.6416514
+INFO     [2020-02-16 15:04:10,641] [OK] - Created or opened database | Name database
+INFO     [2020-02-16 15:04:10,641] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-02-16 15:04:10,642] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-02-16 15:04:10,642] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-02-16 15:04:10,642] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-02-16 15:04:10,642] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-02-16 15:04:10,644]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-02-16 15:04:13,893] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:13,895] [OK] - GetInfo
+INFO     [2020-02-16 15:04:13,897] 127.0.0.1 - - [16/Feb/2020 15:04:13] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:13,923] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:13,923] [OK] - GetInfo
+INFO     [2020-02-16 15:04:13,924] 127.0.0.1 - - [16/Feb/2020 15:04:13] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:15,872] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:15,873] [OK] - GetInfo
+INFO     [2020-02-16 15:04:15,874] 127.0.0.1 - - [16/Feb/2020 15:04:15] "GET /GetInfo HTTP/1.1" 200 -
+WARNING  [2020-02-16 15:04:18,181] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-02-16 15:04:18,186] 127.0.0.1 - - [16/Feb/2020 15:04:18] "GET / HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:18,266] 127.0.0.1 - - [16/Feb/2020 15:04:18] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-02-16 15:04:18,267] 127.0.0.1 - - [16/Feb/2020 15:04:18] "GET /frontend/project.js HTTP/1.1" 304 -
+INFO     [2020-02-16 15:04:28,918] [INFO] - Entry
+INFO     [2020-02-16 15:04:28,955] [INFO] - Admin Feedback
+INFO     [2020-02-16 15:04:29,022] [OK] - Entry
+INFO     [2020-02-16 15:04:29,022] 127.0.0.1 - - [16/Feb/2020 15:04:29] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:29,036] 127.0.0.1 - - [16/Feb/2020 15:04:29] "GET /frontend/image/logo.svg HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:29,053] 127.0.0.1 - - [16/Feb/2020 15:04:29] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-02-16 15:04:29,090] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:29,090] [OK] - GetInfo
+INFO     [2020-02-16 15:04:29,091] 127.0.0.1 - - [16/Feb/2020 15:04:29] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:29,098] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:29,098] [OK] - GetInfo
+INFO     [2020-02-16 15:04:29,099] 127.0.0.1 - - [16/Feb/2020 15:04:29] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:29,110] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:29,110] [OK] - GetInfo
+INFO     [2020-02-16 15:04:29,111] 127.0.0.1 - - [16/Feb/2020 15:04:29] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:30,473] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:30,474] [OK] - GetInfo
+INFO     [2020-02-16 15:04:30,474] 127.0.0.1 - - [16/Feb/2020 15:04:30] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:46,158] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:46,158] [OK] - GetInfo
+INFO     [2020-02-16 15:04:46,158] 127.0.0.1 - - [16/Feb/2020 15:04:46] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:46,182] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:46,182] [OK] - GetInfo
+INFO     [2020-02-16 15:04:46,183] 127.0.0.1 - - [16/Feb/2020 15:04:46] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:47,150] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:47,151] [OK] - GetInfo
+INFO     [2020-02-16 15:04:47,152] 127.0.0.1 - - [16/Feb/2020 15:04:47] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:49,463] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:49,465] [OK] - GetInfo
+INFO     [2020-02-16 15:04:49,466] 127.0.0.1 - - [16/Feb/2020 15:04:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:49,484] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:49,485] [OK] - GetInfo
+INFO     [2020-02-16 15:04:49,485] 127.0.0.1 - - [16/Feb/2020 15:04:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:50,276] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:50,277] [OK] - GetInfo
+INFO     [2020-02-16 15:04:50,278] 127.0.0.1 - - [16/Feb/2020 15:04:50] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:53,745] [OK] - Application changed
+INFO     [2020-02-16 15:04:53,746] 127.0.0.1 - - [16/Feb/2020 15:04:53] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:53,758] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:53,759] [OK] - GetInfo
+INFO     [2020-02-16 15:04:53,760] 127.0.0.1 - - [16/Feb/2020 15:04:53] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:53,768] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:53,769] [OK] - GetInfo
+INFO     [2020-02-16 15:04:53,769] 127.0.0.1 - - [16/Feb/2020 15:04:53] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:04:54,702] [INFO] - GetInfo
+INFO     [2020-02-16 15:04:54,704] [OK] - GetInfo
+INFO     [2020-02-16 15:04:54,705] 127.0.0.1 - - [16/Feb/2020 15:04:54] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:02,258] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:02,259] [OK] - GetInfo
+INFO     [2020-02-16 15:05:02,260] 127.0.0.1 - - [16/Feb/2020 15:05:02] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:02,273] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:02,273] [OK] - GetInfo
+INFO     [2020-02-16 15:05:02,274] 127.0.0.1 - - [16/Feb/2020 15:05:02] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:03,483] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:03,483] [OK] - GetInfo
+INFO     [2020-02-16 15:05:03,484] 127.0.0.1 - - [16/Feb/2020 15:05:03] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:04,644] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:04,647] [OK] - GetInfo
+INFO     [2020-02-16 15:05:04,649] 127.0.0.1 - - [16/Feb/2020 15:05:04] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:04,678] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:04,679] [OK] - GetInfo
+INFO     [2020-02-16 15:05:04,681] 127.0.0.1 - - [16/Feb/2020 15:05:04] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:05,256] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:05,258] [OK] - GetInfo
+INFO     [2020-02-16 15:05:05,259] 127.0.0.1 - - [16/Feb/2020 15:05:05] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:06,976] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:06,979] [OK] - GetInfo
+INFO     [2020-02-16 15:05:06,981] 127.0.0.1 - - [16/Feb/2020 15:05:06] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:06,994] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:06,995] [OK] - GetInfo
+INFO     [2020-02-16 15:05:06,995] 127.0.0.1 - - [16/Feb/2020 15:05:06] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:07,692] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:07,693] [OK] - GetInfo
+INFO     [2020-02-16 15:05:07,695] 127.0.0.1 - - [16/Feb/2020 15:05:07] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:10,269] [OK] - Application changed
+INFO     [2020-02-16 15:05:10,269] 127.0.0.1 - - [16/Feb/2020 15:05:10] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:10,288] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:10,289] [OK] - GetInfo
+INFO     [2020-02-16 15:05:10,290] 127.0.0.1 - - [16/Feb/2020 15:05:10] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:10,292] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:10,293] [OK] - GetInfo
+INFO     [2020-02-16 15:05:10,294] 127.0.0.1 - - [16/Feb/2020 15:05:10] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:11,209] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:11,210] [OK] - GetInfo
+INFO     [2020-02-16 15:05:11,211] 127.0.0.1 - - [16/Feb/2020 15:05:11] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:14,883] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:14,884] [OK] - GetInfo
+INFO     [2020-02-16 15:05:14,886] 127.0.0.1 - - [16/Feb/2020 15:05:14] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:14,899] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:14,901] [OK] - GetInfo
+INFO     [2020-02-16 15:05:14,901] 127.0.0.1 - - [16/Feb/2020 15:05:14] "GET /GetInfo HTTP/1.1" 200 -
+WARNING  [2020-02-16 15:05:20,291] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-02-16 15:05:20,292] 127.0.0.1 - - [16/Feb/2020 15:05:20] "GET / HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:28,540] [INFO] - Entry
+INFO     [2020-02-16 15:05:28,569] [INFO] - Admin Feedback
+INFO     [2020-02-16 15:05:28,623] [OK] - Entry
+INFO     [2020-02-16 15:05:28,623] 127.0.0.1 - - [16/Feb/2020 15:05:28] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:28,715] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:28,716] [OK] - GetInfo
+INFO     [2020-02-16 15:05:28,716] 127.0.0.1 - - [16/Feb/2020 15:05:28] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:28,724] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:28,724] [OK] - GetInfo
+INFO     [2020-02-16 15:05:28,725] 127.0.0.1 - - [16/Feb/2020 15:05:28] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:28,734] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:28,735] [OK] - GetInfo
+INFO     [2020-02-16 15:05:28,735] 127.0.0.1 - - [16/Feb/2020 15:05:28] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:29,892] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:29,892] [OK] - GetInfo
+INFO     [2020-02-16 15:05:29,893] 127.0.0.1 - - [16/Feb/2020 15:05:29] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:33,395] [OK] - Application changed
+INFO     [2020-02-16 15:05:33,396] 127.0.0.1 - - [16/Feb/2020 15:05:33] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:33,427] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:33,428] [OK] - GetInfo
+INFO     [2020-02-16 15:05:33,429] 127.0.0.1 - - [16/Feb/2020 15:05:33] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:33,445] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:33,446] [OK] - GetInfo
+INFO     [2020-02-16 15:05:33,446] 127.0.0.1 - - [16/Feb/2020 15:05:33] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:35,032] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:35,032] [OK] - GetInfo
+INFO     [2020-02-16 15:05:35,033] 127.0.0.1 - - [16/Feb/2020 15:05:35] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:37,912] [OK] - Application changed
+INFO     [2020-02-16 15:05:37,914] 127.0.0.1 - - [16/Feb/2020 15:05:37] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:37,956] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:37,957] [OK] - GetInfo
+INFO     [2020-02-16 15:05:37,959] 127.0.0.1 - - [16/Feb/2020 15:05:37] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:37,969] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:37,970] [OK] - GetInfo
+INFO     [2020-02-16 15:05:37,971] 127.0.0.1 - - [16/Feb/2020 15:05:37] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:39,065] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:39,066] [OK] - GetInfo
+INFO     [2020-02-16 15:05:39,067] 127.0.0.1 - - [16/Feb/2020 15:05:39] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:41,175] [OK] - Application changed
+INFO     [2020-02-16 15:05:41,178] 127.0.0.1 - - [16/Feb/2020 15:05:41] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:41,210] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:41,212] [OK] - GetInfo
+INFO     [2020-02-16 15:05:41,214] 127.0.0.1 - - [16/Feb/2020 15:05:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:41,234] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:41,235] [OK] - GetInfo
+INFO     [2020-02-16 15:05:41,238] 127.0.0.1 - - [16/Feb/2020 15:05:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:41,815] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:41,817] [OK] - GetInfo
+INFO     [2020-02-16 15:05:41,819] 127.0.0.1 - - [16/Feb/2020 15:05:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:44,216] [OK] - Application changed
+INFO     [2020-02-16 15:05:44,218] 127.0.0.1 - - [16/Feb/2020 15:05:44] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:44,275] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:44,279] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:44,284] [OK] - GetInfo
+INFO     [2020-02-16 15:05:44,286] 127.0.0.1 - - [16/Feb/2020 15:05:44] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:44,289] [OK] - GetInfo
+INFO     [2020-02-16 15:05:44,290] 127.0.0.1 - - [16/Feb/2020 15:05:44] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:44,989] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:44,992] [OK] - GetInfo
+INFO     [2020-02-16 15:05:44,996] 127.0.0.1 - - [16/Feb/2020 15:05:44] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:47,274] [OK] - Application changed
+INFO     [2020-02-16 15:05:47,276] 127.0.0.1 - - [16/Feb/2020 15:05:47] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:47,303] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:47,304] [OK] - GetInfo
+INFO     [2020-02-16 15:05:47,305] 127.0.0.1 - - [16/Feb/2020 15:05:47] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:47,322] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:47,324] [OK] - GetInfo
+INFO     [2020-02-16 15:05:47,326] 127.0.0.1 - - [16/Feb/2020 15:05:47] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:47,936] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:47,939] [OK] - GetInfo
+INFO     [2020-02-16 15:05:47,941] 127.0.0.1 - - [16/Feb/2020 15:05:47] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:49,722] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:49,724] [OK] - GetInfo
+INFO     [2020-02-16 15:05:49,727] 127.0.0.1 - - [16/Feb/2020 15:05:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:05:49,793] [INFO] - GetInfo
+INFO     [2020-02-16 15:05:49,794] [OK] - GetInfo
+INFO     [2020-02-16 15:05:49,794] 127.0.0.1 - - [16/Feb/2020 15:05:49] "GET /GetInfo HTTP/1.1" 200 -
+WARNING  [2020-02-16 15:07:04,924] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-02-16 15:07:04,925] 127.0.0.1 - - [16/Feb/2020 15:07:04] "GET / HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:04,974] 127.0.0.1 - - [16/Feb/2020 15:07:04] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-02-16 15:07:04,983] 127.0.0.1 - - [16/Feb/2020 15:07:04] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:09,105] Start in 1581829629.1050017
+INFO     [2020-02-16 15:07:09,105] [OK] - Created or opened database | Name database
+INFO     [2020-02-16 15:07:09,105] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-02-16 15:07:09,105] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-02-16 15:07:09,105] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-02-16 15:07:09,105] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-02-16 15:07:09,105] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-02-16 15:07:09,110]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-02-16 15:07:11,661] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-02-16 15:07:11,670] 127.0.0.1 - - [16/Feb/2020 15:07:11] "GET / HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:11,790] 127.0.0.1 - - [16/Feb/2020 15:07:11] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-02-16 15:07:11,804] 127.0.0.1 - - [16/Feb/2020 15:07:11] "GET /frontend/project.js HTTP/1.1" 304 -
+INFO     [2020-02-16 15:07:24,359] [INFO] - Entry
+INFO     [2020-02-16 15:07:24,396] [INFO] - Admin Feedback
+INFO     [2020-02-16 15:07:24,463] [OK] - Entry
+INFO     [2020-02-16 15:07:24,464] 127.0.0.1 - - [16/Feb/2020 15:07:24] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:24,497] 127.0.0.1 - - [16/Feb/2020 15:07:24] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-02-16 15:07:24,526] 127.0.0.1 - - [16/Feb/2020 15:07:24] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-02-16 15:07:24,610] [INFO] - GetInfo
+INFO     [2020-02-16 15:07:24,611] [OK] - GetInfo
+INFO     [2020-02-16 15:07:24,621] 127.0.0.1 - - [16/Feb/2020 15:07:24] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:24,630] [INFO] - GetInfo
+INFO     [2020-02-16 15:07:24,631] [OK] - GetInfo
+INFO     [2020-02-16 15:07:24,631] 127.0.0.1 - - [16/Feb/2020 15:07:24] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:24,633] [INFO] - GetInfo
+INFO     [2020-02-16 15:07:24,634] [OK] - GetInfo
+INFO     [2020-02-16 15:07:24,634] 127.0.0.1 - - [16/Feb/2020 15:07:24] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:26,130] [INFO] - GetInfo
+INFO     [2020-02-16 15:07:26,131] [OK] - GetInfo
+INFO     [2020-02-16 15:07:26,131] 127.0.0.1 - - [16/Feb/2020 15:07:26] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:53,971] [OK] - Application changed
+INFO     [2020-02-16 15:07:53,972] 127.0.0.1 - - [16/Feb/2020 15:07:53] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:53,995] [INFO] - GetInfo
+INFO     [2020-02-16 15:07:53,997] [OK] - GetInfo
+INFO     [2020-02-16 15:07:53,999] 127.0.0.1 - - [16/Feb/2020 15:07:53] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:54,065] [INFO] - GetInfo
+INFO     [2020-02-16 15:07:54,066] [OK] - GetInfo
+INFO     [2020-02-16 15:07:54,066] 127.0.0.1 - - [16/Feb/2020 15:07:54] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:07:55,021] [INFO] - GetInfo
+INFO     [2020-02-16 15:07:55,023] [OK] - GetInfo
+INFO     [2020-02-16 15:07:55,024] 127.0.0.1 - - [16/Feb/2020 15:07:55] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:09:09,840] [INFO] - GetInfo
+INFO     [2020-02-16 15:09:09,841] [OK] - GetInfo
+INFO     [2020-02-16 15:09:09,841] 127.0.0.1 - - [16/Feb/2020 15:09:09] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:09:43,601] [INFO] - UserRequest
+INFO     [2020-02-16 15:09:43,677] [OK] - Application is recorded
+INFO     [2020-02-16 15:09:43,679] 127.0.0.1 - - [16/Feb/2020 15:09:43] "POST /UserRequest HTTP/1.1" 200 -
+INFO     [2020-02-16 15:09:43,752] [INFO] - GetInfo
+INFO     [2020-02-16 15:09:43,752] [OK] - GetInfo
+INFO     [2020-02-16 15:09:43,753] 127.0.0.1 - - [16/Feb/2020 15:09:43] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:09:43,792] [INFO] - GetInfo
+INFO     [2020-02-16 15:09:43,792] [OK] - GetInfo
+INFO     [2020-02-16 15:09:43,792] 127.0.0.1 - - [16/Feb/2020 15:09:43] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:09:46,804] [INFO] - GetInfo
+INFO     [2020-02-16 15:09:46,806] [OK] - GetInfo
+INFO     [2020-02-16 15:09:46,807] 127.0.0.1 - - [16/Feb/2020 15:09:46] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:09:50,011] [INFO] - GetInfo
+INFO     [2020-02-16 15:09:50,012] [OK] - GetInfo
+INFO     [2020-02-16 15:09:50,014] 127.0.0.1 - - [16/Feb/2020 15:09:50] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:09:52,962] [INFO] - GetInfo
+INFO     [2020-02-16 15:09:52,963] [OK] - GetInfo
+INFO     [2020-02-16 15:09:52,964] 127.0.0.1 - - [16/Feb/2020 15:09:52] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:10:08,933] [OK] - Application changed
+INFO     [2020-02-16 15:10:08,934] 127.0.0.1 - - [16/Feb/2020 15:10:08] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:10:08,990] [INFO] - GetInfo
+INFO     [2020-02-16 15:10:08,993] [OK] - GetInfo
+INFO     [2020-02-16 15:10:08,995] 127.0.0.1 - - [16/Feb/2020 15:10:08] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:10:09,086] [INFO] - GetInfo
+INFO     [2020-02-16 15:10:09,086] [OK] - GetInfo
+INFO     [2020-02-16 15:10:09,087] 127.0.0.1 - - [16/Feb/2020 15:10:09] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:10:19,536] [INFO] - GetInfo
+INFO     [2020-02-16 15:10:19,537] [OK] - GetInfo
+INFO     [2020-02-16 15:10:19,539] 127.0.0.1 - - [16/Feb/2020 15:10:19] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:11:29,697] [INFO] - GetInfo
+INFO     [2020-02-16 15:11:29,700] [OK] - GetInfo
+INFO     [2020-02-16 15:11:29,703] 127.0.0.1 - - [16/Feb/2020 15:11:29] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:11:49,056] [INFO] - UserRequest
+INFO     [2020-02-16 15:11:49,150] [OK] - Application is recorded
+INFO     [2020-02-16 15:11:49,151] 127.0.0.1 - - [16/Feb/2020 15:11:49] "POST /UserRequest HTTP/1.1" 200 -
+INFO     [2020-02-16 15:11:49,221] [INFO] - GetInfo
+INFO     [2020-02-16 15:11:49,222] [OK] - GetInfo
+INFO     [2020-02-16 15:11:49,222] 127.0.0.1 - - [16/Feb/2020 15:11:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:11:49,262] [INFO] - GetInfo
+INFO     [2020-02-16 15:11:49,263] [OK] - GetInfo
+INFO     [2020-02-16 15:11:49,263] 127.0.0.1 - - [16/Feb/2020 15:11:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:11:55,600] [INFO] - GetInfo
+INFO     [2020-02-16 15:11:55,602] [OK] - GetInfo
+INFO     [2020-02-16 15:11:55,604] 127.0.0.1 - - [16/Feb/2020 15:11:55] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:12:10,822] Start in 1581829930.8223705
+INFO     [2020-02-16 15:12:10,823] [OK] - Created or opened database | Name database
+INFO     [2020-02-16 15:12:10,823] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-02-16 15:12:10,823] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-02-16 15:12:10,823] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-02-16 15:12:10,824] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-02-16 15:12:10,824] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-02-16 15:12:10,828]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-02-16 15:12:35,852] [OK] - Application changed
+INFO     [2020-02-16 15:12:35,857] 127.0.0.1 - - [16/Feb/2020 15:12:35] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:12:35,913] [INFO] - GetInfo
+INFO     [2020-02-16 15:12:35,917] [OK] - GetInfo
+INFO     [2020-02-16 15:12:35,921] 127.0.0.1 - - [16/Feb/2020 15:12:35] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:12:35,997] [INFO] - GetInfo
+INFO     [2020-02-16 15:12:35,997] [OK] - GetInfo
+INFO     [2020-02-16 15:12:35,998] 127.0.0.1 - - [16/Feb/2020 15:12:35] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:09,774] [INFO] - GetInfo
+INFO     [2020-02-16 15:13:09,776] [OK] - GetInfo
+INFO     [2020-02-16 15:13:09,778] 127.0.0.1 - - [16/Feb/2020 15:13:09] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:13,104] [INFO] - GetInfo
+INFO     [2020-02-16 15:13:13,107] [OK] - GetInfo
+INFO     [2020-02-16 15:13:13,112] 127.0.0.1 - - [16/Feb/2020 15:13:13] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:26,995] [INFO] - UserRequest
+INFO     [2020-02-16 15:13:27,084] [OK] - Application is recorded
+INFO     [2020-02-16 15:13:27,087] 127.0.0.1 - - [16/Feb/2020 15:13:27] "POST /UserRequest HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:27,218] [INFO] - GetInfo
+INFO     [2020-02-16 15:13:27,219] [OK] - GetInfo
+INFO     [2020-02-16 15:13:27,220] 127.0.0.1 - - [16/Feb/2020 15:13:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:27,226] [INFO] - GetInfo
+INFO     [2020-02-16 15:13:27,226] [OK] - GetInfo
+INFO     [2020-02-16 15:13:27,227] 127.0.0.1 - - [16/Feb/2020 15:13:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:30,708] [INFO] - GetInfo
+INFO     [2020-02-16 15:13:30,709] [OK] - GetInfo
+INFO     [2020-02-16 15:13:30,711] 127.0.0.1 - - [16/Feb/2020 15:13:30] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:49,533] [OK] - Application changed
+INFO     [2020-02-16 15:13:49,537] 127.0.0.1 - - [16/Feb/2020 15:13:49] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:49,563] [INFO] - GetInfo
+INFO     [2020-02-16 15:13:49,564] [OK] - GetInfo
+INFO     [2020-02-16 15:13:49,565] 127.0.0.1 - - [16/Feb/2020 15:13:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:49,579] [INFO] - GetInfo
+INFO     [2020-02-16 15:13:49,580] [OK] - GetInfo
+INFO     [2020-02-16 15:13:49,581] 127.0.0.1 - - [16/Feb/2020 15:13:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:13:52,223] [INFO] - GetInfo
+INFO     [2020-02-16 15:13:52,224] [OK] - GetInfo
+INFO     [2020-02-16 15:13:52,227] 127.0.0.1 - - [16/Feb/2020 15:13:52] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:16:36,056] Start in 1581830196.056253
+INFO     [2020-02-16 15:16:36,056] [OK] - Created or opened database | Name database
+INFO     [2020-02-16 15:16:36,056] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-02-16 15:16:36,056] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-02-16 15:16:36,056] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-02-16 15:16:36,056] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-02-16 15:16:36,056] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-02-16 15:16:36,059]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-02-16 15:19:32,050] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:32,053] [OK] - GetInfo
+INFO     [2020-02-16 15:19:32,055] 127.0.0.1 - - [16/Feb/2020 15:19:32] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:40,115] [OK] - Application changed
+INFO     [2020-02-16 15:19:40,116] 127.0.0.1 - - [16/Feb/2020 15:19:40] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:40,186] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:40,186] [OK] - GetInfo
+INFO     [2020-02-16 15:19:40,187] 127.0.0.1 - - [16/Feb/2020 15:19:40] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:40,194] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:40,194] [OK] - GetInfo
+INFO     [2020-02-16 15:19:40,195] 127.0.0.1 - - [16/Feb/2020 15:19:40] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:41,096] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:41,098] [OK] - GetInfo
+INFO     [2020-02-16 15:19:41,100] 127.0.0.1 - - [16/Feb/2020 15:19:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:43,068] [INFO] - ChangeClient
+INFO     [2020-02-16 15:19:43,069] 127.0.0.1 - - [16/Feb/2020 15:19:43] "POST /ChangeClient HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:43,160] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:43,161] [OK] - GetInfo
+INFO     [2020-02-16 15:19:43,162] 127.0.0.1 - - [16/Feb/2020 15:19:43] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:43,167] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:43,167] [OK] - GetInfo
+INFO     [2020-02-16 15:19:43,168] 127.0.0.1 - - [16/Feb/2020 15:19:43] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:43,989] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:43,991] [OK] - GetInfo
+INFO     [2020-02-16 15:19:43,992] 127.0.0.1 - - [16/Feb/2020 15:19:43] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:48,435] [OK] - Application changed
+INFO     [2020-02-16 15:19:48,436] 127.0.0.1 - - [16/Feb/2020 15:19:48] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:48,467] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:48,470] [OK] - GetInfo
+INFO     [2020-02-16 15:19:48,472] 127.0.0.1 - - [16/Feb/2020 15:19:48] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:48,502] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:48,503] [OK] - GetInfo
+INFO     [2020-02-16 15:19:48,505] 127.0.0.1 - - [16/Feb/2020 15:19:48] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:49,753] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:49,754] [OK] - GetInfo
+INFO     [2020-02-16 15:19:49,755] 127.0.0.1 - - [16/Feb/2020 15:19:49] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:51,576] [OK] - Application changed
+INFO     [2020-02-16 15:19:51,578] 127.0.0.1 - - [16/Feb/2020 15:19:51] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:51,615] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:51,616] [OK] - GetInfo
+INFO     [2020-02-16 15:19:51,618] 127.0.0.1 - - [16/Feb/2020 15:19:51] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:51,641] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:51,642] [OK] - GetInfo
+INFO     [2020-02-16 15:19:51,643] 127.0.0.1 - - [16/Feb/2020 15:19:51] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:52,298] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:52,299] [OK] - GetInfo
+INFO     [2020-02-16 15:19:52,301] 127.0.0.1 - - [16/Feb/2020 15:19:52] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:53,951] [OK] - Application changed
+INFO     [2020-02-16 15:19:53,953] 127.0.0.1 - - [16/Feb/2020 15:19:53] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:53,988] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:53,990] [OK] - GetInfo
+INFO     [2020-02-16 15:19:53,992] 127.0.0.1 - - [16/Feb/2020 15:19:53] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:54,009] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:54,009] [OK] - GetInfo
+INFO     [2020-02-16 15:19:54,010] 127.0.0.1 - - [16/Feb/2020 15:19:54] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:54,610] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:54,612] [OK] - GetInfo
+INFO     [2020-02-16 15:19:54,614] 127.0.0.1 - - [16/Feb/2020 15:19:54] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:56,705] [OK] - Application changed
+INFO     [2020-02-16 15:19:56,707] 127.0.0.1 - - [16/Feb/2020 15:19:56] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:56,765] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:56,767] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:56,771] [OK] - GetInfo
+INFO     [2020-02-16 15:19:56,771] 127.0.0.1 - - [16/Feb/2020 15:19:56] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:56,771] [OK] - GetInfo
+INFO     [2020-02-16 15:19:56,773] 127.0.0.1 - - [16/Feb/2020 15:19:56] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:57,334] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:57,336] [OK] - GetInfo
+INFO     [2020-02-16 15:19:57,338] 127.0.0.1 - - [16/Feb/2020 15:19:57] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:59,353] [OK] - Application changed
+INFO     [2020-02-16 15:19:59,355] 127.0.0.1 - - [16/Feb/2020 15:19:59] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:59,397] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:59,399] [OK] - GetInfo
+INFO     [2020-02-16 15:19:59,402] 127.0.0.1 - - [16/Feb/2020 15:19:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:59,439] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:59,441] [OK] - GetInfo
+INFO     [2020-02-16 15:19:59,442] 127.0.0.1 - - [16/Feb/2020 15:19:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:19:59,930] [INFO] - GetInfo
+INFO     [2020-02-16 15:19:59,931] [OK] - GetInfo
+INFO     [2020-02-16 15:19:59,932] 127.0.0.1 - - [16/Feb/2020 15:19:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:20:01,909] [OK] - Application changed
+INFO     [2020-02-16 15:20:01,910] 127.0.0.1 - - [16/Feb/2020 15:20:01] "POST /ChangeCurrentStatus HTTP/1.1" 200 -
+INFO     [2020-02-16 15:20:01,961] [INFO] - GetInfo
+INFO     [2020-02-16 15:20:01,962] [OK] - GetInfo
+INFO     [2020-02-16 15:20:01,963] 127.0.0.1 - - [16/Feb/2020 15:20:01] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:20:01,969] [INFO] - GetInfo
+INFO     [2020-02-16 15:20:01,970] [OK] - GetInfo
+INFO     [2020-02-16 15:20:01,971] 127.0.0.1 - - [16/Feb/2020 15:20:01] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:20:02,535] [INFO] - GetInfo
+INFO     [2020-02-16 15:20:02,536] [OK] - GetInfo
+INFO     [2020-02-16 15:20:02,537] 127.0.0.1 - - [16/Feb/2020 15:20:02] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:20:04,571] [INFO] - GetInfo
+INFO     [2020-02-16 15:20:04,572] [OK] - GetInfo
+INFO     [2020-02-16 15:20:04,574] 127.0.0.1 - - [16/Feb/2020 15:20:04] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-02-16 15:20:04,610] [INFO] - GetInfo
+INFO     [2020-02-16 15:20:04,611] [OK] - GetInfo
+INFO     [2020-02-16 15:20:04,612] 127.0.0.1 - - [16/Feb/2020 15:20:04] "GET /GetInfo HTTP/1.1" 200 -
