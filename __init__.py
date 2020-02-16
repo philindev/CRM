@@ -296,22 +296,26 @@ def change_current_status():
         current_request = current_requests_table.pop(client_id)
         history_table.insert(current_request[1], current_request[2], current_request[3], current_request[5],
                              current_request[6], current_request[7], current_request[8],
-                             status=6, money=data["data"]["money"])
+                             status=7, money=data["data"]["money"])
         is_closed_application_file = False
 
     elif data["status"] == "Отказ":
         current_request = current_requests_table.pop(client_id)
         history_table.insert(current_request[1], current_request[2], current_request[3], current_request[5],
                              current_request[6], current_request[7], current_request[8],
-                             status=7, cause=data["data"]["cause"], brief=data["data"]["brief"])
+                             status=8, cause=data["data"]["cause"], brief=data["data"]["brief"])
         is_refused_application_file = False
     else:
+
         current_requests_table.set_status(client_id,
                                           1 if data["status"] == "Заявка" else
                                           2 if data["status"] == "Договор" else
                                           3 if data["status"] == "Оплата" else
-                                          5 if data["status"] == "Оформление" else
-                                          4 if data["status"] == "Выезд" else 0)
+                                          4 if data["status"] == "Выезд" else
+                                          5 if data["status"] == "Консультирование" else
+                                          6 if data["status"] == "Оформление" else
+                                          7 if data["status"] == "Закртыто" else
+                                          8 if data["status"] == "Отказ" else 0)
     logger.info("[OK] - Application changed")
     return dumps("I hacked your system again")
 
@@ -337,16 +341,18 @@ def user_request():
     elif current_requests_table.get(client_id):
         logger.warning("[WARNING] - User already has an open application")
         return dumps(None)
-
+    status = data["status"]
     current_requests_table.insert(client_id, data["name_of_program"],
                                   data["country"], data["type_of_program"],
                                   data["date_of_will_fly"], data["comment"],
-                                  1 if data["status"] == "Заявка" else
-                                  2 if data["status"] == "Договор" else
-                                  3 if data["status"] == "Оплата" else
-                                  4 if data["status"] == "Консультация" else
-                                  5 if data["status"] == "Оформление" else
-                                  6 if data["status"] == "Выезд" else 0)
+                                  1 if status == "Заявка" else
+                                  2 if status == "Договор" else
+                                  3 if status == "Оплата" else
+                                  4 if status == "Выезд" else
+                                  5 if status == "Консультирование" else
+                                  6 if status == "Оформлемние" else
+                                  7 if status == "Закрыто" else
+                                  8 if status == "Отказ" else 0)
     is_current_application_file = False
     logger.info("[OK] - Application is recorded")
     return dumps("I hacked your system")
@@ -376,13 +382,15 @@ def search():
     time_is_now = time()
     phone = data["phone_number"]
     line = data["searchLine"].split()
-    status = data["status"].lower()
+    status = data["status"]
     status = 1 if status == "Заявка" else \
-        2 if status == "договор" else \
-            3 if status == "оплата" else \
-                4 if status == "консультация" else \
-                    5 if status == "оформление" else \
-                        6 if status == "выезд" else 0
+             2 if status == "Договор" else \
+             3 if status == "Оплата" else \
+             4 if status == "Выезд" else \
+             5 if status == "Консультирование" else \
+             6 if status == "Оформление" else \
+             7 if status == "Закрыто" else \
+             8 if status == "Отказ" else 0
 
     line_f = "lambda x:"
     if len(line) > 1:
