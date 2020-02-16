@@ -11,7 +11,7 @@ export default class Entry extends Component{
       password: '',
       enter: false,
       token: null,
-      user_status: "guest",
+      user_status: "Guest",
       error: false,
       alert: false,
       description: "Неправильно указан логин или пароль"
@@ -25,15 +25,11 @@ export default class Entry extends Component{
   exit(){
     this.setState({
       token: null,
-      user_status: "guest",
+      user_status: "Guest",
       enter: false,
     })
   }
-
-  // componentDidMount(){
-  //   this.submit();
-  // }
-
+  
   submit(){
     const main = this;
     let data = {login: this.state.login, password: this.state.password}

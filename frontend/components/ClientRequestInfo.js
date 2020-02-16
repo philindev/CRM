@@ -222,7 +222,7 @@ export default class ClientRequestInfo extends Component{
 															<Dropdown.Item onClick={() => this.props.sendRequest("Оформление")}>Оформление</Dropdown.Item>
 															<Dropdown.Item onClick={() => this.props.sendRequest("Выезд")}>Выезд</Dropdown.Item>
 													<Dropdown.Divider/>
-															{this.props.user.status == "Admin" ? <Dropdown.Item onClick={() => this.props.sendRequest("Закрыто")}>Закрыто</Dropdown.Item> : null}
+															{this.props.user.user_status == "Admin" ? <Dropdown.Item onClick={() => this.props.sendRequest("Закрыто")}>Закрыто</Dropdown.Item> : null}
 															<Dropdown.Item onClick={() => this.props.sendRequest("Отказ")}>Отказ</Dropdown.Item>
 												</DropdownButton>
 									</Col>
