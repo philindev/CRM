@@ -89,7 +89,13 @@ function StatusForm(number) {
 			return "Консультирование"
 
 		case 6:
+			return "Оформление"
+
+		case 7:
 			return "Закрыто"
+
+		case 8:
+			return "Отказ"
 
 		default:
 			return "Не заполнен"
