@@ -31,8 +31,6 @@ class EditRequest extends Component{
 			id: this.props.client.client_id,
 			date_of_will_fly: this.state.departure_date,
 		}
-		console.log(this.props.request)
-		console.log(request)
 		this.props.submit(request);
 	}
 
