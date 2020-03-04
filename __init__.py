@@ -495,7 +495,15 @@ def download_closed(token):
             data_for_excel["client_id"].append(application[1])
             data_for_excel["name_of_program"].append(application[2])
             data_for_excel["country"].append(application[3])
-            data_for_excel["status"].append(application[4])
+            status = "Заявка" if application[4] == 1 else \
+                     "Договор" if application[4] == 2 else \
+                     "Оплата" if application[4] == 3 else \
+                     "Выезд" if application[4] == 4 else \
+                     "Консультирование" if application[4] == 5 else \
+                     "Оформление" if application[4] == 6 else \
+                     "Закрыто" if application[4] == 7 else \
+                     "Отказ" if application[4] == 8 else "Не заполнен"
+            data_for_excel["status"].append(status)
             data_for_excel["type"].append(application[5])
             data_for_excel["departure_date"].append(application[6])
             data_for_excel["user_commit"].append(application[7])
@@ -510,14 +518,12 @@ def download_closed(token):
 
     logger.info("[OK] - Closed file sent")
     return send_from_directory("excel", filename="closed_applications.xlsx")
-    # return send_file("excel/closed_applications.xlsx")
 
 
 @app.route("/Download/closed/<path:token>", methods=["GET"])
 def download_refused(token):
     global is_refused_application_file
 
-    # data = request.json
     if len(token) != 16:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
@@ -559,7 +565,15 @@ def download_refused(token):
             data_for_excel["client_id"].append(application[1])
             data_for_excel["name_of_program"].append(application[2])
             data_for_excel["country"].append(application[3])
-            data_for_excel["status"].append(application[4])
+            status = "Заявка" if application[4] == 1 else \
+                     "Договор" if application[4] == 2 else \
+                     "Оплата" if application[4] == 3 else \
+                     "Выезд" if application[4] == 4 else \
+                     "Консультирование" if application[4] == 5 else \
+                     "Оформление" if application[4] == 6 else \
+                     "Закрыто" if application[4] == 7 else \
+                     "Отказ" if application[4] == 8 else "Не заполнен"
+            data_for_excel["status"].append(status)
             data_for_excel["type"].append(application[5])
             data_for_excel["departure_date"].append(application[6])
             data_for_excel["user_commit"].append(application[7])
@@ -581,7 +595,7 @@ def download_refused(token):
 @app.route("/Download/general/<path:token>", methods=["GET"])
 def download_general(token):
     global is_current_application_file
-    # data = request.json
+
     if len(token) != 16:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
@@ -623,7 +637,15 @@ def download_general(token):
             data_for_excel["email"].append(user[4] if user else "")
             data_for_excel["name_of_program"].append(current[2])
             data_for_excel["country"].append(current[3])
-            data_for_excel["status"].append(current[4])
+            status = "Заявка" if current[4] == 1 else \
+                     "Договор" if current[4] == 2 else \
+                     "Оплата" if current[4] == 3 else \
+                     "Выезд" if current[4] == 4 else \
+                     "Консультирование" if current[4] == 5 else \
+                     "Оформление" if current[4] == 6 else \
+                     "Закрыто" if current[4] == 7 else \
+                     "Отказ" if current[4] == 8 else "Не заполнен"
+            data_for_excel["status"].append(status)
             data_for_excel["type"].append(current[5])
             data_for_excel["departure_date"].append(current[6])
             data_for_excel["date_of_creation"].append(datetime.fromtimestamp(current[7]))
