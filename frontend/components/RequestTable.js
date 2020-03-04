@@ -58,7 +58,7 @@ export default class RequestTable extends Component{
 		let filteringData = this.state.data ?
 				this.state.data.filter(
 										function(obj){
-													return filtering(obj.date_of_creation, StatusForm(obj.request.status));
+													return filtering(obj.request.date_of_creation, StatusForm(obj.request.status));
 												}
 									)	: null;
 		// Выдаем каждую стору таблицы, используя отфильрованный массив выше

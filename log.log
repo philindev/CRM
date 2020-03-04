@@ -1,0 +1,328 @@
+INFO     [2020-03-04 22:53:31,165] Start in 1583326411.1651275
+INFO     [2020-03-04 22:53:31,179] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 22:53:31,180] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 22:53:31,180] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 22:53:31,180] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 22:53:31,180] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 22:53:31,180] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 22:53:32,582]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 22:53:32,684] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 22:53:32,726] 127.0.0.1 - - [04/Mar/2020 22:53:32] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 22:53:33,562] 127.0.0.1 - - [04/Mar/2020 22:53:33] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 22:53:33,988] 127.0.0.1 - - [04/Mar/2020 22:53:33] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 22:53:45,642] [INFO] - Entry
+INFO     [2020-03-04 22:53:45,642] [FAILED] - User does not exist
+INFO     [2020-03-04 22:53:45,643] [OK] - Entry
+INFO     [2020-03-04 22:53:45,643] 127.0.0.1 - - [04/Mar/2020 22:53:45] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 22:53:50,141] [INFO] - Entry
+INFO     [2020-03-04 22:53:50,142] [FAILED] - User does not exist
+INFO     [2020-03-04 22:53:50,142] [OK] - Entry
+INFO     [2020-03-04 22:53:50,143] 127.0.0.1 - - [04/Mar/2020 22:53:50] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 22:59:12,756] Start in 1583326752.7561316
+INFO     [2020-03-04 22:59:12,767] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 22:59:12,767] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 22:59:12,767] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 22:59:12,767] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 22:59:12,767] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 22:59:12,767] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 22:59:13,061]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-03-04 22:59:18,868] [INFO] - Entry
+INFO     [2020-03-04 22:59:18,918] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 22:59:18,931] [OK] - Entry
+INFO     [2020-03-04 22:59:18,933] 127.0.0.1 - - [04/Mar/2020 22:59:18] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 22:59:19,148] 127.0.0.1 - - [04/Mar/2020 22:59:19] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 22:59:19,185] 127.0.0.1 - - [04/Mar/2020 22:59:19] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 22:59:19,207] [INFO] - GetInfo
+INFO     [2020-03-04 22:59:19,209] [OK] - GetInfo
+INFO     [2020-03-04 22:59:19,210] 127.0.0.1 - - [04/Mar/2020 22:59:19] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 22:59:19,232] [INFO] - GetInfo
+INFO     [2020-03-04 22:59:19,233] [OK] - GetInfo
+INFO     [2020-03-04 22:59:19,234] 127.0.0.1 - - [04/Mar/2020 22:59:19] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 22:59:19,247] [INFO] - GetInfo
+INFO     [2020-03-04 22:59:19,248] [OK] - GetInfo
+INFO     [2020-03-04 22:59:19,248] 127.0.0.1 - - [04/Mar/2020 22:59:19] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:04:12,994] [INFO] - GetInfo
+INFO     [2020-03-04 23:04:13,001] [OK] - GetInfo
+INFO     [2020-03-04 23:04:13,002] 127.0.0.1 - - [04/Mar/2020 23:04:13] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:06:05,503] Start in 1583327165.5031304
+INFO     [2020-03-04 23:06:05,504] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:06:05,504] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:06:05,504] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:06:05,504] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:06:05,504] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:06:05,504] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:06:05,799]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:06:15,039] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:06:15,065] 127.0.0.1 - - [04/Mar/2020 23:06:15] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:06:15,303] 127.0.0.1 - - [04/Mar/2020 23:06:15] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:06:15,616] 127.0.0.1 - - [04/Mar/2020 23:06:15] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:06:23,418] [INFO] - Entry
+INFO     [2020-03-04 23:06:23,460] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:06:23,472] [OK] - Entry
+INFO     [2020-03-04 23:06:23,474] 127.0.0.1 - - [04/Mar/2020 23:06:23] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:06:23,590] 127.0.0.1 - - [04/Mar/2020 23:06:23] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:06:23,709] 127.0.0.1 - - [04/Mar/2020 23:06:23] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:06:23,768] [INFO] - GetInfo
+INFO     [2020-03-04 23:06:23,769] [OK] - GetInfo
+INFO     [2020-03-04 23:06:23,770] 127.0.0.1 - - [04/Mar/2020 23:06:23] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:06:23,779] [INFO] - GetInfo
+INFO     [2020-03-04 23:06:23,781] [OK] - GetInfo
+INFO     [2020-03-04 23:06:23,781] 127.0.0.1 - - [04/Mar/2020 23:06:23] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:06:23,992] [INFO] - GetInfo
+INFO     [2020-03-04 23:06:23,995] [OK] - GetInfo
+INFO     [2020-03-04 23:06:23,995] 127.0.0.1 - - [04/Mar/2020 23:06:23] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:08:16,317] Start in 1583327296.3161254
+INFO     [2020-03-04 23:08:16,328] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:08:16,328] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:08:16,328] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:08:16,328] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:08:16,328] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:08:16,328] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:08:16,681]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-03-04 23:08:31,532] Start in 1583327311.5321305
+INFO     [2020-03-04 23:08:31,533] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:08:31,533] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:08:31,533] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:08:31,533] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:08:31,533] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:08:31,533] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:08:31,863]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:08:34,238] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:08:34,253] 127.0.0.1 - - [04/Mar/2020 23:08:34] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:08:34,479] 127.0.0.1 - - [04/Mar/2020 23:08:34] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:08:34,773] 127.0.0.1 - - [04/Mar/2020 23:08:34] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:08:42,690] [INFO] - Entry
+INFO     [2020-03-04 23:08:42,730] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:08:42,737] [OK] - Entry
+INFO     [2020-03-04 23:08:42,738] 127.0.0.1 - - [04/Mar/2020 23:08:42] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:08:42,809] 127.0.0.1 - - [04/Mar/2020 23:08:42] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:08:42,814] 127.0.0.1 - - [04/Mar/2020 23:08:42] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:08:42,932] [INFO] - GetInfo
+INFO     [2020-03-04 23:08:42,937] [OK] - GetInfo
+INFO     [2020-03-04 23:08:42,938] 127.0.0.1 - - [04/Mar/2020 23:08:42] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:08:42,972] [INFO] - GetInfo
+INFO     [2020-03-04 23:08:42,973] [OK] - GetInfo
+INFO     [2020-03-04 23:08:42,974] 127.0.0.1 - - [04/Mar/2020 23:08:42] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:08:43,088] [INFO] - GetInfo
+INFO     [2020-03-04 23:08:43,090] [OK] - GetInfo
+INFO     [2020-03-04 23:08:43,091] 127.0.0.1 - - [04/Mar/2020 23:08:43] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:11:18,315] Start in 1583327478.315131
+INFO     [2020-03-04 23:11:18,324] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:11:18,324] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:11:18,324] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:11:18,324] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:11:18,324] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:11:18,324] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:11:18,621]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:11:19,590] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:11:19,605] 127.0.0.1 - - [04/Mar/2020 23:11:19] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:11:19,822] 127.0.0.1 - - [04/Mar/2020 23:11:19] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:11:20,162] 127.0.0.1 - - [04/Mar/2020 23:11:20] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:11:27,318] [INFO] - Entry
+INFO     [2020-03-04 23:11:27,360] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:11:27,370] [OK] - Entry
+INFO     [2020-03-04 23:11:27,370] 127.0.0.1 - - [04/Mar/2020 23:11:27] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:11:27,434] 127.0.0.1 - - [04/Mar/2020 23:11:27] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:11:27,497] 127.0.0.1 - - [04/Mar/2020 23:11:27] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:11:27,652] [INFO] - GetInfo
+INFO     [2020-03-04 23:11:27,655] [OK] - GetInfo
+INFO     [2020-03-04 23:11:27,655] 127.0.0.1 - - [04/Mar/2020 23:11:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:11:27,732] [INFO] - GetInfo
+INFO     [2020-03-04 23:11:27,733] [OK] - GetInfo
+INFO     [2020-03-04 23:11:27,734] 127.0.0.1 - - [04/Mar/2020 23:11:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:11:27,991] [INFO] - GetInfo
+INFO     [2020-03-04 23:11:27,992] [OK] - GetInfo
+INFO     [2020-03-04 23:11:27,993] 127.0.0.1 - - [04/Mar/2020 23:11:27] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:18:18,163] Start in 1583327898.1631515
+INFO     [2020-03-04 23:18:18,172] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:18:18,172] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:18:18,172] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:18:18,172] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:18:18,172] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:18:18,172] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:18:18,582]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:18:18,819] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:18:18,835] 127.0.0.1 - - [04/Mar/2020 23:18:18] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:18:18,939] 127.0.0.1 - - [04/Mar/2020 23:18:18] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:18:18,952] 127.0.0.1 - - [04/Mar/2020 23:18:18] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:18:41,285] [INFO] - Entry
+INFO     [2020-03-04 23:18:41,326] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:18:41,335] [OK] - Entry
+INFO     [2020-03-04 23:18:41,336] 127.0.0.1 - - [04/Mar/2020 23:18:41] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:18:41,456] 127.0.0.1 - - [04/Mar/2020 23:18:41] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:18:41,487] 127.0.0.1 - - [04/Mar/2020 23:18:41] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:18:41,610] [INFO] - GetInfo
+INFO     [2020-03-04 23:18:41,612] [OK] - GetInfo
+INFO     [2020-03-04 23:18:41,613] 127.0.0.1 - - [04/Mar/2020 23:18:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:18:41,697] [INFO] - GetInfo
+INFO     [2020-03-04 23:18:41,698] [OK] - GetInfo
+INFO     [2020-03-04 23:18:41,698] 127.0.0.1 - - [04/Mar/2020 23:18:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:18:41,998] [INFO] - GetInfo
+INFO     [2020-03-04 23:18:42,000] [OK] - GetInfo
+INFO     [2020-03-04 23:18:42,001] 127.0.0.1 - - [04/Mar/2020 23:18:42] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:20:29,986] Start in 1583328029.9861321
+INFO     [2020-03-04 23:20:30,000] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:20:30,000] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:20:30,000] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:20:30,000] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:20:30,000] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:20:30,000] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:20:30,298]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:20:32,404] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:20:32,421] 127.0.0.1 - - [04/Mar/2020 23:20:32] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:20:32,591] 127.0.0.1 - - [04/Mar/2020 23:20:32] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:20:32,896] 127.0.0.1 - - [04/Mar/2020 23:20:32] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:20:43,733] [INFO] - Entry
+INFO     [2020-03-04 23:20:43,735] [FAILED] - User does not exist
+INFO     [2020-03-04 23:20:43,735] [OK] - Entry
+INFO     [2020-03-04 23:20:43,735] 127.0.0.1 - - [04/Mar/2020 23:20:43] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:20:54,964] [INFO] - Entry
+INFO     [2020-03-04 23:20:55,007] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:20:55,020] [OK] - Entry
+INFO     [2020-03-04 23:20:55,021] 127.0.0.1 - - [04/Mar/2020 23:20:55] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:20:55,151] 127.0.0.1 - - [04/Mar/2020 23:20:55] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:20:55,191] 127.0.0.1 - - [04/Mar/2020 23:20:55] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:20:55,282] [INFO] - GetInfo
+INFO     [2020-03-04 23:20:55,284] [OK] - GetInfo
+INFO     [2020-03-04 23:20:55,285] 127.0.0.1 - - [04/Mar/2020 23:20:55] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:20:55,317] [INFO] - GetInfo
+INFO     [2020-03-04 23:20:55,320] [OK] - GetInfo
+INFO     [2020-03-04 23:20:55,320] 127.0.0.1 - - [04/Mar/2020 23:20:55] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:20:55,633] [INFO] - GetInfo
+INFO     [2020-03-04 23:20:55,634] [OK] - GetInfo
+INFO     [2020-03-04 23:20:55,635] 127.0.0.1 - - [04/Mar/2020 23:20:55] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:22:01,698] Start in 1583328121.6981323
+INFO     [2020-03-04 23:22:01,746] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:22:01,746] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:22:01,746] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:22:01,746] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:22:01,747] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:22:01,747] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:22:02,048]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:22:05,632] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:22:05,650] 127.0.0.1 - - [04/Mar/2020 23:22:05] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:22:05,875] 127.0.0.1 - - [04/Mar/2020 23:22:05] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:22:06,209] 127.0.0.1 - - [04/Mar/2020 23:22:06] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:22:17,151] [INFO] - Entry
+INFO     [2020-03-04 23:22:17,193] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:22:17,201] [OK] - Entry
+INFO     [2020-03-04 23:22:17,202] 127.0.0.1 - - [04/Mar/2020 23:22:17] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:22:17,317] 127.0.0.1 - - [04/Mar/2020 23:22:17] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:22:17,405] 127.0.0.1 - - [04/Mar/2020 23:22:17] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:22:17,437] [INFO] - GetInfo
+INFO     [2020-03-04 23:22:17,439] [OK] - GetInfo
+INFO     [2020-03-04 23:22:17,439] 127.0.0.1 - - [04/Mar/2020 23:22:17] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:22:17,529] [INFO] - GetInfo
+INFO     [2020-03-04 23:22:17,531] [OK] - GetInfo
+INFO     [2020-03-04 23:22:17,532] 127.0.0.1 - - [04/Mar/2020 23:22:17] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:22:17,796] [INFO] - GetInfo
+INFO     [2020-03-04 23:22:17,797] [OK] - GetInfo
+INFO     [2020-03-04 23:22:17,798] 127.0.0.1 - - [04/Mar/2020 23:22:17] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:24:24,982] Start in 1583328264.9821246
+INFO     [2020-03-04 23:24:24,991] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:24:24,991] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:24:24,992] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:24:24,992] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:24:24,992] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:24:24,992] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:24:25,513]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:24:27,775] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:24:27,796] 127.0.0.1 - - [04/Mar/2020 23:24:27] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:24:28,026] 127.0.0.1 - - [04/Mar/2020 23:24:28] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:24:28,379] 127.0.0.1 - - [04/Mar/2020 23:24:28] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:24:33,387] [INFO] - Entry
+INFO     [2020-03-04 23:24:33,429] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:24:33,437] [OK] - Entry
+INFO     [2020-03-04 23:24:33,438] 127.0.0.1 - - [04/Mar/2020 23:24:33] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:24:33,547] 127.0.0.1 - - [04/Mar/2020 23:24:33] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:24:33,585] 127.0.0.1 - - [04/Mar/2020 23:24:33] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:24:33,657] [INFO] - GetInfo
+INFO     [2020-03-04 23:24:33,661] [OK] - GetInfo
+INFO     [2020-03-04 23:24:33,662] 127.0.0.1 - - [04/Mar/2020 23:24:33] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:24:33,671] [INFO] - GetInfo
+INFO     [2020-03-04 23:24:33,672] [OK] - GetInfo
+INFO     [2020-03-04 23:24:33,674] 127.0.0.1 - - [04/Mar/2020 23:24:33] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:24:33,725] [INFO] - GetInfo
+INFO     [2020-03-04 23:24:33,731] [OK] - GetInfo
+INFO     [2020-03-04 23:24:33,732] 127.0.0.1 - - [04/Mar/2020 23:24:33] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:25:48,331] Start in 1583328348.3311281
+INFO     [2020-03-04 23:25:48,341] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:25:48,341] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:25:48,342] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:25:48,342] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:25:48,342] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:25:48,343] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:25:48,644]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:25:53,176] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:25:53,191] 127.0.0.1 - - [04/Mar/2020 23:25:53] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:25:53,366] 127.0.0.1 - - [04/Mar/2020 23:25:53] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:25:53,710] 127.0.0.1 - - [04/Mar/2020 23:25:53] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:25:58,765] [INFO] - Entry
+INFO     [2020-03-04 23:25:58,811] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:25:58,827] [OK] - Entry
+INFO     [2020-03-04 23:25:58,828] 127.0.0.1 - - [04/Mar/2020 23:25:58] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:25:58,934] 127.0.0.1 - - [04/Mar/2020 23:25:58] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:25:59,039] 127.0.0.1 - - [04/Mar/2020 23:25:59] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:25:59,169] [INFO] - GetInfo
+INFO     [2020-03-04 23:25:59,172] [OK] - GetInfo
+INFO     [2020-03-04 23:25:59,173] 127.0.0.1 - - [04/Mar/2020 23:25:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:25:59,198] [INFO] - GetInfo
+INFO     [2020-03-04 23:25:59,199] [OK] - GetInfo
+INFO     [2020-03-04 23:25:59,200] 127.0.0.1 - - [04/Mar/2020 23:25:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:25:59,501] [INFO] - GetInfo
+INFO     [2020-03-04 23:25:59,503] [OK] - GetInfo
+INFO     [2020-03-04 23:25:59,503] 127.0.0.1 - - [04/Mar/2020 23:25:59] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:26:32,805] Start in 1583328392.8051274
+INFO     [2020-03-04 23:26:32,814] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:26:32,814] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:26:32,814] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:26:32,814] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:26:32,814] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:26:32,815] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:26:33,108]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:26:33,423] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:26:33,435] 127.0.0.1 - - [04/Mar/2020 23:26:33] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:26:33,591] 127.0.0.1 - - [04/Mar/2020 23:26:33] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:26:33,960] 127.0.0.1 - - [04/Mar/2020 23:26:33] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:26:51,140] [INFO] - Entry
+INFO     [2020-03-04 23:26:51,180] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:26:51,189] [OK] - Entry
+INFO     [2020-03-04 23:26:51,190] 127.0.0.1 - - [04/Mar/2020 23:26:51] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:26:51,265] 127.0.0.1 - - [04/Mar/2020 23:26:51] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:26:51,345] 127.0.0.1 - - [04/Mar/2020 23:26:51] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:26:51,409] [INFO] - GetInfo
+INFO     [2020-03-04 23:26:51,413] [OK] - GetInfo
+INFO     [2020-03-04 23:26:51,414] 127.0.0.1 - - [04/Mar/2020 23:26:51] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:26:51,472] [INFO] - GetInfo
+INFO     [2020-03-04 23:26:51,479] [OK] - GetInfo
+INFO     [2020-03-04 23:26:51,480] 127.0.0.1 - - [04/Mar/2020 23:26:51] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:26:51,583] [INFO] - GetInfo
+INFO     [2020-03-04 23:26:51,584] [OK] - GetInfo
+INFO     [2020-03-04 23:26:51,584] 127.0.0.1 - - [04/Mar/2020 23:26:51] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:27:30,751] Start in 1583328450.7511327
+INFO     [2020-03-04 23:27:30,762] [OK] - Created or opened database | Name database
+INFO     [2020-03-04 23:27:30,762] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-04 23:27:30,762] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-04 23:27:30,762] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-04 23:27:30,763] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-04 23:27:30,763] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-04 23:27:31,219]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+WARNING  [2020-03-04 23:27:34,304] [WARNING] - Access to the site from 127.0.0.1
+INFO     [2020-03-04 23:27:34,320] 127.0.0.1 - - [04/Mar/2020 23:27:34] "GET / HTTP/1.1" 200 -
+INFO     [2020-03-04 23:27:34,485] 127.0.0.1 - - [04/Mar/2020 23:27:34] "GET /frontend/style.css HTTP/1.1" 304 -
+INFO     [2020-03-04 23:27:34,862] 127.0.0.1 - - [04/Mar/2020 23:27:34] "GET /frontend/project.js HTTP/1.1" 200 -
+INFO     [2020-03-04 23:27:39,996] [INFO] - Entry
+INFO     [2020-03-04 23:27:40,037] [INFO] - Admin Ulia.fa
+INFO     [2020-03-04 23:27:40,059] [OK] - Entry
+INFO     [2020-03-04 23:27:40,060] 127.0.0.1 - - [04/Mar/2020 23:27:40] "POST /Entry HTTP/1.1" 200 -
+INFO     [2020-03-04 23:27:40,129] 127.0.0.1 - - [04/Mar/2020 23:27:40] "GET /frontend/image/logo.svg HTTP/1.1" 304 -
+INFO     [2020-03-04 23:27:40,235] 127.0.0.1 - - [04/Mar/2020 23:27:40] "GET /frontend/image/exit.png HTTP/1.1" 304 -
+INFO     [2020-03-04 23:27:40,290] [INFO] - GetInfo
+INFO     [2020-03-04 23:27:40,291] [OK] - GetInfo
+INFO     [2020-03-04 23:27:40,292] 127.0.0.1 - - [04/Mar/2020 23:27:40] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:27:40,361] [INFO] - GetInfo
+INFO     [2020-03-04 23:27:40,363] [OK] - GetInfo
+INFO     [2020-03-04 23:27:40,364] 127.0.0.1 - - [04/Mar/2020 23:27:40] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-04 23:27:40,588] [INFO] - GetInfo
+INFO     [2020-03-04 23:27:40,589] [OK] - GetInfo
+INFO     [2020-03-04 23:27:40,590] 127.0.0.1 - - [04/Mar/2020 23:27:40] "GET /GetInfo HTTP/1.1" 200 -
