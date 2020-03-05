@@ -13,6 +13,7 @@ export default class Continue extends Component{
       date_of_will_fly: '',
       type_of_program: '',
       comment: '',
+      school_contacts: '',
       id: this.props.id,
 
       alert: false,
@@ -27,7 +28,7 @@ export default class Continue extends Component{
       status: this.state.status,
       country: this.state.country,
       date_of_will_fly: this.state.date_of_will_fly,
-      comment: this.state.comment,
+      comment: this.state.comment + '--Contacts--' + this.state.school_contacts,
       type_of_program: this.state.type_of_program,
       id: this.state.id
     }
@@ -129,7 +130,7 @@ export default class Continue extends Component{
               <Form.Group as={Col} controlId="formGridText">
                 {/* Дата отъезда ниже */}
                 <div class="well">
-                    <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата отъезда"
+                    <input type="date" class="form-control" id="exampleInputDOB1" placeholder="Дата выезда"
                            onChange={(e) => this.setState({date_of_will_fly: e.target.value})}
                     />
                 </div>
@@ -164,6 +165,9 @@ export default class Continue extends Component{
             />
             <Form.Control as="textarea" type="text" placeholder="Комментарий" style={{minHeight: "50px"}}
                           onChange={(e) => this.setState({comment: e.target.value})}
+            />
+            <Form.Control as="textarea" type="text" placeholder="Контактная информация" style={{minHeight: "50px"}}
+                          onChange={(e) => this.setState({school_contacts: e.target.value})}
             />
       </Form>
 

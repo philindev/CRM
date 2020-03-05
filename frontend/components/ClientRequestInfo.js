@@ -6,6 +6,14 @@ import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
 					FormControl} from "react-bootstrap";
 
 
+function slice_on_the_halfs(string, slicing_part) {
+		let pos = string.indexOf(slicing_part);
+		let first = string.slice(0, pos);
+		let second = string.slice(pos + 12, string.length)
+		console.log(first, second);
+		return [first, second];
+}
+
 class EditRequest extends Component{
 	constructor(props){
 		super(props);
@@ -289,7 +297,12 @@ export default class ClientRequestInfo extends Component{
 										<br />
 										<b>Дата выезда:</b> {this.props.SetDate(request.departure_date)} - {request.type}
 											<br />
-											<b>Комментарии:</b> {request.comment || " Не указано "}
+											<b>Комментарии:</b> {request.comment.includes('--Contacts--') ? slice_on_the_halfs(request.comment, '--Contacts--')[0] :
+																								request.comment ? request.comment : " Не указано "
+																					}
+
+											<br />
+											<b>Контактная информация:</b> {request.comment.includes('--Contacts--') ? slice_on_the_halfs(request.comment, '--Contacts--')[1] : " Не указано "}
 							</Col>
 						{editbtns}
 					</Row>;

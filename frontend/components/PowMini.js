@@ -14,9 +14,8 @@ export default class PowMini extends Component{
   }
 
   render(){
-    console.log(this.state.data);
     let row =
-      <tr style={{textAlign: "center", fontSize: "10pt", background: "#ffedf1"}}
+      <tr style={{textAlign: "center", fontSize: "10pt"}}
       onClick={() => this.props.openInfo(this.props.data)}
       >
         <th>{this.props.StatusForm(this.state.data.request.status) || " Не заполнено"}</th>

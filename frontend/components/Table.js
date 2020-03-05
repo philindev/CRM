@@ -37,7 +37,7 @@ export default class Table extends React.Component{
                     <th scope="col" width="200px" style={{background: "#E4E0DC"}}>Ф.И.О.</th>
                     <th scope="col" width="210px" style={{background: "#E4E0DC"}}>Название программы</th>
                     <th scope="col" width="120px" style={{background: "#E4E0DC"}}>Страна</th>
-                    <th scope="col" width="100px" style={{background: "#E4E0DC"}}>Дата отъезда</th>
+                    <th scope="col" width="100px" style={{background: "#E4E0DC"}}>Дата выезда</th>
                   </tr>
               </thead>
               <tbody>
