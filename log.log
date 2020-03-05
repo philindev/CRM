@@ -685,3 +685,63 @@ INFO     [2020-03-05 22:20:00,544] 127.0.0.1 - - [05/Mar/2020 22:20:00] "GET /Ge
 INFO     [2020-03-05 22:20:00,561] [INFO] - GetInfo
 INFO     [2020-03-05 22:20:00,562] [OK] - GetInfo
 INFO     [2020-03-05 22:20:00,563] 127.0.0.1 - - [05/Mar/2020 22:20:00] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:22:02,701] Start in 1583410922.701712
+INFO     [2020-03-05 22:22:02,711] [OK] - Created or opened database | Name database
+INFO     [2020-03-05 22:22:02,711] [FAILED] - AdminsTable could not connect to the database
+INFO     [2020-03-05 22:22:02,711] [FAILED] - ClientsTable could not connect to the database
+INFO     [2020-03-05 22:22:02,711] [FAILED] - ParentsTable could not connect to the database
+INFO     [2020-03-05 22:22:02,711] [FAILED] - HistoryTable could not connect to the database
+INFO     [2020-03-05 22:22:02,711] [FAILED] - CurrentRequestsTable could not connect to the database
+INFO     [2020-03-05 22:22:03,071]  * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+INFO     [2020-03-05 22:22:03,076] [INFO] - GetInfo
+INFO     [2020-03-05 22:22:03,078] [OK] - GetInfo
+INFO     [2020-03-05 22:22:03,079] 127.0.0.1 - - [05/Mar/2020 22:22:03] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:22:03,897] [INFO] - GetInfo
+INFO     [2020-03-05 22:22:03,899] [OK] - GetInfo
+INFO     [2020-03-05 22:22:03,900] 127.0.0.1 - - [05/Mar/2020 22:22:03] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:22:41,141] [INFO] - UserData
+INFO     [2020-03-05 22:22:41,155] [OK] - User created
+INFO     [2020-03-05 22:22:41,178] [OK] - User’s parents are recorded
+INFO     [2020-03-05 22:22:41,179] 127.0.0.1 - - [05/Mar/2020 22:22:41] "POST /UserData HTTP/1.1" 200 -
+INFO     [2020-03-05 22:22:41,304] [INFO] - GetInfo
+INFO     [2020-03-05 22:22:41,307] [OK] - GetInfo
+INFO     [2020-03-05 22:22:41,308] 127.0.0.1 - - [05/Mar/2020 22:22:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:22:41,375] [INFO] - GetInfo
+INFO     [2020-03-05 22:22:41,393] [OK] - GetInfo
+INFO     [2020-03-05 22:22:41,393] 127.0.0.1 - - [05/Mar/2020 22:22:41] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:25:57,716] [INFO] - UserRequest
+INFO     [2020-03-05 22:25:57,731] [OK] - Application is recorded
+INFO     [2020-03-05 22:25:57,732] 127.0.0.1 - - [05/Mar/2020 22:25:57] "POST /UserRequest HTTP/1.1" 200 -
+INFO     [2020-03-05 22:25:57,867] [INFO] - GetInfo
+INFO     [2020-03-05 22:25:57,868] [OK] - GetInfo
+INFO     [2020-03-05 22:25:57,869] 127.0.0.1 - - [05/Mar/2020 22:25:57] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:25:57,886] [INFO] - GetInfo
+INFO     [2020-03-05 22:25:57,894] [OK] - GetInfo
+INFO     [2020-03-05 22:25:57,895] 127.0.0.1 - - [05/Mar/2020 22:25:57] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:03,646] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:03,647] [OK] - GetInfo
+INFO     [2020-03-05 22:26:03,648] 127.0.0.1 - - [05/Mar/2020 22:26:03] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:10,908] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:10,910] [OK] - GetInfo
+INFO     [2020-03-05 22:26:10,911] 127.0.0.1 - - [05/Mar/2020 22:26:10] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:10,928] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:10,930] [OK] - GetInfo
+INFO     [2020-03-05 22:26:10,931] 127.0.0.1 - - [05/Mar/2020 22:26:10] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:12,199] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:12,201] [OK] - GetInfo
+INFO     [2020-03-05 22:26:12,201] 127.0.0.1 - - [05/Mar/2020 22:26:12] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:15,491] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:15,493] [OK] - GetInfo
+INFO     [2020-03-05 22:26:15,494] 127.0.0.1 - - [05/Mar/2020 22:26:15] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:15,504] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:15,509] [OK] - GetInfo
+INFO     [2020-03-05 22:26:15,509] 127.0.0.1 - - [05/Mar/2020 22:26:15] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:16,170] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:16,173] [OK] - GetInfo
+INFO     [2020-03-05 22:26:16,173] 127.0.0.1 - - [05/Mar/2020 22:26:16] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:18,130] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:18,132] [OK] - GetInfo
+INFO     [2020-03-05 22:26:18,134] 127.0.0.1 - - [05/Mar/2020 22:26:18] "GET /GetInfo HTTP/1.1" 200 -
+INFO     [2020-03-05 22:26:18,143] [INFO] - GetInfo
+INFO     [2020-03-05 22:26:18,146] [OK] - GetInfo
+INFO     [2020-03-05 22:26:18,147] 127.0.0.1 - - [05/Mar/2020 22:26:18] "GET /GetInfo HTTP/1.1" 200 -

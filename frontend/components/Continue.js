@@ -163,7 +163,7 @@ export default class Continue extends Component{
             <Form.Control className="mb-3" type="text" placeholder="Группа / Индивидуально"
                           onChange={(e) => this.setState({type_of_program: e.target.value})}
             />
-            <Form.Control as="textarea" type="text" placeholder="Комментарий" style={{minHeight: "50px"}}
+            <Form.Control className="mb-3"  as="textarea" type="text" placeholder="Комментарий" style={{minHeight: "50px"}}
                           onChange={(e) => this.setState({comment: e.target.value})}
             />
             <Form.Control as="textarea" type="text" placeholder="Контактная информация" style={{minHeight: "50px"}}

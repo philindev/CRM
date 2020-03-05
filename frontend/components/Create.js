@@ -84,7 +84,6 @@ export default class Create extends Component{
           // Examine the text in the response
           response.json()
           .then(function(data) {
-            console.log(data);
             if(data){
               if(whichWindow == 1){
                 main.props.onHideCreate();
@@ -128,7 +127,6 @@ export default class Create extends Component{
     }
 
     updateParent(info, which){
-      console.log(which);
       if(which){
         this.setState({secondParent: info});
       }
