@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {InputGroup, FormControl, Button, OverlayTrigger, Popover,
-				Form, Col, Row, DropdownButton, Dropdown} from "react-bootstrap";
+import {InputGroup, FormControl, Button, Col, Row, DropdownButton, Dropdown} from "react-bootstrap";
 
 function preparingSt(string: String) :String {
 	if(string == null || string == false){
@@ -51,6 +50,7 @@ export default class Search extends React.Component{
 			phone_number: this.state.phone_number || "+7",
 			status: bn == "Конс-ция" ? "Консультация" : bn
 		}
+
 		if(files.status == "Статус"){ files.status = "Все" }
 		if(
 			files.searchLine ||

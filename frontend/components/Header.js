@@ -24,34 +24,34 @@ export default class Header extends React.Component{
 	get_file_url(url) {
 		let token = this.props.user.token;
 		const main = this;
-		let link = '/Download/' + url + "/" + token
+		let link = '/Download/' + token + "/" + url;
 		// let link = 'google.com'
-	  var newWin = window.open(link, 'Download Table', 'width=600,height=400');
+		let newWin = window.open(link, 'Download Table', 'width=600,height=400');
 
-	  newWin.onload = function() {
+		newWin.onload = function() {
 
-	    // создать div в документе нового окна
-	    var div = newWin.document.createElement('div'),
-	        body = newWin.document.body;
+		// создать div в документе нового окна
+		var div = newWin.document.createElement('div'),
+			body = newWin.document.body;
 
-	    // вставить первым элементом в body нового окна
-	    body.insertBefore(div, body.firstChild);
-	  }
+		// вставить первым элементом в body нового окна
+		body.insertBefore(div, body.firstChild);
+		}
 	}
 
 	render(){
 	// Окно ошибок
 	let wrongTabs =
 	<Modal onHide={() => this.setState({alert: false})} show={this.state.alert}>
-	  <Modal.Header closeButton>
-	    <Modal.Title>Скачивание таблицы</Modal.Title>
-	  </Modal.Header>
+		  <Modal.Header closeButton>
+			<Modal.Title>Скачивание таблицы</Modal.Title>
+		  </Modal.Header>
 
-	  <Modal.Body>
-	    <p>Что-то пошло не так. Скорее всего данной информации нет на сервере.
-				 Если такое повториться снова, обратитесь в тех.поддержку!</p>
-	  </Modal.Body>
-</Modal>;
+		  <Modal.Body>
+			<p>Что-то пошло не так. Скорее всего данной информации нет на сервере.
+					 Если такое повториться снова, обратитесь в тех.поддержку!</p>
+		  </Modal.Body>
+	</Modal>;
 
 	// Окно уведомлений
 	const popover =

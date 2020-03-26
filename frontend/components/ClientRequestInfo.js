@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
-import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
-				Dropdown, DropdownButton, InputGroup, Badge, Button,
+import {Row, Col, Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
 
 
@@ -22,8 +20,10 @@ class EditRequest extends Component{
 			country: this.props.request.country,
 			type: this.props.request.type,
 			departure_date: this.props.request.departure_date,
-			comment: this.props.request.comment,
-		}
+			comment: this.props.request.comment.includes('--Contacts--') ? slice_on_the_halfs(this.props.request.comment, '--Contacts--')[0] :
+																								this.props.request.comment ? this.props.request.comment : " Не указано ",
+			contacts: this.props.request.comment.includes('--Contacts--') ? slice_on_the_halfs(this.props.request.comment, '--Contacts--')[1] : " Не указано ",
+		};
 
 		this.checkValue = this.checkValue.bind(this);
 	}
@@ -35,7 +35,7 @@ class EditRequest extends Component{
 			name_of_program: this.state.program_name,
 			country: this.state.country,
 			type_of_program: this.state.type,
-			comment: this.state.comment,
+			comment: this.state.comment + '--Contacts--' + this.state.contacts,
 			id: this.props.client.client_id,
 			date_of_will_fly: this.state.departure_date,
 		}
@@ -119,6 +119,18 @@ class EditRequest extends Component{
 						value={this.state.comment}
 						onChange={(e) => this.setState({comment: e.target.value})}
 					/>
+
+				</InputGroup><InputGroup className="mb-3">
+					<InputGroup.Prepend>
+						<InputGroup.Text id="basic-addon1">Контактная инф.:</InputGroup.Text>
+					</InputGroup.Prepend>
+					<FormControl
+						placeholder="Контактная инф."
+						aria-label="Username"
+						aria-describedby="basic-addon1"
+						value={this.state.contacts}
+						onChange={(e) => this.setState({contacts: e.target.value})}
+					/>
 				</InputGroup>
 
 		</Col>;
@@ -163,9 +175,8 @@ export default class ClientRequestInfo extends Component{
 								lg={4}
 								lx={4}
 					>
-							<Button variant="primary" className="mt-3"
+							<Button variant="primary" className="mt-3 buttonEdit"
 										onClick={() => this.setState({status: !this.state.status})}
-										className="buttonEdit"
 										style={{
 											position: "absolute",
 											right: "10%",
