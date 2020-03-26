@@ -95,7 +95,7 @@ class AdminsTable(AbstractTable):
 
         password_hash = row[0]
         if pbkdf2_sha256.verify(password, password_hash):
-            token = ''.join(choices(ascii_letters + digits + "!%&'()*+, -.:;<=>@[\]^_`{|}~", k=16))
+            token = ''.join(choices(ascii_letters + digits + "!%&'()*+, -.:;<=>@[]^_`{|}~", k=16))
             status = "Guest" if row[1] == 1 else \
                      "User" if row[1] == 2 else \
                      "Admin" if row[1] == 3 else None
