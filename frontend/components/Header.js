@@ -24,18 +24,16 @@ export default class Header extends React.Component{
 	get_file_url(url) {
 		let token = this.props.user.token;
 		const main = this;
-		let link = '/Download/' + token + "/" + url;
-		// let link = 'google.com'
+		let link = '/Download/' + token + "/" + url + ".xlsx";
 		let newWin = window.open(link, 'Download Table', 'width=600,height=400');
 
 		newWin.onload = function() {
+			// создать div в документе нового окна
+			let div = newWin.document.createElement('div'),
+				body = newWin.document.body;
 
-		// создать div в документе нового окна
-		var div = newWin.document.createElement('div'),
-			body = newWin.document.body;
-
-		// вставить первым элементом в body нового окна
-		body.insertBefore(div, body.firstChild);
+			// вставить первым элементом в body нового окна
+			body.insertBefore(div, body.firstChild);
 		}
 	}
 
@@ -120,11 +118,6 @@ export default class Header extends React.Component{
 				    	<Nav.Link style={{marginRight: "20px"}}>
 				    	 {statistic}
 				    	</Nav.Link>
-							{/*<OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
-							    <Nav.Link onClick={this.changeBell}>
-							    	{bell}
-							    </Nav.Link>
-								</OverlayTrigger>*/}
 					    <Nav.Link onClick={this.props.exit}>
 					    	<img src="frontend/image/exit.png"
 				                 style={{
