@@ -207,8 +207,10 @@ class ClientsTable(AbstractTable):
     def delete(self, client_id):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''DELETE FROM clients
-                WHERE id = ?''', (client_id,)
+            '''
+            DELETE FROM clients
+            WHERE id = ?
+            ''', (client_id,)
         )
         cursor.close()
         self.connection.commit()
@@ -299,7 +301,7 @@ class HistoryTable(AbstractTable):
                 program_name VARCHAR(254),
                 country VARCHAR(254),
                 status INTEGER DEFAULT 2,
-                type INTEGER,
+                program_type INTEGER,
                 departure_date VARCHAR(10),
                 date_of_creation TIMESTAMP,
                 user_commit TEXT,
@@ -315,22 +317,17 @@ class HistoryTable(AbstractTable):
                status=6, money=0, cause="", brief=""):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''INSERT INTO history
-                (client_id, program_name, country, type, departure_date, date_of_creation,
-                 user_commit, status, money, cause, brief)
-               VALUES (?,?,?,?,?,?,?,?,?,?,?)''', (
-                client_id,
-                program_name,
-                country,
-                program_type,
-                departure_date,
-                date_of_creation,
-                commit,
-                status,
-                money,
-                cause,
-                brief
-            )
+            '''
+            INSERT INTO history
+                (client_id, program_name, country,
+                 program_type, departure_date, date_of_creation,
+                 user_commit, status,
+                 money, cause, brief)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?)''',
+            (client_id, program_name, country,
+             program_type, departure_date, date_of_creation,
+             commit, status, money,
+             cause, brief)
         )
         cursor.close()
         self.connection.commit()
@@ -338,8 +335,11 @@ class HistoryTable(AbstractTable):
     def set_status(self, client_id, status):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''UPDATE history
-               SET status=? WHERE client_id = ?''', (status, client_id)
+            '''
+            UPDATE history
+            SET status=?
+            WHERE client_id = ?
+            ''', (status, client_id)
         )
         cursor.close()
         self.connection.commit()
@@ -347,45 +347,34 @@ class HistoryTable(AbstractTable):
     def get_all_client_applications(self, client_id):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''SELECT *
-               FROM history WHERE client_id = ?''', (client_id,)
+            '''
+            SELECT *
+            FROM history
+            WHERE client_id = ?
+            ''', (client_id,)
         )
+        row = cursor.fetchall()
+        return row
+
+    def get_finance_applications(self):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''
+            SELECT id, client_id, program_name, country, status, program_type, departure_date, user_commit, money
+            FROM history 
+            WHERE status = 7
+            ''')
         row = cursor.fetchall()
         return row
 
     def get_closed_applications(self):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''SELECT 
-                id, 
-                client_id,
-                program_name,
-                country,
-                status,
-                type,
-                departure_date,
-                user_commit,
-                money
-               FROM history WHERE status = 6'''
-        )
-        row = cursor.fetchall()
-        return row
-
-    def get_refused_applications(self):
-        cursor = self.connection.cursor()
-        cursor.execute(
-            '''SELECT
-                id, 
-                client_id,
-                program_name,
-                country,
-                status,
-                type,
-                departure_date,
-                user_commit,
-                cause,
-                brief
-               FROM history WHERE status = 7'''
+            '''
+            SELECT id, client_id, program_name, country, status, program_type, departure_date, user_commit, cause, brief
+            FROM history
+            WHERE status = 8
+            '''
         )
         row = cursor.fetchall()
         return row
@@ -398,12 +387,13 @@ class CurrentRequestsTable(AbstractTable):
     def init_table(self):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''CREATE TABLE IF NOT EXISTS current(
+            '''
+            CREATE TABLE IF NOT EXISTS current(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 client_id INTEGER,
                 program_name VARCHAR(254),
                 country VARCHAR(254),
-                type INTEGER,
+                program_type VARCHAR(14),
                 departure_date VARCHAR(10),
                 date_of_creation TIMESTAMP,
                 user_commit TEXT,
@@ -416,7 +406,7 @@ class CurrentRequestsTable(AbstractTable):
     def insert(self, client_id, program_name, country, program_type, departure_date, commit, status=1):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''INSERT INTO current(client_id, program_name, country, type,
+            '''INSERT INTO current(client_id, program_name, country, program_type,
              departure_date, date_of_creation, user_commit, status)
                VALUES (?,?,?,?,?,?,?,?)''', (
                 client_id,
@@ -438,7 +428,7 @@ class CurrentRequestsTable(AbstractTable):
             '''UPDATE current
                 SET program_name = ?,
                     country = ?,
-                    type = ?, 
+                    program_type = ?, 
                     departure_date = ?,
                     user_commit = ?
                 WHERE client_id = ?''', (
@@ -491,3 +481,19 @@ class CurrentRequestsTable(AbstractTable):
 
 handler = RotatingFileHandler('log.log', maxBytes=1024 * 1024 * 100)
 logger = getLogger('database')
+
+
+if __name__ == "__main__":
+    db = DB("database")
+
+    admins_table = AdminsTable(db.get_connection())
+    clients_table = ClientsTable(db.get_connection())
+    parents_table = ParentsTable(db.get_connection())
+    history_table = HistoryTable(db.get_connection())
+    current_requests_table = CurrentRequestsTable(db.get_connection())
+
+    admins_table.init_table()
+    clients_table.init_table()
+    parents_table.init_table()
+    history_table.init_table()
+    current_requests_table.init_table()

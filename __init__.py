@@ -75,15 +75,15 @@ def preparation_of_client_data(client, time_is_now):
         current_request = [None] * 9
     else:
         current_request = list(current_request)
-        current_request[7] = float(time_is_now) - float(current_request[7])
+        current_request[7] = float(time_is_now) - float(current_request[6])
     current_request = {
         "program_name": current_request[2],
         "country": current_request[3],
-        "status": current_request[4],
-        "type": current_request[5],
-        "departure_date": current_request[6],
-        "date_of_creation": current_request[7],
-        "comment": current_request[8]
+        "status": current_request[8],
+        "type": current_request[4],
+        "departure_date": current_request[5],
+        "date_of_creation": current_request[6],
+        "comment": current_request[7]
     }
 
     client_history = list(map(preparation_request, history_table.get_all_client_applications(client["client_id"])))
@@ -116,11 +116,6 @@ app = Flask(__name__, template_folder="./frontend", static_folder="./frontend")
 def main_page():
     logger.warning(f"[WARNING] - Access to the site from {request.environ['REMOTE_ADDR']}")
     return render_template("index.html")
-
-
-@app.route("/login", methods=["GET"])
-def login():
-    return render_template("login.html")
 
 
 @app.route("/Entry", methods=["POST"])
@@ -383,12 +378,12 @@ def search():
     status = data["status"]
     status = 1 if status == "Заявка" else \
         2 if status == "Договор" else \
-            3 if status == "Оплата" else \
-                4 if status == "Выезд" else \
-                    5 if status == "Консультирование" else \
-                        6 if status == "Оформление" else \
-                            7 if status == "Закрыто" else \
-                                8 if status == "Отказ" else 0
+        3 if status == "Оплата" else \
+        4 if status == "Выезд" else \
+        5 if status == "Консультирование" else \
+        6 if status == "Оформление" else \
+        7 if status == "Закрыто" else \
+        8 if status == "Отказ" else 0
 
     line_f = "lambda x:"
     if len(line) > 1:
@@ -473,7 +468,7 @@ def download_closed(token):
         return dumps(None)
     logger.info(getcwd())
     if not is_closed_application_file:
-        applications = history_table.get_closed_applications()
+        applications = history_table.get_finance_applications()
         data_for_excel = {
             "ФИО клиента": [],
             "Программа": [],
@@ -513,7 +508,7 @@ def download_closed(token):
         is_closed_application_file = True
 
     logger.info("[OK] - Closed file sent")
-    return send_from_directory("excel", filename="closed_applications.xlsx")
+    return send_from_directory("Main/excel", filename="closed_applications.xlsx")
 
 
 @app.route("/Download/<path:token>/closed.xlsx", methods=["GET"])
@@ -547,7 +542,7 @@ def download_refused(token):
             "Краткая причина": [],
             "Причина": []
         }
-        applications = history_table.get_refused_applications()
+        applications = history_table.get_closed_applications()
         for i, application in enumerate(applications):
             client = clients_table.get(application[1])
             if client:
@@ -581,7 +576,7 @@ def download_refused(token):
         is_refused_application_file = True
 
     logger.info("[OK] - Refused file sent")
-    return send_from_directory("excel", "refused_applications.xlsx")
+    return send_from_directory("Main/excel", "refused_applications.xlsx")
 
 
 @app.route("/Download/<path:token>/general.xlsx", methods=["GET"])
@@ -628,19 +623,19 @@ def download_general(token):
             data_for_excel["Программа"].append(current[2])
             data_for_excel["Страна"].append(current[3])
             data_for_excel["Статус"].append(
-                "Заявка" if current[4] == 1 else
-                "Договор" if current[4] == 2 else
-                "Оплата" if current[4] == 3 else
-                "Выезд" if current[4] == 4 else
-                "Консультирование" if current[4] == 5 else
-                "Оформление" if current[4] == 6 else
-                "Закрыто" if current[4] == 7 else
-                "Отказ" if current[4] == 8 else "Не заполнен"
+                "Заявка" if current[8] == 1 else
+                "Договор" if current[8] == 2 else
+                "Оплата" if current[8] == 3 else
+                "Выезд" if current[8] == 4 else
+                "Консультирование" if current[8] == 5 else
+                "Оформление" if current[8] == 6 else
+                "Закрыто" if current[8] == 7 else
+                "Отказ" if current[8] == 8 else "Не заполнен"
             )
-            data_for_excel["Тип"].append(current[5])
-            data_for_excel["Дата выезда"].append(current[6])
-            data_for_excel["Дата создания"].append(datetime.fromtimestamp(current[7]))
-            data_for_excel["Комментарий"].append(current[8])
+            data_for_excel["Тип"].append(current[4])
+            data_for_excel["Дата выезда"].append(current[5])
+            data_for_excel["Дата создания"].append(datetime.fromtimestamp(current[6]))
+            data_for_excel["Комментарий"].append(current[7])
 
         df = DataFrame(data_for_excel)
         writer = ExcelWriter("Main/excel/current_applications.xlsx")
@@ -649,7 +644,7 @@ def download_general(token):
         is_current_application_file = True
 
     logger.info("[OK] - Current file sent")
-    return send_from_directory("excel", "current_applications.xlsx")
+    return send_from_directory("Main/excel", "current_applications.xlsx")
 
 
 # TODO: сделать удаление токенов
