@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory, send_file
+from flask import Flask, request, render_template, send_from_directory
 from json import dumps
 from pandas import DataFrame, ExcelWriter
 from database import *
@@ -75,15 +75,15 @@ def preparation_of_client_data(client, time_is_now):
         current_request = [None] * 9
     else:
         current_request = list(current_request)
-        current_request[7] = float(time_is_now) - float(current_request[7])
+        current_request[7] = float(time_is_now) - float(current_request[6])
     current_request = {
         "program_name": current_request[2],
         "country": current_request[3],
-        "status": current_request[4],
-        "type": current_request[5],
-        "departure_date": current_request[6],
-        "date_of_creation": current_request[7],
-        "comment": current_request[8]
+        "status": current_request[8],
+        "type": current_request[4],
+        "departure_date": current_request[5],
+        "date_of_creation": current_request[6],
+        "comment": current_request[7]
     }
 
     client_history = list(map(preparation_request, history_table.get_all_client_applications(client["client_id"])))
@@ -115,13 +115,7 @@ app = Flask(__name__, template_folder="./frontend", static_folder="./frontend")
 @app.route('/', methods=["GET"])
 def main_page():
     logger.warning(f"[WARNING] - Access to the site from {request.environ['REMOTE_ADDR']}")
-    # logger.warning(f"[WARNING] - Access to the site")
     return render_template("index.html")
-
-
-@app.route("/login", methods=["GET"])
-def login():
-    return render_template("login.html")
 
 
 @app.route("/Entry", methods=["POST"])
@@ -306,7 +300,6 @@ def change_current_status():
                              status=8, cause=data["data"]["cause"], brief=data["data"]["brief"])
         is_refused_application_file = False
     else:
-
         current_requests_table.set_status(client_id,
                                           1 if data["status"] == "Заявка" else
                                           2 if data["status"] == "Договор" else
@@ -384,13 +377,13 @@ def search():
     line = data["searchLine"].split()
     status = data["status"]
     status = 1 if status == "Заявка" else \
-             2 if status == "Договор" else \
-             3 if status == "Оплата" else \
-             4 if status == "Выезд" else \
-             5 if status == "Консультирование" else \
-             6 if status == "Оформление" else \
-             7 if status == "Закрыто" else \
-             8 if status == "Отказ" else 0
+        2 if status == "Договор" else \
+        3 if status == "Оплата" else \
+        4 if status == "Выезд" else \
+        5 if status == "Консультирование" else \
+        6 if status == "Оформление" else \
+        7 if status == "Закрыто" else \
+        8 if status == "Отказ" else 0
 
     line_f = "lambda x:"
     if len(line) > 1:
@@ -456,10 +449,10 @@ def delete():
     return dumps("sudo rm -rf /client/")
 
 
-@app.route("/Download/finance/<path:token>", methods=["GET"])
+@app.route("/Download/<path:token>/finance.xlsx", methods=["GET"])
 def download_closed(token):
-    print(token)
     global is_closed_application_file
+
     if len(token) != 16:
         logger.warning("[WARNING] - Invalid request data")
         return dumps(None)
@@ -475,40 +468,38 @@ def download_closed(token):
         return dumps(None)
     logger.info(getcwd())
     if not is_closed_application_file:
-        applications = history_table.get_closed_applications()
+        applications = history_table.get_finance_applications()
         data_for_excel = {
-            "id": [],
-            "client_id": [],
-            "client_name": [],
-            "name_of_program": [],
-            "country": [],
-            "status": [],
-            "type": [],
-            "departure_date": [],
-            "user_commit": [],
-            "money": []
+            "ФИО клиента": [],
+            "Программа": [],
+            "Страна": [],
+            "Статус": [],
+            "Тип": [],
+            "Дата выезда": [],
+            "Комментарии": [],
+            "Выручка": []
         }
 
         for application in applications:
             client = clients_table.get(application[1])
-            data_for_excel["id"].append(application[0])
-            data_for_excel["client_id"].append(application[1])
-            data_for_excel["name_of_program"].append(application[2])
-            data_for_excel["country"].append(application[3])
-            status = "Заявка" if application[4] == 1 else \
-                     "Договор" if application[4] == 2 else \
-                     "Оплата" if application[4] == 3 else \
-                     "Выезд" if application[4] == 4 else \
-                     "Консультирование" if application[4] == 5 else \
-                     "Оформление" if application[4] == 6 else \
-                     "Закрыто" if application[4] == 7 else \
-                     "Отказ" if application[4] == 8 else "Не заполнен"
-            data_for_excel["status"].append(status)
-            data_for_excel["type"].append(application[5])
-            data_for_excel["departure_date"].append(application[6])
-            data_for_excel["user_commit"].append(application[7])
-            data_for_excel["money"].append(application[8])
-            data_for_excel["client_name"].append(client[1] if client else "")
+
+            data_for_excel["ФИО клиента"].append(client[1] if client else "")
+            data_for_excel["Программа"].append(application[2])
+            data_for_excel["Страна"].append(application[3])
+            data_for_excel["Статус"].append(
+                "Заявка" if application[4] == 1 else
+                "Договор" if application[4] == 2 else
+                "Оплата" if application[4] == 3 else
+                "Выезд" if application[4] == 4 else
+                "Консультирование" if application[4] == 5 else
+                "Оформление" if application[4] == 6 else
+                "Закрыто" if application[4] == 7 else
+                "Отказ" if application[4] == 8 else "Не заполнен"
+            )
+            data_for_excel["Тип"].append(application[5])
+            data_for_excel["Дата выезда"].append(application[6])
+            data_for_excel["Комментарии"].append(application[7])
+            data_for_excel["Выручка"].append(application[8])
 
         df = DataFrame(data_for_excel)
         writer = ExcelWriter("Main/excel/closed_applications.xlsx")
@@ -517,10 +508,10 @@ def download_closed(token):
         is_closed_application_file = True
 
     logger.info("[OK] - Closed file sent")
-    return send_from_directory("excel", filename="closed_applications.xlsx")
+    return send_from_directory("Main/excel", filename="closed_applications.xlsx")
 
 
-@app.route("/Download/closed/<path:token>", methods=["GET"])
+@app.route("/Download/<path:token>/closed.xlsx", methods=["GET"])
 def download_refused(token):
     global is_refused_application_file
 
@@ -541,19 +532,17 @@ def download_refused(token):
     if not is_refused_application_file:
 
         data_for_excel = {
-            "id": [],
-            "client_id": [],
-            "client_name": [],
-            "name_of_program": [],
-            "country": [],
-            "status": [],
-            "type": [],
-            "departure_date": [],
-            "user_commit": [],
-            "cause": [],
-            "brief": []
+            "ФИО клиента": [],
+            "Программа": [],
+            "Страна": [],
+            "Статус": [],
+            "Тип": [],
+            "Дата выезда": [],
+            "Комментарии": [],
+            "Краткая причина": [],
+            "Причина": []
         }
-        applications = history_table.get_refused_applications()
+        applications = history_table.get_closed_applications()
         for i, application in enumerate(applications):
             client = clients_table.get(application[1])
             if client:
@@ -561,26 +550,24 @@ def download_refused(token):
             else:
                 applications[i] += ("",)
 
-            data_for_excel["id"].append(application[0])
-            data_for_excel["client_id"].append(application[1])
-            data_for_excel["name_of_program"].append(application[2])
-            data_for_excel["country"].append(application[3])
-            status = "Заявка" if application[4] == 1 else \
-                     "Договор" if application[4] == 2 else \
-                     "Оплата" if application[4] == 3 else \
-                     "Выезд" if application[4] == 4 else \
-                     "Консультирование" if application[4] == 5 else \
-                     "Оформление" if application[4] == 6 else \
-                     "Закрыто" if application[4] == 7 else \
-                     "Отказ" if application[4] == 8 else "Не заполнен"
-            data_for_excel["status"].append(status)
-            data_for_excel["type"].append(application[5])
-            data_for_excel["departure_date"].append(application[6])
-            data_for_excel["user_commit"].append(application[7])
-            data_for_excel["cause"].append(application[8])
-            data_for_excel["brief"].append(application[9])
-            client = clients_table.get(application[1])
-            data_for_excel["client_name"].append(client[1] if client else "")
+            data_for_excel["ФИО клиента"].append(client[1] if client else "")
+            data_for_excel["Программа"].append(application[2])
+            data_for_excel["Страна"].append(application[3])
+            data_for_excel["Статус"].append(
+                "Заявка" if application[4] == 1 else
+                "Договор" if application[4] == 2 else
+                "Оплата" if application[4] == 3 else
+                "Выезд" if application[4] == 4 else
+                "Консультирование" if application[4] == 5 else
+                "Оформление" if application[4] == 6 else
+                "Закрыто" if application[4] == 7 else
+                "Отказ" if application[4] == 8 else "Не заполнен"
+            )
+            data_for_excel["Тип"].append(application[5])
+            data_for_excel["Дата выезда"].append(application[6])
+            data_for_excel["Комментарии"].append(application[7])
+            data_for_excel["Причина"].append(application[8])
+            data_for_excel["Краткая причина"].append(application[9])
 
         df = DataFrame(data_for_excel)
         writer = ExcelWriter("Main/excel/refused_applications.xlsx")
@@ -589,10 +576,10 @@ def download_refused(token):
         is_refused_application_file = True
 
     logger.info("[OK] - Refused file sent")
-    return send_from_directory("excel", "refused_applications.xlsx")
+    return send_from_directory("Main/excel", "refused_applications.xlsx")
 
 
-@app.route("/Download/general/<path:token>", methods=["GET"])
+@app.route("/Download/<path:token>/general.xlsx", methods=["GET"])
 def download_general(token):
     global is_current_application_file
 
@@ -612,44 +599,43 @@ def download_general(token):
     logger.info(getcwd())
     if not is_current_application_file:
         data_for_excel = {
-            "application_id": [],
-            "client_id": [],
-            "client_name": [],
-            "date_of_birth": [],
-            "phone_name": [],
-            "email": [],
-            "name_of_program": [],
-            "country": [],
-            "status": [],
-            "type": [],
-            "departure_date": [],
-            "date_of_creation": [],
-            "user_commit": [],
+            "ФИО клиента": [],
+            "Дата рождения": [],
+            "Телефон": [],
+            "Email": [],
+            "Программа": [],
+            "Страна": [],
+            "Статус": [],
+            "Тип": [],
+            "Дата выезда": [],
+            "Дата создания": [],
+            "Комментарий": [],
         }
         currents = current_requests_table.get_all()
+
         for current in currents:
             user = clients_table.get(current[1])
-            data_for_excel["application_id"].append(current[0])
-            data_for_excel["client_id"].append(current[1])
-            data_for_excel["client_name"].append(user[1] if user else "")
-            data_for_excel["date_of_birth"].append(user[2] if user else "")
-            data_for_excel["phone_name"].append(user[3] if user else "")
-            data_for_excel["email"].append(user[4] if user else "")
-            data_for_excel["name_of_program"].append(current[2])
-            data_for_excel["country"].append(current[3])
-            status = "Заявка" if current[4] == 1 else \
-                     "Договор" if current[4] == 2 else \
-                     "Оплата" if current[4] == 3 else \
-                     "Выезд" if current[4] == 4 else \
-                     "Консультирование" if current[4] == 5 else \
-                     "Оформление" if current[4] == 6 else \
-                     "Закрыто" if current[4] == 7 else \
-                     "Отказ" if current[4] == 8 else "Не заполнен"
-            data_for_excel["status"].append(status)
-            data_for_excel["type"].append(current[5])
-            data_for_excel["departure_date"].append(current[6])
-            data_for_excel["date_of_creation"].append(datetime.fromtimestamp(current[7]))
-            data_for_excel["user_commit"].append(current[8])
+
+            data_for_excel["ФИО клиента"].append(user[1] if user else "")
+            data_for_excel["Дата рождения"].append(user[2] if user else "")
+            data_for_excel["Телефон"].append(user[3] if user else "")
+            data_for_excel["Email"].append(user[4] if user else "")
+            data_for_excel["Программа"].append(current[2])
+            data_for_excel["Страна"].append(current[3])
+            data_for_excel["Статус"].append(
+                "Заявка" if current[8] == 1 else
+                "Договор" if current[8] == 2 else
+                "Оплата" if current[8] == 3 else
+                "Выезд" if current[8] == 4 else
+                "Консультирование" if current[8] == 5 else
+                "Оформление" if current[8] == 6 else
+                "Закрыто" if current[8] == 7 else
+                "Отказ" if current[8] == 8 else "Не заполнен"
+            )
+            data_for_excel["Тип"].append(current[4])
+            data_for_excel["Дата выезда"].append(current[5])
+            data_for_excel["Дата создания"].append(datetime.fromtimestamp(current[6]))
+            data_for_excel["Комментарий"].append(current[7])
 
         df = DataFrame(data_for_excel)
         writer = ExcelWriter("Main/excel/current_applications.xlsx")
@@ -658,7 +644,7 @@ def download_general(token):
         is_current_application_file = True
 
     logger.info("[OK] - Current file sent")
-    return send_from_directory("excel", "current_applications.xlsx")
+    return send_from_directory("Main/excel", "current_applications.xlsx")
 
 
 # TODO: сделать удаление токенов
@@ -675,8 +661,6 @@ is_closed_application_file = False
 is_refused_application_file = False
 is_current_application_file = False
 total_error = 0
-# start time
-logger.info(f"Start in {time()}")
 
 db = DB("database")
 logger.info(f"[OK] - Created or opened database | Name {db.name}")
