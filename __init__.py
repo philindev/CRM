@@ -75,7 +75,7 @@ def preparation_of_client_data(client, time_is_now):
         current_request = [None] * 9
     else:
         current_request = list(current_request)
-        current_request[7] = float(time_is_now) - float(current_request[6])
+        current_request[6] = float(time_is_now) - float(current_request[6])
     current_request = {
         "program_name": current_request[2],
         "country": current_request[3],
