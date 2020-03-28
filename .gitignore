@@ -1,6 +1,6 @@
 frontend/node_modules
 database.db
-__pycache__/
+__pycache__
 .gitignore
 excel
 .idea
