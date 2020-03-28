@@ -21,8 +21,9 @@ export default class ClientInfo extends Component{
 
 			money: 0,
 			brief: '',
-			cause: ''
-    }
+			cause: '',
+    };
+
 		this.submitClient = this.submitClient.bind(this);
 		this.submitRequest = this.submitRequest.bind(this);
 		this.sendRequest = this.sendRequest.bind(this);
@@ -394,7 +395,7 @@ export default class ClientInfo extends Component{
 														},
 														body: JSON.stringify({
 															data: {
-																cause: main.state.money,
+																cause: main.state.cause,
 																brief: main.state.brief,
 																id: client.client_id,
 															},
