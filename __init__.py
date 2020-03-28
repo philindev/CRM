@@ -487,7 +487,8 @@ def download_closed(token):
             "Статус": [],
             "Тип": [],
             "Дата выезда": [],
-            "Комментарии": [],
+            "Комментарий": [],
+            "Контакты": [],
             "Выручка": []
         }
 
@@ -509,7 +510,9 @@ def download_closed(token):
             )
             data_for_excel["Тип"].append(application[5])
             data_for_excel["Дата выезда"].append(application[6])
-            data_for_excel["Комментарии"].append(application[7])
+            comment, contacts = application[7].split("--Contacts--")
+            data_for_excel["Комментарий"].append(comment)
+            data_for_excel["Контакты"].append(contacts)
             data_for_excel["Выручка"].append(application[8])
 
         df = DataFrame(data_for_excel)
@@ -549,7 +552,8 @@ def download_refused(token):
             "Статус": [],
             "Тип": [],
             "Дата выезда": [],
-            "Комментарии": [],
+            "Комментарий": [],
+            "Контакты": [],
             "Краткая причина": [],
             "Причина": []
         }
@@ -576,7 +580,9 @@ def download_refused(token):
             )
             data_for_excel["Тип"].append(application[5])
             data_for_excel["Дата выезда"].append(application[6])
-            data_for_excel["Комментарии"].append(application[7])
+            comment, contacts = application[7].split("--Contacts--")
+            data_for_excel["Комментарий"].append(comment)
+            data_for_excel["Контакты"].append(contacts)
             data_for_excel["Краткая причина"].append(application[8])
             data_for_excel["Причина"].append(application[9])
 
@@ -621,6 +627,7 @@ def download_general(token):
             "Дата выезда": [],
             "Дата создания": [],
             "Комментарий": [],
+            "Контакты": []
         }
         currents = current_requests_table.get_all()
 
@@ -646,7 +653,9 @@ def download_general(token):
             data_for_excel["Тип"].append(current[4])
             data_for_excel["Дата выезда"].append(current[5])
             data_for_excel["Дата создания"].append(datetime.fromtimestamp(current[6]))
-            data_for_excel["Комментарий"].append(current[7])
+            comment, contacts = current[7].split("--Contacts--")
+            data_for_excel["Комментарий"].append(comment)
+            data_for_excel["Контакты"].append(contacts)
 
         df = DataFrame(data_for_excel)
         writer = ExcelWriter("Main/excel/current_applications.xlsx")
