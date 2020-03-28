@@ -314,7 +314,7 @@ class HistoryTable(AbstractTable):
         self.connection.commit()
 
     def insert(self, client_id, program_name, country, program_type, departure_date, date_of_creation, commit,
-               status=6, money=0, cause="", brief=""):
+               status=7, money=0, cause="", brief=""):
         cursor = self.connection.cursor()
         cursor.execute(
             '''
