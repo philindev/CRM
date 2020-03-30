@@ -113,7 +113,7 @@ class AdminsTable(AbstractTable):
         row = cursor.fetchone()
         if not row:
             return False
-        return 1 if row[0] == 3 else 0 if row[0] in [1, 2] else -1
+        return 1 if row[0] == 3 else 2 if row[0] == 2 else 0 if row[0] == 1 else -1
 
 
 class ClientsTable(AbstractTable):
@@ -146,12 +146,14 @@ class ClientsTable(AbstractTable):
         cursor.close()
         self.connection.commit()
 
-    def set_client_status(self, client_name, status):
+    def set_client_status(self, client_id, status):
         cursor = self.connection.cursor()
         cursor.execute(
-            '''UPDATE clients
-                SET client_status = ?
-                WHERE client_name = ?''', (status, client_name)
+            '''
+            UPDATE clients
+            SET client_status = ?
+            WHERE id = ?
+            ''', (status, client_id)
         )
         cursor.close()
         self.connection.commit()
