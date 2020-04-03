@@ -172,9 +172,9 @@ def user_data():
         return dumps(None)
 
     clients_table.insert(data["name"], data["date_of_birth"], data["number"], data["mail"],
-                         1 if data["status"] == "V.I.P." else
-                         2 if data["status"] == "Новый" else
-                         3 if data["status"] == "Повторный" else 0)
+                         1 if data["status"] == "Новый" else
+                         2 if data["status"] == "Повторный" else
+                         3 if data["status"] == "V.I.P." else 0)
     logger.info("[OK] - User created")
 
     client_id = clients_table.get_client_id(data["name"], data["date_of_birth"])[0]
@@ -233,26 +233,26 @@ def change_client():
     return dumps("Changed")
 
 
-@app.route("/ChangeClientStatus", methods=["POST"])
-def change_client_status():
-    global is_closed_application_file, is_refused_application_file
-
-    data = request.json
-    if "token" not in list(data.keys()) or "status" not in list(data.keys()) or "id" not in list(data.keys()):
-        logger.warning("[WARNING] - Invalid request data")
-        return dumps(None)
-
-    if not clients_table.get(data["id"]):
-        logger.warning("[WARNING] - User does not exist")
-        return dumps(None)
-
-    check = admins_table.check_access(data["token"])
-
-    if check == -1:
-        logger.warning("[WARNING] - Token failed verification")
-        return dumps(None)
-    clients_table.set_client_status(client_id=data["id"], status=data["status"])
-    return "Updated"
+# @app.route("/ChangeClientStatus", methods=["POST"])
+# def change_client_status():
+#     global is_closed_application_file, is_refused_application_file
+#
+#     data = request.json
+#     if "token" not in list(data.keys()) or "status" not in list(data.keys()) or "id" not in list(data.keys()):
+#         logger.warning("[WARNING] - Invalid request data")
+#         return dumps(None)
+#
+#     if not clients_table.get(data["id"]):
+#         logger.warning("[WARNING] - User does not exist")
+#         return dumps(None)
+#
+#     check = admins_table.check_access(data["token"])
+#
+#     if check == -1:
+#         logger.warning("[WARNING] - Token failed verification")
+#         return dumps(None)
+#     clients_table.set_client_status(client_id=data["id"], status=data["status"])
+#     return "Updated"
 
 
 @app.route("/ChangeCurrent", methods=["POST"])
@@ -307,6 +307,12 @@ def change_current_status():
         return dumps(None)
 
     if data["status"] == "Закрыто":
+        count = history_table.get_count_closed_client_applications(client_id)
+        if count == 0:
+            clients_table.set_client_status(client_id, 1)
+        elif count == 1:
+            clients_table.set_client_status(client_id, 3)
+
         current_request = current_requests_table.pop(client_id)
         history_table.insert(client_id=current_request[1],
                              program_name=current_request[2],
@@ -317,6 +323,7 @@ def change_current_status():
                              commit=current_request[7],
                              status=7, money=data["data"]["money"])
         is_closed_application_file = False
+
 
     elif data["status"] == "Отказ":
         current_request = current_requests_table.pop(client_id)
@@ -337,9 +344,7 @@ def change_current_status():
                                           3 if data["status"] == "Оплата" else
                                           4 if data["status"] == "Выезд" else
                                           5 if data["status"] == "Консультирование" else
-                                          6 if data["status"] == "Оформление" else
-                                          7 if data["status"] == "Закртыто" else
-                                          8 if data["status"] == "Отказ" else 0)
+                                          6 if data["status"] == "Оформление" else 0)
     logger.info("[OK] - Application changed")
     return dumps("I hacked your system again")
 

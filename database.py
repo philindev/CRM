@@ -358,6 +358,17 @@ class HistoryTable(AbstractTable):
         row = cursor.fetchall()
         return row
 
+    def get_count_closed_client_applications(self, client_id):
+        cursor = self.connection.cursor()
+        cursor.execute(
+            '''
+            SELECT *
+            FROM history
+            WHERE client_id = ? and status = 7
+            ''', (client_id,)
+        )
+        return len(cursor.fetchall())
+
     def get_finance_applications(self):
         cursor = self.connection.cursor()
         cursor.execute(
