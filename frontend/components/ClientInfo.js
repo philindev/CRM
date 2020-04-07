@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
+import {Row, Col, Modal,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
 import ClientRequestInfo from "./ClientRequestInfo";
@@ -237,13 +236,14 @@ export default class ClientInfo extends Component{
 			let history = this.state.dataClient.history;
 
 			switch (client.client_status) {
-				case 1:
-					status = "V.I.P"
+				case 1 || 0:
+					status = "Новый";
 					break;
-				case 3:
-					status = "Повторный"
+				case 2:
+					status = "Повторный";
+					break;
 				default:
-					status = "Новый"
+					status = "V.I.P";
 			}
 
     let commonWindow =

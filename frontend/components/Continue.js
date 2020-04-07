@@ -31,9 +31,7 @@ export default class Continue extends Component{
       comment: this.state.comment + '--Contacts--' + this.state.school_contacts,
       type_of_program: this.state.type_of_program,
       id: this.state.id
-    }
-    console.log(files);
-
+    };
     const main = this;
 
     if(
@@ -66,7 +64,6 @@ export default class Continue extends Component{
           // Examine the text in the response
           response.json()
           .then(function(data) {
-            console.log(data);
             if(data){
               main.props.updateId(0);
               main.props.updateData();

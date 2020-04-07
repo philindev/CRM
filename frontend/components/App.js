@@ -15,47 +15,46 @@ import RequestTable from "./RequestTable";
 function days(seconds: Number, status: String) :Boolean {
 	let days = seconds / 60 / 60 / 24;
 	switch (status) {
-	case "Заявка":
-			if(days >= 20){
+		case "Заявка":
+			if (days >= 20) {
 				return true
 			}
-		break;
-	case "Договор":
-			if(days >= 10){
+			break;
+		case "Договор":
+			if (days >= 10) {
 				return true
 			}
-		break;
-	case "Оплата":
-			if(days >= 14){
+			break;
+		case "Оплата":
+			if (days >= 14) {
 				return true
 			}
-		break;
-	case "Оформление":
-			if(days >= 40){
+			break;
+		case "Оформление":
+			if (days >= 40) {
 				return true
 			}
-		break;
-	return false;
-
+			break;
 	}
+	return false;
 }
 
 function preparingNumber(num: String) :String {
 	try {
-			all_num = '1234567890+'
-			answer = ''
+			let all_num = '1234567890+';
+			let answer = '';
 			for (let _ of num) {
 				if(!all_num.includes(_)){
 					continue
 				}
 				answer += _
 			}
-			if(answer.length == 11 && answer[0] == "8"){
+			if(answer.length === 11 && answer[0] === "8"){
 				answer = '+7' + answer.slice(2)
 			}
 			return answer
 	} catch (err) {
-		console.log(err.stack)
+		console.log(err.stack);
 		return num
 	}
 }
@@ -123,7 +122,7 @@ export default class App extends React.Component{
 
 			updateData: null,
 			SearchToBase: null,
-		}
+		};
 
 		this.onHideCreate = this.onHideCreate.bind(this);
 		this.onHideContinue = this.onHideContinue.bind(this);
@@ -174,7 +173,6 @@ export default class App extends React.Component{
 
 		// Определение максимальной высоты модульного окна
 		function setHeight(){
-
 				let scr = document.documentElement.clientHeight;
 				let height = String(scr) + 'px';
 				return height;

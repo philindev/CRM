@@ -9,7 +9,6 @@ export default class Create extends Component{
     super(props);
     this.state = {
       name: '',
-      status: 'Статус заявки',
       date_of_birth: '',
       number: '',
       mail: '',
@@ -44,13 +43,13 @@ export default class Create extends Component{
 
     let files = {
       name: this.state.name,
-      status: this.state.status,
+      status: "Новый",
       date_of_birth: this.state.date_of_birth,
       number: this.props.preparingNumber('+7' + this.state.number),
-      mail: this.state.mail,
+      mail: this.state.mail || "Не указано",
       firstParent: this.state.firstParent,
       secondParent: this.state.secondParent,
-    }
+    };
     if(
         files.name != '' &&
         files.status != 'Статус заявки' &&
@@ -62,7 +61,7 @@ export default class Create extends Component{
     {
     fetch('/UserData',
         {
-          method: 'post',
+          method: 'POST',
           headers: {
             'Content-Type':'application/json',
             "Access-Control-Allow-Origin": "*",
@@ -72,33 +71,30 @@ export default class Create extends Component{
         })
         .then(
         function(response) {
-          if (response.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' +
-              response.status);
-            if(response.status === 500){
-                console.log("Status: 500")
+            if (response.status !== 200) {
+                console.log('Looks like there was a problem. Status Code: ' + response.status);
+                if(response.status === 500){
+                    console.log("Status: 500")
+                }
             }
-            return;
-          }
 
           // Examine the text in the response
-          response.json()
-          .then(function(data) {
-            if(data){
-              if(whichWindow == 1){
-                main.props.onHideCreate();
-                main.props.updateData();
-              }
-              else if (whichWindow == 2) {
-                main.props.changeId(data);
-                main.openContinue();
-              }
-            }
-            else{
-              console.log('Error submit!')
-            }
-            return;
-            });
+            response.json()
+                .then(function(data) {
+                    if(data){
+                        if(whichWindow == 1){
+                            main.props.onHideCreate();
+                            main.props.updateData();
+                        }
+                        else if (whichWindow == 2) {
+                            main.props.changeId(data);
+                            main.openContinue();
+                        }
+                    }
+                    else{
+                      console.log('Error submit!')
+                    }
+                });
         })
       }
       else{
@@ -159,22 +155,7 @@ export default class Create extends Component{
                   type="text" placeholder="Ф.И.О."
                   onChange={(e) => {this.setState({ name: e.target.value })}}
                 />
-
-
-                    <InputGroup.Append>
-                      {/* Статус заявки выпадающее меню */}
-                      <Dropdown>
-                        <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
-                        {this.state.status}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                          <Dropdown.Item onClick={() => {this.setState({status: 'V.I.P.'})}}>V.I.P.</Dropdown.Item>
-                          <Dropdown.Item onClick={() => {this.setState({status: 'Новый'})}}>Новый</Dropdown.Item>
-                          <Dropdown.Item onClick={() => {this.setState({status: 'Повторный'})}}>Повторный</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
-                  </InputGroup.Append>
-                </InputGroup>
+              </InputGroup>
 
 
                 <Form.Row style={{marginBottom: '0px', paddingBottom: "0px"}}>
