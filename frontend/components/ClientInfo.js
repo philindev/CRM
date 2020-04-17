@@ -11,7 +11,7 @@ export default class ClientInfo extends Component{
     super(props);
     this.state = {
 			dataClient: this.props.dataClient,
-      editClient: false,
+      		editClient: false,
 			editRequest: false,
 			loading: false,
 			ChangeClient: false,
@@ -30,7 +30,6 @@ export default class ClientInfo extends Component{
 		this.deleteInfo = this.deleteInfo.bind(this);
 		this.SetDefault = this.SetDefault.bind(this);
   }
-
 
 	componentWillReceiveProps(nextProps){
     this.setState({
@@ -264,8 +263,7 @@ export default class ClientInfo extends Component{
 														updateId={this.props.updateId}
 														client={client}
 														SetDate={this.props.SetDate}
-														sendRequest={this.sendRequest}
-														user={this.props.user}/>
+														sendRequest={this.sendRequest}/>
 
           <hr/>
 					<Row>

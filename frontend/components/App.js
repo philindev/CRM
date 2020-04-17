@@ -102,9 +102,12 @@ function StatusForm(number) {
 	}
 }
 
+/**
+ * @return {string}
+ */
 function SetDate(date) {
-	if(typeof(date) != "string") {return "Не заполнено"}
-	let rest = date.split("-")
+	if(typeof(date) != "string") return "Не заполнено"
+	let rest = date.split("-");
 	return `${rest[2]}.${rest[1]}.${rest[0]}`
 }
 
@@ -122,6 +125,8 @@ export default class App extends React.Component{
 
 			updateData: null,
 			SearchToBase: null,
+
+			lastClients: [],
 		};
 
 		this.onHideCreate = this.onHideCreate.bind(this);
@@ -132,6 +137,24 @@ export default class App extends React.Component{
 		this.updatingData = this.updatingData.bind(this);
 		this.clearData = this.clearData.bind(this);
 		this.addSearchToBase = this.addSearchToBase.bind(this);
+		this.addToLastClientQueue = this.addToLastClientQueue.bind(this);
+	}
+
+	addToLastClientQueue(currentQueue, json_obj){
+		function check(c, o) {
+			for(let i of c){
+				if(o.client.client_id === i.client.client_id){
+					return false
+				}
+			}
+			return true
+		}
+
+		if (json_obj.client !== undefined && check(currentQueue, json_obj)){
+
+			currentQueue.unshift(json_obj);
+			this.setState({lastClients: currentQueue});
+		}
 	}
 
 	addSearchToBase(f){
@@ -243,6 +266,7 @@ export default class App extends React.Component{
 							>
 							{this.state.updateData === null ? null :
 										<RequestTable
+															queue={this.state.lastClients}
 															openInfo={this.openClient}
 															StatusForm={StatusForm}
 															SetDate={SetDate}
@@ -265,6 +289,11 @@ export default class App extends React.Component{
 											updateData={this.state.updateData}
 											/>
 					</Row>
+
+					{
+						this.addToLastClientQueue(this.state.lastClients, this.state.dataClient)
+					}
+
 					<ClientInfo dataClient={this.state.dataClient} setHeight={setHeight} SetDate={SetDate}
 											StatusForm={StatusForm} user={this.props.user}
 											updateData={this.state.updateData}

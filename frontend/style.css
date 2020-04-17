@@ -65,8 +65,6 @@ tbody #clear {
   padding: 15px;
   color: #FFFFFF;
   font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
   cursor: pointer;
 }
 #entry .form #but button:hover,.form button:active,.form button:focus {
@@ -168,7 +166,7 @@ table.table {
 
 .thisbtn .dropdown{
   position: absolute;
-  font-family: "Gill Sans", Calibri,, sans-serif;
+  font-family: "Gill Sans", Calibri, sans-serif;
   right: 10%;
 }
 
@@ -176,4 +174,10 @@ table.table {
     color: #a11331;
     text-decoration: none;
     background-color: #f8f9fa;
+}
+
+.ToggleToTable {
+  position: relative;
+  right: -45px;
+  width: 100%;
 }
