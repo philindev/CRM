@@ -1,8 +1,5 @@
 import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
-				Dropdown, DropdownButton, InputGroup, Badge, Button,
-					FormControl} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import Header from "./Header";
 import Search from "./Search";
 import Clients from "./Clients";
@@ -111,7 +108,7 @@ function SetDate(date) {
 	return `${rest[2]}.${rest[1]}.${rest[0]}`
 }
 
-export default class App extends React.Component{
+export default class App extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
