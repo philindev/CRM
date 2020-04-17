@@ -233,28 +233,6 @@ def change_client():
     return dumps("Changed")
 
 
-# @app.route("/ChangeClientStatus", methods=["POST"])
-# def change_client_status():
-#     global is_closed_application_file, is_refused_application_file
-#
-#     data = request.json
-#     if "token" not in list(data.keys()) or "status" not in list(data.keys()) or "id" not in list(data.keys()):
-#         logger.warning("[WARNING] - Invalid request data")
-#         return dumps(None)
-#
-#     if not clients_table.get(data["id"]):
-#         logger.warning("[WARNING] - User does not exist")
-#         return dumps(None)
-#
-#     check = admins_table.check_access(data["token"])
-#
-#     if check == -1:
-#         logger.warning("[WARNING] - Token failed verification")
-#         return dumps(None)
-#     clients_table.set_client_status(client_id=data["id"], status=data["status"])
-#     return "Updated"
-
-
 @app.route("/ChangeCurrent", methods=["POST"])
 def change_current():
     data = request.json
@@ -309,7 +287,7 @@ def change_current_status():
     if data["status"] == "Закрыто":
         count = history_table.get_count_closed_client_applications(client_id)
         if count == 0:
-            clients_table.set_client_status(client_id, 1)
+            clients_table.set_client_status(client_id, 2)
         elif count == 1:
             clients_table.set_client_status(client_id, 3)
 
