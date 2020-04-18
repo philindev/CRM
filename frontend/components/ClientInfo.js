@@ -91,7 +91,7 @@ export default class ClientInfo extends Component{
 		const main = this;
 		let id = client.client_id;
 
-		if(str != "Отказ" && str != "Закрыто"){
+		if(str !== "Отказ" && str !== "Закрыто"){
 
 			fetch('/ChangeCurrentStatus',
 					{
@@ -130,13 +130,13 @@ export default class ClientInfo extends Component{
 							});
 					})
 			}
-			else if (str == "Закрыто" && this.props.user.user_status == 'Admin') {
+			else if (str === "Закрыто" && this.props.user.user_status === 'Admin') {
 				let sure = confirm("Вы уверены, что хотите закрыть заявку?");
 				if(sure){
 					main.changeWindow(1);
 				}
 			}
-			else if (str == "Отказ") {
+			else if (str === "Отказ") {
 				let sure = confirm("Вы уверены, что хотите написать \'Отказ\'?");
 				if(sure){
 					main.changeWindow(2);
@@ -145,7 +145,7 @@ export default class ClientInfo extends Component{
 	}
 
 	deleteInfo(parametr: String, id: Number){
-		let booly = confirm("Вы уверенны, что хотите удалить?")
+		let booly = confirm("Вы уверенны, что хотите удалить?");
 		const main = this;
 		if (parametr === 'Client' && booly){
 			fetch('/Delete/Client',
