@@ -290,6 +290,17 @@ export default class ClientInfo extends Component{
 	let window_render = null;
 	let window_footer = null;
 
+	function readyMoney() {
+		let stringMoney = main.state.money;
+		let res = '';
+		for(let i = 0; i < stringMoney.length; i++){
+			if ("1234567890".includes(stringMoney[i])){
+				res += stringMoney[i];
+			}
+		}
+		return Number(res)
+	}
+
 	switch (this.state.window_status) {
 
 		case 1:
@@ -327,7 +338,7 @@ export default class ClientInfo extends Component{
 										},
 										body: JSON.stringify({
 											data: {
-												money: main.state.money,
+												money: readyMoney(),
 												brief: main.state.brief,
 												id: client.client_id,
 											},
@@ -427,8 +438,8 @@ export default class ClientInfo extends Component{
 
 			default:
 
-			window_render = commonWindow
-			window_footer = this.props.user.user_status != "Admin" ? null :
+			window_render = commonWindow;
+			window_footer = this.props.user.user_status !== "Admin" ? null :
 					<Modal.Footer id="specialRed">
 						<DropdownButton
 						alignRight
@@ -437,7 +448,6 @@ export default class ClientInfo extends Component{
 						>
 								<Dropdown.Item onClick={() => this.deleteInfo('Client', client.client_id)}>Удалить клиента</Dropdown.Item>
 								<Dropdown.Divider />
-
 						</DropdownButton>
 					</Modal.Footer>;
 
