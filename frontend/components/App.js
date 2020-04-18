@@ -99,10 +99,11 @@ function StatusForm(number) {
 	}
 }
 
+
 /**
  * @return {string}
  */
-function SetDate(date) {
+function SetDate(date){
 	if(typeof(date) != "string") return "Не заполнено"
 	let rest = date.split("-");
 	return `${rest[2]}.${rest[1]}.${rest[0]}`
