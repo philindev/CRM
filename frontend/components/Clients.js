@@ -32,7 +32,7 @@ export default class Clients extends React.Component{
 					main.setState({data: data});
 			  })
 			  .catch(function (error) {
-			    console.log('error: ', error)
+			    console.log('error: ', error);
 					main.setState({error: true})
 			  })
 	}
@@ -43,8 +43,8 @@ export default class Clients extends React.Component{
 	setHeight(){
 		let scr = document.documentElement.clientHeight;
 		this.setState({
-			tableHeight: String(scr - 295) + 'px',
-		})
+			tableHeight: String(scr - 375) + 'px',
+		});
 		this.getClients();
 		this.props.SearchToBase();
 	}
