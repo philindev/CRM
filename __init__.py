@@ -120,7 +120,6 @@ def main_page():
 
 @app.route("/Entry", methods=["POST"])
 def entry():
-    logger.info("[INFO] - Entry")
     data = request.json
 
     if list(data.keys()) != ["login", "password"]:
@@ -134,8 +133,6 @@ def entry():
 
 @app.route("/UserData", methods=["POST"])
 def user_data():
-    logger.info("[INFO] - UserData")
-
     data = request.json
 
     if list(data.keys()) != ['name', 'status', 'date_of_birth', 'number', 'mail', 'firstParent', 'secondParent']:
@@ -299,9 +296,9 @@ def change_current_status():
                              departure_date=current_request[5],
                              date_of_creation=current_request[6],
                              commit=current_request[7],
-                             status=7, money=data["data"]["money"])
+                             status=7, money=data["data"]["money"],
+                             brief=data["data"]["brief"])
         is_closed_application_file = False
-
 
     elif data["status"] == "Отказ":
         current_request = current_requests_table.pop(client_id)
@@ -330,7 +327,6 @@ def change_current_status():
 @app.route("/UserRequest", methods=["POST"])
 def user_request():
     global is_current_application_file
-    logger.info("[INFO] - UserRequest")
 
     data = request.json
 
@@ -367,8 +363,6 @@ def user_request():
 
 @app.route("/GetInfo", methods=["GET"])
 def get_info():
-    logger.info("[INFO] - GetInfo")
-
     time_is_now = time()
     response = []
 
@@ -380,7 +374,6 @@ def get_info():
 
 @app.route("/Search", methods=["POST"])
 def search():
-    logger.info("[INFO] - Search")
     data = request.json
     logger.info(f"[INFO] - Search data: {data}")
     if list(data.keys()) != ["searchLine", "phone_number", "status"]:
@@ -442,7 +435,6 @@ def search():
 
 @app.route("/Delete/Client", methods=["POST"])
 def delete():
-    logger.info("[INFO] - Delete client")
     data = request.json
 
     if list(data.keys()) != ["token", "client_id"]:
@@ -473,49 +465,45 @@ def download_closed(token):
 
     check = admins_table.check_access(token)
 
-    if check != 1:
-        if check == -1:
-            logger.warning("[WARNING] - Token failed verification")
-        else:
-            logger.info("[FAILED] - Token does not have access")
+    if check == -1:
+        return dumps("Permission denied")
 
-        return dumps(None)
-    logger.info(getcwd())
-    if not is_closed_application_file:
-        applications = history_table.get_finance_applications()
-        data_for_excel = {
-            "ФИО клиента": [],
-            "Программа": [],
-            "Страна": [],
-            "Статус": [],
-            "Тип": [],
-            "Дата выезда": [],
-            "Комментарий": [],
-            "Контакты": [],
-            "Выручка": []
-        }
+    applications = history_table.get_finance_applications()
+    data_for_excel = {
+        "ФИО клиента": [],
+        "Программа": [],
+        "Страна": [],
+        "Статус": [],
+        "Тип": [],
+        "Дата выезда": [],
+        "Комментарий": [],
+        "Контакты": [],
+    }
+    if check == 1:
+        data_for_excel["Выручка"] = []
 
-        for application in applications:
-            client = clients_table.get(application[1])
+    for application in applications:
+        client = clients_table.get(application[1])
 
-            data_for_excel["ФИО клиента"].append(client[1] if client else "")
-            data_for_excel["Программа"].append(application[2])
-            data_for_excel["Страна"].append(application[3])
-            data_for_excel["Статус"].append(
-                "Заявка" if application[4] == 1 else
-                "Договор" if application[4] == 2 else
-                "Оплата" if application[4] == 3 else
-                "Выезд" if application[4] == 4 else
-                "Консультирование" if application[4] == 5 else
-                "Оформление" if application[4] == 6 else
-                "Закрыто" if application[4] == 7 else
-                "Отказ" if application[4] == 8 else "Не заполнен"
-            )
-            data_for_excel["Тип"].append(application[5])
-            data_for_excel["Дата выезда"].append(application[6])
-            comment, contacts = application[7].split("--Contacts--")
-            data_for_excel["Комментарий"].append(comment)
-            data_for_excel["Контакты"].append(contacts)
+        data_for_excel["ФИО клиента"].append(client[1] if client else "")
+        data_for_excel["Программа"].append(application[2])
+        data_for_excel["Страна"].append(application[3])
+        data_for_excel["Статус"].append(
+            "Заявка" if application[4] == 1 else
+            "Договор" if application[4] == 2 else
+            "Оплата" if application[4] == 3 else
+            "Выезд" if application[4] == 4 else
+            "Консультирование" if application[4] == 5 else
+            "Оформление" if application[4] == 6 else
+            "Закрыто" if application[4] == 7 else
+            "Отказ" if application[4] == 8 else "Не заполнен"
+        )
+        data_for_excel["Тип"].append(application[5])
+        data_for_excel["Дата выезда"].append(application[6])
+        comment, contacts = application[7].split("--Contacts--")
+        data_for_excel["Комментарий"].append(comment)
+        data_for_excel["Контакты"].append(contacts)
+        if check == 1:
             data_for_excel["Выручка"].append(application[8])
 
         df = DataFrame(data_for_excel)
