@@ -7,8 +7,7 @@ import {Row, Col, Dropdown, DropdownButton, InputGroup, Badge, Button,
 function slice_on_the_halfs(string, slicing_part) {
 		let pos = string.indexOf(slicing_part);
 		let first = string.slice(0, pos);
-		let second = string.slice(pos + 12, string.length)
-		console.log(first, second);
+		let second = string.slice(pos + 12, string.length);
 		return [first, second];
 }
 

@@ -1,8 +1,5 @@
 import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
-				Dropdown, DropdownButton, InputGroup, Badge, Button,
-					FormControl} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import Header from "./Header";
 import Search from "./Search";
 import Clients from "./Clients";
@@ -15,47 +12,46 @@ import RequestTable from "./RequestTable";
 function days(seconds: Number, status: String) :Boolean {
 	let days = seconds / 60 / 60 / 24;
 	switch (status) {
-	case "Заявка":
-			if(days >= 20){
+		case "Заявка":
+			if (days >= 20) {
 				return true
 			}
-		break;
-	case "Договор":
-			if(days >= 10){
+			break;
+		case "Договор":
+			if (days >= 10) {
 				return true
 			}
-		break;
-	case "Оплата":
-			if(days >= 14){
+			break;
+		case "Оплата":
+			if (days >= 14) {
 				return true
 			}
-		break;
-	case "Оформление":
-			if(days >= 40){
+			break;
+		case "Оформление":
+			if (days >= 40) {
 				return true
 			}
-		break;
-	return false;
-
+			break;
 	}
+	return false;
 }
 
 function preparingNumber(num: String) :String {
 	try {
-			all_num = '1234567890+'
-			answer = ''
+			let all_num = '1234567890+';
+			let answer = '';
 			for (let _ of num) {
 				if(!all_num.includes(_)){
 					continue
 				}
 				answer += _
 			}
-			if(answer.length == 11 && answer[0] == "8"){
+			if(answer.length === 11 && answer[0] === "8"){
 				answer = '+7' + answer.slice(2)
 			}
 			return answer
 	} catch (err) {
-		console.log(err.stack)
+		console.log(err.stack);
 		return num
 	}
 }
@@ -103,13 +99,17 @@ function StatusForm(number) {
 	}
 }
 
-function SetDate(date) {
-	if(typeof(date) != "string") {return "Не заполнено"}
-	let rest = date.split("-")
+
+/**
+ * @return {string}
+ */
+function SetDate(date){
+	if(typeof(date) != "string") return "Не заполнено"
+	let rest = date.split("-");
 	return `${rest[2]}.${rest[1]}.${rest[0]}`
 }
 
-export default class App extends React.Component{
+export default class App extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
@@ -123,7 +123,9 @@ export default class App extends React.Component{
 
 			updateData: null,
 			SearchToBase: null,
-		}
+
+			lastClients: [],
+		};
 
 		this.onHideCreate = this.onHideCreate.bind(this);
 		this.onHideContinue = this.onHideContinue.bind(this);
@@ -133,6 +135,24 @@ export default class App extends React.Component{
 		this.updatingData = this.updatingData.bind(this);
 		this.clearData = this.clearData.bind(this);
 		this.addSearchToBase = this.addSearchToBase.bind(this);
+		this.addToLastClientQueue = this.addToLastClientQueue.bind(this);
+	}
+
+	addToLastClientQueue(currentQueue, json_obj){
+		function check(c, o) {
+			for(let i of c){
+				if(o.client.client_id === i.client.client_id){
+					return false
+				}
+			}
+			return true
+		}
+
+		if (json_obj.client !== undefined && check(currentQueue, json_obj)){
+
+			currentQueue.unshift(json_obj);
+			this.setState({lastClients: currentQueue});
+		}
 	}
 
 	addSearchToBase(f){
@@ -174,7 +194,6 @@ export default class App extends React.Component{
 
 		// Определение максимальной высоты модульного окна
 		function setHeight(){
-
 				let scr = document.documentElement.clientHeight;
 				let height = String(scr) + 'px';
 				return height;
@@ -245,6 +264,7 @@ export default class App extends React.Component{
 							>
 							{this.state.updateData === null ? null :
 										<RequestTable
+															queue={this.state.lastClients}
 															openInfo={this.openClient}
 															StatusForm={StatusForm}
 															SetDate={SetDate}
@@ -267,6 +287,11 @@ export default class App extends React.Component{
 											updateData={this.state.updateData}
 											/>
 					</Row>
+
+					{
+						this.addToLastClientQueue(this.state.lastClients, this.state.dataClient)
+					}
+
 					<ClientInfo dataClient={this.state.dataClient} setHeight={setHeight} SetDate={SetDate}
 											StatusForm={StatusForm} user={this.props.user}
 											updateData={this.state.updateData}

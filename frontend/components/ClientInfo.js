@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import {Container, Row, Col, Modal, ButtonGroup, ButtonToolbar,
+import {Row, Col, Modal,
 				Dropdown, DropdownButton, InputGroup, Badge, Button,
 					FormControl} from "react-bootstrap";
 import ClientRequestInfo from "./ClientRequestInfo";
@@ -12,7 +11,7 @@ export default class ClientInfo extends Component{
     super(props);
     this.state = {
 			dataClient: this.props.dataClient,
-      editClient: false,
+      		editClient: false,
 			editRequest: false,
 			loading: false,
 			ChangeClient: false,
@@ -31,7 +30,6 @@ export default class ClientInfo extends Component{
 		this.deleteInfo = this.deleteInfo.bind(this);
 		this.SetDefault = this.SetDefault.bind(this);
   }
-
 
 	componentWillReceiveProps(nextProps){
     this.setState({
@@ -93,7 +91,7 @@ export default class ClientInfo extends Component{
 		const main = this;
 		let id = client.client_id;
 
-		if(str != "Отказ" && str != "Закрыто"){
+		if(str !== "Отказ" && str !== "Закрыто"){
 
 			fetch('/ChangeCurrentStatus',
 					{
@@ -132,13 +130,13 @@ export default class ClientInfo extends Component{
 							});
 					})
 			}
-			else if (str == "Закрыто" && this.props.user.user_status == 'Admin') {
+			else if (str === "Закрыто" && this.props.user.user_status === 'Admin') {
 				let sure = confirm("Вы уверены, что хотите закрыть заявку?");
 				if(sure){
 					main.changeWindow(1);
 				}
 			}
-			else if (str == "Отказ") {
+			else if (str === "Отказ") {
 				let sure = confirm("Вы уверены, что хотите написать \'Отказ\'?");
 				if(sure){
 					main.changeWindow(2);
@@ -147,7 +145,7 @@ export default class ClientInfo extends Component{
 	}
 
 	deleteInfo(parametr: String, id: Number){
-		let booly = confirm("Вы уверенны, что хотите удалить?")
+		let booly = confirm("Вы уверенны, что хотите удалить?");
 		const main = this;
 		if (parametr === 'Client' && booly){
 			fetch('/Delete/Client',
@@ -237,13 +235,14 @@ export default class ClientInfo extends Component{
 			let history = this.state.dataClient.history;
 
 			switch (client.client_status) {
-				case 1:
-					status = "V.I.P"
+				case 1 || 0:
+					status = "Новый";
 					break;
-				case 3:
-					status = "Повторный"
+				case 2:
+					status = "Повторный";
+					break;
 				default:
-					status = "Новый"
+					status = "V.I.P";
 			}
 
     let commonWindow =
@@ -264,8 +263,7 @@ export default class ClientInfo extends Component{
 														updateId={this.props.updateId}
 														client={client}
 														SetDate={this.props.SetDate}
-														sendRequest={this.sendRequest}
-														user={this.props.user}/>
+														sendRequest={this.sendRequest}/>
 
           <hr/>
 					<Row>
@@ -291,6 +289,17 @@ export default class ClientInfo extends Component{
 
 	let window_render = null;
 	let window_footer = null;
+
+	function readyMoney() {
+		let stringMoney = main.state.money;
+		let res = '';
+		for(let i = 0; i < stringMoney.length; i++){
+			if ("1234567890".includes(stringMoney[i])){
+				res += stringMoney[i];
+			}
+		}
+		return Number(res)
+	}
 
 	switch (this.state.window_status) {
 
@@ -329,7 +338,7 @@ export default class ClientInfo extends Component{
 										},
 										body: JSON.stringify({
 											data: {
-												money: main.state.money,
+												money: readyMoney(),
 												brief: main.state.brief,
 												id: client.client_id,
 											},
@@ -429,8 +438,8 @@ export default class ClientInfo extends Component{
 
 			default:
 
-			window_render = commonWindow
-			window_footer = this.props.user.user_status != "Admin" ? null :
+			window_render = commonWindow;
+			window_footer = this.props.user.user_status !== "Admin" ? null :
 					<Modal.Footer id="specialRed">
 						<DropdownButton
 						alignRight
@@ -439,7 +448,6 @@ export default class ClientInfo extends Component{
 						>
 								<Dropdown.Item onClick={() => this.deleteInfo('Client', client.client_id)}>Удалить клиента</Dropdown.Item>
 								<Dropdown.Divider />
-
 						</DropdownButton>
 					</Modal.Footer>;
 
