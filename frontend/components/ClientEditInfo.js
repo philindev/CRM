@@ -166,18 +166,6 @@ class EditClient extends Component{
 				    />
 				  </InputGroup>
 
-					{
-						(this.state.second_name == null ||
-						 this.state.second_work == null ||
-						 this.state.second_email == null ||
-						 this.state.second_phone == null
-					 )
-
-					 ?
-
-					 null
-
-					 :
 				 <div className="mt-3">
 					 <InputGroup className="mb-3">
 						 <InputGroup.Prepend>
@@ -232,8 +220,8 @@ class EditClient extends Component{
 					 </InputGroup>
 				 </div>
 
-					}
-					</Col>;
+					
+				</Col>;
 
 
 		return(edit)
